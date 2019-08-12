@@ -1,8 +1,10 @@
-<script src="assets/template/vendor/jquery/jquery.min.js"></script>
-<script src="assets/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="assets/template/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="assets/template/js/sb-admin-2.min.js"></script>
+<!-- Le javascript
+================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<script src="assets/template/js/jquery-1.7.2.min.js"></script> 
+<script src="assets/template/js/excanvas.min.js"></script> 
+<script src="assets/template/js/chart.min.js" type="text/javascript"></script> 
+<script src="assets/template/js/bootstrap.js"></script>
+<script language="javascript" type="text/javascript" src="assets/template/js/full-calendar/fullcalendar.min.js"></script>
+ 
+<script src="assets/template/js/base.js"></script> 
