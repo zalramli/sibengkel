@@ -9,6 +9,7 @@
 <link href="assets/template/css/font-awesome.css" rel="stylesheet">
 <link href="assets/template/css/style.css" rel="stylesheet">
 <link href="assets/template/css/pages/dashboard.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
