@@ -1,3 +1,14 @@
+<?php 
+if (isset($_POST['simpan'])) {
+  $kode = $_POST['kode'];
+  $kategori = $_POST['kategori'];
+
+  $query = mysqli_query($koneksi,"INSERT INTO kategori_wisata (id_kategoriWisata,nama_kategori) VALUES ('$kode','$kategori') ");
+  if($query){
+    echo "<script>window.location = 'dashboard.php?halaman=v_akses'</script>";
+  }
+}
+ ?>
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -37,16 +48,10 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="id_user_b">ID Backend</label>
-                                <input type="text" class="form-control" id="id_user_b" name="id_user_b" placeholder="ID USER" required="" oninvalid="this.setCustomValidity('Isi Nama Paket')" oninput="setCustomValidity('')">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="nm_bentuk">Nama Bentuk</label>
-                                <input type="text" class="form-control <?php if(form_error('nm_bentuk')== true) { echo "is-invalid";} ?>" id="nm_bentuk" name="nm_bentuk" placeholder="Bentuk Perhiasan" oninvalid="this.setCustomValidity('Isi Bentuk Perhiasan')" oninput="setCustomValidity('')" value="<?= set_value('nm_bentuk') ?>">
+                                <label for="nm_akses">Nama Hak Akses</label>
+                                <input type="text" class="form-control" id="nm_akses" name="nm_akses" placeholder="Bentuk Perhiasan" oninvalid="this.setCustomValidity('Isi Nama Akses')" oninput="setCustomValidity('')">
                                 <div class="invalid-feedback">
-                                    <?php echo form_error('nm_bentuk'); ?>
+                                    <!-- error muncul -->
                                 </div>
                             </div>
                         </div>
