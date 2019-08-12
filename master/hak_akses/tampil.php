@@ -1,4 +1,73 @@
-<table id="example" class="table hover table-bordered" style="width:100%">
+<div class="span12">          
+            
+            <div class="widget ">
+              
+              <div class="widget-header">
+                <i class="icon-user"></i>
+                <h3>Your Account</h3>
+            </div> <!-- /widget-header -->
+          
+          <div class="widget-content">
+            
+            
+            
+            <div class="tabbable">
+            <ul class="nav nav-tabs">
+              <li>
+                <a href="#formcontrols" data-toggle="tab">Input Form</a>
+              </li>
+              <li  class="active"><a href="#jscontrols" data-toggle="tab">Tampil Data</a></li>
+            </ul>
+            
+            <br>
+            
+              <div class="tab-content">
+                <div class="tab-pane" id="formcontrols">
+                <form id="edit-profile" class="form-horizontal">
+                  <fieldset>
+                    
+                    
+                    <div class="control-group">                     
+                      <label class="control-label" for="firstname">First Name</label>
+                      <div class="controls">
+                        <input type="text" class="span6" id="firstname" value="John">
+                      </div> <!-- /controls -->       
+                    </div> <!-- /control-group -->
+                    
+                    
+                    <div class="control-group">                     
+                      <label class="control-label" for="lastname">Last Name</label>
+                      <div class="controls">
+                        <input type="text" class="span6" id="lastname" value="Donga">
+                      </div> <!-- /controls -->       
+                    </div> <!-- /control-group -->
+                    
+                    
+                    <div class="control-group">                     
+                      <label class="control-label" for="email">Email Address</label>
+                      <div class="controls">
+                        <input type="text" class="span4" id="email" value="john.donga@egrappler.com">
+                      </div> <!-- /controls -->       
+                    </div> <!-- /control-group -->
+                    
+                    
+                                        
+                    
+                      
+                     <br />
+                    
+                      
+                    <div class="form-actions">
+                      <button type="submit" class="btn btn-primary">Save</button> 
+                      <button class="btn">Cancel</button>
+                    </div> <!-- /form-actions -->
+                  </fieldset>
+                </form>
+                </div>
+                
+                <div class="tab-pane active" id="jscontrols">
+                    <fieldset>
+                        <table id="example" class="hover table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>Name</th>
@@ -467,5 +536,26 @@
                 <td>$112,000</td>
             </tr>
         </tbody>
-    </table>
-    </div>
+    </table>    
+                                       
+                      
+                      <br />
+                      
+                    </fieldset>
+                </div>
+                
+              </div>
+              
+              
+            </div>
+            
+            
+            
+            
+            
+          </div> <!-- /widget-content -->
+            
+        </div> <!-- /widget -->
+            
+        </div> <!-- /span8 -->
+  
