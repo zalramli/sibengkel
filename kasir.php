@@ -16,7 +16,7 @@
     <!-- tutup topbar -->
 
     <!-- /navbar -->
-    <?php include "_partial/navbar_admin.php"; ?>
+    <?php include "_partial/navbar_kasir.php"; ?>
     <!-- /navbar -->
 
     <!-- konten -->
@@ -38,23 +38,7 @@
                     }
                     // Tutup Dashboard
 
-                    // Hak Akses
-                    if ($_GET['halaman'] == 'add_akses') {
-                        include "master/hak_akses/tambah.php";
-                    }
-                    if ($_GET['halaman'] == 'v_akses') {
-                        include "master/hak_akses/tampil.php";
-                    }
-                    // Tutup Hak Akses
 
-                    // Data Barang
-                    if ($_GET['halaman'] == 'add_barang') {
-                        include "master/barang/tambah.php";
-                    }
-                    if ($_GET['halaman'] == 'v_barang') {
-                        include "master/barang/tampil.php";
-                    }
-                    // Tutup Data Barang
 
                     ?>
                 </div>
