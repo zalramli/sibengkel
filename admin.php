@@ -34,13 +34,14 @@
                 <!-- Begin Page Content -->
                 <?php 
                     if (!isset($_GET['halaman'])) 
-                        {
-                            error_reporting(0);
-                        }
+                    {
+                        error_reporting(0);
+                    }
                     if ($_GET['halaman']=='dashboard') 
-                        {
-                            include "dashboard.php";
-                        }
+                    {
+                        include "dashboard.php";
+                    }
+                    // Hak Akses
                     if ($_GET['halaman']=='add_akses') 
                     {
                         include "master/hak_akses/tambah.php";
@@ -49,6 +50,8 @@
                     {
                         include "master/hak_akses/tampil.php";
                     }
+                    // Tutup Hak Akses
+
                 ?>  
                 <!-- /.container-fluid -->
 

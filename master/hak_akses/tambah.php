@@ -1,11 +1,11 @@
 <?php 
 if (isset($_POST['simpan'])) {
-  $kode = $_POST['kode'];
-  $kategori = $_POST['kategori'];
+  $kode = kode('kode_ha','hak_akses',2,'H');
+  $nm_akses = $_POST['nm_akses'];
 
-  $query = mysqli_query($koneksi,"INSERT INTO kategori_wisata (id_kategoriWisata,nama_kategori) VALUES ('$kode','$kategori') ");
+  $query = mysqli_query($koneksi,"INSERT INTO hak_akses (kode_ha,nama_ha) VALUES ('$kode','$kategori') ");
   if($query){
-    echo "<script>window.location = 'dashboard.php?halaman=v_akses'</script>";
+    echo "<script>window.location = 'admin.php?halaman=v_akses'</script>";
   }
 }
  ?>
