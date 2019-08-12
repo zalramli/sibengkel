@@ -15,6 +15,7 @@
                 <div class="container">
                     <div class="row">
                         <?php
+                        include 'koneksi/koneksi.php';
                         if (!isset($_GET['halaman']))
                         {
                         error_reporting(0);
