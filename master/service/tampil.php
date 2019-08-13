@@ -1,32 +1,33 @@
 <?php
     // Membuat Kode otomatis
-    $sql = mysqli_query($koneksi,"SELECT max(kode_ha) FROM hak_akses");
+    $sql = mysqli_query($koneksi,"SELECT max(kode_service) FROM service");
     $kode_faktur = mysqli_fetch_array($sql);
     if($kode_faktur){
       $nilai = substr($kode_faktur[0], 1);
       $kode = (int) $nilai;
       //tambahkan sebanyak + 1
       $kode = $kode + 1;
-      $auto_kode = "H" .str_pad($kode, 2, "0",  STR_PAD_LEFT);
+      $auto_kode = "S" .str_pad($kode, 2, "0",  STR_PAD_LEFT);
     } else {
-      $auto_kode = "H01";
+      $auto_kode = "S01";
     }
 
     // Ketika tombil simpan di Klik
     if (isset($_POST['simpan'])) {
-      $nm_akses = $_POST['nm_akses'];
-      $query = mysqli_query($koneksi,"INSERT INTO hak_akses (kode_ha,nama_ha) VALUES ('$auto_kode','$nm_akses') ");
+      $nama_service = $_POST['nama_service'];
+      $tarif_harga = $_POST['tarif_harga'];
+      $query = mysqli_query($koneksi,"INSERT INTO service (kode_service,nama_service,tarif_harga) VALUES ('$auto_kode','$nama_service','$tarif_harga') ");
       if($query){
-        echo "<script>window.location = 'admin.php?halaman=v_akses'</script>";
+        echo "<script>window.location = 'admin.php?halaman=v_service'</script>";
       }
     }
 
     //Proses menghapus data
     if ($_GET['hapus']) {
     $id = $_GET['hapus'];
-    $query_hapus = mysqli_query($koneksi,"DELETE FROM hak_akses WHERE kode_ha='$id'");
+    $query_hapus = mysqli_query($koneksi,"DELETE FROM service WHERE kode_service='$id'");
       if ($query_hapus) {
-          echo "<script>window.location = 'admin.php?halaman=v_akses'</script>";
+          echo "<script>window.location = 'admin.php?halaman=v_service'</script>";
       }
     }
  ?>
@@ -34,14 +35,14 @@
     <div class="widget ">
           <div class="widget-header">
                 <i class="icon-user"></i>
-                <h3>Hak Akses</h3>
+                <h3>Daftar Service</h3>
           </div> <!-- /widget-header -->
           <div class="widget-content">
 
             <div class="tabbable">
             <ul class="nav nav-tabs">
               <li>
-                <a href="#formcontrols" data-toggle="tab">Input Form</a>
+                <a href="#formcontrols" data-toggle="tab">Tambah Data</a>
               </li>
               <li  class="active"><a href="#jscontrols" data-toggle="tab">Tampil Data</a></li>
             </ul>
@@ -50,11 +51,17 @@
                 <div class="tab-pane" id="formcontrols">
                 <form method="post" action="" id="edit-profile" class="form-horizontal">  
                     <div class="control-group">                     
-                      <label class="control-label" for="firstname">Nama Akses</label>
+                      <label class="control-label" for="firstname">Nama Service</label>
                       <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="nm_akses" placeholder="Isi form nama akses">
+                        <input type="text" class="span6" id="firstname" name="nama_service" placeholder="Isi form nama service">
                       </div> <!-- /controls -->       
                     </div> <!-- /control-group -->  
+                    <div class="control-group">                     
+                      <label class="control-label" for="firstname">Tarif Harga</label>
+                      <div class="controls">
+                        <input type="text" class="span6" id="firstname" name="tarif_harga" placeholder="Isi form tarif harga">
+                      </div> <!-- /controls -->       
+                    </div> <!-- /control-group --> 
                      <br/>
                     <div class="form-actions">
                       <button type="submit" name="simpan" class="btn btn-primary">Save</button> 
@@ -68,21 +75,23 @@
                           <thead>
                               <tr>
                                   <th>Kode</th>
-                                  <th>Nama Akses</th>
+                                  <th>Nama Service</th>
+                                  <th>Tarif Harga</th>
                                   <th>Aksi</th>
                               </tr>
                           </thead>
                           <tbody>
                             <?php
-                            $query = mysqli_query($koneksi,"SELECT kode_ha,nama_ha FROM hak_akses");
+                            $query = mysqli_query($koneksi,"SELECT kode_service,nama_service,tarif_harga FROM service");
                             foreach ($query as $data) {
                              ?>
                               <tr>
-                                  <td><?= $data['kode_ha']?></td>
-                                  <td><?= $data['nama_ha']?></td>
+                                  <td><?= $data['kode_service']?></td>
+                                  <td><?= $data['nama_service']?></td>
+                                  <td><?= $data['tarif_harga']?></td>
                                   <td>
-                                    <a href="?halaman=edit_akses&id=<?= $data['kode_ha']; ?>"" class="btn btn-primary">Edit</a>
-                                    <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_akses&hapus=<?= $data['kode_ha']; ?>" class="btn btn-danger">Hapus</a>
+                                    <a href="?halaman=edit_service&id=<?= $data['kode_service']; ?>"" class="btn btn-primary">Edit</a>
+                                    <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_service&hapus=<?= $data['kode_service']; ?>" class="btn btn-danger">Hapus</a>
                                   </td>
                               </tr>
                               <?php } ?>

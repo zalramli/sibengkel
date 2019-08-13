@@ -39,13 +39,24 @@
                     // Tutup Dashboard
 
                     // Hak Akses
-                    if ($_GET['halaman'] == 'add_akses') {
-                        include "master/hak_akses/tambah.php";
-                    }
                     if ($_GET['halaman'] == 'v_akses') {
                         include "master/hak_akses/tampil.php";
                     }
+                    if ($_GET['halaman'] == 'edit_akses') {
+                        include "master/hak_akses/edit.php";
+                    }
                     // Tutup Hak Akses
+
+                    // Service
+                    if ($_GET['halaman'] == 'v_service') {
+                        include "master/service/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_service') {
+                        include "master/service/edit.php";
+                    }
+                    // Tutup Hak Akses
+
+
 
                     // Data Barang
                     if ($_GET['halaman'] == 'add_barang') {
