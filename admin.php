@@ -57,7 +57,14 @@
                     // Tutup Hak Akses
 
 
-
+                    // Merk
+                    if ($_GET['halaman'] == 'v_merk') {
+                        include "master/merk/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_merk') {
+                        include "master/merk/edit.php";
+                    }
+                    // Tutup Hak Akses
                     // Data Barang
                     if ($_GET['halaman'] == 'add_barang') {
                         include "master/barang/tambah.php";
