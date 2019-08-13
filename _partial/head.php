@@ -1,17 +1,53 @@
 <meta charset="utf-8">
-<title>Dashboard - Bootstrap Admin Template</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<link href="assets/template/css/bootstrap.min.css" rel="stylesheet">
-<link href="assets/template/css/bootstrap-responsive.min.css" rel="stylesheet">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
-        rel="stylesheet">
-<link href="assets/template/css/font-awesome.css" rel="stylesheet">
-<link href="assets/template/css/style.css" rel="stylesheet">
-<link href="assets/template/css/pages/dashboard.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Data Table | Notika - Notika Admin Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+        ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/template2/img/favicon.ico">
+    <!-- Google Fonts
+        ============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/bootstrap.min.css">
+    <!-- font awesome CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/font-awesome.min.css">
+    <!-- owl.carousel CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/template2/css/owl.theme.css">
+    <link rel="stylesheet" href="assets/template2/css/owl.transitions.css">
+    <!-- meanmenu CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/meanmenu/meanmenu.min.css">
+    <!-- animate CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/animate.css">
+    <!-- normalize CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/normalize.css">
+    <!-- wave CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/wave/waves.min.css">
+    <link rel="stylesheet" href="assets/template2/css/wave/button.css">
+    <!-- mCustomScrollbar CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- Notika icon CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/notika-custom-icon.css">
+    <!-- Data Table JS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/jquery.dataTables.min.css">
+    <!-- main CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/main.css">
+    <!-- style CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/style.css">
+    <!-- responsive CSS
+        ============================================ -->
+    <link rel="stylesheet" href="assets/template2/css/responsive.css">

@@ -1,4 +1,4 @@
-<?php
+<?php 
 // mengambil ID
 $id=$_GET['id'];
 $query = mysqli_query($koneksi,"SELECT kode_satuan,nama_satuan FROM satuan WHERE kode_satuan='$id'");
@@ -11,55 +11,38 @@ if(isset($_POST['update'])) {
 
   $update = mysqli_query($koneksi,"UPDATE satuan SET nama_satuan='$nama_satuan' WHERE kode_satuan='$kode_satuan'");
   if ($update) {
-    echo "<script>window.location = 'gudang.php?halaman=v_satuan'</script>";
+    echo "<script>window.location = 'gudang.php?halaman=v_satuanBarang'</script>";
   }
 }
 ?>
-<div style="padding-bottom: 37px;" class="span12">          
-    <div class="widget ">
-          <div class="widget-header">
-                <i class="icon-user"></i>
-                <h3>Merk Barang</h3>
-          </div> <!-- /widget-header -->
-          <div class="widget-content">
-
-            <div class="tabbable">
-            <ul class="nav nav-tabs">
-              <li>
-                <a href="gudang.php?halaman=v_satuan">Input Form</a>
-              </li>
-              <li><a href="gudang.php?halaman=v_satuan">Tampil Data</a></li>
-            </ul>
-            <br>
-              <div class="tab-content">
-                <div class="tab-pane active" id="formcontrols">
-                <form method="post" action="" id="edit-profile" class="form-horizontal">  
-                    <div class="control-group">                     
-                      <label class="control-label" for="firstname">Kode Satuan</label>
-                      <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="kode_satuan" placeholder="Isi form nama akses" value="<?= $data['kode_satuan'] ?>" readonly>
-                      </div> <!-- /controls -->       
-                    </div> <!-- /control-group -->  
-                    <div class="control-group">                     
-                      <label class="control-label" for="firstname">Nama Satuan</label>
-                      <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="nama_satuan" placeholder="Isi form nama service" value="<?= $data['nama_satuan'] ?>">
-                      </div> <!-- /controls -->       
-                    </div> <!-- /control-group --> 
-                     <br/>
-                    <div class="form-actions">
-                      <button type="submit" name="update" class="btn btn-primary">Update</button> 
-                      <a href="gudang.php?halaman=v_satuan" class="btn btn-danger">Kembali</a>
-                    </div> <!-- /form-actions -->
-                </form>
-                </div>    
-              </div>
-         
-          </div>
-
-        </div> <!-- /widget-content -->
-            
-      </div> <!-- /widget -->
-            
-    </div> <!-- /span8 -->
-  
+<div class="form-element-list">
+    <div class="basic-tb-hd">
+        <h2>Form Edit Satuan Barang</h2>
+        <p>Text Inputs with different sizes by height(<code>.input-sm, .input-lg</code>) and column.</p>
+    </div>
+    <div class="row">
+        <form action="" method="post">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label for="">Kode Satuan Barang</label>
+            <div class="form-group">
+                <div class="nk-int-st">
+                    <input type="text" name="kode_satuan" class="form-control" placeholder="Isi form nama satuan barang" readonly="" value="<?= $data['kode_satuan'] ?>">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label for="">Nama Satuan Barang</label>
+            <div class="form-group">
+                <div class="nk-int-st">
+                    <input type="text" name="nama_satuan" class="form-control" placeholder="Isi form nama kode barang" value="<?= $data['nama_satuan'] ?>">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <button type="submit" name="update" class="btn btn-primary">Update</button>
+            <a href="gudang.php?halaman=v_satuanBarang" class="btn btn-danger">Kembali</a>
+        </div>
+        </form>
+    </div>
+    
+</div>

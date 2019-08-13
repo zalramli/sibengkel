@@ -1,44 +1,44 @@
 <?php 
   // Membuat Kode otomatis
-    $sql = mysqli_query($koneksi,"SELECT max(kode_merk) FROM merk");
+    $sql = mysqli_query($koneksi,"SELECT max(kode_satuan) FROM satuan");
     $kode_faktur = mysqli_fetch_array($sql);
     if($kode_faktur){
       $nilai = substr($kode_faktur[0], 1);
       $kode = (int) $nilai;
       //tambahkan sebanyak + 1
       $kode = $kode + 1;
-      $auto_kode = "M" .str_pad($kode, 2, "0",  STR_PAD_LEFT);
+      $auto_kode = "S" .str_pad($kode, 2, "0",  STR_PAD_LEFT);
     } else {
-      $auto_kode = "M01";
+      $auto_kode = "S01";
     }
 
     // Ketika tombil simpan di Klik
     if (isset($_POST['simpan'])) {
-      $nama_merk = $_POST['nama_merk'];
-      $query = mysqli_query($koneksi,"INSERT INTO merk (kode_merk,nama_merk) VALUES ('$auto_kode','$nama_merk') ");
+      $nama_satuan = $_POST['nama_satuan'];
+      $query = mysqli_query($koneksi,"INSERT INTO satuan (kode_satuan,nama_satuan) VALUES ('$auto_kode','$nama_satuan') ");
       if($query){
-        echo "<script>window.location = 'gudang2.php?halaman=v_merkBarang'</script>";
+        echo "<script>window.location = 'gudang.php?halaman=v_satuanBarang'</script>";
       }
     }
 ?>
 <div class="form-element-list">
     <div class="basic-tb-hd">
-        <h2>Form Tambah Merk Barang</h2>
+        <h2>Form Tambah Satuan Barang</h2>
         <p>Text Inputs with different sizes by height(<code>.input-sm, .input-lg</code>) and column.</p>
     </div>
     <div class="row">
         <form action="" method="post">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <label for="">Nama Merk Barang</label>
+            <label for="">Nama Satuan Barang</label>
             <div class="form-group">
                 <div class="nk-int-st">
-                    <input type="text" name="nama_merk" class="form-control" placeholder="Isi form nama merk barang">
+                    <input type="text" name="nama_satuan" class="form-control" placeholder="Isi form nama satuan barang">
                 </div>
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-            <a href="gudang2.php?halaman=v_merkBarang" class="btn btn-danger">Kembali</a>
+            <a href="gudang.php?halaman=v_satuanBarang" class="btn btn-danger">Kembali</a>
         </div>
         </form>
     </div>

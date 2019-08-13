@@ -1,4 +1,4 @@
-<?php
+<?php 
 // mengambil ID
 $id=$_GET['id'];
 $query = mysqli_query($koneksi,"SELECT kode_merk,nama_merk FROM merk WHERE kode_merk='$id'");
@@ -11,55 +11,38 @@ if(isset($_POST['update'])) {
 
   $update = mysqli_query($koneksi,"UPDATE merk SET nama_merk='$nama_merk' WHERE kode_merk='$kode_merk'");
   if ($update) {
-    echo "<script>window.location = 'gudang.php?halaman=v_merk'</script>";
+    echo "<script>window.location = 'gudang.php?halaman=v_merkBarang'</script>";
   }
 }
 ?>
-<div style="padding-bottom: 37px;" class="span12">          
-    <div class="widget ">
-          <div class="widget-header">
-                <i class="icon-user"></i>
-                <h3>Merk Barang</h3>
-          </div> <!-- /widget-header -->
-          <div class="widget-content">
-
-            <div class="tabbable">
-            <ul class="nav nav-tabs">
-              <li>
-                <a href="gudang.php?halaman=v_merk">Input Form</a>
-              </li>
-              <li><a href="gudang.php?halaman=v_merk">Tampil Data</a></li>
-            </ul>
-            <br>
-              <div class="tab-content">
-                <div class="tab-pane active" id="formcontrols">
-                <form method="post" action="" id="edit-profile" class="form-horizontal">  
-                    <div class="control-group">                     
-                      <label class="control-label" for="firstname">Kode Merk</label>
-                      <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="kode_merk" placeholder="Isi form nama merk" value="<?= $data['kode_merk'] ?>" readonly>
-                      </div> <!-- /controls -->       
-                    </div> <!-- /control-group -->  
-                    <div class="control-group">                     
-                      <label class="control-label" for="firstname">Nama Merk</label>
-                      <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="nama_merk" placeholder="Isi form nama merk" value="<?= $data['nama_merk'] ?>">
-                      </div> <!-- /controls -->       
-                    </div> <!-- /control-group --> 
-                     <br/>
-                    <div class="form-actions">
-                      <button type="submit" name="update" class="btn btn-primary">Update</button> 
-                      <a href="gudang.php?halaman=v_merk" class="btn btn-danger">Kembali</a>
-                    </div> <!-- /form-actions -->
-                </form>
-                </div>    
-              </div>
-         
-          </div>
-
-        </div> <!-- /widget-content -->
-            
-      </div> <!-- /widget -->
-            
-    </div> <!-- /span8 -->
-  
+<div class="form-element-list">
+    <div class="basic-tb-hd">
+        <h2>Form Edit Merk Barang</h2>
+        <p>Text Inputs with different sizes by height(<code>.input-sm, .input-lg</code>) and column.</p>
+    </div>
+    <div class="row">
+        <form action="" method="post">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label for="">Kode Merk Barang</label>
+            <div class="form-group">
+                <div class="nk-int-st">
+                    <input type="text" name="kode_merk" class="form-control" placeholder="Isi form nama jenis barang" readonly="" value="<?= $data['kode_merk'] ?>">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label for="">Nama Kode Barang</label>
+            <div class="form-group">
+                <div class="nk-int-st">
+                    <input type="text" name="nama_merk" class="form-control" placeholder="Isi form nama kode barang" value="<?= $data['nama_merk'] ?>">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <button type="submit" name="update" class="btn btn-primary">Update</button>
+            <a href="gudang.php?halaman=v_merkBarang" class="btn btn-danger">Kembali</a>
+        </div>
+        </form>
+    </div>
+    
+</div>

@@ -1,17 +1,17 @@
 <?php
 // mengambil ID
 $id=$_GET['id'];
-$query = mysqli_query($koneksi,"SELECT kode_merk,nama_merk FROM merk WHERE kode_merk='$id'");
+$query = mysqli_query($koneksi,"SELECT kode_satuan,nama_satuan FROM satuan WHERE kode_satuan='$id'");
 $data=mysqli_fetch_array($query);
 
 //Proses Update Data Hak akses 
 if(isset($_POST['update'])) {
-  $kode_merk = $_POST['kode_merk'];
-  $nama_merk = $_POST['nama_merk'];
+  $kode_satuan = $_POST['kode_satuan'];
+  $nama_satuan = $_POST['nama_satuan'];
 
-  $update = mysqli_query($koneksi,"UPDATE merk SET nama_merk='$nama_merk' WHERE kode_merk='$kode_merk'");
+  $update = mysqli_query($koneksi,"UPDATE satuan SET nama_satuan='$nama_satuan' WHERE kode_satuan='$kode_satuan'");
   if ($update) {
-    echo "<script>window.location = 'gudang.php?halaman=v_merk'</script>";
+    echo "<script>window.location = 'gudang.php?halaman=v_satuan'</script>";
   }
 }
 ?>
@@ -26,30 +26,30 @@ if(isset($_POST['update'])) {
             <div class="tabbable">
             <ul class="nav nav-tabs">
               <li>
-                <a href="gudang.php?halaman=v_merk">Input Form</a>
+                <a href="gudang.php?halaman=v_satuan">Input Form</a>
               </li>
-              <li><a href="gudang.php?halaman=v_merk">Tampil Data</a></li>
+              <li><a href="gudang.php?halaman=v_satuan">Tampil Data</a></li>
             </ul>
             <br>
               <div class="tab-content">
                 <div class="tab-pane active" id="formcontrols">
                 <form method="post" action="" id="edit-profile" class="form-horizontal">  
                     <div class="control-group">                     
-                      <label class="control-label" for="firstname">Kode Merk</label>
+                      <label class="control-label" for="firstname">Kode Satuan</label>
                       <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="kode_merk" placeholder="Isi form nama merk" value="<?= $data['kode_merk'] ?>" readonly>
+                        <input type="text" class="span6" id="firstname" name="kode_satuan" placeholder="Isi form nama akses" value="<?= $data['kode_satuan'] ?>" readonly>
                       </div> <!-- /controls -->       
                     </div> <!-- /control-group -->  
                     <div class="control-group">                     
-                      <label class="control-label" for="firstname">Nama Merk</label>
+                      <label class="control-label" for="firstname">Nama Satuan</label>
                       <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="nama_merk" placeholder="Isi form nama merk" value="<?= $data['nama_merk'] ?>">
+                        <input type="text" class="span6" id="firstname" name="nama_satuan" placeholder="Isi form nama service" value="<?= $data['nama_satuan'] ?>">
                       </div> <!-- /controls -->       
                     </div> <!-- /control-group --> 
                      <br/>
                     <div class="form-actions">
                       <button type="submit" name="update" class="btn btn-primary">Update</button> 
-                      <a href="gudang.php?halaman=v_merk" class="btn btn-danger">Kembali</a>
+                      <a href="gudang.php?halaman=v_satuan" class="btn btn-danger">Kembali</a>
                     </div> <!-- /form-actions -->
                 </form>
                 </div>    

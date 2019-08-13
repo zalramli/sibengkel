@@ -59,11 +59,12 @@
                         </div>
                         <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="form-elements.html">Form Elements</a>
+                                <li><a href="gudang.php?halaman=v_barang">Daftar Barang</a>
                                 </li>
-                                <li><a href="form-components.html">Form Components</a>
+                                <li><a href="gudang.php?halaman=v_jenisBarang">Jenis Barang</a>
                                 </li>
-                                <li><a href="form-examples.html">Form Examples</a>
+                                <li><a href="gudang.php?halaman=v_merkBarang">Merk Barang</a>
+                                <li><a href="gudang.php?halaman=v_satuanBarang">Satuan Barang</a>
                                 </li>
                             </ul>
                         </div>
