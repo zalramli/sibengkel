@@ -1,18 +1,17 @@
 <?php
 // mengambil ID
 $id=$_GET['id'];
-$query = mysqli_query($koneksi,"SELECT kode_service,nama_service,tarif_harga FROM service WHERE kode_service='$id'");
+$query = mysqli_query($koneksi,"SELECT kode_merk,nama_merk FROM merk WHERE kode_merk='$id'");
 $data=mysqli_fetch_array($query);
 
 //Proses Update Data Hak akses 
 if(isset($_POST['update'])) {
-  $kode_service = $_POST['kode_service'];
-  $nama_service = $_POST['nama_service'];
-  $tarif_harga = $_POST['tarif_harga'];
+  $kode_merk = $_POST['kode_merk'];
+  $nama_merk = $_POST['nama_merk'];
 
-  $update = mysqli_query($koneksi,"UPDATE service SET nama_service='$nama_service',tarif_harga='$tarif_harga' WHERE kode_service='$kode_service'");
+  $update = mysqli_query($koneksi,"UPDATE merk SET nama_merk='$nama_merk' WHERE kode_merk='$kode_merk'");
   if ($update) {
-    echo "<script>window.location = 'admin.php?halaman=v_service'</script>";
+    echo "<script>window.location = 'admin.php?halaman=v_merk'</script>";
   }
 }
 ?>
@@ -20,7 +19,7 @@ if(isset($_POST['update'])) {
     <div class="widget ">
           <div class="widget-header">
                 <i class="icon-user"></i>
-                <h3>Daftar Service</h3>
+                <h3>Merk Barang</h3>
           </div> <!-- /widget-header -->
           <div class="widget-content">
 
@@ -38,25 +37,19 @@ if(isset($_POST['update'])) {
                     <div class="control-group">                     
                       <label class="control-label" for="firstname">Kode Service</label>
                       <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="kode_service" value="<?= $data['kode_service'] ?>" readonly>
+                        <input type="text" class="span6" id="firstname" name="kode_merk" placeholder="Isi form nama akses" value="<?= $data['kode_merk'] ?>" readonly>
                       </div> <!-- /controls -->       
                     </div> <!-- /control-group -->  
                     <div class="control-group">                     
                       <label class="control-label" for="firstname">Nama Service</label>
                       <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="nama_service" placeholder="Isi form nama akses" value="<?= $data['nama_service'] ?>">
-                      </div> <!-- /controls -->       
-                    </div> <!-- /control-group --> 
-                    <div class="control-group">                     
-                      <label class="control-label" for="firstname">Tarif Harga</label>
-                      <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="tarif_harga" placeholder="Isi form nama akses" value="<?= $data['tarif_harga'] ?>">
+                        <input type="text" class="span6" id="firstname" name="nama_merk" placeholder="Isi form nama service" value="<?= $data['nama_merk'] ?>">
                       </div> <!-- /controls -->       
                     </div> <!-- /control-group --> 
                      <br/>
                     <div class="form-actions">
                       <button type="submit" name="update" class="btn btn-primary">Update</button> 
-                      <a href="admin.php?halaman=v_service" class="btn btn-danger">Kembali</a>
+                      <a href="admin.php?halaman=v_merk" class="btn btn-danger">Kembali</a>
                     </div> <!-- /form-actions -->
                 </form>
                 </div>    

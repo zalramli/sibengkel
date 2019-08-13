@@ -59,12 +59,21 @@
 
                     // Merk
                     if ($_GET['halaman'] == 'v_merk') {
-                        include "master/merk/tampil.php";
+                        include "master/merk_barang/tampil.php";
                     }
                     if ($_GET['halaman'] == 'edit_merk') {
-                        include "master/merk/edit.php";
+                        include "master/merk_barang/edit.php";
                     }
-                    // Tutup Hak Akses
+                    // Tutup merk
+
+                    // Jenis
+                    if ($_GET['halaman'] == 'v_jenis') {
+                        include "master/jenis_barang/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_jenis') {
+                        include "master/jenis_barang/edit.php";
+                    }
+                    // Tutup merk
                     // Data Barang
                     if ($_GET['halaman'] == 'add_barang') {
                         include "master/barang/tambah.php";
