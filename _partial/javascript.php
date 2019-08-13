@@ -63,3 +63,12 @@
         ============================================ -->
     <script src="assets/template2/js/tawk-chat.js"></script>
     <script src="assets/template2/js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+    <script src="assets/template2/js/bootstrap-select/bootstrap-select.js"></script>
+
+    <script>
+        $('#data-table-basic').DataTable( {
+        ordering: false
+    });
+</script>

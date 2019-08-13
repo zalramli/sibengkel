@@ -73,6 +73,17 @@
                             include "master/satuan_barang/edit.php";
                         }
 
+                        // Parsing halaman Daftar Barang
+                        if ($_GET['halaman'] == 'v_daftarBarang') {
+                            include "master/daftar_barang/tampil.php";
+                        }
+                        if ($_GET['halaman'] == 'add_daftarBarang') {
+                            include "master/daftar_barang/tambah.php";
+                        }
+                        if ($_GET['halaman'] == 'edit_daftarBarang') {
+                            include "master/daftar_barang/edit.php";
+                        }
+
 
 
                     ?>

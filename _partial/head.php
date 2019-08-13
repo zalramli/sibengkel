@@ -51,3 +51,6 @@
     <!-- responsive CSS
         ============================================ -->
     <link rel="stylesheet" href="assets/template2/css/responsive.css">
+
+    <link rel="stylesheet" href="assets/template2/css/bootstrap-select/bootstrap-select.css">
+    
