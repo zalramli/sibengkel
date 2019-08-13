@@ -51,6 +51,17 @@
                         include "master/tarif_service/edit.php";
                     }
 
+                    // Parsing halaman suplier
+                    if ($_GET['halaman'] == 'v_suplier') {
+                        include "master/suplier/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'add_suplier') {
+                        include "master/suplier/tambah.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_suplier') {
+                        include "master/suplier/edit.php";
+                    }
+
                     ?>
                 </div>
             </div>

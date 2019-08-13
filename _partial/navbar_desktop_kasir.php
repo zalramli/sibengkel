@@ -46,7 +46,7 @@
                             <li><a href="">Transaksi Pemasokan</a>
                             </li>
 
-                            <li><a href="">Data Suplier</a>
+                            <li><a href="kasir.php?halaman=v_suplier">Data Suplier</a>
                             </li>
 
                             <li><a href="">Data Transaksi Pemasokan</a>
