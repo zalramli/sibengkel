@@ -3,7 +3,7 @@
     $sql = mysqli_query($koneksi,"SELECT max(kode_service) FROM service");
     $kode_faktur = mysqli_fetch_array($sql);
     if($kode_faktur){
-      $nilai = substr($kode_faktur[0], 1);
+      $nilai = substr($kode_faktur[0], 2);
       $kode = (int) $nilai;
       //tambahkan sebanyak + 1
       $kode = $kode + 1;
@@ -24,29 +24,29 @@
 ?>
 <div class="form-element-list">
     <div class="basic-tb-hd">
-        <h2>Form Tambah Jenis Barang</h2>
+        <h2>Form Tambah Tarif Service</h2>
     </div>
     <div class="row">
         <form action="" method="post">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <label for="">Nama Jenis Barang</label>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label for="">Nama Service</label>
             <div class="form-group">
                 <div class="nk-int-st">
-                    <input type="text" name="nama_service" class="form-control" placeholder="Isi form nama jenis barang">
+                    <input type="text" name="nama_service" class="form-control" placeholder="Isi form nama service">
                 </div>
             </div>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <label for="">Nama Jenis Barang</label>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <label for="">Tarif Service</label>
             <div class="form-group">
                 <div class="nk-int-st">
-                    <input type="text" name="tarif_harga" class="form-control" placeholder="Isi form nama jenis barang">
+                    <input type="text" name="tarif_harga" class="form-control" placeholder="Isi form tarif service">
                 </div>
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-            <a href="gudang.php?halaman=v_jenisBarang" class="btn btn-danger">Kembali</a>
+            <a href="kasir.php?halaman=v_tarifService" class="btn btn-danger">Kembali</a>
         </div>
         </form>
     </div>
