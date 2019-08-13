@@ -1,16 +1,17 @@
 <?php
-    //Proses menghapus data
-    if ($_GET['hapus']) {
+//Proses menghapus data
+if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
-    $query_hapus = mysqli_query($koneksi,"DELETE FROM satuan WHERE kode_satuan='$id'");
-      if ($query_hapus) {
-          echo "<script>window.location = 'gudang.php?halaman=v_satuanBarang'</script>";
-      }
+    $query_hapus = mysqli_query($koneksi, "DELETE FROM satuan WHERE kode_satuan='$id'");
+    if ($query_hapus) {
+        echo "<script>window.location = 'gudang.php?halaman=v_satuanBarang'</script>";
     }
- ?>
+}
+?>
 <div class="data-table-list">
     <div class="basic-tb-hd">
-        <h2>Merk BARANG</h2>
+        <h2>Satuan Barang</h2>
+        <br>
         <a href="gudang.php?halaman=add_satuanBarang" class="btn btn-success notika-btn-success">Tambah Data</a>
     </div>
     <div class="table-responsive">
@@ -24,25 +25,25 @@
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi,"SELECT kode_satuan,nama_satuan FROM satuan");
+                $query = mysqli_query($koneksi, "SELECT kode_satuan,nama_satuan FROM satuan");
                 foreach ($query as $data) {
-                 ?>
-                  <tr>
-                      <td><?= $data['kode_satuan']?></td>
-                      <td><?= $data['nama_satuan']?></td>
-                      <td>
+                    ?>
+                <tr>
+                    <td><?= $data['kode_satuan'] ?></td>
+                    <td><?= $data['nama_satuan'] ?></td>
+                    <td>
                         <a href="?halaman=edit_satuanBarang&id=<?= $data['kode_satuan']; ?>" class="btn btn-primary">Edit</a>
                         <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_satuanBarang&hapus=<?= $data['kode_satuan']; ?>" class="btn btn-danger">Hapus</a>
-                      </td>
-                  </tr>
-                  <?php } ?>
+                    </td>
+                </tr>
+                <?php } ?>
             </tbody>
             <tfoot>
-            <tr>
+                <tr>
                     <th>Kode Satuan Barang</th>
                     <th>Nama Satuan Barang</th>
                     <th>Aksi</th>
-            </tr>
+                </tr>
             </tfoot>
         </table>
     </div>
