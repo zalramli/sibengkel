@@ -3,7 +3,7 @@
 
 <head>
     <?php include "_partial/head.php"; ?>
-    
+
     <!-- modernizr JS
         ============================================ -->
 </head>
@@ -28,28 +28,39 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <?php 
-                        include 'koneksi/koneksi.php';
+                    <?php
+                    include 'koneksi/koneksi.php';
 
-                        // Dashboard
-                        if (!isset($_GET['halaman'])) {
-                            error_reporting(0);
-                        }
-                        if ($_GET['halaman'] == 'dashboard') {
-                            include "dashboard.php";
-                        }
-                        // Tutup Dashboard
+                    // Dashboard
+                    if (!isset($_GET['halaman'])) {
+                        error_reporting(0);
+                    }
+                    if ($_GET['halaman'] == 'dashboard') {
+                        include "dashboard.php";
+                    }
+                    // Tutup Dashboard
 
-                        // Parsing halaman Jenis Barang
-                        if ($_GET['halaman'] == 'v_jenisPegawai') {
-                            include "master/jenis_pegawai/tampil.php";
-                        }
-                        if ($_GET['halaman'] == 'add_jenisPegawai') {
-                            include "master/jenis_pegawai/tambah.php";
-                        }
-                        if ($_GET['halaman'] == 'edit_jenisPegawai') {
-                            include "master/jenis_pegawai/edit.php";
-                        }
+                    // Parsing halaman Data Customer
+                    if ($_GET['halaman'] == 'v_customer') {
+                        include "master/customer/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'add_customer') {
+                        include "master/customer/tambah.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_customer') {
+                        include "master/customer/edit.php";
+                    }
+
+                    // Parsing halaman Jenis Barang
+                    if ($_GET['halaman'] == 'v_jenisPegawai') {
+                        include "master/jenis_pegawai/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'add_jenisPegawai') {
+                        include "master/jenis_pegawai/tambah.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_jenisPegawai') {
+                        include "master/jenis_pegawai/edit.php";
+                    }
 
 
                     ?>
