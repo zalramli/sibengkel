@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: 13 Agu 2019 pada 11.01
--- Versi Server: 10.1.38-MariaDB-0ubuntu0.18.04.1
--- PHP Version: 7.2.17-0ubuntu0.18.04.1
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 14 Agu 2019 pada 01.58
+-- Versi server: 10.1.37-MariaDB
+-- Versi PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -49,22 +51,22 @@ INSERT INTO `barang` (`kode_barang`, `kode_merk`, `kode_satuan`, `kode_jenis`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hak_akses`
+-- Struktur dari tabel `customer`
 --
 
-CREATE TABLE `hak_akses` (
-  `kode_ha` varchar(5) NOT NULL,
-  `nama_ha` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `customer` (
+  `kode_customer` char(5) NOT NULL,
+  `nama_customer` varchar(50) NOT NULL,
+  `alamat` text NOT NULL,
+  `no_telp` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `hak_akses`
+-- Dumping data untuk tabel `customer`
 --
 
-INSERT INTO `hak_akses` (`kode_ha`, `nama_ha`) VALUES
-('H01', 'asdasdasdasdasd'),
-('H02', 'xxx'),
-('H03', 'Operator');
+INSERT INTO `customer` (`kode_customer`, `nama_customer`, `alamat`, `no_telp`) VALUES
+('K0001', 'kika', 'jember', '0812312323');
 
 -- --------------------------------------------------------
 
@@ -84,6 +86,26 @@ CREATE TABLE `jenis_barang` (
 INSERT INTO `jenis_barang` (`kode_jenis`, `nama_jenis`) VALUES
 ('J01', 'setir'),
 ('J02', 'peleng');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jenis_pegawai`
+--
+
+CREATE TABLE `jenis_pegawai` (
+  `kode_jenis_p` char(4) NOT NULL,
+  `nama_jenis_p` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `jenis_pegawai`
+--
+
+INSERT INTO `jenis_pegawai` (`kode_jenis_p`, `nama_jenis_p`) VALUES
+('JP01', 'asdasd11133'),
+('JP02', 'asd'),
+('JP03', 'asd');
 
 -- --------------------------------------------------------
 
@@ -115,6 +137,28 @@ CREATE TABLE `merk` (
 
 INSERT INTO `merk` (`kode_merk`, `nama_merk`) VALUES
 ('M01', 'Asusxxxas');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pegawai`
+--
+
+CREATE TABLE `pegawai` (
+  `kode_pegawai` char(5) NOT NULL,
+  `kode_jenis_p` char(4) NOT NULL,
+  `nama_pegawai` varchar(50) NOT NULL,
+  `alamat` text NOT NULL,
+  `no_telp` varchar(20) NOT NULL,
+  `status_login` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pegawai`
+--
+
+INSERT INTO `pegawai` (`kode_pegawai`, `kode_jenis_p`, `nama_pegawai`, `alamat`, `no_telp`, `status_login`) VALUES
+('PG002', 'JP01', 'kika33', 'asd', '80123', '0');
 
 -- --------------------------------------------------------
 
@@ -151,53 +195,93 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`kode_service`, `nama_service`, `tarif_harga`) VALUES
-('SV01', 'Ganti Oli', 90000);
+('SV01', 'Ganti Oli2', 90000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `suplier`
+--
+
+CREATE TABLE `suplier` (
+  `kode_suplier` char(4) NOT NULL,
+  `nama_suplier` varchar(50) NOT NULL,
+  `alamat` text NOT NULL,
+  `kontak_person` text NOT NULL,
+  `telp` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `suplier`
+--
+
+INSERT INTO `suplier` (`kode_suplier`, `nama_suplier`, `alamat`, `kontak_person`, `telp`) VALUES
+('S001', '1111', '333', '222', '444');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `barang`
+-- Indeks untuk tabel `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`kode_barang`);
 
 --
--- Indexes for table `hak_akses`
+-- Indeks untuk tabel `customer`
 --
-ALTER TABLE `hak_akses`
-  ADD PRIMARY KEY (`kode_ha`);
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`kode_customer`);
 
 --
--- Indexes for table `jenis_barang`
+-- Indeks untuk tabel `jenis_barang`
 --
 ALTER TABLE `jenis_barang`
   ADD PRIMARY KEY (`kode_jenis`);
 
 --
--- Indexes for table `mekanik`
+-- Indeks untuk tabel `jenis_pegawai`
+--
+ALTER TABLE `jenis_pegawai`
+  ADD PRIMARY KEY (`kode_jenis_p`);
+
+--
+-- Indeks untuk tabel `mekanik`
 --
 ALTER TABLE `mekanik`
   ADD PRIMARY KEY (`kode_mekanik`);
 
 --
--- Indexes for table `merk`
+-- Indeks untuk tabel `merk`
 --
 ALTER TABLE `merk`
   ADD PRIMARY KEY (`kode_merk`);
 
 --
--- Indexes for table `satuan`
+-- Indeks untuk tabel `pegawai`
+--
+ALTER TABLE `pegawai`
+  ADD PRIMARY KEY (`kode_pegawai`);
+
+--
+-- Indeks untuk tabel `satuan`
 --
 ALTER TABLE `satuan`
   ADD PRIMARY KEY (`kode_satuan`);
 
 --
--- Indexes for table `service`
+-- Indeks untuk tabel `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`kode_service`);
+
+--
+-- Indeks untuk tabel `suplier`
+--
+ALTER TABLE `suplier`
+  ADD PRIMARY KEY (`kode_suplier`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
