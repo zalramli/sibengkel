@@ -3,7 +3,7 @@
 
 <head>
     <?php include "_partial/head.php"; ?>
-    
+
     <!-- modernizr JS
         ============================================ -->
 </head>
@@ -28,63 +28,61 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <?php 
-                        include 'koneksi/koneksi.php';
+                    <?php
+                    include 'koneksi/koneksi.php';
 
-                        // Dashboard
-                        if (!isset($_GET['halaman'])) {
-                            error_reporting(0);
-                        }
-                        if ($_GET['halaman'] == 'dashboard') {
-                            include "dashboard.php";
-                        }
-                        // Tutup Dashboard
+                    // Dashboard
+                    if (!isset($_GET['halaman'])) {
+                        error_reporting(0);
+                    }
+                    if ($_GET['halaman'] == 'dashboard') {
+                        include "dashboard.php";
+                    }
+                    // Tutup Dashboard
 
-                        // Parsing halaman Jenis Barang
-                        if ($_GET['halaman'] == 'v_jenisBarang') {
-                            include "master/jenis_barang/tampil.php";
-                        }
-                        if ($_GET['halaman'] == 'add_jenisBarang') {
-                            include "master/jenis_barang/tambah.php";
-                        }
-                        if ($_GET['halaman'] == 'edit_jenisBarang') {
-                            include "master/jenis_barang/edit.php";
-                        }
+                    // Parsing halaman Daftar Barang
+                    if ($_GET['halaman'] == 'v_daftarBarang') {
+                        include "master/daftar_barang/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'add_daftarBarang') {
+                        include "master/daftar_barang/tambah.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_daftarBarang') {
+                        include "master/daftar_barang/edit.php";
+                    }
 
-                        // Parsing halaman Merk Barang
-                        if ($_GET['halaman'] == 'v_merkBarang') {
-                            include "master/merk_barang/tampil.php";
-                        }
-                        if ($_GET['halaman'] == 'add_merkBarang') {
-                            include "master/merk_barang/tambah.php";
-                        }
-                        if ($_GET['halaman'] == 'edit_merkBarang') {
-                            include "master/merk_barang/edit.php";
-                        }
+                    // Parsing halaman Jenis Barang
+                    if ($_GET['halaman'] == 'v_jenisBarang') {
+                        include "master/jenis_barang/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'add_jenisBarang') {
+                        include "master/jenis_barang/tambah.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_jenisBarang') {
+                        include "master/jenis_barang/edit.php";
+                    }
 
-                        // Parsing halaman Satuan Barang
-                        if ($_GET['halaman'] == 'v_satuanBarang') {
-                            include "master/satuan_barang/tampil.php";
-                        }
-                        if ($_GET['halaman'] == 'add_satuanBarang') {
-                            include "master/satuan_barang/tambah.php";
-                        }
-                        if ($_GET['halaman'] == 'edit_satuanBarang') {
-                            include "master/satuan_barang/edit.php";
-                        }
+                    // Parsing halaman Merk Barang
+                    if ($_GET['halaman'] == 'v_merkBarang') {
+                        include "master/merk_barang/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'add_merkBarang') {
+                        include "master/merk_barang/tambah.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_merkBarang') {
+                        include "master/merk_barang/edit.php";
+                    }
 
-                        // Parsing halaman Daftar Barang
-                        if ($_GET['halaman'] == 'v_daftarBarang') {
-                            include "master/daftar_barang/tampil.php";
-                        }
-                        if ($_GET['halaman'] == 'add_daftarBarang') {
-                            include "master/daftar_barang/tambah.php";
-                        }
-                        if ($_GET['halaman'] == 'edit_daftarBarang') {
-                            include "master/daftar_barang/edit.php";
-                        }
-
-
+                    // Parsing halaman Satuan Barang
+                    if ($_GET['halaman'] == 'v_satuanBarang') {
+                        include "master/satuan_barang/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'add_satuanBarang') {
+                        include "master/satuan_barang/tambah.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_satuanBarang') {
+                        include "master/satuan_barang/edit.php";
+                    }
 
                     ?>
                 </div>
