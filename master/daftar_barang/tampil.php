@@ -10,7 +10,7 @@ if (isset($_GET['hapus'])) {
 ?>
 <div class="data-table-list">
     <div class="basic-tb-hd">
-        <h2>Merk Barang</h2>
+        <h2>Daftar Barang</h2>
         <br>
         <a href="gudang.php?halaman=add_daftarBarang" class="btn btn-success notika-btn-success">Tambah Data</a>
     </div>
