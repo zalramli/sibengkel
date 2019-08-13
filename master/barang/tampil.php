@@ -38,7 +38,7 @@
       }
     }
  ?>
-<div class="span12">          
+<div style="padding-bottom: 37px;" class="span12">          
     <div class="widget ">
           <div class="widget-header">
                 <i class="icon-user"></i>

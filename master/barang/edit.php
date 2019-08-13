@@ -24,7 +24,7 @@ if(isset($_POST['update'])) {
   $query = mysqli_query($koneksi,"SELECT * FROM barang JOIN merk USING(kode_merk) JOIN satuan USING(kode_satuan) JOIN jenis_barang USING(kode_jenis) WHERE kode_barang='$id'");
   
 ?>
-<div class="span12">          
+<div style="padding-bottom: 37px;" class="span12">          
     <div class="widget ">
           <div class="widget-header">
                 <i class="icon-user"></i>
