@@ -18,7 +18,6 @@ if(isset($_POST['update'])) {
 <div class="form-element-list">
     <div class="basic-tb-hd">
         <h2>Form Edit Jenis Barang</h2>
-        <p>Text Inputs with different sizes by height(<code>.input-sm, .input-lg</code>) and column.</p>
     </div>
     <div class="row">
         <form action="" method="post">

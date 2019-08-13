@@ -30,7 +30,6 @@ echo "<script>window.location = 'gudang.php?halaman=v_daftarBarang'</script>";
 <div class="form-element-list">
   <div class="basic-tb-hd">
     <h2>Form Tambah Barang</h2>
-    <p>Text Inputs with different sizes by height(<code>.input-sm, .input-lg</code>) and column.</p>
   </div>
   <form action="" method="post">
     <div class="row">

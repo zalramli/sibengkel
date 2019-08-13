@@ -1,4 +1,4 @@
-<script src="assets/template2/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="assets/template2/js/vendor/jquery-1.12.4.min.js"></script>
     <!-- bootstrap JS
         ============================================ -->
     <script src="assets/template2/js/bootstrap.min.js"></script>
