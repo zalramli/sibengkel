@@ -40,9 +40,30 @@
                         }
                         // Tutup Dashboard
 
+                        // Parsing halaman Jenis Barang
                         if ($_GET['halaman'] == 'v_jenisBarang') {
                             include "master2/jenis_barang/tampil.php";
                         }
+                        if ($_GET['halaman'] == 'add_jenisBarang') {
+                            include "master2/jenis_barang/tambah.php";
+                        }
+                        if ($_GET['halaman'] == 'edit_jenisBarang') {
+                            include "master2/jenis_barang/edit.php";
+                        }
+
+                        // Parsing halaman Jenis Barang
+                        if ($_GET['halaman'] == 'v_merkBarang') {
+                            include "master2/merk_barang/tampil.php";
+                        }
+                        if ($_GET['halaman'] == 'add_merkBarang') {
+                            include "master2/merk_barang/tambah.php";
+                        }
+                        if ($_GET['halaman'] == 'edit_merkBarang') {
+                            include "master2/merk_barang/edit.php";
+                        }
+
+
+
                     ?>
                 </div>
             </div>

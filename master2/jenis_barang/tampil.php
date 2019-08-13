@@ -1,31 +1,49 @@
+<?php
+    //Proses menghapus data
+    if ($_GET['hapus']) {
+    $id = $_GET['hapus'];
+    $query_hapus = mysqli_query($koneksi,"DELETE FROM jenis_barang WHERE kode_jenis='$id'");
+      if ($query_hapus) {
+          echo "<script>window.location = 'gudang2.php?halaman=v_jenisBarang'</script>";
+      }
+    }
+ ?>
 <div class="data-table-list">
     <div class="basic-tb-hd">
         <h2>JENIS BARANG</h2>
-        <a href="" class="btn btn-success">Tambah Data</a>
+        <a href="gudang2.php?halaman=add_jenisBarang" class="btn btn-success notika-btn-success">Tambah Data</a>
     </div>
     <div class="table-responsive">
         <table id="data-table-basic" class="table table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>Kode Jenis Barang</th>
+                    <th>Nama Jenis Barang</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                </tr>
-                
+                <?php
+                $query = mysqli_query($koneksi,"SELECT kode_jenis,nama_jenis FROM jenis_barang");
+                foreach ($query as $data) {
+                 ?>
+                  <tr>
+                      <td><?= $data['kode_jenis']?></td>
+                      <td><?= $data['nama_jenis']?></td>
+                      <td>
+                        <a href="?halaman=edit_jenisBarang&id=<?= $data['kode_jenis']; ?>"" class="btn btn-primary">Edit</a>
+                        <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_jenisBarang&hapus=<?= $data['kode_jenis']; ?>" class="btn btn-danger">Hapus</a>
+                      </td>
+                  </tr>
+                  <?php } ?>
             </tbody>
+            <tfoot>
+            <tr>
+                    <th>Kode Jenis Barang</th>
+                    <th>Nama Jenis Barang</th>
+                    <th>Aksi</th>
+            </tr>
+            </tfoot>
         </table>
     </div>
 </div>
