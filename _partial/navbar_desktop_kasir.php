@@ -5,7 +5,7 @@
                 <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
 
                     <li>
-                        <a href="gudang.php?halaman=dashboard"><i class="notika-icon notika-house"></i> Dashboard</a>
+                        <a href="kasir.php?halaman=dashboard"><i class="notika-icon notika-house"></i> Dashboard</a>
                     </li>
 
                     <li>
@@ -17,7 +17,7 @@
                     </li>
 
                     <li>
-                        <a href="gudang.php?halaman=dashboard"><i class="notika-icon notika-house"></i> Data Service</a>
+                        <a href="kasir.php?halaman=v_tarifService"><i class="notika-icon notika-house"></i> Data Service</a>
                     </li>
 
                     <li>
@@ -31,10 +31,10 @@
                     <div id="Forms1" class="tab-pane notika-tab-menu-bg animated flipInX">
                         <ul class="notika-main-menu-dropdown">
 
-                            <li><a href="gudang.php?halaman=v_daftarBarang">Transaksi Penjualan</a>
+                            <li><a href="">Transaksi Penjualan</a>
                             </li>
 
-                            <li><a href="gudang.php?halaman=v_jenisBarang">Data Transaksi Penjualan</a>
+                            <li><a href="">Data Transaksi Penjualan</a>
                             </li>
 
                         </ul>
@@ -43,13 +43,13 @@
                     <div id="Forms2" class="tab-pane notika-tab-menu-bg animated flipInX">
                         <ul class="notika-main-menu-dropdown">
 
-                            <li><a href="gudang.php?halaman=v_daftarBarang">Transaksi Pemasokan</a>
+                            <li><a href="">Transaksi Pemasokan</a>
                             </li>
 
-                            <li><a href="gudang.php?halaman=v_jenisBarang">Data Suplier</a>
+                            <li><a href="">Data Suplier</a>
                             </li>
 
-                            <li><a href="gudang.php?halaman=v_jenisBarang">Data Transaksi Pemasokan</a>
+                            <li><a href="">Data Transaksi Pemasokan</a>
                             </li>
 
                         </ul>

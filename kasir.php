@@ -3,7 +3,7 @@
 
 <head>
     <?php include "_partial/head.php"; ?>
-    
+
     <!-- modernizr JS
         ============================================ -->
 </head>
@@ -28,30 +28,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <?php 
-                        include 'koneksi/koneksi.php';
+                    <?php
+                    include 'koneksi/koneksi.php';
 
-                        // Dashboard
-                        if (!isset($_GET['halaman'])) {
-                            error_reporting(0);
-                        }
-                        if ($_GET['halaman'] == 'dashboard') {
-                            include "dashboard.php";
-                        }
-                        // Tutup Dashboard
+                    // Dashboard
+                    if (!isset($_GET['halaman'])) {
+                        error_reporting(0);
+                    }
+                    if ($_GET['halaman'] == 'dashboard') {
+                        include "dashboard.php";
+                    }
+                    // Tutup Dashboard
 
-                        // Parsing halaman Jenis Barang
-                        if ($_GET['halaman'] == 'v_tarifService') {
-                            include "master/tarif_service/tampil.php";
-                        }
-                        if ($_GET['halaman'] == 'add_tarifService') {
-                            include "master/tarif_service/tambah.php";
-                        }
-                        if ($_GET['halaman'] == 'edit_tarifService') {
-                            include "master/tarif_service/edit.php";
-                        }
-
-
+                    // Parsing halaman service
+                    if ($_GET['halaman'] == 'v_tarifService') {
+                        include "master/tarif_service/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'add_tarifService') {
+                        include "master/tarif_service/tambah.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_tarifService') {
+                        include "master/tarif_service/edit.php";
+                    }
 
                     ?>
                 </div>
