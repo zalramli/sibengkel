@@ -1,7 +1,6 @@
 <div class="data-table-list">
     <div class="basic-tb-hd">
-        <h2>Basic Example</h2>
-        <p>It's just that simple. Turn your simple table into a sophisticated data table and offer your users a nice experience and great features without any effort.</p>
+        <a href="" class="btn btn-success">Tambah Data</a>
     </div>
     <div class="table-responsive">
         <table id="data-table-basic" class="table table-striped">

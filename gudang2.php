@@ -16,10 +16,10 @@
     <?php include "_partial2/header.php"; ?>
     <!-- End Header Top Area -->
     <!-- Mobile Menu start -->
-    <?php include "_partial2/navbar_mobile.php"; ?>
+    <?php include "_partial2/navbar_mobile_gudang.php"; ?>
     <!-- Mobile Menu end -->
     <!-- Main Menu area start-->
-    <?php include "_partial2/navbar_desktop.php"; ?>
+    <?php include "_partial2/navbar_desktop_gudang.php"; ?>
     <!-- Main Menu area End-->
     <!-- Breadcomb area Start-->
     <!-- Breadcomb area End-->
@@ -39,6 +39,10 @@
                             include "dashboard.php";
                         }
                         // Tutup Dashboard
+
+                        if ($_GET['halaman'] == 'v_jenisBarang') {
+                            include "master2/jenis_barang/tampil.php";
+                        }
                     ?>
                 </div>
             </div>
