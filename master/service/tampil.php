@@ -71,7 +71,7 @@
                 </div>
                 
                 <div class="tab-pane active" id="jscontrols">
-                        <table id="example" class="hover table-bordered" style="width:100%">
+                        <table id="example" class="table hover table-bordered" style="width:100%">
                           <thead>
                               <tr>
                                   <th>Kode</th>
