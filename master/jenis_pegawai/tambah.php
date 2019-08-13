@@ -12,8 +12,11 @@ if ($kode_faktur) {
   $auto_kode = "JP01";
 }
 
+echo $auto_kode;
+
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
+
   $nama_jenis_p = $_POST['nama_jenis_p'];
   $query = mysqli_query($koneksi, "INSERT INTO jenis_pegawai (kode_jenis_p,nama_jenis_p) VALUES ('$auto_kode','$nama_jenis_p') ");
   if ($query) {
