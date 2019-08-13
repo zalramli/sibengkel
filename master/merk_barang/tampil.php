@@ -17,7 +17,7 @@
       $nama_merk = $_POST['nama_merk'];
       $query = mysqli_query($koneksi,"INSERT INTO merk (kode_merk,nama_merk) VALUES ('$auto_kode','$nama_merk') ");
       if($query){
-        echo "<script>window.location = 'admin.php?halaman=v_merk'</script>";
+        echo "<script>window.location = 'gudang.php?halaman=v_merk'</script>";
       }
     }
 
@@ -26,7 +26,7 @@
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi,"DELETE FROM merk WHERE kode_merk='$id'");
       if ($query_hapus) {
-          echo "<script>window.location = 'admin.php?halaman=v_merk'</script>";
+          echo "<script>window.location = 'gudang.php?halaman=v_merk'</script>";
       }
     }
  ?>

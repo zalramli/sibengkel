@@ -15,7 +15,7 @@ if(isset($_POST['update'])) {
 
   $update = mysqli_query($koneksi,"UPDATE barang SET kode_merk='$kode_merk',kode_satuan='$kode_satuan',kode_jenis='$kode_jenis',nama_barang='$nama_barang',stock='$stock',stock_limit='$stock_limit',harga_pokok='$harga_pokok',harga_jual='$harga_jual' WHERE kode_barang='$kode_barang'");
   if ($update) {
-    echo "<script>window.location = 'admin.php?halaman=v_barang'</script>";
+    echo "<script>window.location = 'gudang.php?halaman=v_barang'</script>";
   }
 }
 
@@ -35,9 +35,9 @@ if(isset($_POST['update'])) {
             <div class="tabbable">
             <ul class="nav nav-tabs">
               <li>
-                <a href="admin.php?halaman=v_barang">Input Form</a>
+                <a href="gudang.php?halaman=v_barang">Input Form</a>
               </li>
-              <li><a href="admin.php?halaman=v_barang">Tampil Data</a></li>
+              <li><a href="gudang.php?halaman=v_barang">Tampil Data</a></li>
             </ul>
             <br>
               <div class="tab-content">
@@ -134,7 +134,7 @@ if(isset($_POST['update'])) {
                      <br/>
                     <div class="form-actions">
                       <button type="submit" name="update" class="btn btn-primary">Update</button> 
-                      <a href="admin.php?halaman=v_barang" class="btn btn-danger">Kembali</a>
+                      <a href="gudang.php?halaman=v_barang" class="btn btn-danger">Kembali</a>
                     </div> <!-- /form-actions -->
                 </form>
                 </div>    

@@ -25,7 +25,7 @@
 
       $query = mysqli_query($koneksi,"INSERT INTO barang VALUES ('$auto_kode','$kode_merk','$kode_satuan','$kode_jenis','$nama_barang','$stock','$stock_limit','$harga_pokok','$harga_jual') ");
       if($query){
-        echo "<script>window.location = 'admin.php?halaman=v_barang'</script>";
+        echo "<script>window.location = 'gudang.php?halaman=v_barang'</script>";
       }
     }
 
@@ -34,7 +34,7 @@
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi,"DELETE FROM barang WHERE kode_barang='$id'");
       if ($query_hapus) {
-          echo "<script>window.location = 'admin.php?halaman=v_barang'</script>";
+          echo "<script>window.location = 'gudang.php?halaman=v_barang'</script>";
       }
     }
  ?>

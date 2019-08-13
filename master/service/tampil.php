@@ -18,7 +18,7 @@
       $tarif_harga = $_POST['tarif_harga'];
       $query = mysqli_query($koneksi,"INSERT INTO service (kode_service,nama_service,tarif_harga) VALUES ('$auto_kode','$nama_service','$tarif_harga') ");
       if($query){
-        echo "<script>window.location = 'admin.php?halaman=v_service'</script>";
+        echo "<script>window.location = 'kasir.php?halaman=v_service'</script>";
       }
     }
 
@@ -27,7 +27,7 @@
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi,"DELETE FROM service WHERE kode_service='$id'");
       if ($query_hapus) {
-          echo "<script>window.location = 'admin.php?halaman=v_service'</script>";
+          echo "<script>window.location = 'kasir.php?halaman=v_service'</script>";
       }
     }
  ?>

@@ -17,7 +17,7 @@
       $nama_jenis = $_POST['nama_jenis'];
       $query = mysqli_query($koneksi,"INSERT INTO jenis_barang (kode_jenis,nama_jenis) VALUES ('$auto_kode','$nama_jenis') ");
       if($query){
-        echo "<script>window.location = 'admin.php?halaman=v_jenis'</script>";
+        echo "<script>window.location = 'gudang.php?halaman=v_jenis'</script>";
       }
     }
 
@@ -26,7 +26,7 @@
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi,"DELETE FROM jenis_barang WHERE kode_jenis='$id'");
       if ($query_hapus) {
-          echo "<script>window.location = 'admin.php?halaman=v_jenis'</script>";
+          echo "<script>window.location = 'gudang.php?halaman=v_jenis'</script>";
       }
     }
  ?>

@@ -17,7 +17,7 @@
       $nama_satuan = $_POST['nama_satuan'];
       $query = mysqli_query($koneksi,"INSERT INTO satuan (kode_satuan,nama_satuan) VALUES ('$auto_kode','$nama_satuan') ");
       if($query){
-        echo "<script>window.location = 'admin.php?halaman=v_satuan'</script>";
+        echo "<script>window.location = 'gudang.php?halaman=v_satuan'</script>";
       }
     }
 
@@ -26,7 +26,7 @@
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi,"DELETE FROM satuan WHERE kode_satuan='$id'");
       if ($query_hapus) {
-          echo "<script>window.location = 'admin.php?halaman=v_satuan'</script>";
+          echo "<script>window.location = 'gudang.php?halaman=v_satuan'</script>";
       }
     }
  ?>
