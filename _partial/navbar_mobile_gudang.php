@@ -18,7 +18,7 @@
                                     </li>
                                     <li><a href="gudang.php?halaman=v_jenisBarang">Jenis Barang</a>
                                     </li>
-                                    <li><a href="gudang.php?halaman=v_merkBarang">Merk Barang</a>
+                                    <li><a href="gudang.php?halaman=v_merkBarang">Merk Barang</a></li>
                                     <li><a href="gudang.php?halaman=v_satuanBarang">Satuan Barang</a>
                                     </li>
                                 </ul>

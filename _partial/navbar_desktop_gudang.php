@@ -23,11 +23,15 @@
                 <div class="tab-content custom-menu-content">
                     <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX">
                         <ul class="notika-main-menu-dropdown">
+
                             <li><a href="gudang.php?halaman=v_daftarBarang">Daftar Barang</a>
                             </li>
+
                             <li><a href="gudang.php?halaman=v_jenisBarang">Jenis Barang</a>
                             </li>
-                            <li><a href="gudang.php?halaman=v_merkBarang">Merk Barang</a>
+
+                            <li><a href="gudang.php?halaman=v_merkBarang">Merk Barang</a></li>
+
                             <li><a href="gudang.php?halaman=v_satuanBarang">Satuan Barang</a>
                             </li>
                         </ul>
