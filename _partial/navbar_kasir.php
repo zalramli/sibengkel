@@ -20,7 +20,7 @@
                     </ul>
                 </li>
 
-                <li><a href=""><i class="icon-bar-chart"></i><span>Data Service</span> </a> </li>
+                <li><a href="?halaman=v_service"><i class="icon-bar-chart"></i><span>Data Service</span> </a> </li>
 
                 <li><a href=""><i class="icon-bar-chart"></i><span>Laporan</span> </a> </li>
 

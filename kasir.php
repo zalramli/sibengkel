@@ -38,7 +38,14 @@
                     }
                     // Tutup Dashboard
 
-
+                     // Service
+                    if ($_GET['halaman'] == 'v_service') {
+                        include "master/service/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_service') {
+                        include "master/service/edit.php";
+                    }
+                    // Tutup Hak Akses
 
                     ?>
                 </div>

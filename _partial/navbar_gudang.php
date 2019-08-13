@@ -9,10 +9,10 @@
 
                 <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Data Barang</span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="">Barang</a></li>
-                        <li><a href="">Merk</a></li>
-                        <li><a href="">Satuan</a></li>
-                        <li><a href="">Jenis Barang</a></li>
+                        <li><a href="?halaman=v_barang">Barang</a></li>
+                        <li><a href="?halaman=v_merk">Merk</a></li>
+                        <li><a href="?halaman=v_satuan">Satuan</a></li>
+                        <li><a href="?halaman=v_jenis">Jenis Barang</a></li>
                     </ul>
                 </li>
 

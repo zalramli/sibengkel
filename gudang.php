@@ -38,6 +38,41 @@
                     }
                     // Tutup Dashboard
 
+                    // Merk Barang
+                    if ($_GET['halaman'] == 'v_merk') {
+                        include "master/merk_barang/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_merk') {
+                        include "master/merk_barang/edit.php";
+                    }
+                    // Tutup merk
+
+                    // Jenis Barang
+                    if ($_GET['halaman'] == 'v_jenis') {
+                        include "master/jenis_barang/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_jenis') {
+                        include "master/jenis_barang/edit.php";
+                    }
+                    // Tutup jenis
+
+                    // Satuan
+                    if ($_GET['halaman'] == 'v_satuan') {
+                        include "master/satuan_barang/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_satuan') {
+                        include "master/satuan_barang/edit.php";
+                    }
+                    // Tutup Satuan
+
+                    // Data Barang
+                    if ($_GET['halaman'] == 'v_barang') {
+                        include "master/barang/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_barang') {
+                        include "master/barang/edit.php";
+                    }
+                    // Tutup Data Barang
 
 
                     ?>
