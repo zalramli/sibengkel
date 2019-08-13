@@ -1,33 +1,32 @@
 <?php
     // Membuat Kode otomatis
-    $sql = mysqli_query($koneksi,"SELECT max(kode_service) FROM service");
+    $sql = mysqli_query($koneksi,"SELECT max(kode_satuan) FROM satuan");
     $kode_faktur = mysqli_fetch_array($sql);
     if($kode_faktur){
       $nilai = substr($kode_faktur[0], 1);
       $kode = (int) $nilai;
       //tambahkan sebanyak + 1
       $kode = $kode + 1;
-      $auto_kode = "SV" .str_pad($kode, 2, "0",  STR_PAD_LEFT);
+      $auto_kode = "S" .str_pad($kode, 2, "0",  STR_PAD_LEFT);
     } else {
-      $auto_kode = "SV01";
+      $auto_kode = "S01";
     }
 
     // Ketika tombil simpan di Klik
     if (isset($_POST['simpan'])) {
-      $nama_service = $_POST['nama_service'];
-      $tarif_harga = $_POST['tarif_harga'];
-      $query = mysqli_query($koneksi,"INSERT INTO service (kode_service,nama_service,tarif_harga) VALUES ('$auto_kode','$nama_service','$tarif_harga') ");
+      $nama_satuan = $_POST['nama_satuan'];
+      $query = mysqli_query($koneksi,"INSERT INTO satuan (kode_satuan,nama_satuan) VALUES ('$auto_kode','$nama_satuan') ");
       if($query){
-        echo "<script>window.location = 'admin.php?halaman=v_service'</script>";
+        echo "<script>window.location = 'admin.php?halaman=v_satuan'</script>";
       }
     }
 
     //Proses menghapus data
     if ($_GET['hapus']) {
     $id = $_GET['hapus'];
-    $query_hapus = mysqli_query($koneksi,"DELETE FROM service WHERE kode_service='$id'");
+    $query_hapus = mysqli_query($koneksi,"DELETE FROM satuan WHERE kode_satuan='$id'");
       if ($query_hapus) {
-          echo "<script>window.location = 'admin.php?halaman=v_service'</script>";
+          echo "<script>window.location = 'admin.php?halaman=v_satuan'</script>";
       }
     }
  ?>
@@ -35,7 +34,7 @@
     <div class="widget ">
           <div class="widget-header">
                 <i class="icon-user"></i>
-                <h3>Daftar Service</h3>
+                <h3>Satuan Barang</h3>
           </div> <!-- /widget-header -->
           <div class="widget-content">
 
@@ -51,17 +50,11 @@
                 <div class="tab-pane" id="formcontrols">
                 <form method="post" action="" id="edit-profile" class="form-horizontal">  
                     <div class="control-group">                     
-                      <label class="control-label" for="firstname">Nama Service</label>
+                      <label class="control-label" for="firstname">Nama Satuan</label>
                       <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="nama_service" placeholder="Isi form nama service">
+                        <input type="text" class="span6" id="firstname" name="nama_satuan" placeholder="Isi form nama satuan">
                       </div> <!-- /controls -->       
                     </div> <!-- /control-group -->  
-                    <div class="control-group">                     
-                      <label class="control-label" for="firstname">Tarif Harga</label>
-                      <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="tarif_harga" placeholder="Isi form tarif harga">
-                      </div> <!-- /controls -->       
-                    </div> <!-- /control-group --> 
                      <br/>
                     <div class="form-actions">
                       <button type="submit" name="simpan" class="btn btn-primary">Save</button> 
@@ -75,23 +68,21 @@
                           <thead>
                               <tr>
                                   <th>Kode</th>
-                                  <th>Nama Service</th>
-                                  <th>Tarif Harga</th>
+                                  <th>Nama Akses</th>
                                   <th>Aksi</th>
                               </tr>
                           </thead>
                           <tbody>
                             <?php
-                            $query = mysqli_query($koneksi,"SELECT kode_service,nama_service,tarif_harga FROM service");
+                            $query = mysqli_query($koneksi,"SELECT kode_satuan,nama_satuan FROM satuan");
                             foreach ($query as $data) {
                              ?>
                               <tr>
-                                  <td><?= $data['kode_service']?></td>
-                                  <td><?= $data['nama_service']?></td>
-                                  <td><?= $data['tarif_harga']?></td>
+                                  <td><?= $data['kode_satuan']?></td>
+                                  <td><?= $data['nama_satuan']?></td>
                                   <td>
-                                    <a href="?halaman=edit_service&id=<?= $data['kode_service']; ?>"" class="btn btn-primary">Edit</a>
-                                    <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_service&hapus=<?= $data['kode_service']; ?>" class="btn btn-danger">Hapus</a>
+                                    <a href="?halaman=edit_satuan&id=<?= $data['kode_satuan']; ?>"" class="btn btn-primary">Edit</a>
+                                    <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_satuan&hapus=<?= $data['kode_satuan']; ?>" class="btn btn-danger">Hapus</a>
                                   </td>
                               </tr>
                               <?php } ?>
