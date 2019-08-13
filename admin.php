@@ -46,6 +46,14 @@
                         include "master/hak_akses/edit.php";
                     }
                     // Tutup Hak Akses
+
+                    if ($_GET['halaman'] == 'v_jenisPegawai') {
+                        include "master/jenis_pegawai/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_jenisPegawai') {
+                        include "master/jenis_pegawai/edit.php";
+                    }
+                    // Tutup Hak Akses
                     ?>
                 </div>
             </div>

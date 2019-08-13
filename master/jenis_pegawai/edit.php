@@ -1,17 +1,17 @@
 <?php
 // mengambil ID
 $id=$_GET['id'];
-$query = mysqli_query($koneksi,"SELECT kode_jenis,nama_jenis FROM jenis_barang WHERE kode_jenis='$id'");
+$query = mysqli_query($koneksi,"SELECT kode_jenis_p,nama_jenis_p FROM jenis_pegawai WHERE kode_jenis_p='$id'");
 $data=mysqli_fetch_array($query);
 
 //Proses Update Data Hak akses 
 if(isset($_POST['update'])) {
-  $kode_jenis = $_POST['kode_jenis'];
-  $nama_jenis = $_POST['nama_jenis'];
+  $kode_jenis_p = $_POST['kode_jenis_p'];
+  $nama_jenis_p = $_POST['nama_jenis_p'];
 
-  $update = mysqli_query($koneksi,"UPDATE jenis_barang SET nama_jenis='$nama_jenis' WHERE kode_jenis='$kode_jenis'");
+  $update = mysqli_query($koneksi,"UPDATE jenis_pegawai SET nama_jenis_p='$nama_jenis_p' WHERE kode_jenis_p='$kode_jenis_p'");
   if ($update) {
-    echo "<script>window.location = 'gudang.php?halaman=v_jenis'</script>";
+    echo "<script>window.location = 'admin.php?halaman=v_jenisPegawai'</script>";
   }
 }
 ?>
@@ -26,30 +26,30 @@ if(isset($_POST['update'])) {
             <div class="tabbable">
             <ul class="nav nav-tabs">
               <li>
-                <a href="gudang.php?halaman=v_jenis">Input Form</a>
+                <a href="admin.php?halaman=v_jenisPegawai">Input Form</a>
               </li>
-              <li><a href="gudang.php?halaman=v_jenis">Tampil Data</a></li>
+              <li><a href="admin.php?halaman=v_jenisPegawai">Tampil Data</a></li>
             </ul>
             <br>
               <div class="tab-content">
                 <div class="tab-pane active" id="formcontrols">
                 <form method="post" action="" id="edit-profile" class="form-horizontal">  
                     <div class="control-group">                     
-                      <label class="control-label" for="firstname">Kode Jenis Barang</label>
+                      <label class="control-label" for="firstname">Kode Jenis Pegawai</label>
                       <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="kode_jenis" placeholder="Isi form nama akses" value="<?= $data['kode_jenis'] ?>" readonly>
+                        <input type="text" class="span6" id="firstname" name="kode_jenis_p" placeholder="Isi form nama akses" value="<?= $data['kode_jenis_p'] ?>" readonly>
                       </div> <!-- /controls -->       
                     </div> <!-- /control-group -->  
                     <div class="control-group">                     
-                      <label class="control-label" for="firstname">Nama Jenis Barang</label>
+                      <label class="control-label" for="firstname">Nama Jenis Pegawai</label>
                       <div class="controls">
-                        <input type="text" class="span6" id="firstname" name="nama_jenis" placeholder="Isi form nama service" value="<?= $data['nama_jenis'] ?>">
+                        <input type="text" class="span6" id="firstname" name="nama_jenis_p" placeholder="Isi form nama service" value="<?= $data['nama_jenis_p'] ?>">
                       </div> <!-- /controls -->       
                     </div> <!-- /control-group --> 
                      <br/>
                     <div class="form-actions">
                       <button type="submit" name="update" class="btn btn-primary">Update</button> 
-                      <a href="gudang.php?halaman=v_jenis" class="btn btn-danger">Kembali</a>
+                      <a href="admin.php?halaman=v_jenisPegawai" class="btn btn-danger">Kembali</a>
                     </div> <!-- /form-actions -->
                 </form>
                 </div>    
