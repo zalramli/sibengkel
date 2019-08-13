@@ -85,11 +85,11 @@
                     // Tutup Satuan
 
                     // Data Barang
-                    if ($_GET['halaman'] == 'add_barang') {
-                        include "master/barang/tambah.php";
-                    }
                     if ($_GET['halaman'] == 'v_barang') {
                         include "master/barang/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_barang') {
+                        include "master/barang/edit.php";
                     }
                     // Tutup Data Barang
 

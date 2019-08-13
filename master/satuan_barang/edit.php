@@ -26,9 +26,9 @@ if(isset($_POST['update'])) {
             <div class="tabbable">
             <ul class="nav nav-tabs">
               <li>
-                <a href="admin.php?halaman=v_akses">Input Form</a>
+                <a href="admin.php?halaman=v_satuan">Input Form</a>
               </li>
-              <li><a href="admin.php?halaman=v_akses">Tampil Data</a></li>
+              <li><a href="admin.php?halaman=v_satuan">Tampil Data</a></li>
             </ul>
             <br>
               <div class="tab-content">
