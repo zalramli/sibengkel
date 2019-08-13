@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 12 Agu 2019 pada 19.45
+-- Generation Time: 13 Agu 2019 pada 11.01
 -- Versi Server: 10.1.38-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.2.17-0ubuntu0.18.04.1
 
@@ -28,13 +28,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `barang` (
   `kode_barang` varchar(5) NOT NULL,
+  `kode_merk` varchar(3) NOT NULL,
+  `kode_satuan` varchar(3) NOT NULL,
+  `kode_jenis` varchar(3) NOT NULL,
   `nama_barang` varchar(50) NOT NULL,
-  `satuan` varchar(30) NOT NULL,
   `stock` int(11) NOT NULL,
-  `stok_limit` int(11) NOT NULL,
+  `stock_limit` int(11) NOT NULL,
   `harga_pokok` int(11) NOT NULL,
   `harga_jual` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `barang`
+--
+
+INSERT INTO `barang` (`kode_barang`, `kode_merk`, `kode_satuan`, `kode_jenis`, `nama_barang`, `stock`, `stock_limit`, `harga_pokok`, `harga_jual`) VALUES
+('B002', 'M01', 'S01', 'J02', 'Asus Zenfoixexxx', 9991, 9991, 999111, 111999),
+('B003', 'M01', 'S01', 'J01', 'asdxazd', 12, 1222, 9000, 100000);
 
 -- --------------------------------------------------------
 
@@ -43,7 +53,7 @@ CREATE TABLE `barang` (
 --
 
 CREATE TABLE `hak_akses` (
-  `kode_ha` varchar(3) NOT NULL,
+  `kode_ha` varchar(5) NOT NULL,
   `nama_ha` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -52,7 +62,28 @@ CREATE TABLE `hak_akses` (
 --
 
 INSERT INTO `hak_akses` (`kode_ha`, `nama_ha`) VALUES
-('A01', 'Admin');
+('H01', 'asdasdasdasdasd'),
+('H02', 'xxx'),
+('H03', 'Operator');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jenis_barang`
+--
+
+CREATE TABLE `jenis_barang` (
+  `kode_jenis` varchar(3) NOT NULL,
+  `nama_jenis` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `jenis_barang`
+--
+
+INSERT INTO `jenis_barang` (`kode_jenis`, `nama_jenis`) VALUES
+('J01', 'setir'),
+('J02', 'peleng');
 
 -- --------------------------------------------------------
 
@@ -70,14 +101,57 @@ CREATE TABLE `mekanik` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `merk`
+--
+
+CREATE TABLE `merk` (
+  `kode_merk` varchar(3) NOT NULL,
+  `nama_merk` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `merk`
+--
+
+INSERT INTO `merk` (`kode_merk`, `nama_merk`) VALUES
+('M01', 'Asusxxxas');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `satuan`
+--
+
+CREATE TABLE `satuan` (
+  `kode_satuan` varchar(3) NOT NULL,
+  `nama_satuan` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `satuan`
+--
+
+INSERT INTO `satuan` (`kode_satuan`, `nama_satuan`) VALUES
+('S01', 'pcs');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `service`
 --
 
 CREATE TABLE `service` (
-  `kode_service` varchar(3) NOT NULL,
+  `kode_service` varchar(5) NOT NULL,
   `nama_service` varchar(30) NOT NULL,
   `tarif_harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `service`
+--
+
+INSERT INTO `service` (`kode_service`, `nama_service`, `tarif_harga`) VALUES
+('SV01', 'Ganti Oli', 90000);
 
 --
 -- Indexes for dumped tables
@@ -96,10 +170,28 @@ ALTER TABLE `hak_akses`
   ADD PRIMARY KEY (`kode_ha`);
 
 --
+-- Indexes for table `jenis_barang`
+--
+ALTER TABLE `jenis_barang`
+  ADD PRIMARY KEY (`kode_jenis`);
+
+--
 -- Indexes for table `mekanik`
 --
 ALTER TABLE `mekanik`
   ADD PRIMARY KEY (`kode_mekanik`);
+
+--
+-- Indexes for table `merk`
+--
+ALTER TABLE `merk`
+  ADD PRIMARY KEY (`kode_merk`);
+
+--
+-- Indexes for table `satuan`
+--
+ALTER TABLE `satuan`
+  ADD PRIMARY KEY (`kode_satuan`);
 
 --
 -- Indexes for table `service`
