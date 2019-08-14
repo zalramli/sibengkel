@@ -28,7 +28,7 @@ if (isset($_GET['hapus'])) {
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT * FROM pegawai JOIN jenis_pegawai USING(kode_jenis_p) ORDER BY nama_pegawai ASC");
+                $query = mysqli_query($koneksi, "SELECT * FROM pegawai JOIN jenis_pegawai USING(kode_jenis_p) ORDER BY kode_pegawai ASC");
                 foreach ($query as $data) {
                     ?>
                 <tr>

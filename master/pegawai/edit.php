@@ -52,7 +52,7 @@ if (isset($_POST['update'])) {
         <div class="form-group">
           <div class="nk-int-st">
             <input type="hidden" name="kode_pegawai" class="form-control" value="<?= $data['kode_pegawai'] ?>">
-            <input type="text" name="nama_pegawai" class="form-control" placeholder="Isi form Nama Pegawai" value="<?= $data['nama_pegawai'] ?>">
+            <input type="text" name="nama_pegawai" class="form-control" placeholder="Isi form Nama Pegawai" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['nama_pegawai'] ?>">
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@ if (isset($_POST['update'])) {
         <label for="">Jenis Pegawai</label>
         <div class="form-group">
           <div class="bootstrap-select fm-cmp-mg">
-            <select name="kode_jenis_p" class="selectpicker" data-live-search="true">
+            <select name="kode_jenis_p" class="selectpicker" data-live-search="true" required="">
 
               <?php
                 $query_jenis = mysqli_query($koneksi, "SELECT * FROM jenis_pegawai ORDER BY nama_jenis_p ASC");
@@ -87,7 +87,7 @@ if (isset($_POST['update'])) {
         <label for="">Username</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="username" class="form-control" placeholder="Isi form Username" value="<?= $data['username'] ?>">
+            <input type="text" name="username" class="form-control" placeholder="Isi form Username" required="" maxlength="50" oninvalid="this.setCustomValidity('Username Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['username'] ?>">
           </div>
         </div>
       </div>
@@ -96,7 +96,7 @@ if (isset($_POST['update'])) {
         <label for="">Password</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="password" name="password" class="form-control" placeholder="Isi form Password">
+            <input type="password" name="password" class="form-control" placeholder="Isi form Password" required="" maxlength="60" oninvalid="this.setCustomValidity('Password Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@ if (isset($_POST['update'])) {
         <label for="">No telp</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp" value="<?= $data['no_telp'] ?>">
+            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('No Telepon Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['no_telp'] ?>">
           </div>
         </div>
       </div>
@@ -118,7 +118,7 @@ if (isset($_POST['update'])) {
         <label for="">Konfirmasi Password</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="password" name="k_password" class="form-control" placeholder="Isi form Konfirmasi Password">
+            <input type="password" name="k_password" class="form-control" placeholder="Isi form Konfirmasi Password" required="" maxlength="60" oninvalid="this.setCustomValidity('Konfirmasi Password Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -131,7 +131,7 @@ if (isset($_POST['update'])) {
         <label for="">Alamat</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3"><?= $data['alamat'] ?></textarea>
+            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"><?= $data['alamat'] ?></textarea>
           </div>
         </div>
       </div>

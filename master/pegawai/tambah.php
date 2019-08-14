@@ -35,11 +35,9 @@ if (isset($_POST['simpan'])) {
     } else {
       echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'admin.php?halaman=add_pegawai'</script>";
     }
-
   } else {
     echo "<script>alert('Password dan konfirmasi password harus sama !!'); window.location = 'admin.php?halaman=add_pegawai'</script>";
   }
-  
 }
 ?>
 <div class="form-element-list">
@@ -54,7 +52,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Nama Pegawai</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="nama_pegawai" class="form-control" placeholder="Isi form Nama Pegawai">
+            <input type="text" name="nama_pegawai" class="form-control" placeholder="Isi form Nama Pegawai" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -63,7 +61,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Jenis Pegawai</label>
         <div class="form-group">
           <div class="bootstrap-select fm-cmp-mg">
-            <select name="kode_jenis_p" class="selectpicker" data-live-search="true">
+            <select name="kode_jenis_p" class="selectpicker" data-live-search="true" required="">
 
               <option value="">Please select</option>
 
@@ -89,7 +87,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Username</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="username" class="form-control" placeholder="Isi form Username">
+            <input type="text" name="username" class="form-control" placeholder="Isi form Username" required="" maxlength="50" oninvalid="this.setCustomValidity('Username Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -98,7 +96,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Password</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="password" name="password" class="form-control" placeholder="Isi form Password">
+            <input type="password" name="password" class="form-control" placeholder="Isi form Password" required="" maxlength="60" oninvalid="this.setCustomValidity('Password Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -111,7 +109,7 @@ if (isset($_POST['simpan'])) {
         <label for="">No telp</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp">
+            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('No Telepon Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -120,7 +118,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Konfirmasi Password</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="password" name="k_password" class="form-control" placeholder="Isi form Konfirmasi Password">
+            <input type="password" name="k_password" class="form-control" placeholder="Isi form Konfirmasi Password" required="" maxlength="60" oninvalid="this.setCustomValidity('Konfirmasi Password Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -133,7 +131,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Alamat</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3"></textarea>
+            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"></textarea>
           </div>
         </div>
       </div>
