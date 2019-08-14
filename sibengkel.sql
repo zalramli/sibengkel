@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 14 Agu 2019 pada 12.15
+-- Generation Time: 14 Agu 2019 pada 19.21
 -- Versi Server: 10.1.38-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.2.17-0ubuntu0.18.04.1
 
@@ -43,8 +43,8 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`kode_barang`, `kode_merk`, `kode_satuan`, `kode_jenis`, `nama_barang`, `stock`, `stock_limit`, `harga_pokok`, `harga_jual`) VALUES
-('B0004', 'M02', 'S01', 'J03', 'Oli Yamaxz', 12, 22, 22222, 33333),
-('B003', 'M01', 'S01', 'J03', 'Oli Yamalube', 12, 20000, 9000, 100000);
+('B0003', 'M01', 'S01', 'J03', 'Roda Vario', 12, 20000, 9000, 50000),
+('B0004', 'M02', 'S01', 'J03', 'Oli Yamaxz', 12, 22, 22222, 20000);
 
 -- --------------------------------------------------------
 
@@ -73,13 +73,21 @@ INSERT INTO `customer` (`kode_customer`, `nama_customer`, `alamat`, `no_telp`) V
 --
 
 CREATE TABLE `detail_penjualan` (
-  `kode_detail_penjualan` char(10) NOT NULL,
+  `kode_detail_penjualan` int(11) NOT NULL,
   `no_faktur_penjualan` char(10) NOT NULL,
   `kode_barang` char(5) NOT NULL,
   `jumlah_barang` int(11) NOT NULL,
   `potongan_penjualan` int(11) NOT NULL,
   `sub_total_harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `detail_penjualan`
+--
+
+INSERT INTO `detail_penjualan` (`kode_detail_penjualan`, `no_faktur_penjualan`, `kode_barang`, `jumlah_barang`, `potongan_penjualan`, `sub_total_harga`) VALUES
+(1, 'FK000001', 'B0003', 1, 0, 50000),
+(2, 'FK000001', 'B0004', 3, 0, 60000);
 
 -- --------------------------------------------------------
 
@@ -120,19 +128,6 @@ INSERT INTO `jenis_pegawai` (`kode_jenis_p`, `nama_jenis_p`) VALUES
 ('JP01', 'asdasd11133'),
 ('JP02', 'asd'),
 ('JP03', 'asd');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `mekanik`
---
-
-CREATE TABLE `mekanik` (
-  `kode_mekanik` varchar(3) NOT NULL,
-  `nama_mekanik` varchar(50) NOT NULL,
-  `alamat` text NOT NULL,
-  `no_telp` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -196,7 +191,7 @@ CREATE TABLE `penjualan` (
 --
 
 INSERT INTO `penjualan` (`no_faktur_penjualan`, `kode_pegawai`, `tgl_transaksi`, `total_harga`, `bayar`, `kembalian`, `status`) VALUES
-('FK000001', 'PG002', '2019-08-06 17:00:00', 20000, 30000, 10000, 'sukses');
+('FK000001', 'PG002', '2019-08-14 12:20:41', 110000, 120000, 10000, 'sukses');
 
 -- --------------------------------------------------------
 
@@ -291,12 +286,6 @@ ALTER TABLE `jenis_pegawai`
   ADD PRIMARY KEY (`kode_jenis_p`);
 
 --
--- Indexes for table `mekanik`
---
-ALTER TABLE `mekanik`
-  ADD PRIMARY KEY (`kode_mekanik`);
-
---
 -- Indexes for table `merk`
 --
 ALTER TABLE `merk`
@@ -332,6 +321,15 @@ ALTER TABLE `service`
 ALTER TABLE `suplier`
   ADD PRIMARY KEY (`kode_suplier`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `detail_penjualan`
+--
+ALTER TABLE `detail_penjualan`
+  MODIFY `kode_detail_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
