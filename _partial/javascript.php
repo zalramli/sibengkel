@@ -89,10 +89,13 @@
     <script src="assets/template2/js/datapicker/bootstrap-datepicker.js"></script>
     <script src="assets/template2/js/datapicker/datepicker-active.js"></script>
 
-
-    
+    <!-- Supaya di tabel tidak ada ORDER BY(otomatis data table) -->
     <script>
         $('#data-table-basic').DataTable({
             ordering: false
         });
+    </script>
+    <!-- Agar input tidak ada history -->
+    <script>
+        $("form :input").attr("autocomplete", "off");
     </script>

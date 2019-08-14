@@ -17,9 +17,10 @@ $akhir = $format_akhir." 00:00:00";
 <!--sekarang Tinggal Codeing seperti biasanya. HTML, CSS, PHP tidak masalah.-->
 <!--CONTOH Code START-->
 <h2 style="text-align: center;">BENGKEL MAJU JAYA</h2>
-<h6 style="text-align: center;">Jln Ahmad Yani No.235 Jember</h6>
+<div style="text-align: center;font-size: 11;margin-top: -30px;">Jln Ahmad Yani No.235 Jember</div>
+
 <hr style="color:solid black">
-<table>
+<table border="collapse">
     <tr>
         <td>Dari Tanggal</td>
         <td>:</td>
@@ -33,7 +34,7 @@ $akhir = $format_akhir." 00:00:00";
 </table>
 <table border="1">
     <tr>
-        <th>No.</th>
+        <th style="border-left: 0">No.</th>
         <th>Faktur Penjualan</th>
         <th>Yang Melayani</th>
         <th>Tanggl Transaksi</th>
