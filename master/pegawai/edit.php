@@ -1,4 +1,9 @@
 <?php
+
+// mengambil ID
+$id = $_GET['id'];
+$query = mysqli_query($koneksi, "SELECT * FROM pegawai JOIN jenis_pegawai USING(kode_jenis_p) WHERE kode_pegawai='$id'");
+
 if (isset($_POST['update'])) {
   $kode_pegawai = $_POST['kode_pegawai'];
   $kode_jenis_p = $_POST['kode_jenis_p'];
@@ -6,17 +11,28 @@ if (isset($_POST['update'])) {
   $alamat = $_POST['alamat'];
   $no_telp = $_POST['no_telp'];
   $username = $_POST['username'];
-  $password = $_POST['password'];
+  $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // fungsi mengenkripsi data
+  $k_password = $_POST['k_password'];
 
-  $update = mysqli_query($koneksi, "UPDATE pegawai SET kode_jenis_p='$kode_jenis_p',nama_pegawai='$nama_pegawai',alamat='$alamat',no_telp='$no_telp',username='$username',password='$password' WHERE kode_pegawai='$kode_pegawai'");
-  if ($update) {
-    echo "<script>window.location = 'admin.php?halaman=v_pegawai'</script>";
+  // validasi password dan konfirmasi password
+  if ($k_password == $_POST["password"]) {
+
+    $update = mysqli_query($koneksi, "UPDATE pegawai SET kode_jenis_p='$kode_jenis_p',nama_pegawai='$nama_pegawai',alamat='$alamat',no_telp='$no_telp',username='$username',password='$password' WHERE kode_pegawai='$kode_pegawai'");
+
+    // validasi apakah berhasil atau gagal
+    if ($update) {
+      echo "<script>alert('Data Berhasil Terupdate'); window.location = 'admin.php?halaman=v_pegawai'</script>";
+    } else {
+      echo "<script>alert('Terjadi Kesalahan Update Database'); window.location = 'admin.php?halaman=edit_pegawai&id=" .$id."'</script>";
+    }
+
+  } else {
+    echo "<script>alert('Password dan konfirmasi password harus sama !!'); window.location = 'admin.php?halaman=edit_pegawai&id=" .$id."'</script>";
   }
+
 }
 
-// mengambil ID
-$id = $_GET['id'];
-$query = mysqli_query($koneksi, "SELECT * FROM pegawai JOIN jenis_pegawai USING(kode_jenis_p) WHERE kode_pegawai='$id'");
+
 ?>
 <div class="form-element-list">
   <div class="basic-tb-hd">

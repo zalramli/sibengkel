@@ -20,12 +20,26 @@ if (isset($_POST['simpan'])) {
   $alamat = $_POST['alamat'];
   $no_telp = $_POST['no_telp'];
   $username = $_POST['username'];
-  $password = $_POST['password'];
+  $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // fungsi mengenkripsi data
   $status = '0';
-  $query = mysqli_query($koneksi, "INSERT INTO pegawai (kode_pegawai,kode_jenis_p,nama_pegawai,alamat,no_telp,username,password,status_login) VALUES ('$auto_kode','$kode_jenis_p','$nama_pegawai','$alamat','$no_telp','$username','$password','$status') ");
-  if ($query) {
-    echo "<script>window.location = 'admin.php?halaman=v_pegawai'</script>";
+  $k_password = $_POST['k_password'];
+
+  // validasi password dan konfirmasi password
+  if ($k_password == $_POST["password"]) {
+
+    $query = mysqli_query($koneksi, "INSERT INTO pegawai (kode_pegawai,kode_jenis_p,nama_pegawai,alamat,no_telp,username,password,status_login) VALUES ('$auto_kode','$kode_jenis_p','$nama_pegawai','$alamat','$no_telp','$username','$password','$status') ");
+
+    // validasi apakah berhasil atau gagal
+    if ($query) {
+      echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'admin.php?halaman=v_pegawai'</script>";
+    } else {
+      echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'admin.php?halaman=add_pegawai'</script>";
+    }
+
+  } else {
+    echo "<script>alert('Password dan konfirmasi password harus sama !!'); window.location = 'admin.php?halaman=add_pegawai'</script>";
   }
+  
 }
 ?>
 <div class="form-element-list">
