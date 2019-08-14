@@ -142,11 +142,11 @@ if (isset($_POST['simpan'])) {
       </div>
     </div>
     <div class="row">
-
-    </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
       <a href="gudang.php?halaman=v_daftarBarang" class="btn btn-danger">Kembali</a>
+    </div>
+
     </div>
   </form>
 

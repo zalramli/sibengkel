@@ -62,6 +62,11 @@
                         include "master/suplier/edit.php";
                     }
 
+                    // Parsing halaman suplier
+                    if ($_GET['halaman'] == 'laporan_transaksi') {
+                        include "transaksi/laporan_transaksi/tampil.php";
+                    }
+
                     ?>
                 </div>
             </div>

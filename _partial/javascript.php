@@ -49,6 +49,18 @@
     <script src="assets/template2/js/knob/jquery.knob.js"></script>
     <script src="assets/template2/js/knob/jquery.appear.js"></script>
     <script src="assets/template2/js/knob/knob-active.js"></script>
+    <!-- Input Mask JS
+        ============================================ -->
+    <script src="assets/template2/js/jasny-bootstrap.min.js"></script>
+     <!-- icheck JS
+        ============================================ -->
+    <script src="assets/template2/js/icheck/icheck.min.js"></script>
+    <script src="assets/template2/js/icheck/icheck-active.js"></script>
+    <!-- rangle-slider JS
+        ============================================ -->
+    <script src="assets/template2/js/rangle-slider/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="assets/template2/js/rangle-slider/jquery-ui-touch-punch.min.js"></script>
+    <script src="assets/template2/js/rangle-slider/rangle-active.js"></script>
 
     <!--  todo JS
         ============================================ -->
@@ -74,7 +86,11 @@
 
     <!-- select -->
     <script src="assets/template2/js/bootstrap-select/bootstrap-select.js"></script>
+    <script src="assets/template2/js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="assets/template2/js/datapicker/datepicker-active.js"></script>
 
+
+    
     <script>
         $('#data-table-basic').DataTable({
             ordering: false
