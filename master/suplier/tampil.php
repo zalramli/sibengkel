@@ -5,7 +5,7 @@ if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi, "DELETE FROM suplier WHERE kode_suplier='$id'");
     if ($query_hapus) {
-        echo "<script>window.location = 'kasir.php?halaman=v_suplier'</script>";
+        echo "<script>alert('Data Berhasil Dihapus'); window.location = 'kasir.php?halaman=v_suplier'</script>";
     }
 }
 
@@ -30,7 +30,7 @@ if (isset($_GET['hapus'])) {
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT * FROM suplier ORDER BY nama_suplier ASC");
+                $query = mysqli_query($koneksi, "SELECT * FROM suplier ORDER BY kode_suplier ASC");
                 foreach ($query as $data) {
                     ?>
                 <tr>
