@@ -66,6 +66,9 @@
                     if ($_GET['halaman'] == 'laporan_transaksi') {
                         include "transaksi/laporan_transaksi/tampil.php";
                     }
+                    if ($_GET['halaman'] == 'detail_transaksi') {
+                        include "transaksi/laporan_transaksi/detail.php";
+                    }
 
                     ?>
                 </div>
