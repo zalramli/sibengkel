@@ -1,44 +1,37 @@
-<!-- <?php
-//Proses menghapus data
-if (isset($_GET['hapus'])) {
-$id = $_GET['hapus'];
-$query_hapus = mysqli_query($koneksi, "DELETE FROM jenis_barang WHERE kode_jenis='$id'");
-if ($query_hapus) {
-echo "<script>window.location = 'gudang.php?halaman=v_jenisBarang'</script>";
-}
-}
-?> -->
+
 <div class="data-table-list">
     <div class="basic-tb-hd">
         <h2>Jenis Barang</h2>
         <br>
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
-                    <label>Tanggal Mulai</label>
-                    <div class="input-group date nk-int-st">
-                        <span class="input-group-addon"></span>
-                        <input type="text" class="form-control" value="03/19/2018">
+            <form action="halaman_print/print_laporan_transaksi.php" method="POST" target="_blank">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
+                        <label>Dari Tanggal</label>
+                        <div class="input-group date nk-int-st">
+                            <span class="input-group-addon"></span>
+                            <input type="text" class="form-control" name="tgl_mulai">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_2">
-                    <label>Tanggal Akhir</label>
-                    <div class="input-group date nk-int-st">
-                        <span class="input-group-addon"></span>
-                        <input type="text" class="form-control" value="03/19/2018">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
+                        <label>Sampai Tanggal</label>
+                        <div class="input-group date nk-int-st">
+                            <span class="input-group-addon"></span>
+                            <input type="text" class="form-control" name="tgl_akhir">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="form-group">
-                    <label for=""></label>
-                    <div class="input-group date nk-int-st">
-                        <button class="btn btn-primary">Print Laporan</button>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for=""></label>
+                        <div class="input-group date nk-int-st">
+                            <button type="submit" name="kirim" class="btn btn-primary">Print Laporan</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <div class="table-responsive">
