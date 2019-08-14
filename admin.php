@@ -62,6 +62,17 @@
                         include "master/jenis_pegawai/edit.php";
                     }
 
+                    // Parsing halaman Mekanik
+                    if ($_GET['halaman'] == 'v_mekanik') {
+                        include "master/mekanik/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'add_mekanik') {
+                        include "master/mekanik/tambah.php";
+                    }
+                    if ($_GET['halaman'] == 'edit_mekanik') {
+                        include "master/mekanik/edit.php";
+                    }
+
                     ?>
                 </div>
             </div>

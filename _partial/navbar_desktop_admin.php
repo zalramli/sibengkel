@@ -30,6 +30,9 @@
                             <li><a href="admin.php?halaman=v_jenis_pegawai">Jenis Pegawai</a>
                             </li>
 
+                            <li><a href="admin.php?halaman=v_mekanik">Mekanik</a>
+                            </li>
+
                         </ul>
                     </div>
                 </div>

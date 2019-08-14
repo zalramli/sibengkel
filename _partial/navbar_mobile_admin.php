@@ -18,6 +18,8 @@
                                     </li>
                                     <li><a href="admin.php?halaman=v_jenispegawai">Jenis Pegawai</a>
                                     </li>
+                                    <li><a href="admin.php?halaman=v_mekanik">Mekanik</a>
+                                    </li>
                                 </ul>
                             </li>
 

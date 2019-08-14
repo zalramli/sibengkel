@@ -1,24 +1,24 @@
 <?php
 if (isset($_POST['update'])) {
-  $kode_customer = $_POST['kode_customer'];
-  $nama_customer = $_POST['nama_customer'];
+  $kode_mekanik = $_POST['kode_mekanik'];
+  $nama_mekanik = $_POST['nama_mekanik'];
   $alamat = $_POST['alamat'];
   $no_telp = $_POST['no_telp'];
 
-  $update = mysqli_query($koneksi, "UPDATE customer SET nama_customer='$nama_customer',alamat='$alamat',no_telp='$no_telp' WHERE kode_customer='$kode_customer'");
+  $update = mysqli_query($koneksi, "UPDATE mekanik SET nama_mekanik='$nama_mekanik',alamat='$alamat',no_telp='$no_telp' WHERE kode_mekanik='$kode_mekanik'");
   if ($update) {
-    echo "<script>window.location = 'cs.php?halaman=v_customer'</script>";
+    echo "<script>window.location = 'admin.php?halaman=v_mekanik'</script>";
   }
 }
 
 // mengambil ID
 $id = $_GET['id'];
-$query = mysqli_query($koneksi, "SELECT * FROM customer WHERE kode_customer='$id'");
+$query = mysqli_query($koneksi, "SELECT * FROM mekanik WHERE kode_mekanik='$id'");
 ?>
 
 <div class="form-element-list">
   <div class="basic-tb-hd">
-    <h2>Form Edit Customer</h2>
+    <h2>Form Edit Mekanik</h2>
   </div>
 
   <?php
@@ -29,11 +29,11 @@ $query = mysqli_query($koneksi, "SELECT * FROM customer WHERE kode_customer='$id
 
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <label for="">Nama Customer</label>
+        <label for="">Nama mekanik</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="hidden" name="kode_customer" class="form-control" value="<?= $data['kode_customer'] ?>">
-            <input type="text" name="nama_customer" class="form-control" placeholder="Isi form nama Customer" value="<?= $data['nama_customer'] ?>">
+            <input type="hidden" name="kode_mekanik" class="form-control" value="<?= $data['kode_mekanik'] ?>">
+            <input type="text" name="nama_mekanik" class="form-control" placeholder="Isi form nama mekanik" value="<?= $data['nama_mekanik'] ?>">
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM customer WHERE kode_customer='$id
     </div>
 
     <button type="submit" name="update" class="btn btn-primary">Update</button>
-    <a href="cs.php?halaman=v_customer" class="btn btn-danger">Kembali</a>
+    <a href="admin.php?halaman=v_mekanik" class="btn btn-danger">Kembali</a>
 
   </form>
 
