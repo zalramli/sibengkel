@@ -12,15 +12,15 @@ if ($kode_faktur) {
   $auto_kode = "JP01";
 }
 
-echo $auto_kode;
-
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
 
   $nama_jenis_p = $_POST['nama_jenis_p'];
   $query = mysqli_query($koneksi, "INSERT INTO jenis_pegawai (kode_jenis_p,nama_jenis_p) VALUES ('$auto_kode','$nama_jenis_p') ");
   if ($query) {
-    echo "<script>window.location = 'admin.php?halaman=v_jenis_pegawai'</script>";
+    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'admin.php?halaman=v_jenis_pegawai'</script>";
+  } else {
+    echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'admin.php?halaman=add_jenis_pegawai'</script>";
   }
 }
 ?>
@@ -36,7 +36,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Nama Jenis Pegawai</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="nama_jenis_p" class="form-control" placeholder="Isi form nama jenis pegawai">
+            <input type="text" name="nama_jenis_p" class="form-control" placeholder="Isi form nama jenis pegawai" required="" maxlength="30" oninvalid="this.setCustomValidity('Nama Jenis Pegawai Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>

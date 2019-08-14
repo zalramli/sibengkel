@@ -4,7 +4,7 @@ if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi, "DELETE FROM jenis_pegawai WHERE kode_jenis_p='$id'");
     if ($query_hapus) {
-        echo "<script>window.location = 'admin.php?halaman=v_jenis_pegawai'</script>";
+        echo "<script>alert('Data Berhasil Dihapus'); window.location = 'admin.php?halaman=v_jenis_pegawai'</script>";
     }
 }
 ?>
@@ -25,7 +25,7 @@ if (isset($_GET['hapus'])) {
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT kode_jenis_p,nama_jenis_p FROM jenis_pegawai");
+                $query = mysqli_query($koneksi, "SELECT * FROM jenis_pegawai ORDER BY kode_jenis_p ASC");
                 foreach ($query as $data) {
                     ?>
                 <tr>

@@ -4,7 +4,7 @@ if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi, "DELETE FROM pegawai WHERE kode_pegawai='$id'");
     if ($query_hapus) {
-        echo "<script>window.location = 'admin.php?halaman=v_pegawai'</script>";
+        echo "<script>alert('Data Berhasil Dihapus'); window.location = 'admin.php?halaman=v_pegawai'</script>";
     }
 }
 ?>
