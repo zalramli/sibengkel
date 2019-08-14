@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 14 Agu 2019 pada 01.58
--- Versi server: 10.1.37-MariaDB
--- Versi PHP: 7.3.0
+-- Host: localhost:3306
+-- Generation Time: 14 Agu 2019 pada 12.15
+-- Versi Server: 10.1.38-MariaDB-0ubuntu0.18.04.1
+-- PHP Version: 7.2.17-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -45,8 +43,8 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`kode_barang`, `kode_merk`, `kode_satuan`, `kode_jenis`, `nama_barang`, `stock`, `stock_limit`, `harga_pokok`, `harga_jual`) VALUES
-('B002', 'M01', 'S01', 'J02', 'Asus Zenfoixexxx', 9991, 9991, 999111, 111999),
-('B003', 'M01', 'S01', 'J01', 'asdxazd', 12, 1222, 9000, 100000);
+('B0004', 'M02', 'S01', 'J03', 'Oli Yamaxz', 12, 22, 22222, 33333),
+('B003', 'M01', 'S01', 'J03', 'Oli Yamalube', 12, 20000, 9000, 100000);
 
 -- --------------------------------------------------------
 
@@ -71,6 +69,21 @@ INSERT INTO `customer` (`kode_customer`, `nama_customer`, `alamat`, `no_telp`) V
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `detail_penjualan`
+--
+
+CREATE TABLE `detail_penjualan` (
+  `kode_detail_penjualan` char(10) NOT NULL,
+  `no_faktur_penjualan` char(10) NOT NULL,
+  `kode_barang` char(5) NOT NULL,
+  `jumlah_barang` int(11) NOT NULL,
+  `potongan_penjualan` int(11) NOT NULL,
+  `sub_total_harga` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `jenis_barang`
 --
 
@@ -85,7 +98,8 @@ CREATE TABLE `jenis_barang` (
 
 INSERT INTO `jenis_barang` (`kode_jenis`, `nama_jenis`) VALUES
 ('J01', 'setir'),
-('J02', 'peleng');
+('J02', 'peleng'),
+('J03', 'Oli');
 
 -- --------------------------------------------------------
 
@@ -136,7 +150,8 @@ CREATE TABLE `merk` (
 --
 
 INSERT INTO `merk` (`kode_merk`, `nama_merk`) VALUES
-('M01', 'Asusxxxas');
+('M01', 'Asusxxxas'),
+('M02', 'Yamaha');
 
 -- --------------------------------------------------------
 
@@ -159,6 +174,29 @@ CREATE TABLE `pegawai` (
 
 INSERT INTO `pegawai` (`kode_pegawai`, `kode_jenis_p`, `nama_pegawai`, `alamat`, `no_telp`, `status_login`) VALUES
 ('PG002', 'JP01', 'kika33', 'asd', '80123', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `penjualan`
+--
+
+CREATE TABLE `penjualan` (
+  `no_faktur_penjualan` char(10) NOT NULL,
+  `kode_pegawai` char(5) NOT NULL,
+  `tgl_transaksi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `total_harga` int(11) NOT NULL,
+  `bayar` int(11) NOT NULL,
+  `kembalian` int(11) NOT NULL,
+  `status` char(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `penjualan`
+--
+
+INSERT INTO `penjualan` (`no_faktur_penjualan`, `kode_pegawai`, `tgl_transaksi`, `total_harga`, `bayar`, `kembalian`, `status`) VALUES
+('FK000001', 'PG002', '2019-08-06 17:00:00', 20000, 30000, 10000, 'sukses');
 
 -- --------------------------------------------------------
 
@@ -195,7 +233,7 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`kode_service`, `nama_service`, `tarif_harga`) VALUES
-('SV01', 'Ganti Oli2', 90000);
+('SV01', 'Ganti Oli', 90000);
 
 -- --------------------------------------------------------
 
@@ -223,65 +261,76 @@ INSERT INTO `suplier` (`kode_suplier`, `nama_suplier`, `alamat`, `kontak_person`
 --
 
 --
--- Indeks untuk tabel `barang`
+-- Indexes for table `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`kode_barang`);
 
 --
--- Indeks untuk tabel `customer`
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`kode_customer`);
 
 --
--- Indeks untuk tabel `jenis_barang`
+-- Indexes for table `detail_penjualan`
+--
+ALTER TABLE `detail_penjualan`
+  ADD PRIMARY KEY (`kode_detail_penjualan`);
+
+--
+-- Indexes for table `jenis_barang`
 --
 ALTER TABLE `jenis_barang`
   ADD PRIMARY KEY (`kode_jenis`);
 
 --
--- Indeks untuk tabel `jenis_pegawai`
+-- Indexes for table `jenis_pegawai`
 --
 ALTER TABLE `jenis_pegawai`
   ADD PRIMARY KEY (`kode_jenis_p`);
 
 --
--- Indeks untuk tabel `mekanik`
+-- Indexes for table `mekanik`
 --
 ALTER TABLE `mekanik`
   ADD PRIMARY KEY (`kode_mekanik`);
 
 --
--- Indeks untuk tabel `merk`
+-- Indexes for table `merk`
 --
 ALTER TABLE `merk`
   ADD PRIMARY KEY (`kode_merk`);
 
 --
--- Indeks untuk tabel `pegawai`
+-- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`kode_pegawai`);
 
 --
--- Indeks untuk tabel `satuan`
+-- Indexes for table `penjualan`
+--
+ALTER TABLE `penjualan`
+  ADD PRIMARY KEY (`no_faktur_penjualan`);
+
+--
+-- Indexes for table `satuan`
 --
 ALTER TABLE `satuan`
   ADD PRIMARY KEY (`kode_satuan`);
 
 --
--- Indeks untuk tabel `service`
+-- Indexes for table `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`kode_service`);
 
 --
--- Indeks untuk tabel `suplier`
+-- Indexes for table `suplier`
 --
 ALTER TABLE `suplier`
   ADD PRIMARY KEY (`kode_suplier`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
