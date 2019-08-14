@@ -1,4 +1,8 @@
 <?php
+// mengambil ID
+$id = $_GET['id'];
+$query = mysqli_query($koneksi, "SELECT * FROM customer WHERE kode_customer='$id'");
+
 if (isset($_POST['update'])) {
   $kode_customer = $_POST['kode_customer'];
   $nama_customer = $_POST['nama_customer'];
@@ -7,13 +11,12 @@ if (isset($_POST['update'])) {
 
   $update = mysqli_query($koneksi, "UPDATE customer SET nama_customer='$nama_customer',alamat='$alamat',no_telp='$no_telp' WHERE kode_customer='$kode_customer'");
   if ($update) {
-    echo "<script>window.location = 'cs.php?halaman=v_customer'</script>";
+    echo "<script>alert('Data Berhasil Terupdate'); window.location = 'cs.php?halaman=v_customer'</script>";
+  } else {
+    echo "<script>alert('Terjadi Kesalahan Update Database'); window.location = 'cs.php?halaman=edit_customer&id=" . $id . "'</script>";
   }
 }
 
-// mengambil ID
-$id = $_GET['id'];
-$query = mysqli_query($koneksi, "SELECT * FROM customer WHERE kode_customer='$id'");
 ?>
 
 <div class="form-element-list">
@@ -33,7 +36,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM customer WHERE kode_customer='$id
         <div class="form-group">
           <div class="nk-int-st">
             <input type="hidden" name="kode_customer" class="form-control" value="<?= $data['kode_customer'] ?>">
-            <input type="text" name="nama_customer" class="form-control" placeholder="Isi form nama Customer" value="<?= $data['nama_customer'] ?>">
+            <input type="text" name="nama_customer" class="form-control" placeholder="Isi form nama Customer" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['nama_customer'] ?>">
           </div>
         </div>
       </div>
@@ -44,7 +47,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM customer WHERE kode_customer='$id
         <label for="">ALamat</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3"><?= $data['alamat'] ?></textarea>
+            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"><?= $data['alamat'] ?></textarea>
           </div>
         </div>
       </div>
@@ -55,7 +58,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM customer WHERE kode_customer='$id
         <label for="">No telp</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp" value="<?= $data['no_telp'] ?>">
+            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('No Telepon Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['no_telp'] ?>">
           </div>
         </div>
       </div>

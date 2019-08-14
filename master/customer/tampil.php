@@ -5,7 +5,7 @@ if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi, "DELETE FROM customer WHERE kode_customer='$id'");
     if ($query_hapus) {
-        echo "<script>window.location = 'cs.php?halaman=v_customer'</script>";
+        echo "<script>alert('Data Berhasil Dihapus'); window.location = 'cs.php?halaman=v_customer'</script>";
     }
 }
 
@@ -29,7 +29,7 @@ if (isset($_GET['hapus'])) {
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT * FROM customer ORDER BY nama_customer ASC");
+                $query = mysqli_query($koneksi, "SELECT * FROM customer ORDER BY kode_customer ASC");
                 foreach ($query as $data) {
                     ?>
                 <tr>
