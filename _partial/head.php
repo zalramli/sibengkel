@@ -42,6 +42,7 @@
     <!-- Notika icon CSS
                 ============================================ -->
     <link rel="stylesheet" href="assets/template2/css/notika-custom-icon.css">
+    <link rel="stylesheet" href="assets/template2/css/jquery.dataTables.min.css">
     <!-- bootstrap select CSS
                 ============================================ -->
     <link rel="stylesheet" href="assets/template2/css/bootstrap-select/bootstrap-select.css">
@@ -68,11 +69,8 @@
     <link rel="stylesheet" href="assets/template2/css/main.css">
     <!-- style CSS
                 ============================================ -->
-    <link rel="stylesheet" href="assets/template2/style.css">
     <!-- responsive CSS
                 ============================================ -->
+    <link rel="stylesheet" href="assets/template2/style.css">
     <link rel="stylesheet" href="assets/template2/css/responsive.css">
-    <!-- Data Table JS
-    ============================================ -->
-    <link rel="stylesheet" href="assets/template2/css/jquery.dataTables.min.css">
-    <!-- main CSS
+    

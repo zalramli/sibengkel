@@ -1,7 +1,7 @@
 
 <div class="data-table-list">
     <div class="basic-tb-hd">
-        <h2>Jenis Barang</h2>
+        <h2>Laporan Transaksi</h2>
         <br>
         <div class="row">
             <form action="halaman_print/print_laporan_transaksi.php" method="POST" target="_blank">
@@ -10,7 +10,7 @@
                         <label>Dari Tanggal</label>
                         <div class="input-group date nk-int-st">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control" name="tgl_mulai">
+                            <input type="text" class="form-control" name="tgl_mulai" placeholder="Isi form tanggal awal">
                         </div>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
                         <label>Sampai Tanggal</label>
                         <div class="input-group date nk-int-st">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control" name="tgl_akhir">
+                            <input type="text" class="form-control" name="tgl_akhir" placeholder="Isi form tanggal akhir">
                         </div>
                     </div>
                 </div>
@@ -38,8 +38,12 @@
         <table id="data-table-basic" class="table table-striped">
             <thead>
                 <tr>
-                    <th>Kode Jenis Barang</th>
-                    <th>Nama Jenis Barang</th>
+                    <th>No Faktur</th>
+                    <th>Yang Melayani</th>
+                    <th>Tanggal Transaksi</th>
+                    <th>Total Harga</th>
+                    <th>Total Bayar</th>
+                    <th>Total Kembalian</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -51,17 +55,25 @@
                 <tr>
                     <td><?= $data['no_faktur_penjualan'] ?></td>
                     <td><?= $data['nama_pegawai'] ?></td>
+                    <td><?= $data['tgl_transaksi'] ?></td>
+                    <td style="text-align: right;"><?= $data['total_harga'] ?></td>
+                    <td style="text-align: right;"><?= $data['bayar'] ?></td>
+                    <td style="text-align: right;"><?= $data['kembalian'] ?></td>
                     <td>
-                        <a href="?halaman=edit_jenisBarang&id=<?= $data['no_faktur_penjualan']; ?>" class=" btn btn-primary">Edit</a>
-                        <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_jenisBarang&hapus=<?= $data['no_faktur_penjualan']; ?>" class="btn btn-danger">Hapus</a>
+                        <a href="?halaman=detail_transaksi&id=<?= $data['no_faktur_penjualan']; ?>" class=" btn btn-warning">Detail</a>
+                        
                     </td>
                 </tr>
                 <?php } ?>
             </tbody>
             <tfoot>
             <tr>
-                <th>Kode Jenis Barang</th>
-                <th>Nama Jenis Barang</th>
+                <th>No Faktur</th>
+                <th>Yang Melayani</th>
+                <th>Tanggal Transaksi</th>
+                <th>Total Harga</th>
+                <th>Total Bayar</th>
+                <th>Total Kembalian</th>
                 <th>Aksi</th>
             </tr>
             </tfoot>
