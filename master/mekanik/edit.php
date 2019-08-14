@@ -1,4 +1,8 @@
 <?php
+// mengambil ID
+$id = $_GET['id'];
+$query = mysqli_query($koneksi, "SELECT * FROM mekanik WHERE kode_mekanik='$id'");
+
 if (isset($_POST['update'])) {
   $kode_mekanik = $_POST['kode_mekanik'];
   $nama_mekanik = $_POST['nama_mekanik'];
@@ -8,12 +12,10 @@ if (isset($_POST['update'])) {
   $update = mysqli_query($koneksi, "UPDATE mekanik SET nama_mekanik='$nama_mekanik',alamat='$alamat',no_telp='$no_telp' WHERE kode_mekanik='$kode_mekanik'");
   if ($update) {
     echo "<script>window.location = 'admin.php?halaman=v_mekanik'</script>";
+  } else {
+    echo "<script>alert('Terjadi Kesalahan Update Database'); window.location = 'admin.php?halaman=edit_mekanik&id=" . $id . "'</script>";
   }
 }
-
-// mengambil ID
-$id = $_GET['id'];
-$query = mysqli_query($koneksi, "SELECT * FROM mekanik WHERE kode_mekanik='$id'");
 ?>
 
 <div class="form-element-list">
@@ -33,7 +35,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM mekanik WHERE kode_mekanik='$id'"
         <div class="form-group">
           <div class="nk-int-st">
             <input type="hidden" name="kode_mekanik" class="form-control" value="<?= $data['kode_mekanik'] ?>">
-            <input type="text" name="nama_mekanik" class="form-control" placeholder="Isi form nama mekanik" value="<?= $data['nama_mekanik'] ?>">
+            <input type="text" name="nama_mekanik" class="form-control" placeholder="Isi form nama mekanik" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['nama_mekanik'] ?>">
           </div>
         </div>
       </div>
@@ -44,7 +46,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM mekanik WHERE kode_mekanik='$id'"
         <label for="">ALamat</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3"><?= $data['alamat'] ?></textarea>
+            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"><?= $data['alamat'] ?></textarea>
           </div>
         </div>
       </div>
@@ -55,7 +57,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM mekanik WHERE kode_mekanik='$id'"
         <label for="">No telp</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp" value="<?= $data['no_telp'] ?>">
+            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('No Telepon Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['no_telp'] ?>">
           </div>
         </div>
       </div>

@@ -19,7 +19,9 @@ if (isset($_POST['simpan'])) {
   $no_telp = $_POST['no_telp'];
   $query = mysqli_query($koneksi, "INSERT INTO mekanik (kode_mekanik,nama_mekanik,alamat,no_telp) VALUES ('$auto_kode','$nama_mekanik','$alamat','$no_telp') ");
   if ($query) {
-    echo "<script>window.location = 'admin.php?halaman=v_mekanik'</script>";
+    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'admin.php?halaman=v_mekanik'</script>";
+  } else {
+    echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'admin.php?halaman=add_mekanik'</script>";
   }
 }
 ?>
@@ -33,7 +35,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Nama mekanik</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="nama_mekanik" class="form-control" placeholder="Isi form nama mekanik">
+            <input type="text" name="nama_mekanik" class="form-control" placeholder="Isi form nama mekanik" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -43,7 +45,7 @@ if (isset($_POST['simpan'])) {
         <label for="">ALamat</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3"></textarea>
+            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"></textarea>
           </div>
         </div>
       </div>
@@ -53,7 +55,7 @@ if (isset($_POST['simpan'])) {
         <label for="">No telp</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp">
+            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('No Telepon Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
