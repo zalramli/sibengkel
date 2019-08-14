@@ -4,7 +4,7 @@ if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi, "DELETE FROM service WHERE kode_service='$id'");
     if ($query_hapus) {
-        echo "<script>window.location = 'kasir.php?halaman=v_tarifService'</script>";
+        echo "<script>alert('Data Berhasil Dihapus'); window.location = 'kasir.php?halaman=v_tarifService'</script>";
     }
 }
 ?>
@@ -26,7 +26,7 @@ if (isset($_GET['hapus'])) {
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT kode_service,nama_service,tarif_harga FROM service");
+                $query = mysqli_query($koneksi, "SELECT * FROM service ORDER BY kode_service ASC");
                 foreach ($query as $data) {
                     ?>
                 <tr>

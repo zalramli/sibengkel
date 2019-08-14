@@ -18,7 +18,9 @@ if (isset($_POST['simpan'])) {
     $tarif_harga = $_POST['tarif_harga'];
     $query = mysqli_query($koneksi, "INSERT INTO service (kode_service,nama_service,tarif_harga) VALUES ('$auto_kode','$nama_service','$tarif_harga') ");
     if ($query) {
-        echo "<script>window.location = 'kasir.php?halaman=v_tarifService'</script>";
+        echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=v_tarifService'</script>";
+    } else {
+        echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'kasir.php?halaman=add_tarifService'</script>";
     }
 }
 ?>
@@ -34,7 +36,7 @@ if (isset($_POST['simpan'])) {
                 <label for="">Nama Service</label>
                 <div class="form-group">
                     <div class="nk-int-st">
-                        <input type="text" name="nama_service" class="form-control" placeholder="Isi form nama service">
+                        <input type="text" name="nama_service" class="form-control" placeholder="Isi form nama service" required="" maxlength="30" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')">
                     </div>
                 </div>
             </div>
@@ -45,7 +47,7 @@ if (isset($_POST['simpan'])) {
                 <label for="">Tarif Service</label>
                 <div class="form-group">
                     <div class="nk-int-st">
-                        <input type="text" name="tarif_harga" class="form-control" placeholder="Isi form tarif service">
+                        <input type="number" name="tarif_harga" class="form-control" placeholder="Isi form tarif service" required="" max="999999999" oninvalid="this.setCustomValidity('Tarif Service Wajib Diisi')" oninput="setCustomValidity('')">
                     </div>
                 </div>
             </div>
