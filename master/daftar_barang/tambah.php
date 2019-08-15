@@ -23,7 +23,9 @@ if (isset($_POST['simpan'])) {
   $harga_jual = $_POST['harga_jual'];
   $query = mysqli_query($koneksi, "INSERT INTO barang VALUES ('$auto_kode','$kode_merk','$kode_satuan','$kode_jenis','$nama_barang','$stock','$stock_limit','$harga_pokok','$harga_jual') ");
   if ($query) {
-    echo "<script>window.location = 'gudang.php?halaman=v_daftarBarang'</script>";
+    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'gudang.php?halaman=v_daftarBarang'</script>";
+  } else {
+    echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_daftarBarang'</script>";
   }
 }
 ?>
@@ -37,7 +39,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Nama Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="nama_barang" class="form-control" placeholder="Isi form nama barang">
+            <input type="text" name="nama_barang" class="form-control" placeholder="Isi form nama barang" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -45,7 +47,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Jenis Barang</label>
         <div class="form-group">
           <div class="bootstrap-select fm-cmp-mg">
-            <select name="kode_jenis" class="selectpicker" data-live-search="true">
+            <select name="kode_jenis" class="selectpicker" data-live-search="true" required="">
 
               <option value="">Please select</option>
 
@@ -66,7 +68,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Merk Barang</label>
         <div class="form-group">
           <div class="bootstrap-select fm-cmp-mg">
-            <select name="kode_merk" class="selectpicker" data-live-search="true">
+            <select name="kode_merk" class="selectpicker" data-live-search="true" required="">
 
               <option value="">Please select</option>
 
@@ -89,7 +91,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Stock Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="stock" class="form-control" placeholder="Isi form stock barang">
+            <input type="number" name="stock" class="form-control" placeholder="Isi form stock barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Barang Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -97,7 +99,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Stock Limit Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang">
+            <input type="number" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Limit Barang Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -105,7 +107,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Satuan Barang</label>
         <div class="form-group">
           <div class="bootstrap-select fm-cmp-mg">
-            <select name="kode_satuan" class="selectpicker" data-live-search="true">
+            <select name="kode_satuan" class="selectpicker" data-live-search="true" required="">
 
               <option value="">Please select</option>
 
@@ -128,7 +130,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Harga Pokok</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="harga_pokok" class="form-control" placeholder="Isi form harga pokok barang">
+            <input type="number" name="harga_pokok" class="form-control" placeholder="Isi form harga pokok barang" required="" max="999999999" oninvalid="this.setCustomValidity('Harga Pokok Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -136,16 +138,16 @@ if (isset($_POST['simpan'])) {
         <label for="">Harga Jual</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="harga_jual" class="form-control" placeholder="Isi form harga jual barang">
+            <input type="number" name="harga_jual" class="form-control" placeholder="Isi form harga jual barang" required="" max="999999999" oninvalid="this.setCustomValidity('Harga Jual Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-      <a href="gudang.php?halaman=v_daftarBarang" class="btn btn-danger">Kembali</a>
-    </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+        <a href="gudang.php?halaman=v_daftarBarang" class="btn btn-danger">Kembali</a>
+      </div>
 
     </div>
   </form>

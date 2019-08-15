@@ -4,7 +4,7 @@ if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi, "DELETE FROM barang WHERE kode_barang='$id'");
     if ($query_hapus) {
-        echo "<script>window.location = 'gudang.php?halaman=v_daftarBarang'</script>";
+        echo "<script>alert('Data Berhasil Dihapus'); window.location = 'gudang.php?halaman=v_daftarBarang'</script>";
     }
 }
 ?>
@@ -31,7 +31,7 @@ if (isset($_GET['hapus'])) {
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk) JOIN satuan USING(kode_satuan) JOIN jenis_barang USING(kode_jenis) ORDER BY nama_barang ASC");
+                $query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk) JOIN satuan USING(kode_satuan) JOIN jenis_barang USING(kode_jenis) ORDER BY kode_barang ASC");
                 foreach ($query as $data) {
                     ?>
                 <tr>

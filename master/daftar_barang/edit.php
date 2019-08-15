@@ -1,4 +1,8 @@
 <?php
+// mengambil ID
+$id = $_GET['id'];
+$query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk) JOIN satuan USING(kode_satuan) JOIN jenis_barang USING(kode_jenis) WHERE kode_barang='$id'");
+
 if (isset($_POST['update'])) {
   $kode_barang = $_POST['kode_barang'];
   $kode_merk = $_POST['kode_merk'];
@@ -12,13 +16,12 @@ if (isset($_POST['update'])) {
 
   $update = mysqli_query($koneksi, "UPDATE barang SET kode_merk='$kode_merk',kode_satuan='$kode_satuan',kode_jenis='$kode_jenis',nama_barang='$nama_barang',stock='$stock',stock_limit='$stock_limit',harga_pokok='$harga_pokok',harga_jual='$harga_jual' WHERE kode_barang='$kode_barang'");
   if ($update) {
-    echo "<script>window.location = 'gudang.php?halaman=v_daftarBarang'</script>";
+    echo "<script>alert('Data Berhasil Terupdate'); window.location = 'gudang.php?halaman=v_daftarBarang'</script>";
+  } else {
+    echo "<script>alert('Terjadi Kesalahan Update Database'); window.location = 'gudang.php?halaman=edit_daftarBarang&id=" .$id."'</script>";
   }
 }
 
-// mengambil ID
-$id = $_GET['id'];
-$query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk) JOIN satuan USING(kode_satuan) JOIN jenis_barang USING(kode_jenis) WHERE kode_barang='$id'");
 ?>
 <div class="form-element-list">
   <div class="basic-tb-hd">
@@ -34,7 +37,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk)
         <div class="form-group">
           <div class="nk-int-st">
             <input type="hidden" name="kode_barang" class="form-control" placeholder="Isi form nama barang" value="<?= $data['kode_barang'] ?>">
-            <input type="text" name="nama_barang" class="form-control" placeholder="Isi form nama barang" value="<?= $data['nama_barang'] ?>">
+            <input type="text" name="nama_barang" class="form-control" placeholder="Isi form nama barang" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['nama_barang'] ?>">
           </div>
         </div>
       </div>
@@ -42,7 +45,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk)
         <label for="">Jenis Barang</label>
         <div class="form-group">
           <div class="bootstrap-select fm-cmp-mg">
-            <select name="kode_jenis" class="selectpicker" data-live-search="true">
+            <select name="kode_jenis" class="selectpicker" data-live-search="true" required="">
               <?php
                 $query_jenis = mysqli_query($koneksi, "SELECT * FROM jenis_barang ORDER BY kode_jenis ASC");
                 foreach ($query_jenis as $data_jenis) {
@@ -61,7 +64,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk)
         <label for="">Merk Barang</label>
         <div class="form-group">
           <div class="bootstrap-select fm-cmp-mg">
-            <select name="kode_merk" class="selectpicker" data-live-search="true">
+            <select name="kode_merk" class="selectpicker" data-live-search="true" required="">
               <?php
                 $query_merk = mysqli_query($koneksi, "SELECT * FROM merk ORDER BY kode_merk ASC");
                 foreach ($query_merk as $data_merk) {
@@ -82,7 +85,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk)
         <label for="">Stock Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="stock" class="form-control" placeholder="Isi form stock barang" value="<?= $data['stock'] ?>">
+            <input type="number" name="stock" class="form-control" placeholder="Isi form stock barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Barang Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['stock'] ?>">
           </div>
         </div>
       </div>
@@ -90,7 +93,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk)
         <label for="">Stock Limit Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang" value="<?= $data['stock_limit'] ?>">
+            <input type="number" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Limit Barang Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['stock_limit'] ?>">
           </div>
         </div>
       </div>
@@ -98,7 +101,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk)
         <label for="">Satuan Barang</label>
         <div class="form-group">
           <div class="bootstrap-select fm-cmp-mg">
-            <select name="kode_satuan" class="selectpicker" data-live-search="true">
+            <select name="kode_satuan" class="selectpicker" data-live-search="true" required="">
               <?php
                 $query_satuan = mysqli_query($koneksi, "SELECT * FROM satuan ORDER BY kode_satuan ASC");
                 foreach ($query_satuan as $data_satuan) {
@@ -119,7 +122,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk)
         <label for="">Harga Pokok</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="harga_pokok" class="form-control" placeholder="Isi form harga pokok barang" value="<?= $data['harga_pokok'] ?>">
+            <input type="number" name="harga_pokok" class="form-control" placeholder="Isi form harga pokok barang" required="" max="999999999" oninvalid="this.setCustomValidity('Harga Pokok Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['harga_pokok'] ?>">
           </div>
         </div>
       </div>
@@ -127,7 +130,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM barang JOIN merk USING(kode_merk)
         <label for="">Harga Jual</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="harga_jual" class="form-control" placeholder="Isi form harga jual barang" value="<?= $data['harga_jual'] ?>">
+            <input type="number" name="harga_jual" class="form-control" placeholder="Isi form harga jual barang" required="" max="999999999" oninvalid="this.setCustomValidity('Harga Jual Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['harga_jual'] ?>">
           </div>
         </div>
       </div>
