@@ -4,7 +4,7 @@ if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi, "DELETE FROM merk WHERE kode_merk='$id'");
     if ($query_hapus) {
-        echo "<script>window.location = 'gudang.php?halaman=v_merkBarang'</script>";
+        echo "<script>alert('Data Berhasil Dihapus'); window.location = 'gudang.php?halaman=v_merkBarang'</script>";
     }
 }
 ?>
@@ -25,7 +25,7 @@ if (isset($_GET['hapus'])) {
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT kode_merk,nama_merk FROM merk");
+                $query = mysqli_query($koneksi, "SELECT kode_merk,nama_merk FROM merk ORDER BY kode_merk ASC");
                 foreach ($query as $data) {
                     ?>
                 <tr>
