@@ -4,7 +4,7 @@ if (isset($_GET['hapus'])) {
     $id = $_GET['hapus'];
     $query_hapus = mysqli_query($koneksi, "DELETE FROM satuan WHERE kode_satuan='$id'");
     if ($query_hapus) {
-        echo "<script>window.location = 'gudang.php?halaman=v_satuanBarang'</script>";
+        echo "<script>alert('Data Berhasil Dihapus'); window.location = 'gudang.php?halaman=v_satuanBarang'</script>";
     }
 }
 ?>
@@ -25,7 +25,7 @@ if (isset($_GET['hapus'])) {
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT kode_satuan,nama_satuan FROM satuan");
+                $query = mysqli_query($koneksi, "SELECT kode_satuan,nama_satuan FROM satuan ORDER BY kode_satuan ASC");
                 foreach ($query as $data) {
                     ?>
                 <tr>

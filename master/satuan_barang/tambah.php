@@ -17,7 +17,9 @@ if (isset($_POST['simpan'])) {
   $nama_satuan = $_POST['nama_satuan'];
   $query = mysqli_query($koneksi, "INSERT INTO satuan (kode_satuan,nama_satuan) VALUES ('$auto_kode','$nama_satuan') ");
   if ($query) {
-    echo "<script>window.location = 'gudang.php?halaman=v_satuanBarang'</script>";
+    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'gudang.php?halaman=v_satuanBarang'</script>";
+  } else {
+    echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_satuanBarang'</script>";
   }
 }
 ?>
@@ -32,7 +34,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Nama Satuan Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="nama_satuan" class="form-control" placeholder="Isi form nama satuan barang">
+            <input type="text" name="nama_satuan" class="form-control" placeholder="Isi form nama satuan barang" required="" maxlength="30" oninvalid="this.setCustomValidity('Nama Satuan Barang Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
