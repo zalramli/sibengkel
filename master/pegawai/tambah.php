@@ -16,8 +16,8 @@ if ($kode_faktur) {
 if (isset($_POST['simpan'])) {
 
   $kode_jenis_p = $_POST['kode_jenis_p'];
-  $nama_pegawai = $_POST['nama_pegawai'];
-  $alamat = $_POST['alamat'];
+  $nama_pegawai = ucfirst($_POST['nama_pegawai']);
+  $alamat = ucfirst($_POST['alamat']);
   $no_telp = $_POST['no_telp'];
   $username = $_POST['username'];
   $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // fungsi mengenkripsi data

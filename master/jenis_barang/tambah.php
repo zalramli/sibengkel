@@ -14,7 +14,7 @@ if ($kode_faktur) {
 
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
-  $nama_jenis = $_POST['nama_jenis'];
+  $nama_jenis = ucfirst($_POST['nama_jenis']);
   $query = mysqli_query($koneksi, "INSERT INTO jenis_barang (kode_jenis,nama_jenis) VALUES ('$auto_kode','$nama_jenis') ");
   if ($query) {
     echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'gudang.php?halaman=v_jenisBarang'</script>";

@@ -14,7 +14,7 @@ if ($kode_faktur) {
 
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
-    $nama_service = $_POST['nama_service'];
+    $nama_service = ucfirst($_POST['nama_service']);
     $tarif_harga = $_POST['tarif_harga'];
     $query = mysqli_query($koneksi, "INSERT INTO service (kode_service,nama_service,tarif_harga) VALUES ('$auto_kode','$nama_service','$tarif_harga') ");
     if ($query) {

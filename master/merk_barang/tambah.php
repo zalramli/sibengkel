@@ -14,7 +14,7 @@ if ($kode_faktur) {
 
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
-  $nama_merk = $_POST['nama_merk'];
+  $nama_merk = ucfirst($_POST['nama_merk']);
   $query = mysqli_query($koneksi, "INSERT INTO merk (kode_merk,nama_merk) VALUES ('$auto_kode','$nama_merk') ");
   if ($query) {
     echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'gudang.php?halaman=v_merkBarang'</script>";

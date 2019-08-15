@@ -14,7 +14,7 @@ if ($kode_faktur) {
 
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
-  $nama_satuan = $_POST['nama_satuan'];
+  $nama_satuan = ucfirst($_POST['nama_satuan']);
   $query = mysqli_query($koneksi, "INSERT INTO satuan (kode_satuan,nama_satuan) VALUES ('$auto_kode','$nama_satuan') ");
   if ($query) {
     echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'gudang.php?halaman=v_satuanBarang'</script>";

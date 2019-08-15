@@ -13,8 +13,8 @@ if ($kode_faktur) {
 }
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
-  $nama_suplier = $_POST['nama_suplier'];
-  $alamat = $_POST['alamat'];
+  $nama_suplier = ucfirst($_POST['nama_suplier']);
+  $alamat = ucfirst($_POST['alamat']);
   $kontak_person = $_POST['kontak_person'];
   $telp = $_POST['telp'];
   $query = mysqli_query($koneksi, "INSERT INTO suplier VALUES ('$auto_kode','$nama_suplier','$alamat','$kontak_person','$telp') ");

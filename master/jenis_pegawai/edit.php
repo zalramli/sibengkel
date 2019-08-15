@@ -7,7 +7,7 @@ $data = mysqli_fetch_array($query);
 //Proses Update Data Hak akses 
 if (isset($_POST['update'])) {
     $kode_jenis_p = $_POST['kode_jenis_p'];
-    $nama_jenis_p = $_POST['nama_jenis_p'];
+    $nama_jenis_p = ucfirst($_POST['nama_jenis_p']);
 
     $update = mysqli_query($koneksi, "UPDATE jenis_pegawai SET nama_jenis_p='$nama_jenis_p' WHERE kode_jenis_p='$kode_jenis_p'");
     if ($update) {

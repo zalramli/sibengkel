@@ -5,8 +5,8 @@ $query = mysqli_query($koneksi, "SELECT * FROM suplier WHERE kode_suplier='$id'"
 
 if (isset($_POST['update'])) {
   $kode_suplier = $_POST['kode_suplier'];
-  $nama_suplier = $_POST['nama_suplier'];
-  $alamat = $_POST['alamat'];
+  $nama_suplier = ucfirst($_POST['nama_suplier']);
+  $alamat = ucfirst($_POST['alamat']);
   $kontak_person = $_POST['kontak_person'];
   $telp = $_POST['telp'];
 

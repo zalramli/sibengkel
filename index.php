@@ -20,13 +20,13 @@ session_start();
                     $_SESSION['akses'] = $data['nama_jenis_p'];
                     $_SESSION['kode_pegawai'] = $data['kode_pegawai'];
                     mysqli_query($koneksi, "UPDATE pegawai SET status_login='1' WHERE kode_pegawai='$kode_pegawai'");
-                    if ($_SESSION['akses'] == "admin") {
+                    if ($_SESSION['akses'] == "Admin") {
                         header("location:admin.php?halaman=dashboard");
-                    } else if($_SESSION['akses'] == "kasir") {
+                    } else if($_SESSION['akses'] == "Kasir") {
                         header("location:kasir.php?halaman=dashboard");
-                    } else if($_SESSION['akses'] == "gudang") {
+                    } else if($_SESSION['akses'] == "Gudang") {
                         header("location:gudang.php?halaman=dashboard");
-                    } else if($_SESSION['akses'] == "cs") {
+                    } else if($_SESSION['akses'] == "Cs") {
                          header("location:cs.php?halaman=dashboard");
                     }
             } else {

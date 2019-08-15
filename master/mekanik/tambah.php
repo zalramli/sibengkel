@@ -14,8 +14,8 @@ if ($kode_faktur) {
 
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
-  $nama_mekanik = $_POST['nama_mekanik'];
-  $alamat = $_POST['alamat'];
+  $nama_mekanik = ucfirst($_POST['nama_mekanik']);
+  $alamat = ucfirst($_POST['alamat']);
   $no_telp = $_POST['no_telp'];
   $query = mysqli_query($koneksi, "INSERT INTO mekanik (kode_mekanik,nama_mekanik,alamat,no_telp) VALUES ('$auto_kode','$nama_mekanik','$alamat','$no_telp') ");
   if ($query) {

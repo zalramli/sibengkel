@@ -8,7 +8,7 @@ if (isset($_POST['update'])) {
   $kode_merk = $_POST['kode_merk'];
   $kode_satuan = $_POST['kode_satuan'];
   $kode_jenis = $_POST['kode_jenis'];
-  $nama_barang = $_POST['nama_barang'];
+  $nama_barang = ucfirst($_POST['nama_barang']);
   $stock = $_POST['stock'];
   $stock_limit = $_POST['stock_limit'];
   $harga_pokok = $_POST['harga_pokok'];

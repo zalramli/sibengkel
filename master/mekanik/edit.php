@@ -5,8 +5,8 @@ $query = mysqli_query($koneksi, "SELECT * FROM mekanik WHERE kode_mekanik='$id'"
 
 if (isset($_POST['update'])) {
   $kode_mekanik = $_POST['kode_mekanik'];
-  $nama_mekanik = $_POST['nama_mekanik'];
-  $alamat = $_POST['alamat'];
+  $nama_mekanik = ucfirst($_POST['nama_mekanik']);
+  $alamat = ucfirst($_POST['alamat']);
   $no_telp = $_POST['no_telp'];
 
   $update = mysqli_query($koneksi, "UPDATE mekanik SET nama_mekanik='$nama_mekanik',alamat='$alamat',no_telp='$no_telp' WHERE kode_mekanik='$kode_mekanik'");
