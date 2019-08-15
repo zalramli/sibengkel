@@ -88,7 +88,7 @@
     <script src="assets/template2/js/bootstrap-select/bootstrap-select.js"></script>
     <script src="assets/template2/js/datapicker/bootstrap-datepicker.js"></script>
     <script src="assets/template2/js/datapicker/datepicker-active.js"></script>
-
+    <script type="text/javascript" src="assets/template2/js/session_waktu/jquery.idle.js"></script>
     <!-- Supaya di tabel tidak ada ORDER BY(otomatis data table) -->
     <script>
         $('#data-table-basic').DataTable({
@@ -98,4 +98,26 @@
     <!-- Agar input tidak ada history -->
     <script>
         $("form :input").attr("autocomplete", "off");
+    </script>
+
+    <!-- User Tiap 10 menit akan logout otomatis Jika tidak melakukan apa apa-->
+    <script>
+        $(document).idle({
+            onIdle: function(){
+                window.location="logout.php";                
+            },
+            // 1 detik = 1000 
+            // 10 menit
+            idle: 60000
+        });
+    </script>
+    <!-- Ketika Close browser atau Tutup Tab browser otomatis logout -->
+    <script>
+        window.onbeforeunload = function(){
+        //Ajax request to update the database
+        $.ajax({
+            type: "POST",
+            url: "logout.php"
+        });
+    }
     </script>
