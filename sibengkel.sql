@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: 14 Agu 2019 pada 19.21
--- Versi Server: 10.1.38-MariaDB-0ubuntu0.18.04.1
--- PHP Version: 7.2.17-0ubuntu0.18.04.1
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 15 Agu 2019 pada 02.56
+-- Versi server: 10.1.37-MariaDB
+-- Versi PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -32,10 +34,10 @@ CREATE TABLE `barang` (
   `kode_satuan` varchar(3) NOT NULL,
   `kode_jenis` varchar(3) NOT NULL,
   `nama_barang` varchar(50) NOT NULL,
-  `stock` int(11) NOT NULL,
-  `stock_limit` int(11) NOT NULL,
-  `harga_pokok` int(11) NOT NULL,
-  `harga_jual` int(11) NOT NULL
+  `stock` int(5) NOT NULL,
+  `stock_limit` int(5) NOT NULL,
+  `harga_pokok` int(10) NOT NULL,
+  `harga_jual` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -44,7 +46,8 @@ CREATE TABLE `barang` (
 
 INSERT INTO `barang` (`kode_barang`, `kode_merk`, `kode_satuan`, `kode_jenis`, `nama_barang`, `stock`, `stock_limit`, `harga_pokok`, `harga_jual`) VALUES
 ('B0003', 'M01', 'S01', 'J03', 'Roda Vario', 12, 20000, 9000, 50000),
-('B0004', 'M02', 'S01', 'J03', 'Oli Yamaxz', 12, 22, 22222, 20000);
+('B0004', 'M02', 'S01', 'J03', 'Oli Yamaxz', 12, 22, 22222, 20000),
+('B0005', 'M02', 'S01', 'J02', 'wwfrw', 213, 123, 1223, 123);
 
 -- --------------------------------------------------------
 
@@ -64,7 +67,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`kode_customer`, `nama_customer`, `alamat`, `no_telp`) VALUES
-('K0001', 'kika', 'jember', '0812312323');
+('K0001', 'asdasddas', 'dassd', 'q3431243432');
 
 -- --------------------------------------------------------
 
@@ -125,9 +128,28 @@ CREATE TABLE `jenis_pegawai` (
 --
 
 INSERT INTO `jenis_pegawai` (`kode_jenis_p`, `nama_jenis_p`) VALUES
-('JP01', 'asdasd11133'),
-('JP02', 'asd'),
-('JP03', 'asd');
+('JP04', 'kasir');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `mekanik`
+--
+
+CREATE TABLE `mekanik` (
+  `kode_mekanik` char(5) NOT NULL,
+  `nama_mekanik` varchar(50) NOT NULL,
+  `alamat` text NOT NULL,
+  `no_telp` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `mekanik`
+--
+
+INSERT INTO `mekanik` (`kode_mekanik`, `nama_mekanik`, `alamat`, `no_telp`) VALUES
+('MK001', 'kakaka', 'jemenbr', '1809087312'),
+('MK002', 'kekeke', 'asda', 'sdasd');
 
 -- --------------------------------------------------------
 
@@ -160,6 +182,8 @@ CREATE TABLE `pegawai` (
   `nama_pegawai` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `no_telp` varchar(20) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` char(60) NOT NULL,
   `status_login` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -167,8 +191,9 @@ CREATE TABLE `pegawai` (
 -- Dumping data untuk tabel `pegawai`
 --
 
-INSERT INTO `pegawai` (`kode_pegawai`, `kode_jenis_p`, `nama_pegawai`, `alamat`, `no_telp`, `status_login`) VALUES
-('PG002', 'JP01', 'kika33', 'asd', '80123', '0');
+INSERT INTO `pegawai` (`kode_pegawai`, `kode_jenis_p`, `nama_pegawai`, `alamat`, `no_telp`, `username`, `password`, `status_login`) VALUES
+('PG001', 'JP02', 'asd', 'asdasda', 'asdsad', 'asdss', '$2y$10$kYur/fK.ZD/keVhijEjvVev.MEN7QPQJJTGYWzgcM83Ck8S2kIbZ6', '0'),
+('PG002', 'JP03', 'kika123', 'jember', '123124', 'kaka', '$2y$10$Pu5a1e7EeZKWkragSdNVoegn/g.2YTOLLvD1E6NAr9sStdjjsPGla', '0');
 
 -- --------------------------------------------------------
 
@@ -209,7 +234,8 @@ CREATE TABLE `satuan` (
 --
 
 INSERT INTO `satuan` (`kode_satuan`, `nama_satuan`) VALUES
-('S01', 'pcs');
+('S01', 'pcs'),
+('S02', 'qwewqe');
 
 -- --------------------------------------------------------
 
@@ -228,7 +254,8 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`kode_service`, `nama_service`, `tarif_harga`) VALUES
-('SV01', 'Ganti Oli', 90000);
+('SV01', 'Ganti Oli', 90000),
+('SV02', 'dqwdq', 3222);
 
 -- --------------------------------------------------------
 
@@ -249,87 +276,95 @@ CREATE TABLE `suplier` (
 --
 
 INSERT INTO `suplier` (`kode_suplier`, `nama_suplier`, `alamat`, `kontak_person`, `telp`) VALUES
-('S001', '1111', '333', '222', '444');
+('S001', 'adsda', 'asdasd', 'dasdasd', 'asdasd');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `barang`
+-- Indeks untuk tabel `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`kode_barang`);
 
 --
--- Indexes for table `customer`
+-- Indeks untuk tabel `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`kode_customer`);
 
 --
--- Indexes for table `detail_penjualan`
+-- Indeks untuk tabel `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
   ADD PRIMARY KEY (`kode_detail_penjualan`);
 
 --
--- Indexes for table `jenis_barang`
+-- Indeks untuk tabel `jenis_barang`
 --
 ALTER TABLE `jenis_barang`
   ADD PRIMARY KEY (`kode_jenis`);
 
 --
--- Indexes for table `jenis_pegawai`
+-- Indeks untuk tabel `jenis_pegawai`
 --
 ALTER TABLE `jenis_pegawai`
   ADD PRIMARY KEY (`kode_jenis_p`);
 
 --
--- Indexes for table `merk`
+-- Indeks untuk tabel `mekanik`
+--
+ALTER TABLE `mekanik`
+  ADD PRIMARY KEY (`kode_mekanik`);
+
+--
+-- Indeks untuk tabel `merk`
 --
 ALTER TABLE `merk`
   ADD PRIMARY KEY (`kode_merk`);
 
 --
--- Indexes for table `pegawai`
+-- Indeks untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`kode_pegawai`);
 
 --
--- Indexes for table `penjualan`
+-- Indeks untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`no_faktur_penjualan`);
 
 --
--- Indexes for table `satuan`
+-- Indeks untuk tabel `satuan`
 --
 ALTER TABLE `satuan`
   ADD PRIMARY KEY (`kode_satuan`);
 
 --
--- Indexes for table `service`
+-- Indeks untuk tabel `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`kode_service`);
 
 --
--- Indexes for table `suplier`
+-- Indeks untuk tabel `suplier`
 --
 ALTER TABLE `suplier`
   ADD PRIMARY KEY (`kode_suplier`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `detail_penjualan`
+-- AUTO_INCREMENT untuk tabel `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
   MODIFY `kode_detail_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
