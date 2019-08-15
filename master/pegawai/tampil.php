@@ -10,7 +10,7 @@ if (isset($_GET['hapus'])) {
 ?>
 <div class="data-table-list">
     <div class="basic-tb-hd">
-        <h2>Daftar Pegawai</h2>
+        <h2><?= $_SESSION['akses'] ?></h2>
         <br>
         <a href="admin.php?halaman=add_pegawai" class="btn btn-success notika-btn-success">Tambah Data</a>
     </div>
