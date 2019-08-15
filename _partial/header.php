@@ -10,10 +10,10 @@
                     <div class="header-top-menu">
                         <ul class="nav navbar-nav notika-top-nav">
                             <li class="nav-item">
-                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><?= $_SESSION['username'] ?></span></a>
+                                <a href="#" class="nav-link dropdown-toggle"><span><?= $_SESSION['username'] ?> : <?= $_SESSION['akses'] ?></span></a>
                             </li>
                             <li class="nav-item">
-                                <a href="logout.php" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span>Logout</span></span></a>
+                                <a href="logout.php" class="nav-link dropdown-toggle">logout <span><i class="notika-icon notika-next"></i></span></span></a>
                             </li>
                         </ul>
                     </div>

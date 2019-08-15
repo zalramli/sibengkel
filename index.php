@@ -11,18 +11,21 @@ session_start();
     $query = mysqli_query($koneksi,"SELECT * FROM pegawai JOIN jenis_pegawai USING(kode_jenis_p) WHERE username='$username'");
     // menghitung jumlah data yang ditemukan
     $cek = mysqli_num_rows($query);
- 
+    $data=mysqli_fetch_array($query);
     if($cek > 0){
-        foreach ($query as $data) {
-            if (password_verify($_POST['password'],$data['password'])) {
+        if ($data['status_login'] == "0") {
+           if (password_verify($_POST['password'],$data['password'])) {
                     $_SESSION['username'] = $data['username'];
                     $_SESSION['akses'] = $data['nama_jenis_p'];
                     echo $_SESSION['akses'];
                     header("location:admin.php?halaman=v_pegawai");
             } else {
-                header("location:index.php?pesan=gagal");
+                echo "password anda salah";
             }
-            }   
+        } else {
+            echo "Akun anda sedang digunakan";
+        }
+             
     } else {
         echo "usernmae anda salah";
     }
