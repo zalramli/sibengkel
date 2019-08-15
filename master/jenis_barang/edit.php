@@ -11,7 +11,9 @@ if (isset($_POST['update'])) {
 
     $update = mysqli_query($koneksi, "UPDATE jenis_barang SET nama_jenis='$nama_jenis' WHERE kode_jenis='$kode_jenis'");
     if ($update) {
-        echo "<script>window.location = 'gudang.php?halaman=v_jenisBarang'</script>";
+        echo "<script>alert('Data Berhasil Terupdate'); window.location = 'gudang.php?halaman=v_jenisBarang'</script>";
+    } else {
+        echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=edit_jenisBarang&id=" . $id . "'</script>";
     }
 }
 ?>
@@ -27,7 +29,7 @@ if (isset($_POST['update'])) {
                 <div class="form-group">
                     <div class="nk-int-st">
                         <input type="hidden" name="kode_jenis" class="form-control" placeholder="Isi form nama jenis barang" readonly="" value="<?= $data['kode_jenis'] ?>">
-                        <input type="text" name="nama_jenis" class="form-control" placeholder="Isi form nama jenis barang" value="<?= $data['nama_jenis'] ?>">
+                        <input type="text" name="nama_jenis" class="form-control" placeholder="Isi form nama jenis barang" required="" maxlength="30" oninvalid="this.setCustomValidity('Nama Jenis Barang Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['nama_jenis'] ?>">
                     </div>
                 </div>
             </div>
