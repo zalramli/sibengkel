@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 15 Agu 2019 pada 02.56
--- Versi server: 10.1.37-MariaDB
--- Versi PHP: 7.3.0
+-- Host: localhost:3306
+-- Generation Time: 15 Agu 2019 pada 17.16
+-- Versi Server: 10.1.38-MariaDB-0ubuntu0.18.04.1
+-- PHP Version: 7.2.17-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -67,7 +65,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`kode_customer`, `nama_customer`, `alamat`, `no_telp`) VALUES
-('K0001', 'asdasddas', 'dassd', 'q3431243432');
+('K0001', 'Safri', 'dassd', 'q3431243432');
 
 -- --------------------------------------------------------
 
@@ -108,9 +106,9 @@ CREATE TABLE `jenis_barang` (
 --
 
 INSERT INTO `jenis_barang` (`kode_jenis`, `nama_jenis`) VALUES
-('J01', 'setir'),
-('J02', 'peleng'),
-('J03', 'Oli');
+('J01', 'Oli'),
+('J02', 'Ban luar'),
+('J03', 'Ban Dalam');
 
 -- --------------------------------------------------------
 
@@ -128,7 +126,10 @@ CREATE TABLE `jenis_pegawai` (
 --
 
 INSERT INTO `jenis_pegawai` (`kode_jenis_p`, `nama_jenis_p`) VALUES
-('JP04', 'kasir');
+('JP01', 'Admin'),
+('JP02', 'Kasir'),
+('JP03', 'Gudang'),
+('JP04', 'Cs');
 
 -- --------------------------------------------------------
 
@@ -167,8 +168,8 @@ CREATE TABLE `merk` (
 --
 
 INSERT INTO `merk` (`kode_merk`, `nama_merk`) VALUES
-('M01', 'Asusxxxas'),
-('M02', 'Yamaha');
+('M01', 'Yamaha'),
+('M02', 'Honda');
 
 -- --------------------------------------------------------
 
@@ -192,8 +193,9 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`kode_pegawai`, `kode_jenis_p`, `nama_pegawai`, `alamat`, `no_telp`, `username`, `password`, `status_login`) VALUES
-('PG001', 'JP02', 'asd', 'asdasda', 'asdsad', 'asdss', '$2y$10$kYur/fK.ZD/keVhijEjvVev.MEN7QPQJJTGYWzgcM83Ck8S2kIbZ6', '0'),
-('PG002', 'JP03', 'kika123', 'jember', '123124', 'kaka', '$2y$10$Pu5a1e7EeZKWkragSdNVoegn/g.2YTOLLvD1E6NAr9sStdjjsPGla', '0');
+('PG001', 'JP01', 'asd', 'asdasda', 'asdsad', 'asdss', '$2y$10$kYur/fK.ZD/keVhijEjvVev.MEN7QPQJJTGYWzgcM83Ck8S2kIbZ6', '0'),
+('PG002', 'JP02', 'kika123', 'jember', '123124', 'kaka', '$2y$10$Pu5a1e7EeZKWkragSdNVoegn/g.2YTOLLvD1E6NAr9sStdjjsPGla', '0'),
+('PG003', 'JP01', 'dani', 'jamber', '0897986985695', 'dani', '$2y$10$WV8g0fnkFJ4.kfiz2NbsPO0Nk2JXsiatHrPQwnNCSiqdJ0zWZOVT.', '1');
 
 -- --------------------------------------------------------
 
@@ -234,8 +236,8 @@ CREATE TABLE `satuan` (
 --
 
 INSERT INTO `satuan` (`kode_satuan`, `nama_satuan`) VALUES
-('S01', 'pcs'),
-('S02', 'qwewqe');
+('S01', 'Pcs'),
+('S02', 'Lusin');
 
 -- --------------------------------------------------------
 
@@ -255,7 +257,7 @@ CREATE TABLE `service` (
 
 INSERT INTO `service` (`kode_service`, `nama_service`, `tarif_harga`) VALUES
 ('SV01', 'Ganti Oli', 90000),
-('SV02', 'dqwdq', 3222);
+('SV02', 'Ganti ban dalam', 3222);
 
 -- --------------------------------------------------------
 
@@ -276,95 +278,93 @@ CREATE TABLE `suplier` (
 --
 
 INSERT INTO `suplier` (`kode_suplier`, `nama_suplier`, `alamat`, `kontak_person`, `telp`) VALUES
-('S001', 'adsda', 'asdasd', 'dasdasd', 'asdasd');
+('S001', 'Toko Agung Sakti', 'asdasd', 'dasdasd', 'asdasd');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `barang`
+-- Indexes for table `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`kode_barang`);
 
 --
--- Indeks untuk tabel `customer`
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`kode_customer`);
 
 --
--- Indeks untuk tabel `detail_penjualan`
+-- Indexes for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
   ADD PRIMARY KEY (`kode_detail_penjualan`);
 
 --
--- Indeks untuk tabel `jenis_barang`
+-- Indexes for table `jenis_barang`
 --
 ALTER TABLE `jenis_barang`
   ADD PRIMARY KEY (`kode_jenis`);
 
 --
--- Indeks untuk tabel `jenis_pegawai`
+-- Indexes for table `jenis_pegawai`
 --
 ALTER TABLE `jenis_pegawai`
   ADD PRIMARY KEY (`kode_jenis_p`);
 
 --
--- Indeks untuk tabel `mekanik`
+-- Indexes for table `mekanik`
 --
 ALTER TABLE `mekanik`
   ADD PRIMARY KEY (`kode_mekanik`);
 
 --
--- Indeks untuk tabel `merk`
+-- Indexes for table `merk`
 --
 ALTER TABLE `merk`
   ADD PRIMARY KEY (`kode_merk`);
 
 --
--- Indeks untuk tabel `pegawai`
+-- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`kode_pegawai`);
 
 --
--- Indeks untuk tabel `penjualan`
+-- Indexes for table `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`no_faktur_penjualan`);
 
 --
--- Indeks untuk tabel `satuan`
+-- Indexes for table `satuan`
 --
 ALTER TABLE `satuan`
   ADD PRIMARY KEY (`kode_satuan`);
 
 --
--- Indeks untuk tabel `service`
+-- Indexes for table `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`kode_service`);
 
 --
--- Indeks untuk tabel `suplier`
+-- Indexes for table `suplier`
 --
 ALTER TABLE `suplier`
   ADD PRIMARY KEY (`kode_suplier`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `detail_penjualan`
+-- AUTO_INCREMENT for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
   MODIFY `kode_detail_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
