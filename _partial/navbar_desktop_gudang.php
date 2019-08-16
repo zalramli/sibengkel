@@ -9,7 +9,7 @@
                     </li>
 
                     <li>
-                        <a href=""><i class="notika-icon notika-bar-chart"></i> Order Barang/Sparepart</a>
+                        <a href="gudang.php?halaman=v_permintaan_barang"><i class="notika-icon notika-bar-chart"></i> Order Barang/Sparepart</a>
                     </li>
 
                     <li>

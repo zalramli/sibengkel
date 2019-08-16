@@ -9,7 +9,7 @@
                             <li><a href="gudang.php?halaman=dashboard">Dashboard</a>
                             </li>
 
-                            <li><a href="">Order Barang/Sparepart</a>
+                            <li><a href="gudang.php?halaman=v_permintaan_barang">Order Barang/Sparepart</a>
                             </li>
 
                             <li><a data-toggle="collapse" data-target="#demolibra" href="#">Data Barang</a>

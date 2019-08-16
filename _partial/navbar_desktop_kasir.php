@@ -43,7 +43,7 @@
                     <div id="Forms2" class="tab-pane notika-tab-menu-bg animated flipInX">
                         <ul class="notika-main-menu-dropdown">
 
-                            <li><a href="">Transaksi Pemasokan</a>
+                            <li><a href="kasir.php?halaman=add_transaksi_pembelian">Transaksi Pemasokan</a>
                             </li>
 
                             <li><a href="kasir.php?halaman=v_suplier">Data Suplier</a>

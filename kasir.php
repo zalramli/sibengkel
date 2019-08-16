@@ -90,6 +90,12 @@ if (!isset($_SESSION['username'])) {
                     if ($_GET['halaman'] == 'v_work_order') {
                         include "transaksi/work_order/tampil.php";
                     }
+
+                    // parsing halaman pemasokan
+                    if ($_GET['halaman'] == 'add_transaksi_pembelian') {
+                        include "transaksi/pembelian/tambah.php";
+                    }
+
                     ?>
                 </div>
             </div>

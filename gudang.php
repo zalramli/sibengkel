@@ -84,6 +84,14 @@
                         include "master/satuan_barang/edit.php";
                     }
 
+                    // parsing halaman pemasokan
+                    if ($_GET['halaman'] == 'v_permintaan_barang') {
+                        include "transaksi/permintaan_barang/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'add_permintaan_barang') {
+                        include "transaksi/permintaan_barang/tambah.php";
+                    }
+
                     ?>
                 </div>
             </div>
