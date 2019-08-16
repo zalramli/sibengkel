@@ -1,4 +1,14 @@
 <div class="contact-info-area mg-t-30">
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="contact-inner">
+        asd
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contact-info-area mg-t-30">
   <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
       <div class="contact-inner">
@@ -79,7 +89,7 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <div class="contact-inner">
         <div class="row">
-          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
               <h2>Cari Customer</h2>
             </div>
@@ -94,7 +104,7 @@
               </select>
             </div>
           </div>
-          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <label for="">Plat Nomer</label>
             <div class="form-group">
               <div class="nk-int-st">
