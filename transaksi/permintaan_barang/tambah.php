@@ -2,57 +2,61 @@
 
 ?>
 <div class="form-element-list">
-  <div class="basic-tb-hd">
-    <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        <div class="form-group">
-          <div class="bootstrap-select fm-cmp-mg">
-            <select id="cari_kode_barang" name="kode_barang" class="selectpicker" data-live-search="true" required="">
+  <form id="transaksi_form" method="post">
 
-              <option value="">Cari Barang</option>
+    <div class="basic-tb-hd">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="bootstrap-select fm-cmp-mg">
+              <select id="cari_kode_barang" name="kode_barang" class="selectpicker" data-live-search="true" required="">
 
-              <?php
-              $query_jenis = mysqli_query($koneksi, "SELECT * FROM barang ORDER BY kode_barang ASC");
-              while ($data_jenis = mysqli_fetch_array($query_jenis)) {
-                ?>
+                <option value="">Cari Barang</option>
 
-              <option value="<?= $data_jenis['kode_barang'] ?>"><?= $data_jenis['nama_barang'] ?></option>
+                <?php
+                $query_jenis = mysqli_query($koneksi, "SELECT * FROM barang ORDER BY kode_barang ASC");
+                while ($data_jenis = mysqli_fetch_array($query_jenis)) {
+                  ?>
 
-              <?php } ?>
+                <option value="<?= $data_jenis['kode_barang'] ?>"><?= $data_jenis['nama_barang'] ?></option>
 
-            </select>
+                <?php } ?>
+
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+          <div class="form-group">
+            <a id="add_more" name="add_more" class="btn btn-primary">+</a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+          <div class="form-group">
+            <button id="action" type="submit" class="btn btn-primary mr-2">Simpan Pemesanan</button>
           </div>
         </div>
       </div>
-      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-        <div class="form-group">
-          <button id="add_more" name="add_more" class="btn btn-primary">+</button>
-        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+        <label>No</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <label>Kode Barang</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <label>Nama Barang</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <label>Jumlah Barang</label>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-      <label>No</label>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-      <label>Kode Barang</label>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-      <label>Nama Barang</label>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-      <label>Jumlah Barang</label>
-    </div>
-  </div>
-
-  <form id="transaksi_form" method="post">
     <div id="span_product_details">
       <!-- disini isi detail -->
     </div>
-
-    <button id="action" type="submit" class="btn btn-primary mr-2">Simpan Pemesanan</button>
 
   </form>
 </div>
@@ -103,12 +107,21 @@
     // menambah detail pemasokan
     $(document).on('click', '#add_more', function() {
 
+      // mengambil data dari select option daftar barang
       var cari_kode_barang = document.getElementById("cari_kode_barang");
       var value = cari_kode_barang.options[cari_kode_barang.selectedIndex].value;
       var value2 = cari_kode_barang.options[cari_kode_barang.selectedIndex].text;
 
-      count1 = count1 + 1;
-      add_row_obat(count1, value,value2);
+      // validasi cari barang 
+      if (value == "") {
+        alert("Pilih Barang");
+      } else {
+        count1 = count1 + 1;
+        add_row_obat(count1, value, value2);
+
+        document.getElementById("cari_kode_barang").selectedIndex = "0";
+        $('.selectpicker').selectpicker('refresh');
+      }
 
     });
     // menambah detail pemasokan
@@ -122,18 +135,18 @@
 
     // tambah ke database
     $(document).on('submit', '#transaksi_form', function(event) {
-      
+
       event.preventDefault();
-        $('#action').attr('disabled', 'disabled');
-        var form_data = $(this).serialize();
-        $.ajax({
-          url: "",
-          method: "POST",
-          data: form_data,
-          success: function(data) {
-            location.reload();
-          }
-        });
+      $('#action').attr('disabled', 'disabled');
+      var form_data = $(this).serialize();
+      $.ajax({
+        url: "",
+        method: "POST",
+        data: form_data,
+        success: function(data) {
+          location.reload();
+        }
+      });
 
     });
     // tambah ke database
