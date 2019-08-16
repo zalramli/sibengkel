@@ -70,12 +70,14 @@
 
     function add_row_obat(count1 = '', kode_barang, nama_barang) {
 
+      var nomer = count1 + 1;
+
       $('#span_product_details').append(`
 
         <br />
         <div id="row` + count1 + `" class="row">
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-            <p>` + count1 + `</p>
+            <p>` + nomer + `</p>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <input type="text" class="form-control" id="kode_barang` + count1 + `" name="kode_barang[]" readonly="" value="` + kode_barang + `">
