@@ -1,9 +1,16 @@
+<?php
+$id = $_GET['id'];
+$query = mysqli_query($koneksi, "SELECT * FROM work_order JOIN mekanik USING(kode_mekanik) JOIN customer USING(kode_customer) JOIN mobil USING(no_plat) WHERE kode_wo='$id'");
+$data = mysqli_fetch_array($query);
+ ?>
 <div class="contact-info-area mg-t-30">
-
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="contact-inner">
-        asd
+        <h2>Nama Customer : <?= $data['nama_customer'] ?></h2>
+        <h2>Nama No Plat : <?= $data['no_plat'] ?></h2>
+        <h2>Nama Mobil : <?= $data['nama_mobil'] ?></h2>
+        <h2>Nama Mekanik : <?= $data['nama_mekanik'] ?></h2>
       </div>
     </div>
   </div>

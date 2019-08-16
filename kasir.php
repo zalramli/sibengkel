@@ -75,6 +75,13 @@
                         include "transaksi/penjualan/tambah.php";
                     }
 
+                    // parsing halaman transaksi
+                    if ($_GET['halaman'] == 'add_work_order') {
+                        include "transaksi/work_order/tambah.php";
+                    }
+                    if ($_GET['halaman'] == 'v_work_order') {
+                        include "transaksi/work_order/tampil.php";
+                    }
                     ?>
                 </div>
             </div>
