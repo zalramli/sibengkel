@@ -9,7 +9,7 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <div class="bootstrap-select fm-cmp-mg">
-              <select id="cari_kode_barang" name="kode_barang" class="selectpicker" data-live-search="true" required="">
+              <select id="cari_kode_barang" name="kode_barang" class="selectpicker" data-live-search="true">
 
                 <option value="">Cari Barang</option>
 
