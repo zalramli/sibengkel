@@ -53,3 +53,6 @@
     </div>
   </div>
 </div>
+
+<!-- untuk ajax -->
+<script src="assets/template2/js/vendor/jquery-3.3.1.min.js"></script>
