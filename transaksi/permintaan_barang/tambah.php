@@ -1,57 +1,87 @@
 <?php
-// code php
+
 ?>
-<div class="contact-info-area mg-t-30">
-  <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="contact-inner">
-        <div class="row">
-          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-            <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
-              <h2>Cari Barang</h2>
-            </div>
+<div class="form-element-list">
+  <div class="basic-tb-hd">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="form-group">
+          <div class="bootstrap-select fm-cmp-mg">
+            <select name="kode_barang" class="selectpicker" data-live-search="true" required="">
+
+              <option value="">Cari Barang</option>
+
+              <?php
+              $query_jenis = mysqli_query($koneksi, "SELECT * FROM barang ORDER BY kode_barang ASC");
+              while ($data_jenis = mysqli_fetch_array($query_jenis)) {
+                ?>
+
+              <option value="<?= $data_jenis['kode_barang'] ?>"><?= $data_jenis['nama_barang'] ?></option>
+
+              <?php } ?>
+
+            </select>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-            <div class="bootstrap-select fm-cmp-mg">
-              <select class="selectpicker" data-live-search="true">
-                <option value="">Cari Barang (Stock)</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-            <button class="btn btn-danger btn-sm">+</button>
-          </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-            <button class="btn btn-danger btn-sm">Submit Pemesanan</button>
-          </div>
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+        <div class="form-group">
+          <button id="" name="" class="btn btn-primary">+</button>
         </div>
-        <div class="row">
-          <div style="margin-top: 20px" class="col-lg-12">
-            <table width="100%" class="table table-hover">
-              <thead>
-                <tr>
-                  <th>Kode Barang</th>
-                  <th>Nama Barang</th>
-                  <th>Jumlah Barang</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>BR00001</td>
-                  <td>Oli Federal</td>
-                  <td width="12%"><input type="number" name="nama_barang" class="form-control"></td>
-                  <td><button class="btn btn-danger btn-sm">-</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="form-group">
+          <button id="" name="" class="btn btn-primary">Simpan Pemesanan</button>
         </div>
       </div>
     </div>
   </div>
+
+  <form action="" method="post">
+
+    <div class="row">
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+        <label>No</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <label>Kode Barang</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <label>Nama Barang</label>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <label>Jumlah Pesan</label>
+      </div>
+    </div>
+
+    <div id="detail_list">
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+        <p>1</p>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <p>BR0001</p>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <p>Oli Federal</p>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+        <div class="form-group">
+          <div class="nk-int-st">
+            <input type="number" name="stock_limit" class="form-control" placeholder="Isi form Jumlah Pesan" required="" max="32000" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+        <button id="" name="" class="btn btn-primary">-</button>
+      </div>
+    </div>
+
+  </form>
 </div>
 
 <!-- untuk ajax -->
