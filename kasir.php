@@ -62,12 +62,17 @@
                         include "master/suplier/edit.php";
                     }
 
-                    // Parsing halaman suplier
+                    // Parsing halaman laporan transaksi
                     if ($_GET['halaman'] == 'laporan_transaksi') {
                         include "transaksi/laporan_transaksi/tampil.php";
                     }
                     if ($_GET['halaman'] == 'detail_transaksi') {
                         include "transaksi/laporan_transaksi/detail.php";
+                    }
+
+                    // parsing halaman transaksi
+                    if ($_GET['halaman'] == 'transaksi_penjualan') {
+                        include "transaksi/penjualan/tambah.php";
                     }
 
                     ?>

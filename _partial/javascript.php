@@ -108,7 +108,7 @@
             },
             // 1 detik = 1000 
             // 10 menit
-            idle: 60000
+            idle: 600000
         });
     </script>
     <!-- Ketika Close browser atau Tutup Tab browser otomatis logout -->
