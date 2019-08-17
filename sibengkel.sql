@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 16 Agu 2019 pada 20.02
+-- Generation Time: 17 Agu 2019 pada 19.54
 -- Versi Server: 10.1.38-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.2.17-0ubuntu0.18.04.1
 
@@ -66,8 +66,9 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`kode_customer`, `no_plat`, `nama_customer`, `alamat`, `no_telp`) VALUES
-('K0001', '', 'Safri', 'dassd', 'q3431243432'),
-('K0002', 'N 9988 UX', 'ASD', 'asd', '1212');
+('K0001', 'N 7779 UB', 'Safri', 'dassd', 'q3431243432'),
+('K0002', 'N 9988 UX', 'ASD', 'asd', '1212'),
+('K0003', 'P 8988 UX', 'rizal', 'jember', '089621835685');
 
 -- --------------------------------------------------------
 
@@ -189,7 +190,9 @@ CREATE TABLE `mobil` (
 --
 
 INSERT INTO `mobil` (`no_plat`, `nama_mobil`) VALUES
-('N 9988 UX', 'asdg');
+('N 7779 UB', 'Avanza'),
+('N 9988 UX', 'asdg'),
+('P 8988 UX', 'Pajero');
 
 -- --------------------------------------------------------
 
@@ -215,7 +218,8 @@ CREATE TABLE `pegawai` (
 INSERT INTO `pegawai` (`kode_pegawai`, `kode_jenis_p`, `nama_pegawai`, `alamat`, `no_telp`, `username`, `password`, `status_login`) VALUES
 ('PG001', 'JP01', 'asd', 'asdasda', 'asdsad', 'asdss', '$2y$10$kYur/fK.ZD/keVhijEjvVev.MEN7QPQJJTGYWzgcM83Ck8S2kIbZ6', '0'),
 ('PG002', 'JP02', 'kika123', 'jember', '123124', 'kaka', '$2y$10$Pu5a1e7EeZKWkragSdNVoegn/g.2YTOLLvD1E6NAr9sStdjjsPGla', '0'),
-('PG003', 'JP01', 'dani', 'jamber', '0897986985695', 'dani', '$2y$10$WV8g0fnkFJ4.kfiz2NbsPO0Nk2JXsiatHrPQwnNCSiqdJ0zWZOVT.', '0');
+('PG003', 'JP01', 'dani', 'jamber', '0897986985695', 'dani', '$2y$10$WV8g0fnkFJ4.kfiz2NbsPO0Nk2JXsiatHrPQwnNCSiqdJ0zWZOVT.', '0'),
+('PG004', 'JP02', 'Iyek', 'Asd', '0809898', 'iyek', '$2y$10$pJrI0ehIBfS.ntcPP3PcMemHQvyoCI24zAGQXS/tTNxN9KuW6GiCy', '1');
 
 -- --------------------------------------------------------
 
@@ -320,7 +324,10 @@ CREATE TABLE `work_order` (
 
 INSERT INTO `work_order` (`kode_wo`, `kode_customer`, `kode_mekanik`, `tgl_wo`, `status_wo`) VALUES
 ('WO0001', '', 'MK001', '2019-08-16 12:27:43', '0'),
-('WO0002', 'K0002', 'MK001', '2019-08-16 12:29:05', '0');
+('WO0002', 'K0002', 'MK001', '2019-08-16 12:29:05', '0'),
+('WO0003', 'K0001', 'MK001', '2019-08-17 08:56:56', '0'),
+('WO0004', 'K0002', 'MK002', '2019-08-17 08:57:31', '0'),
+('WO0005', 'K0003', 'MK001', '2019-08-17 08:59:22', '0');
 
 --
 -- Indexes for dumped tables
