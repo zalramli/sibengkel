@@ -2,33 +2,34 @@
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
 
-  // Membuat Kode otomatis
-  $sql = mysqli_query($koneksi, "SELECT max(kode_permintaan) FROM permintaan_barang");
-  $kode_faktur = mysqli_fetch_array($sql);
-  if ($kode_faktur) {
-    $nilai = substr($kode_faktur[0], 2);
-    $kode = (int) $nilai;
-    //tambahkan sebanyak + 1
-    $kode = $kode + 1;
-    $auto_kode = "KP" . str_pad($kode, 6, "0",  STR_PAD_LEFT);
-  } else {
-    $auto_kode = "KP000001";
-  }
+  // validasi apakah ada detail
+  if (isset($_POST['kode_barang'])) {
 
-  // mengupdate data tgl_last_log_in di database
-  date_default_timezone_set('Asia/Jakarta');
-  $now = date('Y-m-d H:i:s');
+    // Membuat Kode otomatis
+    $sql = mysqli_query($koneksi, "SELECT max(kode_permintaan) FROM permintaan_barang");
+    $kode_faktur = mysqli_fetch_array($sql);
+    if ($kode_faktur) {
+      $nilai = substr($kode_faktur[0], 2);
+      $kode = (int) $nilai;
+      //tambahkan sebanyak + 1
+      $kode = $kode + 1;
+      $auto_kode = "KP" . str_pad($kode, 6, "0",  STR_PAD_LEFT);
+    } else {
+      $auto_kode = "KP000001";
+    }
 
-  // data table permintaan
-  $kode_permintaan = $auto_kode;
-  $tgl_permintaan = $now;
-  $status = 0;
+    // mengupdate data tgl_last_log_in di database
+    date_default_timezone_set('Asia/Jakarta');
+    $now = date('Y-m-d H:i:s');
 
-  // proses input data tramsaksi ke dalam database
-  $query = mysqli_query($koneksi, "INSERT INTO permintaan_barang VALUES ('$kode_permintaan','$tgl_permintaan','$status') ");
-  if ($query) {
+    // data table permintaan
+    $kode_permintaan = $auto_kode;
+    $tgl_permintaan = $now;
+    $status = 0;
 
-    if (isset($_POST['kode_barang'])) {
+    // proses input data tramsaksi ke dalam database
+    $query = mysqli_query($koneksi, "INSERT INTO permintaan_barang VALUES ('$kode_permintaan','$tgl_permintaan','$status') ");
+    if ($query) {
 
       // proses input data detail tramsaksi ke dalam database
       for ($i = 0; $i < count($_POST['kode_barang']); $i++) {
@@ -44,10 +45,10 @@ if (isset($_POST['simpan'])) {
         }
       }
     } else {
-      echo "<script>alert('Isi Detail Permintaan Barang'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
+      echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
     }
   } else {
-    echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
+    echo "<script>alert('Isi Detail Permintaan Barang'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
   }
 }
 ?>
