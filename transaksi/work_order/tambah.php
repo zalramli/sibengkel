@@ -36,11 +36,11 @@ if ($kode_faktur2) {
 if (isset($_POST['simpan'])) {
   $kode_customer = $_POST['kode_customer'];
   $kode_mekanik = $_POST['kode_mekanik'];
-  $nama_customer = $_POST['nama_customer'];
-  $alamat = $_POST['alamat'];
+  $nama_customer = ucfirst($_POST['nama_customer']);
+  $alamat = ucfirst($_POST['alamat']);
   $no_telp = $_POST['no_telp'];
-  $no_plat = $_POST['no_plat'];
-  $nama_mobil = $_POST['nama_mobil'];
+  $no_plat = ucfirst($_POST['no_plat']);
+  $nama_mobil = ucfirst($_POST['nama_mobil']);
   $status_wo = "0";
   date_default_timezone_set('Asia/Jakarta');
   $tgl_wo = date('Y-m-d H:i:s');
