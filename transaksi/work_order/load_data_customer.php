@@ -1,8 +1,7 @@
 <?php  
  //load_data.php  
-include 'koneksi/koneksi.php'; 
- $output = '';  
- $outpu2 = '';  
+include '../../koneksi/koneksi.php'; 
+ $output = ''; 
  if(isset($_POST["kode_customer"]))  
  {  
       if($_POST["kode_customer"] != '')  

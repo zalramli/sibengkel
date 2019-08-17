@@ -31,6 +31,7 @@ $data = mysqli_fetch_array($query);
     </div>
   </div>
 </div>
+<form action="" method="post">
 <div class="contact-info-area mg-t-30">
   <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
@@ -38,7 +39,7 @@ $data = mysqli_fetch_array($query);
         <div class="row">
           <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
             <div class="bootstrap-select fm-cmp-mg">
-              <select class="selectpicker" name="kode_barang" data-live-search="true">
+              <select class="selectpicker" name="kode_barang" id="kode_barang" data-live-search="true">
                 <option>Cari Barang</option>
 
               <?php
@@ -50,16 +51,19 @@ $data = mysqli_fetch_array($query);
 
               <?php } ?>
               </select>
+              <div id="tampil_barang">
+                <!-- disini load barang ketika dipilih option diatas -->
+              </div>
             </div>
           </div>
           <div class="col-lg-1">
             <div class="form-group">
-              <a id="add_more" name="add_more" class="btn btn-primary">+</a>
+              <button type="submit" name="cari_barang" id="cari_barang" class="btn btn-primary">+</button>
             </div>
           </div>
           <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
             <div class="bootstrap-select fm-cmp-mg">
-              <select class="selectpicker" data-live-search="true">
+              <select class="selectpicker" id="kode_service" name="kode_service" data-live-search="true">
                 <option>Cari Service</option>
 
               <?php
@@ -71,11 +75,15 @@ $data = mysqli_fetch_array($query);
 
               <?php } ?>
               </select>
+              
+              <div id="tampil_service">
+                <!-- disini load service ketika dipilih option diatas -->
+              </div>
             </div>
           </div>
           <div class="col-lg-1">
             <div class="form-group">
-              <a id="add_more" name="add_more" class="btn btn-warning">+</a>
+              <button type="submit" name="cari_service" id="cari_service" class="btn btn-warning">+</button>
             </div>
           </div>
         </div>
@@ -124,31 +132,45 @@ $data = mysqli_fetch_array($query);
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <div class="contact-inner">
         <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
-              <h2>Cari Customer</h2>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="basic-tb-hd">
+              <h2 class="text-center">Form Pembayaran</h2>
             </div>
-            <div class="bootstrap-select fm-cmp-mg">
-              <select class="selectpicker" data-live-search="true">
-                <option>Cari Customer</option>
-                <option>Cariska</option>
-                <option>Cheriska</option>
-                <option>Malias</option>
-                <option>Kamines</option>
-                <option>Austranas</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <label for="">Plat Nomer</label>
-            <div class="form-group">
-              <div class="nk-int-st">
-                <input type="text" name="nama_barang" class="form-control" placeholder="otomatis" readonly="">
-              </div>
-            </div>
+            <table width="100%" >
+              <tr>
+                <td width="60%"><h5>Sub Total</h5></td>
+                <td width="40%" style="text-align: right;"><h5>900.000</h5></td>
+              </tr>
+              <tr>
+                <td style="padding-top: 9px;"><h5>Potongan Harga</h5></td>
+                <td style="text-align: right; padding-top: 5px"><input type="text" class="form-control"></td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
+      <div style="margin-top: 30px;" class="contact-inner">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <table width="100%" >
+              <tr>
+                <td style="padding-top: 15px;" width="60%"><h5>Bayar</h5></td>
+                <td width="40%" style="text-align: right;"><input type="text" class="form-control"></td>
+              </tr>
+              <tr>
+                <td style="padding: 20px 0px;"><h5>Kembalian</h5></td>
+                <td style="text-align: right; padding: 20px 0px;"><h5>900.000</h5></td>
+              </tr>
+              
+            </table>
+            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+            <button type="submit" name="batal" class="btn btn-danger">Batal</button>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </div>
+</form>

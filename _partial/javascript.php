@@ -121,17 +121,51 @@
         });
     }
     </script> -->
-
+    <!--Load barang ketika di klik select option (FORM work order)  -->
      <script>  
          $(document).ready(function(){  
               $('#kode_customer').change(function(){  
                    var kode_customer = $(this).val();  
                    $.ajax({  
-                        url:"load_data.php",  
+                        url:"transaksi/work_order/load_data_customer.php",  
                         method:"POST",  
                         data:{kode_customer:kode_customer},  
                         success:function(data){  
                              $('#tampil_customer').html(data);  
+                        }  
+                   });  
+              });  
+         });  
+         </script>
+
+           <!--Load barang ketika di klik select option (FORM penjualan work order)  -->
+         <script>  
+         $(document).ready(function(){  
+              $('#kode_barang').change(function(){  
+                   var kode_barang = $(this).val();  
+                   $.ajax({  
+                        url:"transaksi/penjualan/load_data_barang.php",  
+                        method:"POST",  
+                        data:{kode_barang:kode_barang},  
+                        success:function(data){  
+                             $('#tampil_barang').html(data);  
+                        }  
+                   });  
+              });  
+         });  
+         </script>  
+
+         <!--Load service ketika di klik select option (FORM penjualan work order)  -->
+         <script>  
+         $(document).ready(function(){  
+              $('#kode_service').change(function(){  
+                   var kode_service = $(this).val();  
+                   $.ajax({  
+                        url:"transaksi/penjualan/load_data_service.php",  
+                        method:"POST",  
+                        data:{kode_service:kode_service},  
+                        success:function(data){  
+                             $('#tampil_service').html(data);  
                         }  
                    });  
               });  
