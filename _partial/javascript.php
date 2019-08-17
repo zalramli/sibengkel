@@ -121,3 +121,19 @@
         });
     }
     </script> -->
+
+     <script>  
+         $(document).ready(function(){  
+              $('#kode_customer').change(function(){  
+                   var kode_customer = $(this).val();  
+                   $.ajax({  
+                        url:"load_data.php",  
+                        method:"POST",  
+                        data:{kode_customer:kode_customer},  
+                        success:function(data){  
+                             $('#tampil_customer').html(data);  
+                        }  
+                   });  
+              });  
+         });  
+         </script>  

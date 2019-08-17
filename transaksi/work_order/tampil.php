@@ -11,14 +11,15 @@
                     <th>Nama Customer</th>
                     <th>No Plat</th>
                     <th>Kendaraan</th>
-                    <th>No telp</th>
-                    <th>Mekanik</th>
+                    <th>Alamat</th>
+                    <th>No Telpon</th>
+                    <th>Nama Mekanik</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT * FROM work_order JOIN customer USING(kode_customer) JOIN mobil USING(no_plat) WHERE status_wo='0'");
+                $query = mysqli_query($koneksi, "SELECT * FROM work_order JOIN mekanik USING(kode_mekanik) JOIN customer USING(kode_customer) JOIN mobil USING(no_plat) WHERE status_wo='0'");
                 foreach ($query as $data) {
                     ?>
                 <tr>

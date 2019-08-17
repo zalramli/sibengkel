@@ -1,4 +1,15 @@
 <?php
+ function isi_customer($koneksi)  
+ {  
+      $output = '';  
+      $sql = "SELECT * FROM customer ORDER BY kode_customer ASC";  
+      $result = mysqli_query($koneksi, $sql);  
+      while($row = mysqli_fetch_array($result))  
+      {  
+           $output .= '<option value="'.$row["kode_customer"].'">'.$row["nama_customer"].'</option>';  
+      }  
+      return $output;  
+ }
 // Membuat Kode otomatis
 $sql = mysqli_query($koneksi, "SELECT max(kode_customer) FROM customer");
 $kode_faktur = mysqli_fetch_array($sql);
@@ -33,7 +44,7 @@ if (isset($_POST['simpan'])) {
   $status_wo = "0";
   date_default_timezone_set('Asia/Jakarta');
   $tgl_wo = date('Y-m-d H:i:s');
-  if ($kode_customer == "kosong") {
+  if ($kode_customer == '') {
       $query_mobil = mysqli_query($koneksi, "INSERT INTO mobil (no_plat,nama_mobil) VALUES ('$no_plat','$nama_mobil') ");
       $query_customer = mysqli_query($koneksi, "INSERT INTO customer VALUES ('$auto_kode','$no_plat','$nama_customer','$alamat','$no_telp') ");
       $query_order = mysqli_query($koneksi, "INSERT INTO work_order VALUES ('$auto_kode2','$auto_kode','$kode_mekanik','$tgl_wo','$status_wo') ");
@@ -53,14 +64,9 @@ if (isset($_POST['simpan'])) {
           <h2>Cari Customer Jika ada otomatis isi mobil dan data customer</h2>
         </div>
         <div class="bootstrap-select fm-cmp-mg">
-          <select name="kode_customer" class="selectpicker" data-live-search="true">
-              <option value="kosong">Please select</option>
-              <?php
-              $query_customer = mysqli_query($koneksi, "SELECT * FROM customer ORDER BY kode_customer ASC");
-              while ($data_customer = mysqli_fetch_array($query_customer)) {
-                ?>
-              <option value="<?= $data_customer['kode_customer'] ?>"><?= $data_customer['nama_customer'] ?></option>
-              <?php } ?>
+          <select id="kode_customer" name="kode_customer" class="selectpicker" data-live-search="true">
+              <option value="">Please select</option>
+              <?php echo isi_customer($koneksi); ?>  
             </select>
         </div>
       </div>
@@ -86,8 +92,8 @@ if (isset($_POST['simpan'])) {
   </div>
 </div>
 <div class="contact-info-area mg-t-30">
-  <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+  <div class="row" id="tampil_customer">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
       <div class="basic-tb-hd">
         <h2 class="text-center">Data Customer</h2>
       </div>
@@ -97,7 +103,7 @@ if (isset($_POST['simpan'])) {
             <label for="">Nama Customer</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="nama_customer" class="form-control" placeholder="Isi form nama customer">
+                <input type="text" name="nama_customer" class="form-control" placeholder="Isi form nama customer" value="">
               </div>
             </div>
           </div>
@@ -131,7 +137,7 @@ if (isset($_POST['simpan'])) {
             <label for="">No Plat</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="no_plat" class="form-control" placeholder="col-lg-6">
+                <input type="text" name="no_plat" class="form-control" placeholder="isi form plat nomer">
               </div>
             </div>
           </div>
@@ -139,7 +145,7 @@ if (isset($_POST['simpan'])) {
             <label for="">Nama Mobil</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="nama_mobil" class="form-control" placeholder="col-lg-6">
+                <input type="text" name="nama_mobil" class="form-control" placeholder="isi form nama mobil">
               </div>
             </div>
           </div>
