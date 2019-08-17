@@ -24,7 +24,7 @@
                             <li><a data-toggle="collapse" data-target="#demolibra2" href="#">Pemasokan Barang</a>
                                 <ul id="demolibra2" class="collapse dropdown-header-top">
 
-                                    <li><a href="kasir.php?halaman=add_transaksi_pembelian">Transaksi Pemasokan</a>
+                                    <li><a href="kasir.php?halaman=v_transaksi_pembelian">Transaksi Pemasokan</a>
                                     </li>
 
                                     <li><a href="kasir.php?halaman=v_suplier">Data Suplier</a>

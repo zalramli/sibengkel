@@ -13,9 +13,9 @@ if (isset($_POST['simpan'])) {
       $kode = (int) $nilai;
       //tambahkan sebanyak + 1
       $kode = $kode + 1;
-      $auto_kode = "KP" . str_pad($kode, 6, "0",  STR_PAD_LEFT);
+      $auto_kode = "PB" . str_pad($kode, 6, "0",  STR_PAD_LEFT);
     } else {
-      $auto_kode = "KP000001";
+      $auto_kode = "PB000001";
     }
 
     // mengupdate data tgl_last_log_in di database

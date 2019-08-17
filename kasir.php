@@ -92,6 +92,9 @@ if (!isset($_SESSION['username'])) {
                     }
 
                     // parsing halaman pemasokan
+                    if ($_GET['halaman'] == 'v_transaksi_pembelian') {
+                        include "transaksi/pembelian/tampil.php";
+                    }
                     if ($_GET['halaman'] == 'add_transaksi_pembelian') {
                         include "transaksi/pembelian/tambah.php";
                     }
