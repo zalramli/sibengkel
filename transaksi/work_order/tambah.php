@@ -160,3 +160,21 @@ if (isset($_POST['simpan'])) {
   </div>
 </div>
 </form>
+
+<script src="assets/template2/js/vendor/jquery-3.3.1.min.js"></script>
+<!--Load barang ketika di klik select option (FORM work order)  -->
+     <script>  
+         $(document).ready(function(){  
+              $('#kode_customer').change(function(){  
+                   var kode_customer = $(this).val();  
+                   $.ajax({  
+                        url:"transaksi/work_order/load_data_customer.php",  
+                        method:"POST",  
+                        data:{kode_customer:kode_customer},  
+                        success:function(data){  
+                             $('#tampil_customer').html(data);  
+                        }  
+                   });  
+              });  
+         });  
+         </script>
