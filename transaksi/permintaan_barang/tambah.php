@@ -43,6 +43,8 @@ if (isset($_POST['simpan'])) {
           echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
         }
       }
+    } else {
+      echo "<script>alert('Isi Detail Permintaan Barang'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
     }
   } else {
     echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
@@ -57,7 +59,7 @@ if (isset($_POST['simpan'])) {
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <div class="bootstrap-select fm-cmp-mg">
-              <select id="cari_kode_barang" name="kode_barang" class="selectpicker" data-live-search="true">
+              <select id="cari_kode_barang" class="selectpicker" data-live-search="true">
 
                 <option value="">Cari Barang</option>
 
