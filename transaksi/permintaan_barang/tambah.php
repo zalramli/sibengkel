@@ -1,5 +1,53 @@
 <?php
+// Ketika tombil simpan di Klik
+if (isset($_POST['simpan'])) {
 
+  // Membuat Kode otomatis
+  $sql = mysqli_query($koneksi, "SELECT max(kode_permintaan) FROM permintaan_barang");
+  $kode_faktur = mysqli_fetch_array($sql);
+  if ($kode_faktur) {
+    $nilai = substr($kode_faktur[0], 2);
+    $kode = (int) $nilai;
+    //tambahkan sebanyak + 1
+    $kode = $kode + 1;
+    $auto_kode = "KP" . str_pad($kode, 6, "0",  STR_PAD_LEFT);
+  } else {
+    $auto_kode = "KP000001";
+  }
+
+  // mengupdate data tgl_last_log_in di database
+  date_default_timezone_set('Asia/Jakarta');
+  $now = date('Y-m-d H:i:s');
+
+  // data table permintaan
+  $kode_permintaan = $auto_kode;
+  $tgl_permintaan = $now;
+  $status = 0;
+
+  // proses input data tramsaksi ke dalam database
+  $query = mysqli_query($koneksi, "INSERT INTO permintaan_barang VALUES ('$kode_permintaan','$tgl_permintaan','$status') ");
+  if ($query) {
+
+    if (isset($_POST['kode_barang'])) {
+
+      // proses input data detail tramsaksi ke dalam database
+      for ($i = 0; $i < count($_POST['kode_barang']); $i++) {
+        $kode_barang = $_POST['kode_barang'][$i];
+        $jumlah_barang = $_POST['jumlah_barang'][$i];
+
+        $query_detail = mysqli_query($koneksi, "INSERT INTO detail_permintaan (kode_permintaan,kode_barang,jumlah_barang) VALUES ('$kode_permintaan','$kode_barang','$jumlah_barang') ");
+
+        if ($query_detail) {
+          echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'gudang.php?halaman=v_permintaan_barang'</script>";
+        } else {
+          echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
+        }
+      }
+    }
+  } else {
+    echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
+  }
+}
 ?>
 <div class="form-element-list">
   <form id="transaksi_form" method="post">
@@ -33,7 +81,7 @@
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
           <div class="form-group">
-            <button id="action" type="submit" class="btn btn-primary mr-2">Simpan Pemesanan</button>
+            <button id="action" type="submit" name="simpan" class="btn btn-primary mr-2">Simpan Pemesanan</button>
           </div>
         </div>
       </div>
@@ -72,7 +120,8 @@
     var count1 = -1;
     var kode_barang = "";
 
-    function add_row_obat(count1 = '', kode_barang, nama_barang) {
+    // menambah detail pemasokan
+    function add_row(count1, kode_barang, nama_barang) {
 
       var nomer = count1 + 1;
 
@@ -104,7 +153,7 @@
       `);
     }
 
-    // menambah detail pemasokan
+    // ketika click + maka akan menambah baris
     $(document).on('click', '#add_more', function() {
 
       // mengambil data dari select option daftar barang
@@ -117,39 +166,19 @@
         alert("Pilih Barang");
       } else {
         count1 = count1 + 1;
-        add_row_obat(count1, value, value2);
+        add_row(count1, value, value2);
 
         document.getElementById("cari_kode_barang").selectedIndex = "0";
         $('.selectpicker').selectpicker('refresh');
       }
 
     });
-    // menambah detail pemasokan
 
-    // mengurangi detail pemasokan
+    // ketika di click - maka akan mengurangi detail pemasokan
     $(document).on('click', '.remove', function() {
       var row_no = $(this).attr("id");
       $('#row' + row_no).remove();
     });
-    // mengurangi detail pemasokan
-
-    // tambah ke database
-    $(document).on('submit', '#transaksi_form', function(event) {
-
-      event.preventDefault();
-      $('#action').attr('disabled', 'disabled');
-      var form_data = $(this).serialize();
-      $.ajax({
-        url: "",
-        method: "POST",
-        data: form_data,
-        success: function(data) {
-          location.reload();
-        }
-      });
-
-    });
-    // tambah ke database
 
   });
 </script>

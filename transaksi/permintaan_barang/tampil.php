@@ -21,7 +21,7 @@ if (isset($_GET['hapus'])) {
         <table id="data-table-basic" class="table table-striped">
             <thead>
                 <tr>
-                    <th>Nama Permintaan</th>
+                    <th>Kode Permintaan</th>
                     <th>Tanggal</th>
                     <th>Aksi</th>
                 </tr>
@@ -42,7 +42,7 @@ if (isset($_GET['hapus'])) {
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Nama Permintaan</th>
+                    <th>Kode Permintaan</th>
                     <th>Tanggal</th>
                     <th>Aksi</th>
                 </tr>
