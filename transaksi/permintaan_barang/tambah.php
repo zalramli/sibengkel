@@ -48,7 +48,7 @@ if (isset($_POST['simpan'])) {
       echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
     }
   } else {
-    echo "<script>alert('Isi Detail Permintaan Barang'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
+    echo "<script>alert('Gagal Mengirim Data , data detail harus ada !'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
   }
 }
 ?>
