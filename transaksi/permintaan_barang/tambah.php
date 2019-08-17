@@ -33,16 +33,28 @@ if (isset($_POST['simpan'])) {
 
       // proses input data detail tramsaksi ke dalam database
       for ($i = 0; $i < count($_POST['kode_barang']); $i++) {
+
+        // data - data
         $kode_barang = $_POST['kode_barang'][$i];
         $jumlah_barang = $_POST['jumlah_barang'][$i];
 
-        $query_detail = mysqli_query($koneksi, "INSERT INTO detail_permintaan (kode_permintaan,kode_barang,jumlah_barang) VALUES ('$kode_permintaan','$kode_barang','$jumlah_barang') ");
-
-        if ($query_detail) {
-          echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'gudang.php?halaman=v_permintaan_barang'</script>";
-        } else {
-          echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
+        // ambil harga pokok
+        $sql_ambil = mysqli_query($koneksi, "SELECT harga_pokok FROM barang WHERE kode_barang='$kode_barang'");
+        foreach ($sql_ambil as $data_ambil) {
+          $harga_pokok = $data_ambil['harga_pokok'];
         }
+
+        // sub total
+        $sub_total_harga = $jumlah_barang * $harga_pokok;
+
+        $query_detail = mysqli_query($koneksi, "INSERT INTO detail_permintaan (kode_permintaan,kode_barang,jumlah_barang,sub_total_harga) VALUES ('$kode_permintaan','$kode_barang','$jumlah_barang','$sub_total_harga') ");
+      }
+
+      // validasi dan link
+      if ($query_detail) {
+        echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'gudang.php?halaman=v_permintaan_barang'</script>";
+      } else {
+        echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";
       }
     } else {
       echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'gudang.php?halaman=add_permintaan_barang'</script>";

@@ -15,6 +15,8 @@
                     <th>Stock Saat Ini</th>
                     <th>Satuan</th>
                     <th>Jumlah Perminatan</th>
+                    <th>Harga Pokok</th>
+                    <th>Sub Total Harga</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +35,8 @@
                     <td><?= $data['stock'] ?></td>
                     <td><?= $data['nama_satuan'] ?></td>
                     <td><?= $data['jumlah_barang'] ?></td>
+                    <td><?= $data['harga_pokok'] ?></td>
+                    <td><?= $data['sub_total_harga'] ?></td>
                 </tr>
                 <?php } ?>
             </tbody>
@@ -45,6 +49,8 @@
                     <th>Stock Saat Ini</th>
                     <th>Satuan</th>
                     <th>Jumlah Perminatan</th>
+                    <th>Harga Pokok</th>
+                    <th>Sub Total Harga</th>
                 </tr>
             </tfoot>
         </table>
