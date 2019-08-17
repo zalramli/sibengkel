@@ -35,6 +35,7 @@ if (isset($_GET['hapus'])) {
                     <td><?= $data['kode_permintaan'] ?></td>
                     <td><?= $data['tgl_permintaan'] ?></td>
                     <td>
+                        <a href="?halaman=v_detail_permintaan_barang&id=<?= $data['kode_permintaan'] ?>" class="btn btn-primary">Detail</a>
                         <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_permintaan_barang&hapus=<?= $data['kode_permintaan']; ?>" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>

@@ -91,6 +91,9 @@
                     if ($_GET['halaman'] == 'add_permintaan_barang') {
                         include "transaksi/permintaan_barang/tambah.php";
                     }
+                    if ($_GET['halaman'] == 'v_detail_permintaan_barang') {
+                        include "transaksi/permintaan_barang/tampil_detail.php";
+                    }
 
                     ?>
                 </div>
