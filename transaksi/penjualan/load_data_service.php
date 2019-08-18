@@ -12,7 +12,7 @@ include '../../koneksi/koneksi.php';
       {  
            $output .= '
            <input type="text" name="nama_service" value="'.$row["nama_service"].'">
-           <input type="text" name="tarif_harga" value="'.$row["tarif_harga"].'">
+           <input type="text" id="tarif_harga" name="tarif_harga" value="'.$row["tarif_harga"].'">
            ';  
       }   
       }

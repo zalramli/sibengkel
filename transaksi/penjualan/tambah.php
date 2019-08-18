@@ -39,7 +39,7 @@ $data = mysqli_fetch_array($query);
           <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
               <div class="bootstrap-select fm-cmp-mg">
-                <select class="selectpicker" name="kode_barang" id="kode_barang" data-live-search="true">
+                <select class="selectpicker kode_barangs" name="kode_barang" id="kode_barang" data-live-search="true">
                   <option value="">Cari Barang</option>
                   <?php
                   $query_barang = mysqli_query($koneksi, "SELECT * FROM barang ORDER BY nama_barang ASC");
@@ -86,14 +86,21 @@ $data = mysqli_fetch_array($query);
               <label>No</label>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-              <label>Kode Barang</label>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
               <label>Nama Barang</label>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-              <label>Jumlah Barang</label>
+            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+              <label>Harga</label>
             </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+              <label>Jumlah</label>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+              <label>Sub Total</label>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+              <label>Aksi</label>
+            </div>
+            
           </div>
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -171,7 +178,22 @@ $data = mysqli_fetch_array($query);
 </form>
 
   <script src="assets/template2/js/vendor/jquery-3.3.1.min.js"></script>
-
+  <!-- Ambil Harga Barang -->
+  <script>  
+           $(document).ready(function(){  
+                $('.kode_barangs').change(function(){  
+                     var kode_barang = $(this).val();  
+                     $.ajax({  
+                          url:"transaksi/penjualan/load_data_barang.php",  
+                          method:"POST",  
+                          data:{kode_barang:kode_barang},  
+                          success:function(data){  
+                               $('#tampil_barang').html(data);  
+                          }  
+                     });  
+                });  
+           });  
+  </script>
   <script type="text/javascript">
     $(document).ready(function() {
       $('#cart_barang').html('');
@@ -179,7 +201,7 @@ $data = mysqli_fetch_array($query);
       var kode_barang = "";
 
       // menambah detail pemasokan
-      function add_row(count1, kode_barang, nama_barang) {
+      function add_row(count1, kode_barang, nama_barang,harga_jual,sub_total) {
 
         var nomer = count1 + 1;
 
@@ -190,19 +212,26 @@ $data = mysqli_fetch_array($query);
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
               <p>` + nomer + `</p>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-              <input type="text" class="form-control" id="kode_barang` + count1 + `" name="kode_barang[]" readonly="" value="` + kode_barang + `">
+            <div class="">
+              <input type="hidden" class="form-control" id="kode_barang` + count1 + `" name="kode_barang[]" readonly="" value="` + kode_barang + `">
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
               <input type="text" class="form-control" id="nama_barang` + count1 + `" name="nama_barang[]" readonly="" value="` + nama_barang + `">
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+              <input style="text-align:right;" type="text" class="form-control" id="harga_jual` + count1 + `" name="harga_jual[]" readonly="" value="` + harga_jual + `">
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
               <div class="form-group">
                 <div class="nk-int-st">
                   <input type="number" id="jumlah_barang` + count1 + `" name="jumlah_barang[]" class="form-control" placeholder="Isi form Jumlah Pesan" required="" max="32000" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')">
                 </div>
               </div>
             </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+              <input style="text-align:right;" type="text" class="form-control" id="sub_total` + count1 + `" name="sub_total[]" readonly="" value="` + harga_jual + `">
+            </div>
+            
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
               <button id="` + count1 + `" name="remove" class="remove btn btn-danger"><i class="notika-icon notika-trash"></i></button>
             </div>
@@ -218,13 +247,14 @@ $data = mysqli_fetch_array($query);
         var cari_kode_barang = document.getElementById("kode_barang");
         var value = cari_kode_barang.options[cari_kode_barang.selectedIndex].value;
         var value2 = cari_kode_barang.options[cari_kode_barang.selectedIndex].text;
+        var value3 = document.getElementById("harga_jual").value;
 
         // validasi cari barang 
         if (value == "") {
           alert("Pilih Barang");
         } else {
           count1 = count1 + 1;
-          add_row(count1, value, value2);
+          add_row(count1, value, value2,value3,value3);
 
           document.getElementById("kode_barang").selectedIndex = "0";
           $('.selectpicker').selectpicker('refresh');
@@ -241,7 +271,7 @@ $data = mysqli_fetch_array($query);
     });
   </script>
   <!-- script logika -->
-
+  
   <script type="text/javascript">
     $(document).ready(function() {
       $('#cart_service').html('');
