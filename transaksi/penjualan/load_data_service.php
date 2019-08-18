@@ -11,8 +11,8 @@ include '../../koneksi/koneksi.php';
       while($row = mysqli_fetch_array($result))  
       {  
            $output .= '
-           <input type="text" name="nama_service" value="'.$row["nama_service"].'">
-           <input type="text" id="tarif_harga" name="tarif_harga" value="'.$row["tarif_harga"].'">
+           <input type="hidden" name="nama_service" value="'.$row["nama_service"].'">
+           <input type="hidden" id="tarif_harga" name="tarif_harga" value="'.$row["tarif_harga"].'">
            ';  
       }   
       }

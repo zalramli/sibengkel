@@ -60,7 +60,7 @@ $data = mysqli_fetch_array($query);
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
               <div class="bootstrap-select fm-cmp-mg">
-                <select class="selectpicker" id="kode_service" name="kode_service" data-live-search="true">
+                <select class="selectpicker kode_services" id="kode_service" name="kode_service" data-live-search="true">
                   <option value="">Cari Service</option>
                   <?php
                   $query_service = mysqli_query($koneksi, "SELECT * FROM service ORDER BY nama_service ASC");
@@ -114,11 +114,14 @@ $data = mysqli_fetch_array($query);
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
               <label>No</label>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-              <label>Kode Service</label>
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+              <label>Nama Service</label>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-              <label>Nama Service</label>
+              <label>Tarif Service</label>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+              <label>Aksi</label>
             </div>
           </div>
           <div class="row">
@@ -269,6 +272,22 @@ $data = mysqli_fetch_array($query);
   </script>
   <!-- script logika -->
   
+
+  <script>  
+           $(document).ready(function(){  
+                $('.kode_services').change(function(){  
+                     var kode_service = $(this).val();  
+                     $.ajax({  
+                          url:"transaksi/penjualan/load_data_service.php",  
+                          method:"POST",  
+                          data:{kode_service:kode_service},  
+                          success:function(data){  
+                               $('#tampil_barang').html(data);  
+                          }  
+                     });  
+                });  
+           });  
+  </script>
   <script type="text/javascript">
     $(document).ready(function() {
       $('#cart_service').html('');
@@ -276,7 +295,7 @@ $data = mysqli_fetch_array($query);
       var kode_service = "";
 
       // menambah detail pemasokan
-      function add_row(count2, kode_service, nama_service) {
+      function add_row(count2, kode_service, nama_service,tarif_harga) {
 
         var nomer = count2 + 1;
 
@@ -287,18 +306,14 @@ $data = mysqli_fetch_array($query);
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
               <p>` + nomer + `</p>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-              <input type="text" class="form-control" id="kode_service` + count2 + `" name="kode_service[]" readonly="" value="` + kode_service + `">
+            <div class="">
+              <input type="hidden" class="form-control" id="kode_service` + count2 + `" name="kode_service[]" readonly="" value="` + kode_service + `">
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
               <input type="text" class="form-control" id="nama_service` + count2 + `" name="nama_service[]" readonly="" value="` + nama_service + `">
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-              <div class="form-group">
-                <div class="nk-int-st">
-                  <input type="number" id="jumlah_barang` + count2 + `" name="jumlah_barang[]" class="form-control" placeholder="Isi form Jumlah Pesan" required="" max="32000" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')">
-                </div>
-              </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+              <input style="text-align:right;" type="text" class="form-control" id="tarif_harga` + count2 + `" name="tarif_harga[]" readonly="" value="` + tarif_harga + `">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
               <button id="` + count2 + `" name="remove2" class="remove2 btn btn-danger"><i class="notika-icon notika-trash"></i></button>
@@ -315,13 +330,14 @@ $data = mysqli_fetch_array($query);
         var cari_kode_service = document.getElementById("kode_service");
         var value = cari_kode_service.options[cari_kode_service.selectedIndex].value;
         var value2 = cari_kode_service.options[cari_kode_service.selectedIndex].text;
+        var value3 = document.getElementById("tarif_harga").value;
 
         // validasi cari barang 
         if (value == "") {
           alert("Pilih Service");
         } else {
           count2 = count2 + 1;
-          add_row(count2, value, value2);
+          add_row(count2, value, value2,value3);
 
           document.getElementById("kode_service").selectedIndex = "0";
           $('.selectpicker').selectpicker('refresh');
