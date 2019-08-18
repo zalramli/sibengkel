@@ -2,8 +2,7 @@
 include "koneksi/koneksi.php";
 session_start();
 error_reporting(0);
-if (!isset($_SESSION['username']))
-{
+if (!isset($_SESSION['username'])) {
     header('location:index.php');
 }
 ?>
@@ -80,6 +79,17 @@ if (!isset($_SESSION['username']))
                     }
                     if ($_GET['halaman'] == 'edit_mekanik') {
                         include "master/mekanik/edit.php";
+                    }
+
+                    // parsing halaman Penggajian
+                    if ($_GET['halaman'] == 'v_penggajian') {
+                        include "penggajian/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'add_penggajian') {
+                        include "penggajian/tambah.php";
+                    }
+                    if ($_GET['halaman'] == 'v_detail_penggajian') {
+                        include "penggajian/tampil_detail.php";
                     }
 
                     ?>

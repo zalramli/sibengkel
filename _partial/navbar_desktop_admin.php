@@ -9,7 +9,7 @@
                     </li>
 
                     <li>
-                        <a href=""><i class="notika-icon notika-bar-chart"></i> Penggajian</a>
+                        <a href="admin.php?halaman=v_penggajian"><i class="notika-icon notika-bar-chart"></i> Penggajian</a>
                     </li>
 
                     <li>

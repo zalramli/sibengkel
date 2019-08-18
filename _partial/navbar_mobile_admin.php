@@ -9,7 +9,7 @@
                             <li><a href="admin.php?halaman=dashboard">Dashboard</a>
                             </li>
 
-                            <li><a href="">Penggajian</a>
+                            <li><a href="admin.php?halaman=v_penggajian">Penggajian</a>
                             </li>
 
                             <li><a data-toggle="collapse" data-target="#demolibra" href="#">Data Pegawai</a>
