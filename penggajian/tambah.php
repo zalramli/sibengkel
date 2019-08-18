@@ -71,7 +71,7 @@
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
             <label>Nama</label>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
             <label>Priode Gaji</label>
           </div>
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -93,10 +93,10 @@
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
               <input type="text" class="form-control" id="nama_pegawai" name="nama_pegawai[]" readonly="" value="">
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
               <select id="periode_gaji" name="periode_gaji[]" class="form-control selectpicker" data-live-search="true" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')">
 
-                <option value="">Priode Gaji</option>
+                <option value="">Priode</option>
 
                 <option value="Januari">Januari</option>
                 <option value="Februari">Februari</option>
@@ -121,6 +121,9 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
               <input type="number" class="form-control" id="total_gaji" name="total_gaji[]" max="9999999999" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+              <button id="" name="remove" class="remove btn btn-primary">-</button>
             </div>
           </div>
 
