@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <?php
-        $query = mysqli_query($koneksi, "SELECT * FROM permintaan_barang ORDER BY kode_permintaan ASC");
+        $query = mysqli_query($koneksi, "SELECT * FROM permintaan_barang WHERE status='0' ORDER BY kode_permintaan ASC");
         foreach ($query as $data) {
           ?>
         <tr>

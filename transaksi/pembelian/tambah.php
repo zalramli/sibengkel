@@ -23,43 +23,49 @@ if (isset($_POST['simpan'])) {
     if (isset($_POST['kode_barang'])) {
 
         // Membuat Kode otomatis
-        $sql = mysqli_query($koneksi, "SELECT max(kode_permintaan) FROM permintaan_barang");
+        $sql = mysqli_query($koneksi, "SELECT max(no_faktur_pembelian) FROM pembelian");
         $kode_faktur = mysqli_fetch_array($sql);
         if ($kode_faktur) {
-            $nilai = substr($kode_faktur[0], 2);
+            $nilai = substr($kode_faktur[0], 3);
             $kode = (int) $nilai;
             //tambahkan sebanyak + 1
             $kode = $kode + 1;
-            $auto_kode = "PB" . str_pad($kode, 6, "0",  STR_PAD_LEFT);
+            $auto_kode = "NFP" . str_pad($kode, 6, "0",  STR_PAD_LEFT);
         } else {
-            $auto_kode = "PB000001";
+            $auto_kode = "NFP000001";
         }
 
         // mengupdate data tgl_last_log_in di database
         date_default_timezone_set('Asia/Jakarta');
         $now = date('Y-m-d H:i:s');
 
-        // data table permintaan
-        $kode_permintaan = $auto_kode;
-        $tgl_permintaan = $now;
+        // data table pemebelian
+        $no_faktur_pembelian = $auto_kode;
+        $kode_pegawai = $_SESSION['kode_pegawai'];
+        $kode_suplier = $_POST['kode_suplier'];
+        $tgl_transaksi = $now;
+        $sub_total = $_POST['sub_total'];
+        $potongan = $_POST['potongan'];
+        $total_harga = $_POST['total_harga'];
+        $bayar = $_POST['bayar'];
+        $kembalian = $_POST['kembalian'];
         $status = 0;
 
         // proses input data tramsaksi ke dalam database
-        $query = mysqli_query($koneksi, "INSERT INTO permintaan_barang VALUES ('$kode_permintaan','$tgl_permintaan','$status') ");
+        $query = mysqli_query($koneksi, "INSERT INTO pembelian VALUES ('$no_faktur_pembelian','$kode_pegawai','$kode_suplier','$tgl_transaksi','$sub_total','$potongan','$total_harga','$bayar','$kembalian','$status') ");
         if ($query) {
 
-            // proses input data detail tramsaksi ke dalam database
-            for ($i = 0; $i < count($_POST['kode_barang']); $i++) {
-                $kode_barang = $_POST['kode_barang'][$i];
-                $jumlah_barang = $_POST['jumlah_barang'][$i];
+            $kode_permintaan = $_GET['id'];
 
-                $query_detail = mysqli_query($koneksi, "INSERT INTO detail_permintaan (kode_permintaan,kode_barang,jumlah_barang) VALUES ('$kode_permintaan','$kode_barang','$jumlah_barang') ");
+            $query_detail = mysqli_query($koneksi, "INSERT INTO purchase_order (no_faktur_pembelian,kode_permintaan) VALUES ('$no_faktur_pembelian','$kode_permintaan') ");
+            if ($query_detail) {
 
-                if ($query_detail) {
-                    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=v_transaksi_pembelian'</script>";
-                } else {
-                    echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'kasir.php?halaman=add_transaksi_pembelian&id=" . $id . "'</script>";
-                }
+                // update status
+                mysqli_query($koneksi, "UPDATE permintaan_barang SET status='1' WHERE kode_permintaan='$kode_permintaan'");
+
+                echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=v_transaksi_pembelian'</script>";
+            } else {
+                echo "<script>alert('Terjadi Kesalahan Input Detail Database'); window.location = 'kasir.php?halaman=add_transaksi_pembelian&id=" . $id . "'</script>";
             }
         } else {
             echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'kasir.php?halaman=add_transaksi_pembelian&id=" . $id . "'</script>";
@@ -81,7 +87,7 @@ if (isset($_POST['simpan'])) {
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <div class="bootstrap-select fm-cmp-mg">
-                                    <select id="cari_kode_suplier" required="" class="selectpicker" data-live-search="true">
+                                    <select id="cari_kode_suplier" name="kode_suplier" required="" class="selectpicker" data-live-search="true">
 
                                         <option value="">Cari Suplier</option>
 
@@ -154,14 +160,22 @@ if (isset($_POST['simpan'])) {
                                         <h5>Sub Total</h5>
                                     </td>
                                     <td width="40%" style="text-align: right;">
-                                        <input type="number" class="form-control" id="sub_total_hrg" readonly="" value="<?= $sub_total ?>">
+                                        <input type="number" class="form-control" id="sub_total_hrg" name="sub_total" readonly="" value="<?= $sub_total ?>">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="padding-top: 9px;">
                                         <h5>Potongan Harga</h5>
                                     </td>
-                                    <td style="text-align: right; padding-top: 5px"><input type="number" class="form-control" id="potongan" max="9999999999" onkeyup="update()" onchange="update()"></td>
+                                    <td style="text-align: right; padding-top: 5px"><input type="number" class="form-control" id="potongan" name="potongan" max="9999999999" onkeyup="update()" onchange="update()"></td>
+                                </tr>
+                                <tr>
+                                    <td width="60%">
+                                        <h5>Total</h5>
+                                    </td>
+                                    <td width="40%" style="text-align: right;">
+                                        <input type="number" class="form-control" id="total" name="total_harga" readonly="">
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -175,14 +189,14 @@ if (isset($_POST['simpan'])) {
                                     <td style="padding-top: 15px;" width="60%">
                                         <h5>Bayar</h5>
                                     </td>
-                                    <td width="40%" style="text-align: right;"><input type="number" class="form-control" id="bayar" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update()" onchange="update()"></td>
+                                    <td width="40%" style="text-align: right;"><input type="number" class="form-control" id="bayar" name="bayar" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update()" onchange="update()"></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 20px 0px;">
                                         <h5>Kembalian</h5>
                                     </td>
                                     <td style="text-align: right; padding: 20px 0px;">
-                                        <input type="number" class="form-control" id="kembalian" readonly="">
+                                        <input type="number" class="form-control" id="kembalian" name="kembalian" readonly="">
                                     </td>
                                 </tr>
 
@@ -206,6 +220,7 @@ if (isset($_POST['simpan'])) {
     function update() {
         var sub_total_hrg = document.getElementById("sub_total_hrg");
         var potongan = document.getElementById("potongan");
+        var total = document.getElementById("total");
         var bayar = document.getElementById("bayar");
         var kembalian = document.getElementById("kembalian");
 
@@ -217,6 +232,8 @@ if (isset($_POST['simpan'])) {
         // parsing dan perhitungan
         var v_total = parseFloat(sub_total_hrg.value) - parseFloat(potongan.value);
         var v_bayar = parseFloat(bayar.value);
+
+        total.value = v_total;
 
         if (v_bayar >= v_total) {
             kembalian.value = bayar.value - v_total;
