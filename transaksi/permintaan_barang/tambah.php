@@ -166,7 +166,7 @@ if (isset($_POST['simpan'])) {
             </div>
           </div>
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-            <button id="` + count1 + `" name="remove" class="remove btn btn-primary">-</button>
+            <button id="` + count1 + `" name="remove" class="remove btn btn-danger"><i class="notika-icon notika-trash"></i></button>
           </div>
         </div>
         
