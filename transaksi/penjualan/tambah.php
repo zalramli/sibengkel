@@ -55,7 +55,7 @@ $data = mysqli_fetch_array($query);
             </div>
             <div class="col-lg-1">
               <div class="form-group">
-                <button type="submit" name="cari_barang" id="btn_cart_barang" class="btn btn-primary">+</button>
+                <a id="btn_cart_barang" name="add_more" class="btn btn-primary">+</a>
               </div>
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
@@ -77,7 +77,7 @@ $data = mysqli_fetch_array($query);
             </div>
             <div class="col-lg-1">
               <div class="form-group">
-                <button type="submit" name="cari_service" id="btn_cart_service" class="btn btn-warning">+</button>
+                <a id="btn_cart_service" name="add_more" class="btn btn-warning">+</a>
               </div>
             </div>
           </div>
@@ -292,6 +292,13 @@ $data = mysqli_fetch_array($query);
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
               <input type="text" class="form-control" id="nama_service` + count2 + `" name="nama_service[]" readonly="" value="` + nama_service + `">
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+              <div class="form-group">
+                <div class="nk-int-st">
+                  <input type="number" id="jumlah_barang` + count2 + `" name="jumlah_barang[]" class="form-control" placeholder="Isi form Jumlah Pesan" required="" max="32000" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')">
+                </div>
+              </div>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
               <button id="` + count2 + `" name="remove2" class="remove2 btn btn-danger"><i class="notika-icon notika-trash"></i></button>
