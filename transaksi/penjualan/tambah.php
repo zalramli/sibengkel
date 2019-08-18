@@ -224,7 +224,7 @@ $data = mysqli_fetch_array($query);
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
               <div class="form-group">
                 <div class="nk-int-st">
-                  <input style="text-align:center;" type="number" id="jumlah_barang` + count1 + `" name="jumlah_barang[]" class="form-control" placeholder="Isi form Jumlah Pesan" value="1" required="" max="32000" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')">
+                  <input style="text-align:center;" type="number" id="jumlah_barang` + count1 + `" name="jumlah_barang[]" class="form-control" placeholder="Isi form Jumlah Pesan" value="1" required="" max="32000" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')"  onkeypress="return event.keyCode != 13;">
                 </div>
               </div>
             </div>
