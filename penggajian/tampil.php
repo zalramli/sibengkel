@@ -55,7 +55,7 @@ if (isset($_GET['hapus'])) {
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Kode Permintaan</th>
+                    <th>Kode Penggajian</th>
                     <th>Tanggal</th>
                     <th>Status</th>
                     <th>Aksi</th>
