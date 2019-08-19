@@ -4,11 +4,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM work_order JOIN mekanik USING(kod
 $data = mysqli_fetch_array($query);
 if (isset($_POST['simpan'])) {
     //kode otomatis
-    $kode_wo = $data['kode_wo'];
-    $kode_pegawai = $_SESSION['kode_pegawai'];
-    date_default_timezone_set('Asia/Jakarta');
-    $tgl_transaksi = date('Y-m-d H:i:s');
-    $total_harga = $_POST['total_harga'];
+
     $sql = mysqli_query($koneksi, "SELECT max(no_faktur_penjualan) FROM penjualan");
     $kode_faktur = mysqli_fetch_array($sql);
     if ($kode_faktur) {
@@ -20,6 +16,44 @@ if (isset($_POST['simpan'])) {
     } else {
       $auto_kode = "FK000001";
     }
+    $no_faktur_penjualan = $auto_kode;
+    $kode_wo = $data['kode_wo'];
+    $kode_pegawai = $_SESSION['kode_pegawai'];
+    date_default_timezone_set('Asia/Jakarta');
+    $tgl_transaksi = date('Y-m-d H:i:s');
+    $total_harga = $_POST['total_harga'];
+    $potongan_harga = $_POST['potongan_harga'];
+    $bayar = $_POST['bayar'];
+    $kembalian = $_POST['kembalian'];
+    $status = "0";
+
+    $query_penjualan = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
+
+    $query_penjualan_wo = mysqli_query($koneksi,"INSERT INTO penjualan_wo VALUES ('','$no_faktur_penjualan','$kode_wo')");
+
+        // INSERT DATA DETAIL PENJUALAN BARANG
+        for ($i = 0; $i < count($_POST['kode_barang2']); $i++) {
+        // data - data
+        $kode_barang = $_POST['kode_barang2'][$i];
+        $jumlah_barang = $_POST['jumlah_barang'][$i];
+        $harga_jual = $_POST['harga_jual'][$i];
+        // sub total
+        $sub_total_harga = $jumlah_barang * $harga_jual;
+
+        $query_detail_barang = mysqli_query($koneksi, "INSERT INTO detail_penjualan_barang VALUES ('','$no_faktur_penjualan','$kode_barang','$jumlah_barang','$sub_total_harga') ");
+        }
+
+        //INSERT DATA DETAIL PENJUALAN SERVICE
+        for ($j = 0; $j < count($_POST['kode_service2']); $j++) {
+        // data - data
+        $kode_service = $_POST['kode_service2'][$j];
+
+        $query_detail_service = mysqli_query($koneksi, "INSERT INTO detail_penjualan_service VALUES ('','$kode_wo','$kode_service') ");
+        }
+
+        $update_work_order = mysqli_query($koneksi,"UPDATE work_order SET status_wo='1' WHERE kode_wo='$kode_wo'");
+
+        echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=v_work_order'</script>";
 }
 ?>
 <div class="contact-info-area mg-t-30">
@@ -182,7 +216,7 @@ if (isset($_POST['simpan'])) {
                 </tr>
                 <tr>
                   <td style="padding: 20px 0px;"><h5>Kembalian</h5></td>
-                  <td style="padding: 20px 0px;" ><h5><input style="text-align:right;" type="text" class="form-control" readonly="" id="kembalian" name="kembalian"></h5></td>
+                  <td style="padding: 20px 0px;" ><h5><input style="text-align:right;" type="text" class="form-control" readonly="" id="kembalian" name="kembalian" value="100000"></h5></td>
                 </tr>
                 
               </table>
@@ -243,7 +277,7 @@ if (isset($_POST['simpan'])) {
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
               <div class="form-group">
                 <div class="nk-int-st">
-                  <input style="text-align:center;" type="number" id="jumlah_barang` + count1 + `" name="jumlah_barang[]" class="jumlah_barang form-control" placeholder="Isi form Jumlah Pesan" value="1" required="" max="32000" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')"  onkeypress="return event.keyCode != 13;">
+                  <input style="text-align:center;" type="text" id="jumlah_barang` + count1 + `" name="jumlah_barang[]" class="jumlah_barang form-control" placeholder="Isi form Jumlah Pesan" value="1" required="" max="32000" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')"  onkeypress="return event.keyCode != 13;">
                 </div>
               </div>
             </div>
@@ -327,7 +361,7 @@ if (isset($_POST['simpan'])) {
               <p>` + nomer + `</p>
             </div>
             <div class="">
-              <input type="hidden" class="form-control" id="kode_service` + count2 + `" name="kode_service[]" readonly="" value="` + kode_service + `">
+              <input type="hidden" class="form-control" id="kode_service2` + count2 + `" name="kode_service2[]" readonly="" value="` + kode_service + `">
             </div>
             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
               <input type="text" class="form-control" id="nama_service` + count2 + `" name="nama_service[]" readonly="" value="` + nama_service + `">
