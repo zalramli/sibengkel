@@ -11,7 +11,6 @@ include '../../koneksi/koneksi.php';
       while($row = mysqli_fetch_array($result))  
       {  
            $output .= '
-           <input type="text" name="kode_barangss" value="'.$row["kode_barang"].'">
            <input type="hidden" name="nama_barang" value="'.$row["nama_barang"].'">
            <input type="hidden" name="harga_jual" id="harga_jual" value="'.$row["harga_jual"].'">
            <input type="hidden" name="stock" value="'.$row["stock"].'">

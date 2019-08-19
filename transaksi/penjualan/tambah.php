@@ -248,7 +248,7 @@ if (isset($_POST['simpan'])) {
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-              <input style="text-align:right;" type="text" class="form-control" id="sub_total` + count1 + `" name="sub_total[]" readonly="" value="` + harga_jual + `">
+              <input style="text-align:right;" type="text" class="sub_total form-control" id="sub_total` + count1 + `" name="sub_total[]" readonly="" value="` + harga_jual + `">
             </div>
             
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
@@ -383,7 +383,7 @@ if (isset($_POST['simpan'])) {
                 method:"POST",
                 data:form_data,
                 success:function(data){
-                    $('#total_harga').val(data);
+                    $('.sub_total').val(data);
                 }
             });
         });
