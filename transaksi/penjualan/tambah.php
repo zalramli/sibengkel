@@ -2,6 +2,25 @@
 $id = $_GET['id'];
 $query = mysqli_query($koneksi, "SELECT * FROM work_order JOIN mekanik USING(kode_mekanik) JOIN customer USING(kode_customer) JOIN mobil USING(no_plat) WHERE kode_wo='$id'");
 $data = mysqli_fetch_array($query);
+if (isset($_POST['simpan'])) {
+    //kode otomatis
+    $kode_wo = $data['kode_wo'];
+    $kode_pegawai = $_SESSION['kode_pegawai'];
+    date_default_timezone_set('Asia/Jakarta');
+    $tgl_transaksi = date('Y-m-d H:i:s');
+    $total_harga = $_POST['total_harga'];
+    $sql = mysqli_query($koneksi, "SELECT max(no_faktur_penjualan) FROM penjualan");
+    $kode_faktur = mysqli_fetch_array($sql);
+    if ($kode_faktur) {
+      $nilai = substr($kode_faktur[0], 2);
+      $kode = (int) $nilai;
+      //tambahkan sebanyak + 1
+      $kode = $kode + 1;
+      $auto_kode = "FK" . str_pad($kode, 6, "0",  STR_PAD_LEFT);
+    } else {
+      $auto_kode = "FK000001";
+    }
+}
 ?>
 <div class="contact-info-area mg-t-30">
   <div class="row">
@@ -143,11 +162,11 @@ $data = mysqli_fetch_array($query);
               <table width="100%" >
                 <tr>
                   <td width="60%"><h5>Sub Total</h5></td>
-                  <td width="40%" style="text-align: right;"><h5>900.000</h5></td>
+                  <td width="40%"><h5><input style="text-align:right;" type="text" class="form-control" readonly="" value="900000"></h5></td>
                 </tr>
                 <tr>
                   <td style="padding-top: 9px;"><h5>Potongan Harga</h5></td>
-                  <td style="text-align: right; padding-top: 5px"><input type="text" class="form-control"></td>
+                  <td style="padding-top: 5px"><h5><input style="text-align: right;" type="text" class="form-control"></h5></td>
                 </tr>
               </table>
             </div>
@@ -159,16 +178,16 @@ $data = mysqli_fetch_array($query);
               <table width="100%" >
                 <tr>
                   <td style="padding-top: 15px;" width="60%"><h5>Bayar</h5></td>
-                  <td width="40%" style="text-align: right;"><input type="text" class="form-control"></td>
+                  <td width="40%" ><input style="text-align: right;" type="text" class="form-control"></td>
                 </tr>
                 <tr>
                   <td style="padding: 20px 0px;"><h5>Kembalian</h5></td>
-                  <td style="text-align: right; padding: 20px 0px;"><h5>900.000</h5></td>
+                  <td style="padding: 20px 0px;" ><h5><input style="text-align:right;" type="text" class="form-control" readonly="" value="900000"></h5></td>
                 </tr>
                 
               </table>
-              <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-              <button type="submit" name="batal" class="btn btn-danger">Batal</button>
+              <button style="width: 157px;" type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+              <a style="width: 157px;" href="kasir.php?halaman=v_work_order" class="btn btn-danger">Batal</a>
             </div>
           </div>
         </div>
