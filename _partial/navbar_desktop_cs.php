@@ -6,6 +6,8 @@
 
                     <li><a href="cs.php?halaman=dashboard"><i class="notika-icon notika-house"></i> Dashboard</a>
                     </li>
+                    <li><a href="cs.php?halaman=add_work_order"><i class="notika-icon notika-house"></i> Work Order</a>
+                    </li>
 
                     <li><a href="cs.php?halaman=v_customer"><i class="notika-icon notika-house"></i> Data Customer</a>
                     </li>

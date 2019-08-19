@@ -1,6 +1,6 @@
 <?php
 $id = $_GET['id'];
-$query = mysqli_query($koneksi, "SELECT * FROM work_order JOIN mekanik USING(kode_mekanik) JOIN customer USING(kode_customer) JOIN mobil USING(no_plat) WHERE kode_wo='$id'");
+$query = mysqli_query($koneksi, "SELECT * FROM work_order JOIN mekanik USING(kode_mekanik) JOIN customer USING(kode_customer) JOIN kendaraan USING(no_plat) WHERE kode_wo='$id'");
 $data = mysqli_fetch_array($query);
 if (isset($_POST['simpan'])) {
     //kode otomatis
@@ -74,9 +74,9 @@ if (isset($_POST['simpan'])) {
               <th>No Plat</th>
               <th>:</th>
               <th><?= $data['no_plat'] ?></th>
-              <th>Nama Mobil</th>
+              <th>Nama Kendaraan</th>
               <th>:</th>
-              <th><?= $data['nama_mobil'] ?></th>
+              <th><?= $data['nama_kendaraan'] ?></th>
             </tr>
           </thead>
         </table>

@@ -44,7 +44,6 @@
                     <th>Total Harga</th>
                     <th>Total Bayar</th>
                     <th>Total Kembalian</th>
-                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,9 +58,7 @@
                     <td style="text-align: right;"><?= $data['total_harga'] ?></td>
                     <td style="text-align: right;"><?= $data['bayar'] ?></td>
                     <td style="text-align: right;"><?= $data['kembalian'] ?></td>
-                    <td style="text-align: center;">
-                        <a href="?halaman=detail_transaksi&id=<?= $data['no_faktur_penjualan']; ?>" class=" btn btn-warning">Detail</a>
-                    </td>
+                    
                 </tr>
                 <?php } ?>
             </tbody>

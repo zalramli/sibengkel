@@ -21,7 +21,7 @@
                     </li>
 
                     <li>
-                        <a href=""><i class="notika-icon notika-bar-chart"></i> Laporan</a>
+                        <a href="kasir.php?halaman=laporan_transaksi"><i class="notika-icon notika-bar-chart"></i> Laporan</a>
                     </li>
 
                 </ul>
@@ -33,8 +33,10 @@
 
                             <li><a href="">Transaksi Penjualan</a>
                             </li>
+                            <li><a href="kasir.php?halaman=v_work_order">Transaksi Penjualan + Service</a>
+                            </li>
 
-                            <li><a href="">Data Transaksi Penjualan</a>
+                            <li><a href="kasir.php?halaman=v_data_transaksi">Data Transaksi Penjualan</a>
                             </li>
 
                         </ul>

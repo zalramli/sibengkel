@@ -40,18 +40,18 @@ if (isset($_POST['simpan'])) {
   $alamat = ucfirst($_POST['alamat']);
   $no_telp = $_POST['no_telp'];
   $no_plat = ucfirst($_POST['no_plat']);
-  $nama_mobil = ucfirst($_POST['nama_mobil']);
+  $nama_kendaraan = ucfirst($_POST['nama_kendaraan']);
   $status_wo = "0";
   date_default_timezone_set('Asia/Jakarta');
   $tgl_wo = date('Y-m-d H:i:s');
   if ($kode_customer == '') {
-      $query_mobil = mysqli_query($koneksi, "INSERT INTO mobil (no_plat,nama_mobil) VALUES ('$no_plat','$nama_mobil') ");
+      $query_mobil = mysqli_query($koneksi, "INSERT INTO kendaraan (no_plat,nama_kendaraan) VALUES ('$no_plat','$nama_kendaraan') ");
       $query_customer = mysqli_query($koneksi, "INSERT INTO customer VALUES ('$auto_kode','$no_plat','$nama_customer','$alamat','$no_telp') ");
       $query_order = mysqli_query($koneksi, "INSERT INTO work_order VALUES ('$auto_kode2','$auto_kode','$kode_mekanik','$tgl_wo','$status_wo') ");
-      echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=v_work_order'</script>";
+      echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'cs.php?halaman=add_work_order'</script>";
   } else {
     $query_order = mysqli_query($koneksi, "INSERT INTO work_order VALUES ('$auto_kode2','$kode_customer','$kode_mekanik','$tgl_wo','$status_wo') ");
-    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=v_work_order'</script>";
+    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'cs.php?halaman=add_work_order'</script>";
   }
 }
 ?>
@@ -145,7 +145,7 @@ if (isset($_POST['simpan'])) {
             <label for="">Nama Mobil</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="nama_mobil" class="form-control" placeholder="isi form nama mobil">
+                <input type="text" name="nama_kendaraan" class="form-control" placeholder="isi form nama mobil">
               </div>
             </div>
           </div>

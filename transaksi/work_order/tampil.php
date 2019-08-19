@@ -19,13 +19,13 @@
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT * FROM work_order JOIN mekanik USING(kode_mekanik) JOIN customer USING(kode_customer) JOIN mobil USING(no_plat) WHERE status_wo='0'");
+                $query = mysqli_query($koneksi, "SELECT * FROM work_order JOIN mekanik USING(kode_mekanik) JOIN customer USING(kode_customer) JOIN kendaraan USING(no_plat) WHERE status_wo='0'");
                 foreach ($query as $data) {
                     ?>
                 <tr>
                     <td><?= $data['nama_customer'] ?></td>
                     <td><?= $data['no_plat'] ?></td>
-                    <td><?= $data['nama_mobil'] ?></td>
+                    <td><?= $data['nama_kendaraan'] ?></td>
                     <td><?= $data['alamat'] ?></td>
                     <td><?= $data['no_telp'] ?></td>
                     <td><?= $data['nama_mekanik'] ?></td>

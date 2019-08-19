@@ -8,6 +8,8 @@
 
                             <li><a href="cs.php?halaman=dashboard">Dashboard</a>
                             </li>
+                            <li><a href="cs.php?halaman=add_work_order">Dashboard</a>
+                            </li>
 
                             <li><a href="cs.php?halaman=v_customer">Data Customer</a>
                             </li>

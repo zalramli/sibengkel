@@ -15,7 +15,10 @@
                                     <li><a href="">Transaksi Penjualan</a>
                                     </li>
 
-                                    <li><a href="">Data Transaksi Penjualan</a>
+                                    <li><a href="kasir.php?halaman=v_work_order">Transaksi Penjualan + Service</a>
+                                    </li>
+
+                                    <li><a href="kasir.php?halaman=v_data_transaksi">Data Transaksi Penjualan</a>
                                     </li>
 
                                 </ul>
@@ -39,7 +42,7 @@
                             <li><a href="kasir.php?halaman=v_tarifService">Data Service</a>
                             </li>
 
-                            <li><a href="">laporan</a>
+                            <li><a href="kasir.php?halaman=laporan_transaksi">laporan</a>
                             </li>
 
                         </ul>

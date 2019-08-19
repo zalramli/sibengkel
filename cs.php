@@ -1,3 +1,11 @@
+<?php
+include "koneksi/koneksi.php";
+session_start();
+error_reporting(0);
+if (!isset($_SESSION['username'])) {
+    header('location:index.php');
+}
+?>
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -62,6 +70,10 @@
                         include "master/jenis_pegawai/edit.php";
                     }
 
+                    // WORK ORDER
+                    if ($_GET['halaman'] == 'add_work_order') {
+                        include "transaksi/work_order/tambah.php";
+                    }
 
                     ?>
                 </div>

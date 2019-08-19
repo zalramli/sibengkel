@@ -14,7 +14,6 @@ if (isset($_GET['hapus'])) {
     <div class="basic-tb-hd">
         <h2>Data Tabel Customer</h2>
         <br>
-        <a href="cs.php?halaman=add_customer" class="btn btn-success notika-btn-success">Tambah Data</a>
     </div>
     <div class="table-responsive">
         <table id="data-table-basic" class="table table-striped">
@@ -22,6 +21,8 @@ if (isset($_GET['hapus'])) {
                 <tr>
                     <th>Kode Customer</th>
                     <th>Nama</th>
+                    <th>No Plat</th>
+                    <th>Nama Kendaraan</th>
                     <th>Alamat</th>
                     <th>No telp</th>
                     <th>Aksi</th>
@@ -29,12 +30,14 @@ if (isset($_GET['hapus'])) {
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT * FROM customer ORDER BY kode_customer ASC");
+                $query = mysqli_query($koneksi, "SELECT * FROM customer JOIN kendaraan USING(no_plat) ORDER BY kode_customer ASC");
                 foreach ($query as $data) {
                     ?>
                 <tr>
                     <td><?= $data['kode_customer'] ?></td>
                     <td><?= $data['nama_customer'] ?></td>
+                    <td><?= $data['no_plat'] ?></td>
+                    <td><?= $data['nama_kendaraan'] ?></td>
                     <td><?= $data['alamat'] ?></td>
                     <td><?= $data['no_telp'] ?></td>
                     <td>

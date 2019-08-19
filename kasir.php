@@ -74,21 +74,22 @@ if (!isset($_SESSION['username'])) {
                     if ($_GET['halaman'] == 'laporan_transaksi') {
                         include "transaksi/laporan_transaksi/tampil.php";
                     }
-                    if ($_GET['halaman'] == 'detail_transaksi') {
-                        include "transaksi/laporan_transaksi/detail.php";
-                    }
+
+                    // parsing halaman transaksi
 
                     // parsing halaman transaksi
                     if ($_GET['halaman'] == 'transaksi_penjualan') {
                         include "transaksi/penjualan/tambah.php";
                     }
-
-                    // parsing halaman transaksi
-                    if ($_GET['halaman'] == 'add_work_order') {
-                        include "transaksi/work_order/tambah.php";
-                    }
+                    
                     if ($_GET['halaman'] == 'v_work_order') {
                         include "transaksi/work_order/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'v_data_transaksi') {
+                        include "transaksi/data_transaksi/tampil.php";
+                    }
+                    if ($_GET['halaman'] == 'detail_transaksi') {
+                        include "transaksi/data_transaksi/detail.php";
                     }
 
                     // parsing halaman pemasokan
