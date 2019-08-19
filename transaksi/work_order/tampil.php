@@ -30,7 +30,7 @@
                     <td><?= $data['no_telp'] ?></td>
                     <td><?= $data['nama_mekanik'] ?></td>
                     <td>
-                        <a href="?halaman=transaksi_penjualan&id=<?= $data['kode_wo'] ?>" class="btn btn-primary">Bayar</a>
+                        <a href="?halaman=transaksi_penjualan_service&id=<?= $data['kode_wo'] ?>" class="btn btn-primary">Bayar</a>
                     </td>
                 </tr>
                 <?php } ?>

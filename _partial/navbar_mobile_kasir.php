@@ -12,7 +12,7 @@
                             <li><a data-toggle="collapse" data-target="#demolibra" href="#">Transaksi Penjualan</a>
                                 <ul id="demolibra" class="collapse dropdown-header-top">
 
-                                    <li><a href="">Transaksi Penjualan</a>
+                                    <li><a href="kasir.php?halaman=transaksi_penjualan_barang">Transaksi Penjualan</a>
                                     </li>
 
                                     <li><a href="kasir.php?halaman=v_work_order">Transaksi Penjualan + Service</a>

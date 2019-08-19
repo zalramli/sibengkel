@@ -31,7 +31,7 @@
                     <div id="Forms1" class="tab-pane notika-tab-menu-bg animated flipInX">
                         <ul class="notika-main-menu-dropdown">
 
-                            <li><a href="">Transaksi Penjualan</a>
+                            <li><a href="kasir.php?halaman=transaksi_penjualan_barang">Transaksi Penjualan</a>
                             </li>
                             <li><a href="kasir.php?halaman=v_work_order">Transaksi Penjualan + Service</a>
                             </li>

@@ -82,8 +82,11 @@ if (!isset($_SESSION['username'])) {
                     // parsing halaman transaksi
 
                     // parsing halaman transaksi
-                    if ($_GET['halaman'] == 'transaksi_penjualan') {
-                        include "transaksi/penjualan/tambah.php";
+                    if ($_GET['halaman'] == 'transaksi_penjualan_service') {
+                        include "transaksi/penjualan/penjualan_service.php";
+                    }
+                    if ($_GET['halaman'] == 'transaksi_penjualan_barang') {
+                        include "transaksi/penjualan/penjualan_barang.php";
                     }
                     
                     if ($_GET['halaman'] == 'v_work_order') {
