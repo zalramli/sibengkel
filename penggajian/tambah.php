@@ -1,6 +1,88 @@
 <?php
 // Ketika tombil simpan di Klik
+if (isset($_POST['simpan'])) {
 
+  // validasi apakah ada detail
+  if (isset($_POST['kode_pegawai']) || isset($_POST['kode_mekanik'])) {
+
+    // Membuat Kode otomatis
+    $sql = mysqli_query($koneksi, "SELECT max(kode_penggajian) FROM penggajian");
+    $kode_faktur = mysqli_fetch_array($sql);
+    if ($kode_faktur) {
+      $nilai = substr($kode_faktur[0], 3);
+      $kode = (int) $nilai;
+      //tambahkan sebanyak + 1
+      $kode = $kode + 1;
+      $auto_kode = "PGJ" . str_pad($kode, 6, "0",  STR_PAD_LEFT);
+    } else {
+      $auto_kode = "PGJ000001";
+    }
+
+    // mengupdate data tgl_last_log_in di database
+    date_default_timezone_set('Asia/Jakarta');
+    $now = date('Y-m-d H:i:s');
+
+    // data table permintaan
+    $kode_penggajian = $auto_kode;
+    $kode_pegawai = $_SESSION['kode_pegawai'];
+    $tgl_transaksi = $now;
+    $total_penggajian = $_POST['total_penggajian'];
+    $bayar = $_POST['bayar'];
+    $kembalian = $_POST['kembalian'];
+    $status = 1;
+
+    // proses input data tramsaksi ke dalam database
+    $query = mysqli_query($koneksi, "INSERT INTO penggajian VALUES ('$kode_penggajian','$kode_pegawai','$tgl_transaksi','$total_penggajian','$bayar','$kembalian','$status') ");
+    if ($query) {
+
+      // proses input data detail tramsaksi ke dalam database
+      if (isset($_POST['kode_pegawai'])) {
+        for ($i = 0; $i < count($_POST['kode_pegawai']); $i++) {
+
+          // data - data
+          $kode_pegawai = $_POST['kode_pegawai'][$i];
+          $periode_gaji = $_POST['periode_gaji'][$i];
+          $jumlah_hari_kerja = $_POST['jumlah_hari_kerja'][$i];
+          $total_gaji = $_POST['total_gaji'][$i];
+
+          $query_detail = mysqli_query($koneksi, "INSERT INTO detail_penggajian (kode_penggajian,kode_pegawai,periode_gaji,jumlah_hari_kerja,total_gaji) VALUES ('$kode_penggajian','$kode_pegawai','$periode_gaji','$jumlah_hari_kerja','$total_gaji') ");
+        }
+
+        // validasi dan link
+        if ($query_detail) {
+          echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'admin.php?halaman=v_penggajian'</script>";
+        } else {
+          echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'admin.php?halaman=add_penggajian'</script>";
+        }
+      }
+
+      // proses input data detail tramsaksi ke dalam database
+      if (isset($_POST['kode_mekanik'])) {
+        for ($i = 0; $i < count($_POST['kode_mekanik']); $i++) {
+
+          // data - data
+          $kode_mekanik = $_POST['kode_mekanik'][$i];
+          $periode_gaji_m = $_POST['periode_gaji_m'][$i];
+          $jumlah_hari_kerja_m = $_POST['jumlah_hari_kerja_m'][$i];
+          $total_gaji_m = $_POST['total_gaji_m'][$i];
+
+          $query_detail2 = mysqli_query($koneksi, "INSERT INTO detail_penggajian (kode_penggajian,kode_mekanik,periode_gaji,jumlah_hari_kerja,total_gaji) VALUES ('$kode_penggajian','$kode_mekanik','$periode_gaji_m','$jumlah_hari_kerja_m','$total_gaji_m') ");
+        }
+
+        // validasi dan link
+        if ($query_detail2) {
+          echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'admin.php?halaman=v_penggajian'</script>";
+        } else {
+          echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'admin.php?halaman=add_penggajian'</script>";
+        }
+      }
+    } else {
+      echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'admin.php?halaman=add_penggajian'</script>";
+    }
+  } else {
+    echo "<script>alert('Gagal Mengirim Data , data detail harus ada !'); window.location = 'admin.php?halaman=add_penggajian'</script>";
+  }
+}
 ?>
 <div class="form-element-list">
   <form id="transaksi_form" method="post">
@@ -149,7 +231,7 @@
     var count1 = -1;
     var count2 = -1;
 
-    // menambah detail pemasokan
+    // menambah detail 
     function add_row(count1, kode_pegawai, nama_pegawai) {
 
       var nomer = count1 + 1;
@@ -201,7 +283,7 @@
       `);
     }
 
-    // menambah detail pemasokan
+    // menambah detail 
     function add_row2(count2, kode_mekanik, nama_mekanik) {
 
       var nomer = count2 + 1;
@@ -217,7 +299,7 @@
             <input type="text" class="form-control" id="nama_mekanik` + count2 + `" name="nama_mekanik[]" readonly="" value="` + nama_mekanik + `">
           </div>
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-            <select id="periode_gaji` + count2 + `" name="periode_gaji[]" class="form-control selectpicker" data-live-search="true" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')">
+            <select id="periode_gaji_m` + count2 + `" name="periode_gaji_m[]" class="form-control selectpicker" data-live-search="true" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')">
 
               <option value="">Priode</option>
 
@@ -240,10 +322,10 @@
             </select>
           </div>
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-            <input type="number" class="form-control" id="jumlah_hari_kerja` + count2 + `" name="jumlah_hari_kerja[]" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
+            <input type="number" class="form-control" id="jumlah_hari_kerja_m` + count2 + `" name="jumlah_hari_kerja_m[]" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-            <input type="number" class="form-control" id="total_gaji` + count2 + `" name="total_gaji[]" max="9999999999" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
+            <input type="number" class="form-control" id="total_gaji_m` + count2 + `" name="total_gaji_m[]" max="9999999999" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
           </div>
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
             <a id="` + count2 + `" name="remove" class="remove2 btn btn-primary">-</a>
@@ -308,5 +390,32 @@
     });
 
   });
+
+  // Menghitung kembalian
+  function update() {
+    var sub_total_hrg = document.getElementById("sub_total_hrg");
+    var potongan = document.getElementById("potongan");
+    var total = document.getElementById("total");
+    var bayar = document.getElementById("bayar");
+    var kembalian = document.getElementById("kembalian");
+
+    // cek apakah kosong
+    if (potongan.value.length == 0) {
+      potongan.value = 0;
+    }
+
+    // parsing dan perhitungan
+    var v_total = parseFloat(sub_total_hrg.value) - parseFloat(potongan.value);
+    var v_bayar = parseFloat(bayar.value);
+
+    total.value = v_total;
+
+    if (v_bayar >= v_total) {
+      kembalian.value = bayar.value - v_total;
+    } else {
+      kembalian.value = null;
+    }
+  }
+  // Menghitung kembalian
 </script>
 <!-- script logika -->
