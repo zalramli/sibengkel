@@ -162,7 +162,7 @@ if (isset($_POST['simpan'])) {
               <table width="100%" >
                 <tr>
                   <td width="60%"><h5>Total Harga</h5></td>
-                  <td width="40%"><h5><input style="text-align:right;" type="text" class="form-control" id="total_harga" name="total_harga" readonly=""></h5></td>
+                  <td width="40%"><h5><input style="text-align:right;" type="text" class="total_harga form-control" id="total_harga" name="total_harga" readonly=""></h5></td>
                 </tr>
                 <tr>
                   <td style="padding-top: 9px;"><h5>Potongan Harga</h5></td>
@@ -383,7 +383,7 @@ if (isset($_POST['simpan'])) {
                 method:"POST",
                 data:form_data,
                 success:function(data){
-                    $('.sub_total').val(data);
+                    $('.total_harga').val(data);
                 }
             });
         });
