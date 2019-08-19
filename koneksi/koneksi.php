@@ -15,3 +15,4 @@ if (!$koneksi) {
 // 	$id_baru = $kode . sprintf('%0' . $digit . 's', $id);
 // 	return $id_baru;
 // }
+?>

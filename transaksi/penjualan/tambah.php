@@ -50,7 +50,7 @@ if (isset($_POST['simpan'])) {
     </div>
   </div>
 </div>
-<form action="" method="post">
+<form action="" method="post" id="transaksi_form">
   <div class="contact-info-area mg-t-30">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
@@ -161,12 +161,12 @@ if (isset($_POST['simpan'])) {
               </div>
               <table width="100%" >
                 <tr>
-                  <td width="60%"><h5>Sub Total</h5></td>
-                  <td width="40%"><h5><input style="text-align:right;" type="text" class="form-control" readonly="" value="900000"></h5></td>
+                  <td width="60%"><h5>Total Harga</h5></td>
+                  <td width="40%"><h5><input style="text-align:right;" type="text" class="form-control" id="total_harga" name="total_harga" readonly=""></h5></td>
                 </tr>
                 <tr>
                   <td style="padding-top: 9px;"><h5>Potongan Harga</h5></td>
-                  <td style="padding-top: 5px"><h5><input style="text-align: right;" type="text" class="form-control"></h5></td>
+                  <td style="padding-top: 5px"><h5><input style="text-align: right;" type="text" class="form-control" id="potongan_harga" name="potongan_harga"></h5></td>
                 </tr>
               </table>
             </div>
@@ -178,11 +178,11 @@ if (isset($_POST['simpan'])) {
               <table width="100%" >
                 <tr>
                   <td style="padding-top: 15px;" width="60%"><h5>Bayar</h5></td>
-                  <td width="40%" ><input style="text-align: right;" type="text" class="form-control"></td>
+                  <td width="40%" ><input style="text-align: right;" id="bayar" name="bayar" type="text" class="form-control"></td>
                 </tr>
                 <tr>
                   <td style="padding: 20px 0px;"><h5>Kembalian</h5></td>
-                  <td style="padding: 20px 0px;" ><h5><input style="text-align:right;" type="text" class="form-control" readonly="" value="900000"></h5></td>
+                  <td style="padding: 20px 0px;" ><h5><input style="text-align:right;" type="text" class="form-control" readonly="" id="kembalian" name="kembalian"></h5></td>
                 </tr>
                 
               </table>
@@ -232,7 +232,7 @@ if (isset($_POST['simpan'])) {
               <p>` + nomer + `</p>
             </div>
             <div class="">
-              <input type="hidden" class="form-control" id="kode_barang` + count1 + `" name="kode_barang[]" readonly="" value="` + kode_barang + `">
+              <input type="hidden" class="form-control" id="kode_barang2` + count1 + `" name="kode_barang2[]" readonly="" value="` + kode_barang + `">
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
               <input type="text" class="form-control" id="nama_barang` + count1 + `" name="nama_barang[]" readonly="" value="` + nama_barang + `">
@@ -243,7 +243,7 @@ if (isset($_POST['simpan'])) {
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
               <div class="form-group">
                 <div class="nk-int-st">
-                  <input style="text-align:center;" type="number" id="jumlah_barang` + count1 + `" name="jumlah_barang[]" class="form-control" placeholder="Isi form Jumlah Pesan" value="1" required="" max="32000" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')"  onkeypress="return event.keyCode != 13;">
+                  <input style="text-align:center;" type="number" id="jumlah_barang` + count1 + `" name="jumlah_barang[]" class="jumlah_barang form-control" placeholder="Isi form Jumlah Pesan" value="1" required="" max="32000" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')"  onkeypress="return event.keyCode != 13;">
                 </div>
               </div>
             </div>
@@ -372,4 +372,19 @@ if (isset($_POST['simpan'])) {
       });
 
     });
+  </script>
+  
+  <script>
+            $(document).on('keyup', '.jumlah_barang', function(event){
+            event.preventDefault();
+            var form_data = $("#transaksi_form").serialize();
+            $.ajax({
+                url:"transaksi/penjualan/total_harga.php",
+                method:"POST",
+                data:form_data,
+                success:function(data){
+                    $('#total_harga').val(data);
+                }
+            });
+        });
   </script>
