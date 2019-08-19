@@ -4,6 +4,10 @@ session_start();
 error_reporting(0);
 if (!isset($_SESSION['username'])) {
     header('location:index.php');
+} elseif ($_SESSION['akses'] != "Gudang")
+{
+    echo "<script>alert('Maaf Anda tidak berhak mengakses halaman ini')</script>";
+    echo "<script>window.history.back();</script>";
 }
 ?>
 <!doctype html>
