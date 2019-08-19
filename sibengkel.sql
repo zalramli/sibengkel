@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Agu 2019 pada 00.27
+-- Waktu pembuatan: 19 Agu 2019 pada 00.16
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -243,9 +243,9 @@ CREATE TABLE `pegawai` (
 
 INSERT INTO `pegawai` (`kode_pegawai`, `kode_jenis_p`, `nama_pegawai`, `alamat`, `no_telp`, `username`, `password`, `status_login`) VALUES
 ('PG001', 'JP01', 'asd', 'asdasda', 'asdsad', 'asdss', '$2y$10$kYur/fK.ZD/keVhijEjvVev.MEN7QPQJJTGYWzgcM83Ck8S2kIbZ6', '0'),
-('PG002', 'JP02', 'Kika123', 'Jember', '123124', 'kasir', '$2y$10$/Kf1OGnFXWkPAwoQEymuhORed7QhC7peB1bZ630kLUd/b5bF50W.K', '1'),
-('PG003', 'JP01', 'dani', 'jamber', '0897986985695', 'dani', '$2y$10$WV8g0fnkFJ4.kfiz2NbsPO0Nk2JXsiatHrPQwnNCSiqdJ0zWZOVT.', '0'),
-('PG004', 'JP02', 'Iyek', 'Asd', '0809898', 'iyek', '$2y$10$pJrI0ehIBfS.ntcPP3PcMemHQvyoCI24zAGQXS/tTNxN9KuW6GiCy', '1');
+('PG002', 'JP02', 'Kika123', 'Jember', '123124', 'kasir', '$2y$10$/Kf1OGnFXWkPAwoQEymuhORed7QhC7peB1bZ630kLUd/b5bF50W.K', '0'),
+('PG003', 'JP01', 'dani', 'jamber', '0897986985695', 'dani', '$2y$10$WV8g0fnkFJ4.kfiz2NbsPO0Nk2JXsiatHrPQwnNCSiqdJ0zWZOVT.', '1'),
+('PG004', 'JP02', 'Iyek', 'Asd', '0809898', 'iyek', '$2y$10$pJrI0ehIBfS.ntcPP3PcMemHQvyoCI24zAGQXS/tTNxN9KuW6GiCy', '0');
 
 -- --------------------------------------------------------
 
@@ -261,6 +261,29 @@ CREATE TABLE `pembelian` (
   `sub_total` int(10) NOT NULL,
   `potongan` int(10) NOT NULL,
   `total_harga` int(10) NOT NULL,
+  `bayar` int(10) NOT NULL,
+  `kembalian` int(10) NOT NULL,
+  `status` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pembelian`
+--
+
+INSERT INTO `pembelian` (`no_faktur_pembelian`, `kode_pegawai`, `kode_suplier`, `tgl_transaksi`, `sub_total`, `potongan`, `total_harga`, `bayar`, `kembalian`, `status`) VALUES
+('NFP000001', 'PG002', 'S001', '2019-08-18 19:16:15', 89444, 9444, 80000, 100000, 20000, '0');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `penggajian`
+--
+
+CREATE TABLE `penggajian` (
+  `kode_penggajian` char(9) NOT NULL,
+  `kode_pegawai` char(5) NOT NULL,
+  `tgl_transaksi` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `total_penggajian` int(10) NOT NULL,
   `bayar` int(10) NOT NULL,
   `kembalian` int(10) NOT NULL,
   `status` char(1) NOT NULL
@@ -306,8 +329,27 @@ CREATE TABLE `permintaan_barang` (
 --
 
 INSERT INTO `permintaan_barang` (`kode_permintaan`, `tgl_permintaan`, `status`) VALUES
-('PB000001', '2019-08-17 20:48:52', '0'),
+('PB000001', '2019-08-17 20:48:52', '1'),
 ('PB000002', '2019-08-17 20:53:16', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `purchase_order`
+--
+
+CREATE TABLE `purchase_order` (
+  `kode_po` int(8) NOT NULL,
+  `no_faktur_pembelian` char(9) NOT NULL,
+  `kode_permintaan` char(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `purchase_order`
+--
+
+INSERT INTO `purchase_order` (`kode_po`, `no_faktur_pembelian`, `kode_permintaan`) VALUES
+(2, 'NFP000001', 'PB000001');
 
 -- --------------------------------------------------------
 
@@ -465,6 +507,12 @@ ALTER TABLE `pembelian`
   ADD PRIMARY KEY (`no_faktur_pembelian`);
 
 --
+-- Indeks untuk tabel `penggajian`
+--
+ALTER TABLE `penggajian`
+  ADD PRIMARY KEY (`kode_penggajian`);
+
+--
 -- Indeks untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
@@ -475,6 +523,12 @@ ALTER TABLE `penjualan`
 --
 ALTER TABLE `permintaan_barang`
   ADD PRIMARY KEY (`kode_permintaan`);
+
+--
+-- Indeks untuk tabel `purchase_order`
+--
+ALTER TABLE `purchase_order`
+  ADD PRIMARY KEY (`kode_po`);
 
 --
 -- Indeks untuk tabel `satuan`
@@ -515,6 +569,12 @@ ALTER TABLE `detail_penjualan`
 --
 ALTER TABLE `detail_permintaan`
   MODIFY `kode_detail_permintaan` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT untuk tabel `purchase_order`
+--
+ALTER TABLE `purchase_order`
+  MODIFY `kode_po` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
