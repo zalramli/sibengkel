@@ -6,7 +6,6 @@
     <!-- favicon
         
                 ============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <!-- Google Fonts
                 ============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -73,4 +72,3 @@
                 ============================================ -->
     <link rel="stylesheet" href="assets/template2/style.css">
     <link rel="stylesheet" href="assets/template2/css/responsive.css">
-    
