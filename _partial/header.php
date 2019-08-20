@@ -10,11 +10,29 @@
                 <div class="header-top-menu">
                     <ul class="nav navbar-nav notika-top-nav">
                         <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle"><span><?= $_SESSION['username'] ?> : <?= $_SESSION['akses'] ?></span></a>
+                            <a href="#" class="nav-link dropdown-toggle"><span><?= $_SESSION['username'] ?> ( <?= $_SESSION['akses'] ?> )</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="logout.php" class="nav-link dropdown-toggle">logout <span><i class="notika-icon notika-next"></i></span></span></a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="modal" data-target="#myModaltwo"><span><i class="fa fa-power-off" aria-hidden="true"></i></span></a>
                         </li>
+
+                        <div class="modal fade" id="myModaltwo" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4>Yakin Untuk Melakukan logout ?</h4>
+                                        <br>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="logout.php" class="btn btn-default">Yes</a>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </ul>
                 </div>
             </div>
