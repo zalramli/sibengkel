@@ -33,7 +33,7 @@
                                     <li><a href="kasir.php?halaman=v_suplier">Data Suplier</a>
                                     </li>
 
-                                    <li><a href="">Data Transaksi Pemasokan</a>
+                                    <li><a href="kasir.php?halaman=v_data_transaksi_pembelian">Data Transaksi Pemasokan</a>
                                     </li>
 
                                 </ul>

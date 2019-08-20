@@ -5,8 +5,7 @@ session_start();
 error_reporting(0);
 if (!isset($_SESSION['username'])) {
     header('location:index.php');
-} elseif ($_SESSION['akses'] != "Kasir")
-{
+} elseif ($_SESSION['akses'] != "Kasir") {
     echo "<script>alert('Maaf Anda tidak berhak mengakses halaman ini')</script>";
     echo "<script>window.history.back();</script>";
 }
@@ -89,7 +88,7 @@ if (!isset($_SESSION['username'])) {
                     if ($_GET['halaman'] == 'transaksi_penjualan_barang') {
                         include "transaksi/penjualan/penjualan_barang.php";
                     }
-                    
+
                     if ($_GET['halaman'] == 'v_work_order') {
                         include "transaksi/work_order/tampil.php";
                     }
@@ -106,6 +105,13 @@ if (!isset($_SESSION['username'])) {
                     }
                     if ($_GET['halaman'] == 'add_transaksi_pembelian') {
                         include "transaksi/pembelian/tambah.php";
+                    }
+                    // parsing halaman data pemasokan
+                    if ($_GET['halaman'] == 'v_data_transaksi_pembelian') {
+                        include "transaksi/pembelian/tampil_data.php";
+                    }
+                    if ($_GET['halaman'] == 'detail_transaksi_pembelian') {
+                        include "transaksi/pembelian/tampil_detail.php";
                     }
 
                     ?>
