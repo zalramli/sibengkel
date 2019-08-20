@@ -190,28 +190,37 @@ if (isset($_POST['simpan'])) {
             </div>
           </div>
         </div>
-        <div style="margin-top: 30px;" class="contact-inner">
+        <div class="contact-inner">
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <table width="100%">
                 <tr>
-                  <td style="padding-top: 15px;" width="60%">
+                  <td width="60%">
                     <h5>Bayar</h5>
                   </td>
                   <td width="40%" style="text-align: right;"><input type="number" class="form-control" id="bayar" name="bayar" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update()" onchange="update()"></td>
                 </tr>
                 <tr>
-                  <td style="padding: 20px 0px;">
+                  <td width="60%">
                     <h5>Kembalian</h5>
                   </td>
-                  <td style="text-align: right; padding: 20px 0px;">
+                  <td width="40%" style="text-align: right; padding: 10px 0px;">
                     <input type="number" class="form-control" id="kembalian" name="kembalian" readonly="">
                   </td>
                 </tr>
 
               </table>
-              <button onclick="return confirm('Yakin ingin Melakukan Penggajian ?')" id="action" type="submit" name="simpan" class="btn btn-primary mr-2">Simpan Penggajian</button>
-              <a href="admin.php?halaman=v_penggajian" class="btn btn-success notika-btn-success">Kembali</a>
+
+              <div class="row">
+                <br>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                  <button onclick="return confirm('Yakin ingin Melakukan Penggajian ?')" id="action" type="submit" name="simpan" class="btn btn-primary col-md-12">Simpan</button>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                  <a href="admin.php?halaman=v_penggajian" class="btn btn-success col-md-12 notika-btn-success">Kembali</a>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
