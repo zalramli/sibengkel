@@ -204,23 +204,22 @@ if (isset($_POST['simpan'])) {
                   <td width="60%">
                     <h5>Kembalian</h5>
                   </td>
-                  <td width="40%" style="text-align: right; padding: 10px 0px;">
+                  <td width="40%" style="text-align: right;  padding-top: 10px;">
                     <input type="number" class="form-control" id="kembalian" name="kembalian" readonly="">
                   </td>
                 </tr>
 
               </table>
+            </div>
+          </div>
 
-              <div class="row">
-                <br>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                  <button onclick="return confirm('Yakin ingin Melakukan Penggajian ?')" id="action" type="submit" name="simpan" class="btn btn-primary col-md-12">Simpan</button>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                  <a href="admin.php?halaman=v_penggajian" class="btn btn-success col-md-12 notika-btn-success">Kembali</a>
-                </div>
-              </div>
-
+          <div class="row">
+            <br>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <button onclick="return confirm('Yakin ingin Melakukan Penggajian ?')" id="action" type="submit" name="simpan" class="btn btn-primary col-md-12">Simpan</button>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <a href="admin.php?halaman=v_penggajian" class="btn btn-success col-md-12 notika-btn-success">Kembali</a>
             </div>
           </div>
         </div>

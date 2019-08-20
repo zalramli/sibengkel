@@ -211,19 +211,17 @@ if (isset($_POST['simpan'])) {
                                         <input type="number" class="form-control" id="kembalian" name="kembalian" readonly="">
                                     </td>
                                 </tr>
-
                             </table>
+                        </div>
+                    </div>
 
-                            <div class="row">
-                                <br>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <button onclick="return confirm('Yakin ingin Melakukan Pemasokan ?')" id="action" type="submit" name="simpan" class="btn btn-primary col-md-12">Simpan</button>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <a href="kasir.php?halaman=v_transaksi_pembelian" class="btn btn-success notika-btn-success col-md-12">Kembali</a>
-                                </div>
-                            </div>
-
+                    <div class="row">
+                        <br>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button onclick="return confirm('Yakin ingin Melakukan Pemasokan ?')" id="action" type="submit" name="simpan" class="btn btn-primary col-md-12">Simpan</button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <a href="kasir.php?halaman=v_transaksi_pembelian" class="btn btn-success notika-btn-success col-md-12">Kembali</a>
                         </div>
                     </div>
                 </div>
