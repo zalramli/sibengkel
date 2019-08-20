@@ -44,8 +44,8 @@ if (isset($_GET['hapus'])) {
                 foreach ($query as $data) {
                     ?>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td><?= $data['kode_penggajian'] ?></td>
+                    <td><?= $data['tgl_transaksi'] ?></td>
                     <td>
                         <a href="?halaman=v_detail_penggajian&id=<?= $data['kode_penggajian'] ?>" class="btn btn-primary">Detail</a>
                         <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_penggajian&hapus=<?= $data['kode_penggajian']; ?>" class="btn btn-danger">Hapus</a>

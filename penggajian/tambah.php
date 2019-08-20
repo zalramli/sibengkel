@@ -66,7 +66,7 @@ if (isset($_POST['simpan'])) {
           $jumlah_hari_kerja_m = $_POST['jumlah_hari_kerja_m'][$i];
           $total_gaji_m = $_POST['total_gaji_m'][$i];
 
-          $query_detail2 = mysqli_query($koneksi, "INSERT INTO detail_penggajian (kode_penggajian,kode_mekanik,periode_gaji,jumlah_hari_kerja,total_gaji) VALUES ('$kode_penggajian','$kode_mekanik','$periode_gaji_m','$jumlah_hari_kerja_m','$total_gaji_m') ");
+          $query_detail2 = mysqli_query($koneksi, "INSERT INTO detail_penggajian_m (kode_penggajian,kode_mekanik,periode_gaji,jumlah_hari_kerja,total_gaji) VALUES ('$kode_penggajian','$kode_mekanik','$periode_gaji_m','$jumlah_hari_kerja_m','$total_gaji_m') ");
         }
 
         // validasi dan link
@@ -273,10 +273,10 @@ if (isset($_POST['simpan'])) {
             <input type="number" class="form-control" id="jumlah_hari_kerja` + count1 + `" name="jumlah_hari_kerja[]" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-            <input type="number" class="form-control" id="total_gaji` + count1 + `" name="total_gaji[]" max="9999999999" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
+            <input type="number" class="form-control gaji" id="total_gaji` + count1 + `" name="total_gaji[]" max="9999999999" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
           </div>
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-            <a id="` + count1 + `" name="remove" class="remove btn btn-primary">-</a>
+            <a id="` + count1 + `" name="remove" class="remove btn btn-primary remove_gaji">-</a>
           </div>
         </div>
         
@@ -325,10 +325,10 @@ if (isset($_POST['simpan'])) {
             <input type="number" class="form-control" id="jumlah_hari_kerja_m` + count2 + `" name="jumlah_hari_kerja_m[]" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-            <input type="number" class="form-control" id="total_gaji_m` + count2 + `" name="total_gaji_m[]" max="9999999999" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
+            <input type="number" class="form-control gaji" id="total_gaji_m` + count2 + `" name="total_gaji_m[]" max="9999999999" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
           </div>
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-            <a id="` + count2 + `" name="remove" class="remove2 btn btn-primary">-</a>
+            <a id="` + count2 + `" name="remove" class="remove2 btn btn-primary remove_gaji">-</a>
           </div>
         </div>
         
@@ -389,33 +389,63 @@ if (isset($_POST['simpan'])) {
       $('#row2' + row_no).remove();
     });
 
+    // mengambil total harga
+    $(document).on('keyup', '.gaji', function(event) {
+      event.preventDefault();
+      var form_data = $("#transaksi_form").serialize();
+      $.ajax({
+        url: "penggajian/ambil_total.php",
+        method: "POST",
+        data: form_data,
+        success: function(data) {
+          $('#total_penggajian').val(data);
+        }
+      });
+    });
+    $(document).on('change', '.gaji', function(event) {
+      event.preventDefault();
+      var form_data = $("#transaksi_form").serialize();
+      $.ajax({
+        url: "penggajian/ambil_total.php",
+        method: "POST",
+        data: form_data,
+        success: function(data) {
+          $('#total_penggajian').val(data);
+        }
+      });
+    });
+    $(document).on('click', '.remove_gaji', function(event) {
+      event.preventDefault();
+      var form_data = $("#transaksi_form").serialize();
+      $.ajax({
+        url: "penggajian/ambil_total.php",
+        method: "POST",
+        data: form_data,
+        success: function(data) {
+          $('#total_penggajian').val(data);
+        }
+      });
+    });
+    // end of mengambil total harga
+
   });
 
   // Menghitung kembalian
   function update() {
-    var sub_total_hrg = document.getElementById("sub_total_hrg");
-    var potongan = document.getElementById("potongan");
-    var total = document.getElementById("total");
+    var total_penggajian = document.getElementById("total_penggajian");
     var bayar = document.getElementById("bayar");
     var kembalian = document.getElementById("kembalian");
 
-    // cek apakah kosong
-    if (potongan.value.length == 0) {
-      potongan.value = 0;
-    }
-
     // parsing dan perhitungan
-    var v_total = parseFloat(sub_total_hrg.value) - parseFloat(potongan.value);
+    var v_total = parseFloat(total_penggajian.value);
     var v_bayar = parseFloat(bayar.value);
 
-    total.value = v_total;
-
     if (v_bayar >= v_total) {
-      kembalian.value = bayar.value - v_total;
+      kembalian.value = v_bayar - v_total;
     } else {
       kembalian.value = null;
     }
   }
-  // Menghitung kembalian
+  // end of Menghitung kembalian
 </script>
 <!-- script logika -->

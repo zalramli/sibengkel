@@ -38,12 +38,12 @@
                 foreach ($query2 as $data2) {
                     ?>
                 <tr>
-                    <td><?= $data['kode_mekanik'] ?></td>
-                    <td><?= $data['nama_mekanik'] ?></td>
+                    <td><?= $data2['kode_mekanik'] ?></td>
+                    <td><?= $data2['nama_mekanik'] ?></td>
                     <td>Mekanik</td>
-                    <td><?= $data['periode_gaji'] ?></td>
-                    <td><?= $data['jumlah_hari_kerja'] ?></td>
-                    <td><?= $data['total_gaji'] ?></td>
+                    <td><?= $data2['periode_gaji'] ?></td>
+                    <td><?= $data2['jumlah_hari_kerja'] ?></td>
+                    <td><?= $data2['total_gaji'] ?></td>
                 </tr>
                 <?php }
                 ?>
