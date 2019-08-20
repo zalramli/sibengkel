@@ -1,19 +1,19 @@
 <?php
-// Membuat Kode otomatis
-$sql = mysqli_query($koneksi, "SELECT max(kode_jenis_p) FROM jenis_pegawai");
-$kode_faktur = mysqli_fetch_array($sql);
-if ($kode_faktur) {
-  $nilai = substr($kode_faktur[0], 2);
-  $kode = (int) $nilai;
-  //tambahkan sebanyak + 1
-  $kode = $kode + 1;
-  $auto_kode = "JP" . str_pad($kode, 2, "0",  STR_PAD_LEFT);
-} else {
-  $auto_kode = "JP01";
-}
-
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
+
+  // Membuat Kode otomatis
+  $sql = mysqli_query($koneksi, "SELECT max(kode_jenis_p) FROM jenis_pegawai");
+  $kode_faktur = mysqli_fetch_array($sql);
+  if ($kode_faktur) {
+    $nilai = substr($kode_faktur[0], 2);
+    $kode = (int) $nilai;
+    //tambahkan sebanyak + 1
+    $kode = $kode + 1;
+    $auto_kode = "JP" . str_pad($kode, 2, "0",  STR_PAD_LEFT);
+  } else {
+    $auto_kode = "JP01";
+  }
 
   $nama_jenis_p = ucfirst($_POST['nama_jenis_p']);
   $query = mysqli_query($koneksi, "INSERT INTO jenis_pegawai (kode_jenis_p,nama_jenis_p) VALUES ('$auto_kode','$nama_jenis_p') ");

@@ -1,19 +1,20 @@
 <?php
-// Membuat Kode otomatis
-$sql = mysqli_query($koneksi, "SELECT max(kode_mekanik) FROM mekanik");
-$kode_faktur = mysqli_fetch_array($sql);
-if ($kode_faktur) {
-  $nilai = substr($kode_faktur[0], 2);
-  $kode = (int) $nilai;
-  //tambahkan sebanyak + 1
-  $kode = $kode + 1;
-  $auto_kode = "MK" . str_pad($kode, 3, "0",  STR_PAD_LEFT);
-} else {
-  $auto_kode = "MK001";
-}
-
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
+
+  // Membuat Kode otomatis
+  $sql = mysqli_query($koneksi, "SELECT max(kode_mekanik) FROM mekanik");
+  $kode_faktur = mysqli_fetch_array($sql);
+  if ($kode_faktur) {
+    $nilai = substr($kode_faktur[0], 2);
+    $kode = (int) $nilai;
+    //tambahkan sebanyak + 1
+    $kode = $kode + 1;
+    $auto_kode = "MK" . str_pad($kode, 3, "0",  STR_PAD_LEFT);
+  } else {
+    $auto_kode = "MK001";
+  }
+
   $nama_mekanik = ucfirst($_POST['nama_mekanik']);
   $alamat = ucfirst($_POST['alamat']);
   $no_telp = $_POST['no_telp'];

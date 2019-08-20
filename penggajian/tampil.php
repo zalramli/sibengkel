@@ -34,7 +34,6 @@ if (isset($_GET['hapus'])) {
                 <tr>
                     <th>Kode Penggajian</th>
                     <th>Tanggal</th>
-                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -57,7 +56,6 @@ if (isset($_GET['hapus'])) {
                 <tr>
                     <th>Kode Penggajian</th>
                     <th>Tanggal</th>
-                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </tfoot>

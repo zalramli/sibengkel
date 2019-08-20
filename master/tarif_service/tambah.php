@@ -1,19 +1,20 @@
 <?php
-// Membuat Kode otomatis
-$sql = mysqli_query($koneksi, "SELECT max(kode_service) FROM service");
-$kode_faktur = mysqli_fetch_array($sql);
-if ($kode_faktur) {
-    $nilai = substr($kode_faktur[0], 2);
-    $kode = (int) $nilai;
-    //tambahkan sebanyak + 1
-    $kode = $kode + 1;
-    $auto_kode = "SV" . str_pad($kode, 2, "0",  STR_PAD_LEFT);
-} else {
-    $auto_kode = "SV01";
-}
-
 // Ketika tombil simpan di Klik
 if (isset($_POST['simpan'])) {
+
+    // Membuat Kode otomatis
+    $sql = mysqli_query($koneksi, "SELECT max(kode_service) FROM service");
+    $kode_faktur = mysqli_fetch_array($sql);
+    if ($kode_faktur) {
+        $nilai = substr($kode_faktur[0], 2);
+        $kode = (int) $nilai;
+        //tambahkan sebanyak + 1
+        $kode = $kode + 1;
+        $auto_kode = "SV" . str_pad($kode, 2, "0",  STR_PAD_LEFT);
+    } else {
+        $auto_kode = "SV01";
+    }
+
     $nama_service = ucfirst($_POST['nama_service']);
     $tarif_harga = $_POST['tarif_harga'];
     $query = mysqli_query($koneksi, "INSERT INTO service (kode_service,nama_service,tarif_harga) VALUES ('$auto_kode','$nama_service','$tarif_harga') ");
