@@ -147,8 +147,9 @@ if (isset($_POST['simpan'])) {
 
       $('#span_product_details').append(`
 
-        <br />
+       
         <div id="row` + count1 + `" class="row">
+        <br />
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
             <p>` + nomer + `</p>
           </div>
