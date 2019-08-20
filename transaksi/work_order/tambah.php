@@ -78,7 +78,7 @@ if (isset($_POST['simpan'])) {
         </div>
         <div class="bootstrap-select fm-cmp-mg">
           <select name="kode_mekanik" class="selectpicker" data-live-search="true" required="">
-              <option value="kosong">Please select</option>
+              <option value="">Please select</option>
               <?php
               $query_mekanik = mysqli_query($koneksi, "SELECT * FROM mekanik ORDER BY kode_mekanik ASC");
               while ($data_mekanik = mysqli_fetch_array($query_mekanik)) {
@@ -103,7 +103,7 @@ if (isset($_POST['simpan'])) {
             <label for="">Nama Customer</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="nama_customer" class="form-control" placeholder="Isi form nama customer" value="">
+                <input type="text" name="nama_customer" class="form-control" placeholder="Isi form nama customer" required="">
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@ if (isset($_POST['simpan'])) {
             <label for="">Alamat</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="alamat" class="form-control" placeholder="Isi form alamat customer">
+                <input type="text" name="alamat" class="form-control" placeholder="Isi form alamat customer" required="">
               </div>
             </div>
           </div>
@@ -119,7 +119,7 @@ if (isset($_POST['simpan'])) {
             <label for="">No Hp</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="no_telp" class="form-control" placeholder="Isi form no hp">
+                <input type="text" name="no_telp" class="form-control" placeholder="Isi form no hp" required="">
 
               </div>
             </div>
@@ -137,7 +137,7 @@ if (isset($_POST['simpan'])) {
             <label for="">No Plat</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="no_plat" class="form-control" placeholder="isi form plat nomer">
+                <input type="text" name="no_plat" class="form-control" placeholder="isi form plat nomer" required="">
               </div>
             </div>
           </div>
@@ -145,7 +145,7 @@ if (isset($_POST['simpan'])) {
             <label for="">Nama Kendaraan</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="nama_kendaraan" class="form-control" placeholder="isi form nama mobil">
+                <input type="text" name="nama_kendaraan" class="form-control" placeholder="isi form nama mobil" required="">
               </div>
             </div>
           </div>

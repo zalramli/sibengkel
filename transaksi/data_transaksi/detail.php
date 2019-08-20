@@ -6,17 +6,26 @@ $query2 = mysqli_query($koneksi,"SELECT COUNT(*) AS jumlah_barang FROM detail_pe
 $data2 = mysqli_fetch_array($query2);
 $query3 = mysqli_query($koneksi,"SELECT * FROM detail_penjualan_barang JOIN penjualan USING(no_faktur_penjualan) JOIN barang USING(kode_barang) WHERE no_faktur_penjualan='$id'");
 $query4 = mysqli_query($koneksi,"SELECT * FROM detail_penjualan_service JOIN service USING(kode_service) JOIN penjualan_wo USING(kode_wo) JOIN penjualan USING(no_faktur_penjualan) WHERE no_faktur_penjualan='$id'");
+$query5 = mysqli_query($koneksi,"SELECT * FROM penjualan JOIN pegawai USING(kode_pegawai) JOIN penjualan_wo USING (no_faktur_penjualan) JOIN work_order USING(kode_wo) JOIN customer USING(kode_customer) WHERE no_faktur_penjualan='$id'");
+$data5 = mysqli_fetch_array($query5);
+
 ?>
 <div class="container">
     
     <div style="margin-bottom: 20px;">
-        <a href="?halaman=laporan_transaksi" class="btn btn-primary btn-lg">Kembali</a>
+        <a href="?halaman=v_data_transaksi" class="btn btn-primary btn-lg">Kembali</a>
     </div>
     <table class="table table-borderless" width="100">
         <tr>
             <th width="11%">Pelanggan</th>
             <th width="1%">:</th>
-            <th>Safri</th>
+            <?php 
+            if (isset($data5['nama_customer'])) {
+                 echo "<th>".$data5["nama_customer"]."</th>";
+            } else {
+                echo "<th>Umum</th>";
+            } 
+            ?>
             <th width="11%">Kasir</th>
             <th width="1%">:</th>
             <th><?= $data['nama_pegawai']?></th>

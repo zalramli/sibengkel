@@ -415,7 +415,7 @@ if (isset($_POST['simpan'])) {
             event.preventDefault();
             var form_data = $("#transaksi_form").serialize();
             $.ajax({
-                url:"transaksi/penjualan/total_harga.php",
+                url:"transaksi/penjualan/total_penjualan_service.php",
                 method:"POST",
                 data:form_data,
                 success:function(data){

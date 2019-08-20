@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 20 Agu 2019 pada 02.15
--- Versi server: 10.1.37-MariaDB
--- Versi PHP: 7.3.0
+-- Host: localhost:3306
+-- Generation Time: Aug 20, 2019 at 01:24 PM
+-- Server version: 10.1.38-MariaDB-0ubuntu0.18.04.1
+-- PHP Version: 7.2.17-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -25,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang`
+-- Table structure for table `barang`
 --
 
 CREATE TABLE `barang` (
@@ -41,7 +39,7 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `barang`
+-- Dumping data for table `barang`
 --
 
 INSERT INTO `barang` (`kode_barang`, `kode_merk`, `kode_satuan`, `kode_jenis`, `nama_barang`, `stock`, `stock_limit`, `harga_pokok`, `harga_jual`) VALUES
@@ -52,7 +50,7 @@ INSERT INTO `barang` (`kode_barang`, `kode_merk`, `kode_satuan`, `kode_jenis`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `customer`
+-- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
@@ -64,7 +62,7 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`kode_customer`, `no_plat`, `nama_customer`, `alamat`, `no_telp`) VALUES
@@ -75,7 +73,7 @@ INSERT INTO `customer` (`kode_customer`, `no_plat`, `nama_customer`, `alamat`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_penggajian`
+-- Table structure for table `detail_penggajian`
 --
 
 CREATE TABLE `detail_penggajian` (
@@ -88,7 +86,7 @@ CREATE TABLE `detail_penggajian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_penggajian`
+-- Dumping data for table `detail_penggajian`
 --
 
 INSERT INTO `detail_penggajian` (`kode_detail_penggajian`, `kode_penggajian`, `kode_pegawai`, `periode_gaji`, `jumlah_hari_kerja`, `total_gaji`) VALUES
@@ -97,7 +95,7 @@ INSERT INTO `detail_penggajian` (`kode_detail_penggajian`, `kode_penggajian`, `k
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_penggajian_m`
+-- Table structure for table `detail_penggajian_m`
 --
 
 CREATE TABLE `detail_penggajian_m` (
@@ -110,7 +108,7 @@ CREATE TABLE `detail_penggajian_m` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_penggajian_m`
+-- Dumping data for table `detail_penggajian_m`
 --
 
 INSERT INTO `detail_penggajian_m` (`kode_detail_pm`, `kode_penggajian`, `kode_mekanik`, `periode_gaji`, `jumlah_hari_kerja`, `total_gaji`) VALUES
@@ -120,30 +118,52 @@ INSERT INTO `detail_penggajian_m` (`kode_detail_pm`, `kode_penggajian`, `kode_me
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_penjualan`
+-- Table structure for table `detail_penjualan_barang`
 --
 
-CREATE TABLE `detail_penjualan` (
-  `kode_detail_penjualan` int(11) NOT NULL,
+CREATE TABLE `detail_penjualan_barang` (
+  `kode_detail_pb` int(11) NOT NULL,
   `no_faktur_penjualan` char(10) NOT NULL,
   `kode_barang` char(5) NOT NULL,
   `jumlah_barang` int(11) NOT NULL,
-  `potongan_penjualan` int(11) NOT NULL,
   `sub_total_harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `detail_penjualan`
+-- Dumping data for table `detail_penjualan_barang`
 --
 
-INSERT INTO `detail_penjualan` (`kode_detail_penjualan`, `no_faktur_penjualan`, `kode_barang`, `jumlah_barang`, `potongan_penjualan`, `sub_total_harga`) VALUES
-(1, 'FK000001', 'B0003', 1, 0, 50000),
-(2, 'FK000001', 'B0004', 3, 0, 60000);
+INSERT INTO `detail_penjualan_barang` (`kode_detail_pb`, `no_faktur_penjualan`, `kode_barang`, `jumlah_barang`, `sub_total_harga`) VALUES
+(1, 'FK000001', 'B0003', 1, 0),
+(2, 'FK000001', 'B0004', 3, 0),
+(3, 'FK000004', 'B0003', 1, 50000),
+(4, 'FK000004', 'B0004', 1, 20000),
+(5, 'FK000004', 'B0005', 1, 123);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_permintaan`
+-- Table structure for table `detail_penjualan_service`
+--
+
+CREATE TABLE `detail_penjualan_service` (
+  `kode_detail_ps` int(11) NOT NULL,
+  `kode_wo` char(10) NOT NULL,
+  `kode_service` char(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_penjualan_service`
+--
+
+INSERT INTO `detail_penjualan_service` (`kode_detail_ps`, `kode_wo`, `kode_service`) VALUES
+(1, 'WO0005', 'SV01'),
+(2, 'WO0005', 'SV02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_permintaan`
 --
 
 CREATE TABLE `detail_permintaan` (
@@ -155,7 +175,7 @@ CREATE TABLE `detail_permintaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_permintaan`
+-- Dumping data for table `detail_permintaan`
 --
 
 INSERT INTO `detail_permintaan` (`kode_detail_permintaan`, `kode_permintaan`, `kode_barang`, `jumlah_barang`, `sub_total_harga`) VALUES
@@ -167,7 +187,7 @@ INSERT INTO `detail_permintaan` (`kode_detail_permintaan`, `kode_permintaan`, `k
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis_barang`
+-- Table structure for table `jenis_barang`
 --
 
 CREATE TABLE `jenis_barang` (
@@ -176,7 +196,7 @@ CREATE TABLE `jenis_barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jenis_barang`
+-- Dumping data for table `jenis_barang`
 --
 
 INSERT INTO `jenis_barang` (`kode_jenis`, `nama_jenis`) VALUES
@@ -187,7 +207,7 @@ INSERT INTO `jenis_barang` (`kode_jenis`, `nama_jenis`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis_pegawai`
+-- Table structure for table `jenis_pegawai`
 --
 
 CREATE TABLE `jenis_pegawai` (
@@ -196,7 +216,7 @@ CREATE TABLE `jenis_pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `jenis_pegawai`
+-- Dumping data for table `jenis_pegawai`
 --
 
 INSERT INTO `jenis_pegawai` (`kode_jenis_p`, `nama_jenis_p`) VALUES
@@ -208,7 +228,27 @@ INSERT INTO `jenis_pegawai` (`kode_jenis_p`, `nama_jenis_p`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kode_detail_pm`
+-- Table structure for table `kendaraan`
+--
+
+CREATE TABLE `kendaraan` (
+  `no_plat` char(10) NOT NULL,
+  `nama_kendaraan` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kendaraan`
+--
+
+INSERT INTO `kendaraan` (`no_plat`, `nama_kendaraan`) VALUES
+('N 7779 UB', 'Avanza'),
+('N 9988 UX', 'asdg'),
+('P 8988 UX', 'Pajero');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kode_detail_pm`
 --
 
 CREATE TABLE `kode_detail_pm` (
@@ -223,7 +263,7 @@ CREATE TABLE `kode_detail_pm` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mekanik`
+-- Table structure for table `mekanik`
 --
 
 CREATE TABLE `mekanik` (
@@ -234,7 +274,7 @@ CREATE TABLE `mekanik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `mekanik`
+-- Dumping data for table `mekanik`
 --
 
 INSERT INTO `mekanik` (`kode_mekanik`, `nama_mekanik`, `alamat`, `no_telp`) VALUES
@@ -244,7 +284,7 @@ INSERT INTO `mekanik` (`kode_mekanik`, `nama_mekanik`, `alamat`, `no_telp`) VALU
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `merk`
+-- Table structure for table `merk`
 --
 
 CREATE TABLE `merk` (
@@ -253,7 +293,7 @@ CREATE TABLE `merk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `merk`
+-- Dumping data for table `merk`
 --
 
 INSERT INTO `merk` (`kode_merk`, `nama_merk`) VALUES
@@ -263,27 +303,7 @@ INSERT INTO `merk` (`kode_merk`, `nama_merk`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mobil`
---
-
-CREATE TABLE `mobil` (
-  `no_plat` char(10) NOT NULL,
-  `nama_mobil` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `mobil`
---
-
-INSERT INTO `mobil` (`no_plat`, `nama_mobil`) VALUES
-('N 7779 UB', 'Avanza'),
-('N 9988 UX', 'asdg'),
-('P 8988 UX', 'Pajero');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pegawai`
+-- Table structure for table `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -298,19 +318,21 @@ CREATE TABLE `pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pegawai`
+-- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`kode_pegawai`, `kode_jenis_p`, `nama_pegawai`, `alamat`, `no_telp`, `username`, `password`, `status_login`) VALUES
 ('PG001', 'JP01', 'asd', 'asdasda', 'asdsad', 'asdss', '$2y$10$kYur/fK.ZD/keVhijEjvVev.MEN7QPQJJTGYWzgcM83Ck8S2kIbZ6', '0'),
 ('PG002', 'JP02', 'Kika123', 'Jember', '123124', 'kasir', '$2y$10$/Kf1OGnFXWkPAwoQEymuhORed7QhC7peB1bZ630kLUd/b5bF50W.K', '0'),
-('PG003', 'JP01', 'dani', 'jamber', '0897986985695', 'dani', '$2y$10$WV8g0fnkFJ4.kfiz2NbsPO0Nk2JXsiatHrPQwnNCSiqdJ0zWZOVT.', '1'),
-('PG004', 'JP02', 'Iyek', 'Asd', '0809898', 'iyek', '$2y$10$pJrI0ehIBfS.ntcPP3PcMemHQvyoCI24zAGQXS/tTNxN9KuW6GiCy', '0');
+('PG003', 'JP01', 'dani', 'jamber', '0897986985695', 'dani', '$2y$10$WV8g0fnkFJ4.kfiz2NbsPO0Nk2JXsiatHrPQwnNCSiqdJ0zWZOVT.', '0'),
+('PG004', 'JP02', 'Iyek', 'Asd', '0809898', 'iyek', '$2y$10$pJrI0ehIBfS.ntcPP3PcMemHQvyoCI24zAGQXS/tTNxN9KuW6GiCy', '0'),
+('PG005', 'JP03', 'Ali', 'Jember', '08968585', 'gudang', '$2y$10$heOCWvq.A7VpHGVCS14Fj./dctD/VjFbz9e1Lf.WwuIcwPQ2zIBsy', '0'),
+('PG006', 'JP04', 'Cs', 'Asdasd', '1213423', 'cs', '$2y$10$nmRHQsReWr6SaLiOQSwEmukGSpk3WGWJBhkTyRe8vf6eah6FuylhW', '0');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pembelian`
+-- Table structure for table `pembelian`
 --
 
 CREATE TABLE `pembelian` (
@@ -327,7 +349,7 @@ CREATE TABLE `pembelian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pembelian`
+-- Dumping data for table `pembelian`
 --
 
 INSERT INTO `pembelian` (`no_faktur_pembelian`, `kode_pegawai`, `kode_suplier`, `tgl_transaksi`, `sub_total`, `potongan`, `total_harga`, `bayar`, `kembalian`, `status`) VALUES
@@ -336,7 +358,7 @@ INSERT INTO `pembelian` (`no_faktur_pembelian`, `kode_pegawai`, `kode_suplier`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penggajian`
+-- Table structure for table `penggajian`
 --
 
 CREATE TABLE `penggajian` (
@@ -350,7 +372,7 @@ CREATE TABLE `penggajian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `penggajian`
+-- Dumping data for table `penggajian`
 --
 
 INSERT INTO `penggajian` (`kode_penggajian`, `kode_pegawai`, `tgl_transaksi`, `total_penggajian`, `bayar`, `kembalian`, `status`) VALUES
@@ -359,7 +381,7 @@ INSERT INTO `penggajian` (`kode_penggajian`, `kode_pegawai`, `tgl_transaksi`, `t
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penjualan`
+-- Table structure for table `penjualan`
 --
 
 CREATE TABLE `penjualan` (
@@ -373,7 +395,7 @@ CREATE TABLE `penjualan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `penjualan`
+-- Dumping data for table `penjualan`
 --
 
 INSERT INTO `penjualan` (`no_faktur_penjualan`, `kode_pegawai`, `tgl_transaksi`, `total_harga`, `bayar`, `kembalian`, `status`) VALUES
@@ -382,7 +404,7 @@ INSERT INTO `penjualan` (`no_faktur_penjualan`, `kode_pegawai`, `tgl_transaksi`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `permintaan_barang`
+-- Table structure for table `permintaan_barang`
 --
 
 CREATE TABLE `permintaan_barang` (
@@ -392,7 +414,7 @@ CREATE TABLE `permintaan_barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `permintaan_barang`
+-- Dumping data for table `permintaan_barang`
 --
 
 INSERT INTO `permintaan_barang` (`kode_permintaan`, `tgl_permintaan`, `status`) VALUES
@@ -402,7 +424,7 @@ INSERT INTO `permintaan_barang` (`kode_permintaan`, `tgl_permintaan`, `status`) 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `purchase_order`
+-- Table structure for table `purchase_order`
 --
 
 CREATE TABLE `purchase_order` (
@@ -412,7 +434,7 @@ CREATE TABLE `purchase_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `purchase_order`
+-- Dumping data for table `purchase_order`
 --
 
 INSERT INTO `purchase_order` (`kode_po`, `no_faktur_pembelian`, `kode_permintaan`) VALUES
@@ -421,7 +443,7 @@ INSERT INTO `purchase_order` (`kode_po`, `no_faktur_pembelian`, `kode_permintaan
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `satuan`
+-- Table structure for table `satuan`
 --
 
 CREATE TABLE `satuan` (
@@ -430,7 +452,7 @@ CREATE TABLE `satuan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `satuan`
+-- Dumping data for table `satuan`
 --
 
 INSERT INTO `satuan` (`kode_satuan`, `nama_satuan`) VALUES
@@ -440,7 +462,7 @@ INSERT INTO `satuan` (`kode_satuan`, `nama_satuan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `service`
+-- Table structure for table `service`
 --
 
 CREATE TABLE `service` (
@@ -450,7 +472,7 @@ CREATE TABLE `service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `service`
+-- Dumping data for table `service`
 --
 
 INSERT INTO `service` (`kode_service`, `nama_service`, `tarif_harga`) VALUES
@@ -460,7 +482,7 @@ INSERT INTO `service` (`kode_service`, `nama_service`, `tarif_harga`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `suplier`
+-- Table structure for table `suplier`
 --
 
 CREATE TABLE `suplier` (
@@ -472,7 +494,7 @@ CREATE TABLE `suplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `suplier`
+-- Dumping data for table `suplier`
 --
 
 INSERT INTO `suplier` (`kode_suplier`, `nama_suplier`, `alamat`, `kontak_person`, `telp`) VALUES
@@ -481,7 +503,7 @@ INSERT INTO `suplier` (`kode_suplier`, `nama_suplier`, `alamat`, `kontak_person`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `work_order`
+-- Table structure for table `work_order`
 --
 
 CREATE TABLE `work_order` (
@@ -493,7 +515,7 @@ CREATE TABLE `work_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `work_order`
+-- Dumping data for table `work_order`
 --
 
 INSERT INTO `work_order` (`kode_wo`, `kode_customer`, `kode_mekanik`, `tgl_wo`, `status_wo`) VALUES
@@ -508,178 +530,182 @@ INSERT INTO `work_order` (`kode_wo`, `kode_customer`, `kode_mekanik`, `tgl_wo`, 
 --
 
 --
--- Indeks untuk tabel `barang`
+-- Indexes for table `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`kode_barang`);
 
 --
--- Indeks untuk tabel `customer`
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`kode_customer`);
 
 --
--- Indeks untuk tabel `detail_penggajian`
+-- Indexes for table `detail_penggajian`
 --
 ALTER TABLE `detail_penggajian`
   ADD PRIMARY KEY (`kode_detail_penggajian`);
 
 --
--- Indeks untuk tabel `detail_penggajian_m`
+-- Indexes for table `detail_penggajian_m`
 --
 ALTER TABLE `detail_penggajian_m`
   ADD PRIMARY KEY (`kode_detail_pm`);
 
 --
--- Indeks untuk tabel `detail_penjualan`
+-- Indexes for table `detail_penjualan_barang`
 --
-ALTER TABLE `detail_penjualan`
-  ADD PRIMARY KEY (`kode_detail_penjualan`);
+ALTER TABLE `detail_penjualan_barang`
+  ADD PRIMARY KEY (`kode_detail_pb`);
 
 --
--- Indeks untuk tabel `detail_permintaan`
+-- Indexes for table `detail_penjualan_service`
+--
+ALTER TABLE `detail_penjualan_service`
+  ADD PRIMARY KEY (`kode_detail_ps`);
+
+--
+-- Indexes for table `detail_permintaan`
 --
 ALTER TABLE `detail_permintaan`
   ADD PRIMARY KEY (`kode_detail_permintaan`);
 
 --
--- Indeks untuk tabel `jenis_barang`
+-- Indexes for table `jenis_barang`
 --
 ALTER TABLE `jenis_barang`
   ADD PRIMARY KEY (`kode_jenis`);
 
 --
--- Indeks untuk tabel `jenis_pegawai`
+-- Indexes for table `jenis_pegawai`
 --
 ALTER TABLE `jenis_pegawai`
   ADD PRIMARY KEY (`kode_jenis_p`);
 
 --
--- Indeks untuk tabel `kode_detail_pm`
+-- Indexes for table `kendaraan`
+--
+ALTER TABLE `kendaraan`
+  ADD PRIMARY KEY (`no_plat`);
+
+--
+-- Indexes for table `kode_detail_pm`
 --
 ALTER TABLE `kode_detail_pm`
   ADD PRIMARY KEY (`kode_detail_pm`);
 
 --
--- Indeks untuk tabel `mekanik`
+-- Indexes for table `mekanik`
 --
 ALTER TABLE `mekanik`
   ADD PRIMARY KEY (`kode_mekanik`);
 
 --
--- Indeks untuk tabel `merk`
+-- Indexes for table `merk`
 --
 ALTER TABLE `merk`
   ADD PRIMARY KEY (`kode_merk`);
 
 --
--- Indeks untuk tabel `mobil`
---
-ALTER TABLE `mobil`
-  ADD PRIMARY KEY (`no_plat`);
-
---
--- Indeks untuk tabel `pegawai`
+-- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`kode_pegawai`);
 
 --
--- Indeks untuk tabel `pembelian`
+-- Indexes for table `pembelian`
 --
 ALTER TABLE `pembelian`
   ADD PRIMARY KEY (`no_faktur_pembelian`);
 
 --
--- Indeks untuk tabel `penggajian`
+-- Indexes for table `penggajian`
 --
 ALTER TABLE `penggajian`
   ADD PRIMARY KEY (`kode_penggajian`);
 
 --
--- Indeks untuk tabel `penjualan`
+-- Indexes for table `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`no_faktur_penjualan`);
 
 --
--- Indeks untuk tabel `permintaan_barang`
+-- Indexes for table `permintaan_barang`
 --
 ALTER TABLE `permintaan_barang`
   ADD PRIMARY KEY (`kode_permintaan`);
 
 --
--- Indeks untuk tabel `purchase_order`
+-- Indexes for table `purchase_order`
 --
 ALTER TABLE `purchase_order`
   ADD PRIMARY KEY (`kode_po`);
 
 --
--- Indeks untuk tabel `satuan`
+-- Indexes for table `satuan`
 --
 ALTER TABLE `satuan`
   ADD PRIMARY KEY (`kode_satuan`);
 
 --
--- Indeks untuk tabel `service`
+-- Indexes for table `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`kode_service`);
 
 --
--- Indeks untuk tabel `suplier`
+-- Indexes for table `suplier`
 --
 ALTER TABLE `suplier`
   ADD PRIMARY KEY (`kode_suplier`);
 
 --
--- Indeks untuk tabel `work_order`
+-- Indexes for table `work_order`
 --
 ALTER TABLE `work_order`
   ADD PRIMARY KEY (`kode_wo`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `detail_penggajian`
+-- AUTO_INCREMENT for table `detail_penggajian`
 --
 ALTER TABLE `detail_penggajian`
   MODIFY `kode_detail_penggajian` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
--- AUTO_INCREMENT untuk tabel `detail_penggajian_m`
+-- AUTO_INCREMENT for table `detail_penggajian_m`
 --
 ALTER TABLE `detail_penggajian_m`
   MODIFY `kode_detail_pm` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT untuk tabel `detail_penjualan`
+-- AUTO_INCREMENT for table `detail_penjualan_barang`
 --
-ALTER TABLE `detail_penjualan`
-  MODIFY `kode_detail_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+ALTER TABLE `detail_penjualan_barang`
+  MODIFY `kode_detail_pb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT untuk tabel `detail_permintaan`
+-- AUTO_INCREMENT for table `detail_penjualan_service`
+--
+ALTER TABLE `detail_penjualan_service`
+  MODIFY `kode_detail_ps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `detail_permintaan`
 --
 ALTER TABLE `detail_permintaan`
   MODIFY `kode_detail_permintaan` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
 --
--- AUTO_INCREMENT untuk tabel `kode_detail_pm`
+-- AUTO_INCREMENT for table `kode_detail_pm`
 --
 ALTER TABLE `kode_detail_pm`
   MODIFY `kode_detail_pm` int(8) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT untuk tabel `purchase_order`
+-- AUTO_INCREMENT for table `purchase_order`
 --
 ALTER TABLE `purchase_order`
   MODIFY `kode_po` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
