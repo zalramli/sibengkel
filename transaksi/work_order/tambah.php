@@ -142,7 +142,7 @@ if (isset($_POST['simpan'])) {
             </div>
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <label for="">Nama Mobil</label>
+            <label for="">Nama Kendaraan</label>
             <div class="form-group">
               <div class="nk-int-st">
                 <input type="text" name="nama_kendaraan" class="form-control" placeholder="isi form nama mobil">
