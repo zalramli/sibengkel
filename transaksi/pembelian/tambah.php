@@ -176,16 +176,16 @@ if (isset($_POST['simpan'])) {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-top: 9px;">
+                                    <td width="60%">
                                         <h5>Potongan Harga</h5>
                                     </td>
-                                    <td style="text-align: right; padding-top: 5px"><input type="number" class="form-control" id="potongan" name="potongan" max="9999999999" onkeyup="update()" onchange="update()"></td>
+                                    <td style="text-align: right;  padding-top: 10px;"><input type="number" class="form-control" id="potongan" name="potongan" max="9999999999" onkeyup="update()" onchange="update()"></td>
                                 </tr>
                                 <tr>
-                                    <td width="60%">
+                                    <td width="40%">
                                         <h5>Total</h5>
                                     </td>
-                                    <td width="40%" style="text-align: right;">
+                                    <td style="text-align: right;  padding-top: 10px;">
                                         <input type="number" class="form-control" id="total" name="total_harga" readonly="">
                                     </td>
                                 </tr>
@@ -193,28 +193,37 @@ if (isset($_POST['simpan'])) {
                         </div>
                     </div>
                 </div>
-                <div style="margin-top: 30px;" class="contact-inner">
+                <div class="contact-inner">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <table width="100%">
                                 <tr>
-                                    <td style="padding-top: 15px;" width="60%">
+                                    <td width="60%">
                                         <h5>Bayar</h5>
                                     </td>
                                     <td width="40%" style="text-align: right;"><input type="number" class="form-control" id="bayar" name="bayar" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update()" onchange="update()"></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 20px 0px;">
+                                    <td width="60%">
                                         <h5>Kembalian</h5>
                                     </td>
-                                    <td style="text-align: right; padding: 20px 0px;">
+                                    <td width="40%" style="text-align: right;  padding-top: 10px;">
                                         <input type="number" class="form-control" id="kembalian" name="kembalian" readonly="">
                                     </td>
                                 </tr>
 
                             </table>
-                            <button onclick="return confirm('Yakin ingin Melakukan Pemasokan ?')" id="action" type="submit" name="simpan" class="btn btn-primary mr-2">Simpan Pemasokan</button>
-                            <a href="kasir.php?halaman=v_transaksi_pembelian" class="btn btn-success notika-btn-success">Kembali</a>
+
+                            <div class="row">
+                                <br>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <button onclick="return confirm('Yakin ingin Melakukan Pemasokan ?')" id="action" type="submit" name="simpan" class="btn btn-primary col-md-12">Simpan</button>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <a href="kasir.php?halaman=v_transaksi_pembelian" class="btn btn-success notika-btn-success col-md-12">Kembali</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
