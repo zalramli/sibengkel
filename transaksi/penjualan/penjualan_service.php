@@ -234,7 +234,8 @@ if (isset($_POST['simpan'])) {
   <!-- Ambil Harga Barang -->
   <script>  
            $(document).ready(function(){  
-                $('.kode_barangs').change(function(){  
+                $('#kode_barang').change(function(event){
+                event.preventDefault();  
                      var kode_barang = $(this).val();  
                      $.ajax({  
                           url:"transaksi/penjualan/load_data_barang.php",  
@@ -329,7 +330,8 @@ if (isset($_POST['simpan'])) {
 
   <script>  
            $(document).ready(function(){  
-                $('.kode_services').change(function(){  
+                $('#kode_service').change(function(event){
+                event.preventDefault();  
                      var kode_service = $(this).val();  
                      $.ajax({  
                           url:"transaksi/penjualan/load_data_service.php",  
