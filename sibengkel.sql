@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 20, 2019 at 04:57 PM
+-- Generation Time: Aug 20, 2019 at 07:57 PM
 -- Server version: 10.1.38-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.2.17-0ubuntu0.18.04.1
 
@@ -54,8 +54,7 @@ INSERT INTO `barang` (`kode_barang`, `kode_merk`, `kode_satuan`, `kode_jenis`, `
 --
 
 CREATE TABLE `customer` (
-  `kode_customer` char(5) NOT NULL,
-  `no_plat` char(10) NOT NULL,
+  `kode_customer` char(10) NOT NULL,
   `nama_customer` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `no_telp` varchar(20) NOT NULL
@@ -65,13 +64,16 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`kode_customer`, `no_plat`, `nama_customer`, `alamat`, `no_telp`) VALUES
-('K0001', 'N 7779 UB', 'Safri', 'dassd', 'q3431243432'),
-('K0002', 'N 9988 UX', 'ASD', 'asd', '1212'),
-('K0003', 'P 8988 UX', 'rizal', 'jember', '089621835685'),
-('K0004', 'N 9988 PO', 'Abda', 'Lumajang', '089781623124'),
-('K0005', '', '', '', ''),
-('K0006', 'N 9998 UB', 'Abda', 'Lumajang', '0897969212');
+INSERT INTO `customer` (`kode_customer`, `nama_customer`, `alamat`, `no_telp`) VALUES
+('K0001', 'Safri', 'dassd', 'q3431243432'),
+('K0002', 'ASD', 'asd', '1212'),
+('K0003', 'rizal', 'jember', '089621835685'),
+('K0004', 'Abda', 'Lumajang', '089781623124'),
+('K0005', '', '', ''),
+('K0006', 'Abda', 'Lumajang', '0897969212'),
+('K0007', 'Ngatmari', 'Jember', '08978968'),
+('K0008', 'Asd', 'Asd', '0897987'),
+('K0009', 'Umum', '-', '-');
 
 -- --------------------------------------------------------
 
@@ -141,7 +143,14 @@ INSERT INTO `detail_penjualan_barang` (`kode_detail_pb`, `no_faktur_penjualan`, 
 (2, 'FK000001', 'B0004', 3, 0),
 (9, 'FK000002', 'B0004', 3, 60000),
 (10, 'FK000003', 'B0004', 1, 20000),
-(11, 'FK000003', 'B0003', 2, 100000);
+(11, 'FK000003', 'B0003', 2, 100000),
+(12, 'FK000004', 'B0004', 2, 40000),
+(13, 'FK000004', 'B0003', 2, 100000),
+(14, 'FK000005', 'B0003', 3, 150000),
+(15, 'FK000005', 'B0005', 3, 369),
+(16, 'FK000006', 'B0004', 1, 20000),
+(17, 'FK000006', 'B0003', 1, 50000),
+(18, 'FK000006', 'B0005', 1, 123);
 
 -- --------------------------------------------------------
 
@@ -164,7 +173,9 @@ INSERT INTO `detail_penjualan_service` (`kode_detail_ps`, `kode_wo`, `kode_servi
 (2, 'WO0005', 'SV02'),
 (3, 'WO0006', 'SV01'),
 (4, 'WO0007', 'SV02'),
-(5, 'WO0007', 'SV01');
+(5, 'WO0007', 'SV01'),
+(6, 'WO0013', 'SV02'),
+(7, 'WO0013', 'SV01');
 
 -- --------------------------------------------------------
 
@@ -248,11 +259,14 @@ CREATE TABLE `kendaraan` (
 
 INSERT INTO `kendaraan` (`no_plat`, `nama_kendaraan`) VALUES
 ('', ''),
+('N 3333 UB', 'Racing'),
+('N 4444 XX', 'Asd'),
 ('N 7779 UB', 'Avanza'),
+('N 9777 OP', 'Boom'),
 ('N 9988 PO', 'Rush'),
 ('N 9988 UX', 'asdg'),
 ('N 9998 UB', 'Pajeros'),
-('P 8988 UX', 'Pajero');
+('P 8888 UX', 'Pajero');
 
 -- --------------------------------------------------------
 
@@ -395,6 +409,7 @@ INSERT INTO `penggajian` (`kode_penggajian`, `kode_pegawai`, `tgl_transaksi`, `t
 
 CREATE TABLE `penjualan` (
   `no_faktur_penjualan` char(10) NOT NULL,
+  `kode_customer` char(10) NOT NULL,
   `kode_pegawai` char(5) NOT NULL,
   `tgl_transaksi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `total_harga` int(11) NOT NULL,
@@ -408,10 +423,13 @@ CREATE TABLE `penjualan` (
 -- Dumping data for table `penjualan`
 --
 
-INSERT INTO `penjualan` (`no_faktur_penjualan`, `kode_pegawai`, `tgl_transaksi`, `total_harga`, `potongan_harga`, `bayar`, `kembalian`, `status`) VALUES
-('FK000001', 'PG002', '2019-08-14 12:20:41', 110000, 0, 120000, 10000, 'sukses'),
-('FK000002', 'PG004', '2019-08-20 09:17:54', 60000, 0, 99999, 100000, '0'),
-('FK000003', 'PG004', '2019-08-20 09:41:35', 120000, 0, 998889, 100000, '0');
+INSERT INTO `penjualan` (`no_faktur_penjualan`, `kode_customer`, `kode_pegawai`, `tgl_transaksi`, `total_harga`, `potongan_harga`, `bayar`, `kembalian`, `status`) VALUES
+('FK000001', '', 'PG002', '2019-08-14 12:20:41', 110000, 0, 120000, 10000, 'sukses'),
+('FK000002', '', 'PG004', '2019-08-20 09:17:54', 60000, 0, 99999, 100000, '0'),
+('FK000003', '', 'PG004', '2019-08-20 09:41:35', 120000, 0, 998889, 100000, '0'),
+('FK000004', 'K0009', 'PG004', '2019-08-20 12:23:32', 140000, 10, 100000, 100000, '0'),
+('FK000005', 'K0009', 'PG004', '2019-08-20 12:24:46', 150369, 99, 999999, 100000, '0'),
+('FK000006', 'K0002', 'PG004', '2019-08-20 12:29:37', 70123, 0, 900000, 100000, '0');
 
 -- --------------------------------------------------------
 
@@ -431,7 +449,8 @@ CREATE TABLE `penjualan_wo` (
 
 INSERT INTO `penjualan_wo` (`id_detail_service`, `no_faktur_penjualan`, `kode_wo`) VALUES
 (1, 'FK000004', 'WO0005'),
-(2, 'FK000002', 'WO0007');
+(2, 'FK000002', 'WO0007'),
+(3, 'FK000006', 'WO0013');
 
 -- --------------------------------------------------------
 
@@ -541,6 +560,7 @@ INSERT INTO `suplier` (`kode_suplier`, `nama_suplier`, `alamat`, `kontak_person`
 CREATE TABLE `work_order` (
   `kode_wo` char(10) NOT NULL,
   `kode_customer` char(5) NOT NULL,
+  `no_plat` char(10) NOT NULL,
   `kode_mekanik` char(5) NOT NULL,
   `tgl_wo` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status_wo` varchar(2) NOT NULL
@@ -550,14 +570,20 @@ CREATE TABLE `work_order` (
 -- Dumping data for table `work_order`
 --
 
-INSERT INTO `work_order` (`kode_wo`, `kode_customer`, `kode_mekanik`, `tgl_wo`, `status_wo`) VALUES
-('WO0001', '', 'MK001', '2019-08-16 12:27:43', '0'),
-('WO0002', 'K0002', 'MK001', '2019-08-16 12:29:05', '0'),
-('WO0003', 'K0001', 'MK001', '2019-08-17 08:56:56', '0'),
-('WO0004', 'K0002', 'MK002', '2019-08-17 08:57:31', '0'),
-('WO0005', 'K0003', 'MK001', '2019-08-17 08:59:22', '0'),
-('WO0006', 'K0001', 'MK001', '2019-08-20 09:04:01', '1'),
-('WO0007', 'K0006', 'MK001', '2019-08-20 09:17:55', '1');
+INSERT INTO `work_order` (`kode_wo`, `kode_customer`, `no_plat`, `kode_mekanik`, `tgl_wo`, `status_wo`) VALUES
+('WO0001', '', '', 'MK001', '2019-08-16 12:27:43', '0'),
+('WO0002', 'K0002', '', 'MK001', '2019-08-16 12:29:05', '0'),
+('WO0003', 'K0001', '', 'MK001', '2019-08-17 08:56:56', '0'),
+('WO0004', 'K0002', '', 'MK002', '2019-08-17 08:57:31', '0'),
+('WO0005', 'K0003', '', 'MK001', '2019-08-17 08:59:22', '0'),
+('WO0006', 'K0001', '', 'MK001', '2019-08-20 09:04:01', '1'),
+('WO0007', 'K0006', '', 'MK001', '2019-08-20 09:17:55', '1'),
+('WO0008', 'K0006', 'P 8888 UX', 'MK001', '2019-08-20 11:36:42', '0'),
+('WO0009', 'K0007', 'N 9777 OP', 'MK001', '2019-08-20 11:38:28', '0'),
+('WO0010', 'K0007', 'N 1111 UB', 'MK001', '2019-08-20 11:39:38', '0'),
+('WO0011', 'K0007', 'N 3333 UB', 'MK001', '2019-08-20 11:42:32', '0'),
+('WO0012', 'K0008', 'N 3333 UB', 'MK001', '2019-08-20 11:44:01', '0'),
+('WO0013', 'K0002', 'N 4444 XX', 'MK001', '2019-08-20 12:29:38', '1');
 
 --
 -- Indexes for dumped tables
@@ -725,12 +751,12 @@ ALTER TABLE `detail_penggajian_m`
 -- AUTO_INCREMENT for table `detail_penjualan_barang`
 --
 ALTER TABLE `detail_penjualan_barang`
-  MODIFY `kode_detail_pb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `kode_detail_pb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `detail_penjualan_service`
 --
 ALTER TABLE `detail_penjualan_service`
-  MODIFY `kode_detail_ps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `kode_detail_ps` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `detail_permintaan`
 --
@@ -745,7 +771,7 @@ ALTER TABLE `kode_detail_pm`
 -- AUTO_INCREMENT for table `penjualan_wo`
 --
 ALTER TABLE `penjualan_wo`
-  MODIFY `id_detail_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_detail_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `purchase_order`
 --
