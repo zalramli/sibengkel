@@ -7,6 +7,7 @@ $mpdf=new mPDF('utf-8', 'A4', 10.5, 'arial'); // Membuat file mpdf baru
 //Memulai proses untuk menyimpan variabel php dan html
 ob_start();
 include '../koneksi/koneksi.php';
+include '../koneksi/function.php';
 $tgl_mulai = $_POST['tgl_mulai'];
 $format_mulai =  date('Y-m-d', strtotime($tgl_mulai));
 $mulai = $format_mulai." 00:00:00";
@@ -21,22 +22,27 @@ $akhir = $format_akhir." 00:00:00";
 
 <hr style="color:solid black">
 <table border="collapse">
+    <?php 
+    $dari = date('Y-m-d', strtotime($mulai));
+    $sampai = date('Y-m-d', strtotime($akhir));
+    ?>
     <tr>
         <td>Dari Tanggal</td>
         <td>:</td>
-        <td><?= $mulai; ?></td>
+        <td><?= tgl_indo($dari); ?></td>
     </tr>
     <tr>
         <td>Sampai Tanggal</td>
         <td>:</td>
-        <td><?= $akhir; ?></td>
+        <td><?= tgl_indo($sampai); ?></td>
     </tr>
 </table>
 <table border="1">
     <tr>
         <th style="border-left: 0">No.</th>
         <th>Faktur Penjualan</th>
-        <th>Yang Melayani</th>
+        <th>Nama Customer</th>
+        <th>Kasir</th>
         <th>Tanggl Transaksi</th>
         <th>Total Harga</th>
         <th>Total Bayar</th>
@@ -44,15 +50,18 @@ $akhir = $format_akhir." 00:00:00";
     </tr>
     <?php
     
-    $query = mysqli_query($koneksi, "SELECT * FROM penjualan JOIN pegawai USING(kode_pegawai) WHERE tgl_transaksi BETWEEN '$mulai' AND '$akhir'");
+    $query = mysqli_query($koneksi, "SELECT * FROM penjualan JOIN customer USING(kode_customer) JOIN pegawai USING(kode_pegawai) WHERE tgl_transaksi BETWEEN '$mulai' AND '$akhir'");
     $no = 1;
     foreach ($query as $data) {
+        $tgl_transaksi = $data['tgl_transaksi'];
+        $data_transaksi = date('Y-m-d', strtotime($tgl_transaksi));
     ?>
     <tr>
         <td><?= $no++ ?></td>
         <td><?= $data['no_faktur_penjualan'] ?></td>
+        <td><?= $data['nama_customer'] ?></td>
         <td><?= $data['nama_pegawai'] ?></td>
-        <td><?= $data['tgl_transaksi'] ?></td>
+        <td><?= tgl_indo($data_transaksi) ?></td>
         <td style="text-align: right"><?= $data['total_harga'] ?></td>
         <td style="text-align: right"><?= $data['bayar'] ?></td>
         <td style="text-align: right"><?= $data['kembalian'] ?></td>

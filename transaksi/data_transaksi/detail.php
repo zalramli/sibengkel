@@ -1,13 +1,11 @@
 <?php
 $id = $_GET['id'];
-$query = mysqli_query($koneksi, "SELECT * FROM penjualan JOIN pegawai USING (kode_pegawai) WHERE no_faktur_penjualan='$id'");
+$query = mysqli_query($koneksi, "SELECT * FROM penjualan JOIN customer USING(kode_customer) JOIN pegawai USING (kode_pegawai) WHERE no_faktur_penjualan='$id'");
 $data = mysqli_fetch_array($query);
 $query2 = mysqli_query($koneksi,"SELECT COUNT(*) AS jumlah_barang FROM detail_penjualan_barang WHERE no_faktur_penjualan = '$id'");
 $data2 = mysqli_fetch_array($query2);
 $query3 = mysqli_query($koneksi,"SELECT * FROM detail_penjualan_barang JOIN penjualan USING(no_faktur_penjualan) JOIN barang USING(kode_barang) WHERE no_faktur_penjualan='$id'");
 $query4 = mysqli_query($koneksi,"SELECT * FROM detail_penjualan_service JOIN service USING(kode_service) JOIN penjualan_wo USING(kode_wo) JOIN penjualan USING(no_faktur_penjualan) WHERE no_faktur_penjualan='$id'");
-$query5 = mysqli_query($koneksi,"SELECT * FROM penjualan JOIN pegawai USING(kode_pegawai) JOIN penjualan_wo USING (no_faktur_penjualan) JOIN work_order USING(kode_wo) JOIN customer USING(kode_customer) WHERE no_faktur_penjualan='$id'");
-$data5 = mysqli_fetch_array($query5);
 
 ?>
 <div class="container">
@@ -19,13 +17,7 @@ $data5 = mysqli_fetch_array($query5);
         <tr>
             <th width="11%">Pelanggan</th>
             <th width="1%">:</th>
-            <?php 
-            if (isset($data5['nama_customer'])) {
-                 echo "<th>".$data5["nama_customer"]."</th>";
-            } else {
-                echo "<th>Umum</th>";
-            } 
-            ?>
+            <th><?= $data['nama_customer'] ?></th>
             <th width="11%">Kasir</th>
             <th width="1%">:</th>
             <th><?= $data['nama_pegawai']?></th>

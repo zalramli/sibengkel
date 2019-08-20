@@ -9,7 +9,8 @@
             <thead>
                 <tr>
                     <th>No Faktur</th>
-                    <th>Yang Melayani</th>
+                    <th>Nama Customer</th>
+                    <th>Kasir</th>
                     <th>Tanggal Transaksi</th>
                     <th>Total Harga</th>
                     <th>Total Bayar</th>
@@ -19,13 +20,16 @@
             </thead>
             <tbody>
                 <?php
-                $query = mysqli_query($koneksi, "SELECT * FROM penjualan JOIN pegawai USING(kode_pegawai) ORDER BY tgl_transaksi DESC");
+                $query = mysqli_query($koneksi, "SELECT * FROM penjualan JOIN customer USING(kode_customer) JOIN pegawai USING(kode_pegawai) ORDER BY tgl_transaksi DESC");
                 foreach ($query as $data) {
+                    $tgl_transaksi = $data['tgl_transaksi'];
+                    $data_transaksi = date('Y-m-d', strtotime($tgl_transaksi));
                 ?>
                 <tr>
                     <td><?= $data['no_faktur_penjualan'] ?></td>
+                    <td><?= $data['nama_customer'] ?></td>
                     <td><?= $data['nama_pegawai'] ?></td>
-                    <td><?= $data['tgl_transaksi'] ?></td>
+                    <td><?= tgl_indo($data_transaksi) ?></td>
                     <td style="text-align: right;"><?= $data['total_harga'] ?></td>
                     <td style="text-align: right;"><?= $data['bayar'] ?></td>
                     <td style="text-align: right;"><?= $data['kembalian'] ?></td>
