@@ -26,8 +26,9 @@ if (isset($_POST['simpan'])) {
     $bayar = $_POST['bayar'];
     $kembalian = $_POST['kembalian'];
     $status = "0";
+    $kode_customer = $data['kode_customer'];
 
-    $query_penjualan = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
+    $query_penjualan = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
 
     $query_penjualan_wo = mysqli_query($koneksi,"INSERT INTO penjualan_wo VALUES ('','$no_faktur_penjualan','$kode_wo')");
 

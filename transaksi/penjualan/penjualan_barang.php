@@ -13,7 +13,19 @@ if (isset($_POST['simpan'])) {
     } else {
       $auto_kode = "FK000001";
     }
+    $sql2 = mysqli_query($koneksi, "SELECT max(kode_customer) FROM customer");
+    $kode_faktur2 = mysqli_fetch_array($sql2);
+    if ($kode_faktur2) {
+      $nilai2 = substr($kode_faktur2[0], 1);
+      $kode2 = (int) $nilai2;
+      //tambahkan sebanyak + 1
+      $kode2 = $kode2 + 1;
+      $auto_kode2 = "K" . str_pad($kode2, 4, "0",  STR_PAD_LEFT);
+    } else {
+      $auto_kode2 = "K0001";
+    }
     $no_faktur_penjualan = $auto_kode;
+    $kode_customer = $auto_kode2;
     $kode_pegawai = $_SESSION['kode_pegawai'];
     date_default_timezone_set('Asia/Jakarta');
     $tgl_transaksi = date('Y-m-d H:i:s');
@@ -22,8 +34,19 @@ if (isset($_POST['simpan'])) {
     $bayar = $_POST['bayar'];
     $kembalian = $_POST['kembalian'];
     $status = "0";
+    $query_cek_customer = mysqli_query($koneksi,"SELECT COUNT(*) AS jumlah FROM customer WHERE nama_customer='Umum'");
+    $data_customer = mysqli_fetch_array($query_cek_customer);
+    $cek_customer = $data_customer['jumlah'];
+    if ($cek_customer == 0) {
+        $query_customer = mysqli_query($koneksi, "INSERT INTO customer VALUES ('$kode_customer','Umum','-','-') ");
+        $query_penjualan = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
+    } else {
+        $query_ambil_customer = mysqli_query($koneksi,"SELECT * FROM customer WHERE nama_customer='Umum'");
+        $data_customer2 = mysqli_fetch_array($query_ambil_customer);
+        $kode_customer2 = $data_customer2['kode_customer'];
+        $query_penjualan = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer2','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
+    } 
 
-    $query_penjualan = mysqli_query($koneksi,"INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
         // INSERT DATA DETAIL PENJUALAN BARANG
         for ($i = 0; $i < count($_POST['kode_barang2']); $i++) {
         // data - data
