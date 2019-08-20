@@ -6,7 +6,7 @@ include '../../koneksi/koneksi.php';
  {  
       if($_POST["kode_customer"] != '')  
       {  
-           $sql = "SELECT * FROM customer JOIN kendaraan USING(no_plat) WHERE kode_customer = '".$_POST["kode_customer"]."'"; 
+           $sql = "SELECT * FROM customer WHERE kode_customer = '".$_POST["kode_customer"]."'"; 
             $result = mysqli_query($koneksi, $sql);  
       while($row = mysqli_fetch_array($result))  
       {  
@@ -54,15 +54,15 @@ include '../../koneksi/koneksi.php';
             <label for="">No Plat</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="no_plat" class="form-control" placeholder="col-lg-6" value="'.$row["no_plat"].'" readonly>
+                <input type="text" name="no_plat" class="form-control" placeholder="isi form plat nomer">
               </div>
             </div>
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <label for="">Nama Mobil</label>
+            <label for="">Nama Kendaraan</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="nama_kendaraan" class="form-control" placeholder="col-lg-6" value="'.$row["nama_kendaraan"].'" readonly>
+                <input type="text" name="nama_kendaraan" class="form-control" placeholder="isi form nama kendaraan">
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@ include '../../koneksi/koneksi.php';
             <label for="">Nama Kendaraan</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="nama_kendaraan" class="form-control" placeholder="isi form nama mobil">
+                <input type="text" name="nama_kendaraan" class="form-control" placeholder="isi form nama kendaraan">
               </div>
             </div>
           </div>
