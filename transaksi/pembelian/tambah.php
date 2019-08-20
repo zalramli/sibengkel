@@ -49,7 +49,7 @@ if (isset($_POST['simpan'])) {
         $total_harga = $_POST['total_harga'];
         $bayar = $_POST['bayar'];
         $kembalian = $_POST['kembalian'];
-        $status = 0;
+        $status = 1;
 
         // proses input data tramsaksi ke dalam database
         $query = mysqli_query($koneksi, "INSERT INTO pembelian VALUES ('$no_faktur_pembelian','$kode_pegawai','$kode_suplier','$tgl_transaksi','$sub_total','$potongan','$total_harga','$bayar','$kembalian','$status') ");
@@ -62,6 +62,18 @@ if (isset($_POST['simpan'])) {
 
                 // update status
                 mysqli_query($koneksi, "UPDATE permintaan_barang SET status='1' WHERE kode_permintaan='$kode_permintaan'");
+
+                // perulangan update stok
+                foreach ($query_tampil_detail as $data) {
+                    $kode_barang_update = $data['kode_barang'];
+                    $jumlah_barang_update = $data['jumlah_barang'];
+                    $stock_lama = $data['stock'];
+
+                    $stock_baru = $stock_lama +  $jumlah_barang_update;
+
+                    // update stok
+                    mysqli_query($koneksi, "UPDATE barang SET stock='$stock_baru' WHERE kode_barang='$kode_barang_update'");
+                }
 
                 echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=v_transaksi_pembelian'</script>";
             } else {
