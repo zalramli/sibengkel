@@ -49,13 +49,31 @@
                 ?>
             </tbody>
             <tfoot>
+
+                <?php
+
+                // mengambil total gaji pegawai
+                $query3 = mysqli_query($koneksi, "SELECT SUM(total_gaji) AS total1 FROM detail_penggajian WHERE kode_penggajian='$id'");
+                foreach ($query3 as $data3) {
+                    $total1 =  $data3['total1'];
+                }
+
+                // mengambil total gaji mekanik
+                $query4 = mysqli_query($koneksi, "SELECT SUM(total_gaji) AS total2 FROM detail_penggajian_m WHERE kode_penggajian='$id'");
+                foreach ($query4 as $data4) {
+                    $total2 =  $data4['total2'];
+                }
+
+                $total_all = $total1 + $total2;
+
+                ?>
                 <tr>
-                    <th>Kode</th>
-                    <th>Nama</th>
-                    <th>Jenis</th>
-                    <th>Priode Gaji</th>
-                    <th>Jumlah Hari Kerja</th>
-                    <th>Total Gaji</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Jumlah Total Gaji : </th>
+                    <th><?= $total_all ?></th>
                 </tr>
             </tfoot>
         </table>
