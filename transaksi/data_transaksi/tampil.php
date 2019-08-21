@@ -1,4 +1,3 @@
-
 <div class="data-table-list">
     <div class="basic-tb-hd">
         <h2>Data Transaksi</h2>
@@ -24,7 +23,7 @@
                 foreach ($query as $data) {
                     $tgl_transaksi = $data['tgl_transaksi'];
                     $data_transaksi = date('Y-m-d', strtotime($tgl_transaksi));
-                ?>
+                    ?>
                 <tr>
                     <td><?= $data['no_faktur_penjualan'] ?></td>
                     <td><?= $data['nama_customer'] ?></td>
@@ -40,15 +39,15 @@
                 <?php } ?>
             </tbody>
             <tfoot>
-            <tr>
-                <th>No Faktur</th>
-                <th>Yang Melayani</th>
-                <th>Tanggal Transaksi</th>
-                <th>Total Harga</th>
-                <th>Total Bayar</th>
-                <th>Total Kembalian</th>
-                <th>Aksi</th>
-            </tr>
+                <tr>
+                    <th>No Faktur</th>
+                    <th>Yang Melayani</th>
+                    <th>Tanggal Transaksi</th>
+                    <th>Total Harga</th>
+                    <th>Total Bayar</th>
+                    <th>Total Kembalian</th>
+                    <th>Aksi</th>
+                </tr>
             </tfoot>
         </table>
     </div>

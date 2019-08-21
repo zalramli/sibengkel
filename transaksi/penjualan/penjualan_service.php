@@ -284,8 +284,8 @@ if (isset($_POST['simpan'])) {
 
       $('#cart_barang').append(`
 
-          <br />
           <div id="row` + count1 + `" class="row">
+          <br />
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
               <p>` + nomer + `</p>
             </div>
@@ -382,8 +382,8 @@ if (isset($_POST['simpan'])) {
 
       $('#cart_service').append(`
 
-          <br />
           <div id="row2` + count2 + `" class="row">
+          <br />
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
               <p>` + nomer + `</p>
             </div>
