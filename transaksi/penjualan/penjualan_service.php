@@ -115,7 +115,7 @@ if (isset($_POST['simpan'])) {
             </div>
             <div class="col-lg-1">
               <div class="form-group">
-                <a id="btn_cart_barang" name="add_more" class="btn btn-primary">+</a>
+                <a id="btn_cart_barang" onclick="setTimeout(update_total, 100)" name="add_more" class="btn btn-primary">+</a>
               </div>
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
@@ -137,7 +137,7 @@ if (isset($_POST['simpan'])) {
             </div>
             <div class="col-lg-1">
               <div class="form-group">
-                <a id="btn_cart_service" name="add_more" class="btn btn-warning">+</a>
+                <a id="btn_cart_service" onclick="setTimeout(update_total, 100)" name="add_more" class="btn btn-warning">+</a>
               </div>
             </div>
           </div>
@@ -464,4 +464,17 @@ if (isset($_POST['simpan'])) {
       sub_total.value = v_sub_total;
     }
   });
+
+  // Menghitung 
+  function update_total() {
+    var form_data = $("#transaksi_form").serialize();
+    $.ajax({
+      url: "transaksi/penjualan/total_penjualan_service.php",
+      method: "POST",
+      data: form_data,
+      success: function(data) {
+        $('.total_harga').val(data);
+      }
+    });
+  }
 </script>

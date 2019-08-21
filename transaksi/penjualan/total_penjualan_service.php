@@ -1,6 +1,7 @@
 <?php
 $jumlah_barang = 0;
 $total_hrg1 = 0;
+$total_hrg2 = 0;
 if (isset($_POST["jumlah_barang"])) {
 	$jumlah_barang = $_POST["jumlah_barang"];
 	if ($jumlah_barang > 0) {
@@ -10,4 +11,11 @@ if (isset($_POST["jumlah_barang"])) {
 		}
 	}
 }
-echo $total_hrg1;
+
+if (isset($_POST["kode_service2"])) {
+	for ($count = 0; $count < count($_POST["kode_service2"]); $count++) {
+		$harga2 = $_POST["tarif_harga"][$count];
+		$total_hrg2 = $total_hrg2 + $harga2;
+	}
+}
+echo $total_hrg1 + $total_hrg2;
