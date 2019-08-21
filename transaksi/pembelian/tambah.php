@@ -243,13 +243,17 @@ if (isset($_POST['simpan'])) {
         var bayar = document.getElementById("bayar");
         var kembalian = document.getElementById("kembalian");
 
+        var potongan_temp = 0;
+
         // cek apakah kosong
         if (potongan.value.length == 0) {
-            potongan.value = 0;
+            potongan_temp = 0;
+        } else {
+            potongan_temp = potongan.value;
         }
 
         // parsing dan perhitungan
-        var v_total = parseFloat(sub_total_hrg.value) - parseFloat(potongan.value);
+        var v_total = parseFloat(sub_total_hrg.value) - parseFloat(potongan_temp);
         var v_bayar = parseFloat(bayar.value);
 
         total.value = v_total;

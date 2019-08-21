@@ -214,7 +214,8 @@ if (isset($_POST['simpan'])) {
                     <h5>Potongan Harga</h5>
                   </td>
                   <td style="padding-top: 5px">
-                    <h5><input style="text-align: right;" type="text" class="form-control" id="potongan_harga" name="potongan_harga"></h5>
+                    <h5><input style="text-align: right;" type="text" class="form-control" id="potongan_harga" name="potongan_harga" onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
+                    <input type="hidden" id="total" name="total">
                   </td>
                 </tr>
               </table>
@@ -229,14 +230,14 @@ if (isset($_POST['simpan'])) {
                   <td style="padding-top: 15px;" width="60%">
                     <h5>Bayar</h5>
                   </td>
-                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="text" class="form-control"></td>
+                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="text" class="form-control" onkeyup="update_kembalian()" onchange="update_kembalian()"></td>
                 </tr>
                 <tr>
                   <td style="padding: 20px 0px;">
                     <h5>Kembalian</h5>
                   </td>
                   <td style="padding: 20px 0px;">
-                    <h5><input style="text-align:right;" type="text" class="form-control" readonly="" id="kembalian" name="kembalian" value="100000"></h5>
+                    <h5><input style="text-align:right;" type="text" class="form-control" readonly="" id="kembalian" name="kembalian"></h5>
                   </td>
                 </tr>
 
@@ -477,4 +478,35 @@ if (isset($_POST['simpan'])) {
       }
     });
   }
+
+  // Menghitung kembalian
+  function update_kembalian() {
+    var total_harga = document.getElementById("total_harga");
+    var potongan_harga = document.getElementById("potongan_harga");
+    var total = document.getElementById("total");
+    var bayar = document.getElementById("bayar");
+    var kembalian = document.getElementById("kembalian");
+
+    var potongan_temp = 0;
+
+    // cek apakah kosong
+    if (potongan_harga.value.length == 0) {
+      potongan_temp = 0;
+    } else {
+      potongan_temp = potongan_harga.value;
+    }
+
+    // parsing dan perhitungan
+    var v_total = parseFloat(total_harga.value) - parseFloat(potongan_temp);
+    var v_bayar = parseFloat(bayar.value);
+
+    total.value = v_total;
+
+    if (v_bayar >= v_total) {
+      kembalian.value = bayar.value - v_total;
+    } else {
+      kembalian.value = null;
+    }
+  }
+  // Menghitung kembalian
 </script>
