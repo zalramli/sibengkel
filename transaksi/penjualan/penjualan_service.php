@@ -40,6 +40,12 @@ if (isset($_POST['simpan'])) {
         $harga_jual = $_POST['harga_jual'][$i];
         // sub total
         $sub_total_harga = $jumlah_barang * $harga_jual;
+        $qq = mysqli_query($koneksi,"SELECT * FROM barang WHERE kode_barang='$kode_barang'");
+        $f = mysqli_fetch_array($qq);
+        $ids = $f['kode_barang'];
+        $stock_sekarang = $f['stock'];
+        $stock_baru = $stock_sekarang - $jumlah_barang;
+        mysqli_query($koneksi,"UPDATE barang SET stock='$stock_baru' WHERE kode_barang='$ids'");
 
         $query_detail_barang = mysqli_query($koneksi, "INSERT INTO detail_penjualan_barang VALUES ('','$no_faktur_penjualan','$kode_barang','$jumlah_barang','$sub_total_harga') ");
         }
