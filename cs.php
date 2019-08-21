@@ -80,7 +80,9 @@ elseif ($_SESSION['akses'] != "Cs")
                     if ($_GET['halaman'] == 'add_work_order') {
                         include "transaksi/work_order/tambah.php";
                     }
-
+                    if ($_GET['halaman'] == 'laporan_transaksi') {
+                        include "transaksi/laporan_transaksi/tampil.php";
+                    }
                     ?>
                 </div>
             </div>

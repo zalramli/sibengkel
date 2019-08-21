@@ -108,6 +108,9 @@ if (!isset($_SESSION['username'])) {
                         include "transaksi/permintaan_barang/tampil_detail.php";
                     }
 
+                    if ($_GET['halaman'] == 'laporan_transaksi') {
+                        include "transaksi/laporan_transaksi/tampil.php";
+                    }
                     ?>
                 </div>
             </div>
