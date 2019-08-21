@@ -62,7 +62,7 @@ if (isset($_POST['simpan'])) {
 		rupiah.addEventListener('keyup', function(e){
 			// tambahkan 'Rp.' pada saat form di ketik
 			// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-			rupiah.value = formatRupiah(this.value, 'Rp. ');
+			rupiah.value = formatRupiah(this.value);
 		});
 		/* Fungsi formatRupiah */
 		function formatRupiah(angka, prefix){

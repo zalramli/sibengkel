@@ -22,4 +22,9 @@ function tgl_indo($tanggal){
  
 	return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
 }
+function format_ribuan($nilai)
+{
+    $n =  number_format($nilai,0,',','.');
+    return $n;
+}
 ?>

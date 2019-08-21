@@ -32,7 +32,7 @@ if (isset($_GET['hapus'])) {
                 <tr>
                     <td><?= $data['kode_service'] ?></td>
                     <td><?= $data['nama_service'] ?></td>
-                    <td><?= $data['tarif_harga'] ?></td>
+                    <td style="text-align: right;"><?= format_ribuan($data['tarif_harga']) ?></td>
                     <td>
                         <a href="?halaman=edit_tarifService&id=<?= $data['kode_service']; ?>" class="btn btn-primary">Edit</a>
                         <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_tarifService&hapus=<?= $data['kode_service']; ?>" class="btn btn-danger">Hapus</a>
