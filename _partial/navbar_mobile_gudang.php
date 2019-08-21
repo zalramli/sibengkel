@@ -6,25 +6,25 @@
                     <nav id="dropdown">
                         <ul class="mobile-menu-nav">
 
-                            <li><a href="gudang.php?halaman=dashboard">Dashboard</a>
+                            <li><a href="?halaman=dashboard">Dashboard</a>
                             </li>
 
-                            <li><a href="gudang.php?halaman=v_permintaan_barang">Order Barang/Sparepart</a>
+                            <li><a href="?halaman=v_permintaan_barang">Order Barang/Sparepart</a>
                             </li>
 
                             <li><a data-toggle="collapse" data-target="#demolibra" href="#">Data Barang</a>
                                 <ul id="demolibra" class="collapse dropdown-header-top">
-                                    <li><a href="gudang.php?halaman=v_daftarBarang">Daftar Barang</a>
+                                    <li><a href="?halaman=v_daftarBarang">Daftar Barang</a>
                                     </li>
-                                    <li><a href="gudang.php?halaman=v_jenisBarang">Jenis Barang</a>
+                                    <li><a href="?halaman=v_jenisBarang">Jenis Barang</a>
                                     </li>
-                                    <li><a href="gudang.php?halaman=v_merkBarang">Merk Barang</a></li>
-                                    <li><a href="gudang.php?halaman=v_satuanBarang">Satuan Barang</a>
+                                    <li><a href="?halaman=v_merkBarang">Merk Barang</a></li>
+                                    <li><a href="?halaman=v_satuanBarang">Satuan Barang</a>
                                     </li>
                                 </ul>
                             </li>
 
-                            <li><a href="">Laporan</a>
+                            <li><a href="?halaman=laporan_transaksi">Laporan</a>
                             </li>
 
                         </ul>

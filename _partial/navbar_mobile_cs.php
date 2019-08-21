@@ -14,7 +14,7 @@
                             <li><a href="cs.php?halaman=v_customer">Data Customer</a>
                             </li>
 
-                            <li><a href="">Laporan</a>
+                            <li><a href="?halaman=laporan_transaksi">Laporan</a>
                             </li>
 
                         </ul>

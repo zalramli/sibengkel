@@ -6,24 +6,24 @@
                     <nav id="dropdown">
                         <ul class="mobile-menu-nav">
 
-                            <li><a href="admin.php?halaman=dashboard">Dashboard</a>
+                            <li><a href="?halaman=dashboard">Dashboard</a>
                             </li>
 
-                            <li><a href="admin.php?halaman=v_penggajian">Penggajian</a>
+                            <li><a href="?halaman=v_penggajian">Penggajian</a>
                             </li>
 
                             <li><a data-toggle="collapse" data-target="#demolibra" href="#">Data Pegawai</a>
                                 <ul id="demolibra" class="collapse dropdown-header-top">
-                                    <li><a href="admin.php?halaman=v_pegawai">Pegawai</a>
+                                    <li><a href="?halaman=v_pegawai">Pegawai</a>
                                     </li>
-                                    <li><a href="admin.php?halaman=v_jenispegawai">Jenis Pegawai</a>
+                                    <li><a href="?halaman=v_jenispegawai">Jenis Pegawai</a>
                                     </li>
-                                    <li><a href="admin.php?halaman=v_mekanik">Mekanik</a>
+                                    <li><a href="?halaman=v_mekanik">Mekanik</a>
                                     </li>
                                 </ul>
                             </li>
 
-                            <li><a href="">Laporan</a>
+                            <li><a href="?halaman=laporan_transaksi">Laporan</a>
                             </li>
 
                         </ul>

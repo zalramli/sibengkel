@@ -6,19 +6,19 @@
                     <nav id="dropdown">
                         <ul class="mobile-menu-nav">
 
-                            <li><a href="kasir.php?halaman=dashboard">Dashboard</a>
+                            <li><a href="?halaman=dashboard">Dashboard</a>
                             </li>
 
                             <li><a data-toggle="collapse" data-target="#demolibra" href="#">Transaksi Penjualan</a>
                                 <ul id="demolibra" class="collapse dropdown-header-top">
 
-                                    <li><a href="kasir.php?halaman=transaksi_penjualan_barang">Transaksi Penjualan</a>
+                                    <li><a href="?halaman=transaksi_penjualan_barang">Transaksi Penjualan</a>
                                     </li>
 
-                                    <li><a href="kasir.php?halaman=v_work_order">Transaksi Penjualan + Service</a>
+                                    <li><a href="?halaman=v_work_order">Transaksi Penjualan + Service</a>
                                     </li>
 
-                                    <li><a href="kasir.php?halaman=v_data_transaksi">Data Transaksi Penjualan</a>
+                                    <li><a href="?halaman=v_data_transaksi">Data Transaksi Penjualan</a>
                                     </li>
 
                                 </ul>
@@ -27,22 +27,22 @@
                             <li><a data-toggle="collapse" data-target="#demolibra2" href="#">Pemasokan Barang</a>
                                 <ul id="demolibra2" class="collapse dropdown-header-top">
 
-                                    <li><a href="kasir.php?halaman=v_transaksi_pembelian">Transaksi Pemasokan</a>
+                                    <li><a href="?halaman=v_transaksi_pembelian">Transaksi Pemasokan</a>
                                     </li>
 
-                                    <li><a href="kasir.php?halaman=v_suplier">Data Suplier</a>
+                                    <li><a href="?halaman=v_suplier">Data Suplier</a>
                                     </li>
 
-                                    <li><a href="kasir.php?halaman=v_data_transaksi_pembelian">Data Transaksi Pemasokan</a>
+                                    <li><a href="?halaman=v_data_transaksi_pembelian">Data Transaksi Pemasokan</a>
                                     </li>
 
                                 </ul>
                             </li>
 
-                            <li><a href="kasir.php?halaman=v_tarifService">Data Service</a>
+                            <li><a href="?halaman=v_tarifService">Data Service</a>
                             </li>
 
-                            <li><a href="kasir.php?halaman=laporan_transaksi">laporan</a>
+                            <li><a href="?halaman=laporan_transaksi">laporan</a>
                             </li>
 
                         </ul>
