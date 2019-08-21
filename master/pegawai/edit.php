@@ -17,15 +17,33 @@ if (isset($_POST['update'])) {
   // validasi password dan konfirmasi password
   if ($k_password == $_POST["password"]) {
 
-    $update = mysqli_query($koneksi, "UPDATE pegawai SET kode_jenis_p='$kode_jenis_p',nama_pegawai='$nama_pegawai',alamat='$alamat',no_telp='$no_telp',username='$username',password='$password' WHERE kode_pegawai='$kode_pegawai'");
-
-    // validasi apakah berhasil atau gagal
-    if ($update) {
-      echo "<script>alert('Data Berhasil Terupdate'); window.location = 'admin.php?halaman=v_pegawai'</script>";
+    
+    $query_pegawai = mysqli_query($koneksi,"SELECT * FROM pegawai WHERE kode_pegawai='$kode_pegawai'");
+    $ambil = mysqli_fetch_array($query_pegawai);
+    $cek_username = $ambil['username'];
+    $query_count = mysqli_query($koneksi,"SELECT COUNT(*) AS jumlah FROM pegawai WHERE kode_pegawai='$kode_pegawai'");
+    $ambil_count = mysqli_fetch_array($query_count);
+    $cek_count = $ambil_count['jumlah'];
+    if ($cek_username == $username) {
+        $update = mysqli_query($koneksi, "UPDATE pegawai SET kode_jenis_p='$kode_jenis_p',nama_pegawai='$nama_pegawai',alamat='$alamat',no_telp='$no_telp',username='$username',password='$password' WHERE kode_pegawai='$kode_pegawai'");
+        // validasi apakah berhasil atau gagal
+        if ($update) {
+          echo "<script>alert('Data Berhasil Terupdate'); window.location = 'admin.php?halaman=v_pegawai'</script>";
+        } else {
+          echo "<script>alert('Terjadi Kesalahan Update Database'); window.location = 'admin.php?halaman=edit_pegawai&id=" .$id."'</script>";
+        }
+    } else if ($cek_count == 1) {
+          echo "<script>alert('Tidak Boleh Ada 2 Username yang Sama'); window.location = 'admin.php?halaman=edit_pegawai&id=" .$id."'</script>";
     } else {
-      echo "<script>alert('Terjadi Kesalahan Update Database'); window.location = 'admin.php?halaman=edit_pegawai&id=" .$id."'</script>";
+        $update = mysqli_query($koneksi, "UPDATE pegawai SET kode_jenis_p='$kode_jenis_p',nama_pegawai='$nama_pegawai',alamat='$alamat',no_telp='$no_telp',username='$username',password='$password' WHERE kode_pegawai='$kode_pegawai'");
+        // validasi apakah berhasil atau gagal
+        if ($update) {
+          echo "<script>alert('Data Berhasil Terupdate'); window.location = 'admin.php?halaman=v_pegawai'</script>";
+        } else {
+          echo "<script>alert('Terjadi Kesalahan Update Database'); window.location = 'admin.php?halaman=edit_pegawai&id=" .$id."'</script>";
+        }
     }
-
+    
   } else {
     echo "<script>alert('Password dan konfirmasi password harus sama !!'); window.location = 'admin.php?halaman=edit_pegawai&id=" .$id."'</script>";
   }

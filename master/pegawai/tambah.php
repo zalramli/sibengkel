@@ -28,13 +28,22 @@ if (isset($_POST['simpan'])) {
   if ($k_password == $_POST["password"]) {
 
     $query = mysqli_query($koneksi, "INSERT INTO pegawai (kode_pegawai,kode_jenis_p,nama_pegawai,alamat,no_telp,username,password,status_login) VALUES ('$auto_kode','$kode_jenis_p','$nama_pegawai','$alamat','$no_telp','$username','$password','$status') ");
-
-    // validasi apakah berhasil atau gagal
-    if ($query) {
-      echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'admin.php?halaman=v_pegawai'</script>";
+    $query_pegawai = mysqli_query($koneksi,"SELECT COUNT(*) as jumlah FROM pegawai WHERE username='$username'");
+    $ambil = mysqli_fetch_array($query_pegawai);
+    $cek_username = $ambil['jumlah'];
+    if($cek_username > 0)
+    {
+        echo "<script>alert('Tidak Boleh Ada 2 Username yang Sama'); window.location = 'admin.php?halaman=add_pegawai'</script>";
     } else {
-      echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'admin.php?halaman=add_pegawai'</script>";
+        // validasi apakah berhasil atau gagal
+        if ($query) {
+        echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'admin.php?halaman=v_pegawai'</script>";
+        } else {
+        echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'admin.php?halaman=add_pegawai'</script>";
     }
+    }
+
+    
   } else {
     echo "<script>alert('Password dan konfirmasi password harus sama !!'); window.location = 'admin.php?halaman=add_pegawai'</script>";
   }
