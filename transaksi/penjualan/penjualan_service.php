@@ -447,5 +447,21 @@ if (isset($_POST['simpan'])) {
         $('.total_harga').val(data);
       }
     });
+
+    // start of  update value sub_total inputan
+    // proses ambil index
+    var get_no_id = $(this).attr("id"); //---jumlah_barang + index
+    var no_id_nya = get_no_id.substring(13); //---ambil indexnya saja
+
+    // objek yg spesifik
+    var harga_jual = document.getElementById("harga_jual" + no_id_nya);
+    var jumlah_barang = document.getElementById("jumlah_barang" + no_id_nya);
+    var sub_total = document.getElementById("sub_total" + no_id_nya);
+
+    var v_sub_total = parseFloat(harga_jual.value) * parseFloat(jumlah_barang.value);
+
+    if (v_sub_total >= 0) {
+      sub_total.value = v_sub_total;
+    }
   });
 </script>
