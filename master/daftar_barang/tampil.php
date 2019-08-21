@@ -41,8 +41,8 @@ if (isset($_GET['hapus'])) {
                     <td><?= $data['nama_merk'] ?></td>
                     <td><?= $data['stock'] ?></td>
                     <td><?= $data['nama_satuan'] ?></td>
-                    <td><?= $data['harga_pokok'] ?></td>
-                    <td><?= $data['harga_jual'] ?></td>
+                    <td style="text-align: right"><?= format_ribuan($data['harga_pokok']) ?></td>
+                    <td style="text-align: right;"><?= format_ribuan($data['harga_jual']) ?></td>
                     <td>
                         <a href="?halaman=edit_daftarBarang&id=<?= $data['kode_barang'] ?>" class="btn btn-primary">Edit</a>
                         <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_daftarBarang&hapus=<?= $data['kode_barang'] ?>" class="btn btn-danger">Hapus</a>

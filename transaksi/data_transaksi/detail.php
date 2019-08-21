@@ -50,8 +50,8 @@ $query4 = mysqli_query($koneksi,"SELECT * FROM detail_penjualan_service JOIN ser
                 <th width="7%" scope="row"><?= $no++ ?></th>
                 <td width="35%"><?= $data3['nama_barang'] ?></td>
                 <td width="10%"><?= $data3['jumlah_barang'] ?></td>
-                <td width="24%" style="text-align:right"><?= $data3['harga_jual'] ?></td>
-                <td width="24%" style="text-align:right"><?= $data3['sub_total_harga'] ?></td>
+                <td width="24%" style="text-align:right"><?= format_ribuan($data3['harga_jual']) ?></td>
+                <td width="24%" style="text-align:right"><?= format_ribuan($data3['sub_total_harga']) ?></td>
             </tr>
             <?php }?>
         </tbody>
@@ -74,14 +74,14 @@ $query4 = mysqli_query($koneksi,"SELECT * FROM detail_penjualan_service JOIN ser
                 <th scope="row"><?= $no++ ?></th>
                 <td><?= $data4['nama_service'] ?></td>
                 <td></td>
-                <td style="text-align: right;"><?= $data4['tarif_harga'] ?></td>
+                <td style="text-align: right;"><?= format_ribuan($data4['tarif_harga']) ?></td>
             </tr>
             <?php }?>
             <tr>
                 <td></td>
                 <td></td>
                 <th>GRAND TOTAL</th>
-                <th style="text-align:right"><?= $data['total_harga'] ?></th>
+                <th style="text-align:right"><?= format_ribuan($data['total_harga']) ?></th>
             </tr>
         </tbody>
     </table>

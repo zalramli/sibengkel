@@ -30,9 +30,9 @@
                     <td><?= $data['nama_customer'] ?></td>
                     <td><?= $data['nama_pegawai'] ?></td>
                     <td><?= tgl_indo($data_transaksi) ?></td>
-                    <td style="text-align: right;"><?= $data['total_harga'] ?></td>
-                    <td style="text-align: right;"><?= $data['bayar'] ?></td>
-                    <td style="text-align: right;"><?= $data['kembalian'] ?></td>
+                    <td style="text-align: right;"><?= format_ribuan($data['total_harga']) ?></td>
+                    <td style="text-align: right;"><?= format_ribuan($data['bayar']) ?></td>
+                    <td style="text-align: right;"><?= format_ribuan($data['kembalian']) ?></td>
                     <td style="text-align: center;">
                         <a href="?halaman=detail_transaksi&id=<?= $data['no_faktur_penjualan']; ?>" class=" btn btn-warning">Detail</a>
                     </td>

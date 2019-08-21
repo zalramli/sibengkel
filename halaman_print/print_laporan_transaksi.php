@@ -62,9 +62,9 @@ $akhir = $format_akhir." 00:00:00";
         <td><?= $data['nama_customer'] ?></td>
         <td><?= $data['nama_pegawai'] ?></td>
         <td><?= tgl_indo($data_transaksi) ?></td>
-        <td style="text-align: right"><?= $data['total_harga'] ?></td>
-        <td style="text-align: right"><?= $data['bayar'] ?></td>
-        <td style="text-align: right"><?= $data['kembalian'] ?></td>
+        <td style="text-align: right"><?= format_ribuan($data['total_harga']) ?></td>
+        <td style="text-align: right"><?= format_ribuan($data['bayar']) ?></td>
+        <td style="text-align: right"><?= format_ribuan($data['kembalian']) ?></td>
     </tr>
     <?php } ?>
 </table>
