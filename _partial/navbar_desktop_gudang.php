@@ -7,7 +7,7 @@
                     <li class="<?php 
                     if ($_GET['halaman'] == "dashboard") {echo 'active';}
                     ?>">
-                        <a href="admin.php?halaman=dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                        <a href="?halaman=dashboard"><i class="fas fa-home"></i> Dashboard</a>
                     </li>
 
                     <li class="<?php 

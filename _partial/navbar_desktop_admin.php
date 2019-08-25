@@ -7,14 +7,14 @@
                     <li class="<?php 
                     if ($_GET['halaman'] == "dashboard") {echo 'active';}
                     ?>">
-                        <a href="admin.php?halaman=dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                        <a href="?halaman=dashboard"><i class="fas fa-home"></i> Dashboard</a>
                     </li>
 
                     <li class="<?php 
                     if ($_GET['halaman'] == "v_penggajian") {echo 'active';}
                     if ($_GET['halaman'] == "add_penggajian") {echo 'active';}
                     ?>">
-                        <a href="admin.php?halaman=v_penggajian"><i class="fas fa-hand-holding-usd"></i> Penggajian</a>
+                        <a href="?halaman=v_penggajian"><i class="fas fa-hand-holding-usd"></i> Penggajian</a>
                     </li>
 
                     <li class="<?php 
@@ -53,13 +53,13 @@
                     ?>">
                         <ul class="notika-main-menu-dropdown">
 
-                            <li><a href="admin.php?halaman=v_pegawai">Pegawai</a>
+                            <li><a href="?halaman=v_pegawai">Pegawai</a>
                             </li>
 
-                            <li><a href="admin.php?halaman=v_jenis_pegawai">Jenis Pegawai</a>
+                            <li><a href="?halaman=v_jenis_pegawai">Jenis Pegawai</a>
                             </li>
 
-                            <li><a href="admin.php?halaman=v_mekanik">Mekanik</a>
+                            <li><a href="?halaman=v_mekanik">Mekanik</a>
                             </li>
 
                         </ul>

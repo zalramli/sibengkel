@@ -6,18 +6,18 @@
 
                     <li class="<?php 
                     if ($_GET['halaman'] == "dashboard") {echo 'active';}
-                    ?>"><a href="cs.php?halaman=dashboard"><i class="fas fa-home"></i> Dashboard</a>
+                    ?>"><a href="?halaman=dashboard"><i class="fas fa-home"></i> Dashboard</a>
                     </li>
                     <li class="<?php 
                     if ($_GET['halaman'] == "add_work_order") {echo 'active';}
-                    ?>"><a href="cs.php?halaman=add_work_order"><i class="fas fa-user-clock"></i> Work Order</a>
+                    ?>"><a href="?halaman=add_work_order"><i class="fas fa-user-clock"></i> Work Order</a>
                     </li>
 
                     <li class="<?php 
                     if ($_GET['halaman'] == "v_customer") {echo 'active';}
                     if ($_GET['halaman'] == "add_customer") {echo 'active';}
                     if ($_GET['halaman'] == "edit_customer") {echo 'active';}
-                    ?>"><a href="cs.php?halaman=v_customer"><i class="fas fa-user-edit"></i> Data Customer</a>
+                    ?>"><a href="?halaman=v_customer"><i class="fas fa-user-edit"></i> Data Customer</a>
                     </li>
 
                     
