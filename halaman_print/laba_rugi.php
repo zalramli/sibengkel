@@ -16,6 +16,48 @@
     $tgl_mulai = $_POST['tgl_mulai'];
     $tgl_akhir = $_POST['tgl_akhir'];
 
+    $format_mulai =  date('Y-m-d', strtotime($tgl_mulai));
+    $format_akhir =  date('Y-m-d', strtotime($tgl_akhir));
+
+    $data1 = mysqli_query($koneksi, " SELECT SUM(p.total_harga) total_pembelian
+                                        FROM pembelian p
+                                        where p.tgl_transaksi >= '$format_mulai' && p.tgl_transaksi <= '$format_akhir' ");
+
+    $data2 = mysqli_query($koneksi, " SELECT SUM(p.total_penggajian) total_penggajian
+                                        FROM penggajian p
+                                        where p.tgl_transaksi >= '$format_mulai' && p.tgl_transaksi <= '$format_akhir' ");
+
+    $data3 = mysqli_query($koneksi, " SELECT SUM(dpb.sub_total_harga) sub_total_harga
+                                        FROM detail_penjualan_barang dpb JOIN penjualan p USING (no_faktur_penjualan)
+                                        where p.tgl_transaksi >= '$format_mulai' && p.tgl_transaksi <= '$format_akhir' ");
+
+    $data4 = mysqli_query($koneksi, " SELECT SUM(dpb.sub_total_harga) sub_total_harga
+                                        FROM detail_penjualan_barang dpb JOIN penjualan p USING (no_faktur_penjualan)
+                                        where p.tgl_transaksi >= '$format_mulai' && p.tgl_transaksi <= '$format_akhir' ");
+
+    foreach ($data1 as $d1) {
+        if (isset($d1["total_pembelian"])) {
+            $total_pembelian = $d1["total_pembelian"];
+        } else {
+            $total_pembelian = 0;
+        }
+    }
+
+    foreach ($data2 as $d2) {
+        if (isset($d2["total_penggajian"])) {
+            $total_penggajian = $d2["total_penggajian"];
+        } else {
+            $total_penggajian = 0;
+        }
+    }
+
+    foreach ($data3 as $d3) {
+        if (isset($d3["sub_total_harga"])) {
+            $sub_total_harga = $d3["sub_total_harga"];
+        } else {
+            $sub_total_harga = 0;
+        }
+    }
 
     ?>
 
@@ -30,7 +72,7 @@
                         <img src="" width="190" alt="logo_catering.png">
                     </div>
                     <div class="col col-md-8" style="margin-left:-40px ">
-                        <strong style="font-size:30">Henny Catering</strong><br>
+                        <strong style="font-size:30">Bengkel Cemerlang Jaya</strong><br>
                         <address style="font-size: 15">Jalan Fatahillah No. 35 , Kabupaten Jember, Jawa Timur <br>
                             Telp : (0331) 426 746 <br>
                             HP / WA : 081 236 647 71 / 082 232 419 229 </address>
@@ -41,7 +83,8 @@
                 <div class="row">
                     <div class="col col-md-12">
 
-                        <address class="text-center" style="font-size: 18">LAPORAN TRANSAKSI (PRASMANAN) <br> PERIODE <?php echo $tgl_mulai ?> SAMPAI <?php echo $tgl_akhir ?> </address>
+                        <address class="text-center" style="font-size: 18">LAPORAN LABA - RUGI
+                            <br> PERIODE <?php echo $tgl_mulai ?> SAMPAI <?php echo $tgl_akhir ?> </address>
 
                     </div>
                 </div>
@@ -83,17 +126,12 @@
                                             <!-- Detail pemasukan -->
 
                                             <tr>
-                                                <td class="">Penjualan Obat</td>
-                                                <td class="text-right">Rp. </td>
+                                                <td class="">Penjualan Barang dan Sperpart</td>
+                                                <td class="text-right">Rp. <?php echo number_format($sub_total_harga, 2, ",", "."); ?></td>
                                             </tr>
 
                                             <tr>
-                                                <td class="">Perawatan</td>
-                                                <td class="text-right">Rp. </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="">Konsultasi</td>
+                                                <td class="">Jasa Service</td>
                                                 <td class="text-right">Rp. </td>
                                             </tr>
 
@@ -124,8 +162,12 @@
 
                                             <!-- Detail Pengeluaran -->
                                             <tr>
-                                                <td class="">Pemasokan</td>
-                                                <td class="text-right">Rp. </td>
+                                                <td class="">Pemasokan Barang dan Sperpart</td>
+                                                <td class="text-right">Rp. <?php echo number_format($total_pembelian, 2, ",", "."); ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="">Penggajian Pegawai</td>
+                                                <td class="text-right">Rp. <?php echo number_format($total_penggajian, 2, ",", "."); ?></td>
                                             </tr>
                                             <!-- Detail Pengeluaran -->
 
@@ -168,7 +210,7 @@
 
                                 <div class="col-md-2 text-center">
                                     <address>
-                                        Lumajang, <?php echo date("Y-m-d"); ?>
+                                        Jember, <?php echo date("Y-m-d"); ?>
                                         <br>
                                         Penanggung Jawab <br><br><br>
                                         TTD
