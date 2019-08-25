@@ -2,7 +2,7 @@
 <html class="no-js" lang="">
 
 <head>
-    <?php include "../../_partial/head.php"; ?>
+    <?php include "../_partial/head.php"; ?>
 
     <!-- modernizr JS
         ============================================ -->
@@ -11,30 +11,30 @@
 <body>
 
     <?php
-    include '../../koneksi/koneksi.php';
+    include '../koneksi/koneksi.php';
 
-    $date1 = $_POST['date1'];
-    $date2 = $_POST['date2'];
+    $tgl_mulai = $_POST['tgl_mulai'];
+    $tgl_akhir = $_POST['tgl_akhir'];
 
     $data1 = mysqli_query($koneksi, " SELECT SUM(p.total_hrg) total_pemasokan
                                         FROM pemasokan p
-                                        where p.tgl_pemasokan >= '$date1' && p.tgl_pemasokan <= '$date2' ");
+                                        where p.tgl_pemasokan >= '$tgl_mulai' && p.tgl_pemasokan <= '$tgl_akhir' ");
 
     $data2 = mysqli_query($koneksi, " SELECT SUM(t_o.harga_o) total_obat
                                         FROM transaksi_obat t_o , transaksi t
-                                        where t_o.id_transaksi = t.id_transaksi && t.tgl_transaksi >= '$date1' && t.tgl_transaksi <= '$date2' ");
+                                        where t_o.id_transaksi = t.id_transaksi && t.tgl_transaksi >= '$tgl_mulai' && t.tgl_transaksi <= '$tgl_akhir' ");
 
     $data3 = mysqli_query($koneksi, " SELECT SUM(t_p.harga_p) total_perawatan
                                         FROM transaksi_perawatan t_p , transaksi t
-                                        where t_p.id_transaksi = t.id_transaksi && t.tgl_transaksi >= '$date1' && t.tgl_transaksi <= '$date2' ");
+                                        where t_p.id_transaksi = t.id_transaksi && t.tgl_transaksi >= '$tgl_mulai' && t.tgl_transaksi <= '$tgl_akhir' ");
 
     $data4 = mysqli_query($koneksi, " SELECT SUM(t_k.harga_k) total_konsultasi
                                         FROM transaksi_konsultasi t_k , transaksi t
-                                        where t_k.id_transaksi = t.id_transaksi && t.tgl_transaksi >= '$date1' && t.tgl_transaksi <= '$date2' ");
+                                        where t_k.id_transaksi = t.id_transaksi && t.tgl_transaksi >= '$tgl_mulai' && t.tgl_transaksi <= '$tgl_akhir' ");
 
     $data5 = mysqli_query($koneksi, " SELECT SUM(t.total_hrg) total_transaksi
                                         FROM transaksi t
-                                        where t.tgl_transaksi >= '$date1' && t.tgl_transaksi <= '$date2' ");
+                                        where t.tgl_transaksi >= '$tgl_mulai' && t.tgl_transaksi <= '$tgl_akhir' ");
 
     foreach ($data1 as $d1) {
         if (isset($d1["total_pemasokan"])) {
@@ -80,10 +80,10 @@
 
                 <div class="row">
                     <div class="col col-md-2">
-                        <img src="../../images/logo_miliz.png" width="180" alt="">
+                        <img src="../images/logo_miliz.png" width="180" alt="">
                     </div>
                     <div class="col col-md-10">
-                        <strong style="font-size:30 ">MC Skincare</strong><br>
+                        <strong style="font-size:30 ">NM BENGKEL</strong><br>
                         <address style="font-size: 15">Jalan Jendral Ahmad Yani No. 16 - 17, <br>
                             Tompokersan, Kec. Lumajang, Kabupaten Lumajang, Jawa Timur 67316 <br>
                             Telp : 0812-2667-7100</address>
@@ -94,7 +94,7 @@
                     <div class="col col-md-12">
 
                         <hr style="border-width: 3px">
-                        <address class="text-center" style="font-size: 18">LAPORAN LABA(RUGI)<br>PERIODE <?php echo $date1; ?> SAMPAI <?php echo $date2; ?></address>
+                        <address class="text-center" style="font-size: 18">LAPORAN LABA(RUGI)<br>PERIODE <?php echo $tgl_mulai; ?> SAMPAI <?php echo $tgl_akhir; ?></address>
 
                     </div>
                 </div>
@@ -237,7 +237,7 @@
     </div>
 
     <!-- bagian js -->
-    <?php include "_partial/javascript.php"; ?>
+    <?php include "../_partial/javascript.php"; ?>
 
 </body>
 
