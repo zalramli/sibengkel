@@ -2,8 +2,8 @@
 <html class="no-js" lang="">
 
 <head>
-    <?php include "../_partial/head.php"; ?>
-
+    <link href="_partial/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="_partial/bootstrap.min.js"></script>
     <!-- modernizr JS
         ============================================ -->
 </head>
@@ -16,85 +16,32 @@
     $tgl_mulai = $_POST['tgl_mulai'];
     $tgl_akhir = $_POST['tgl_akhir'];
 
-    $data1 = mysqli_query($koneksi, " SELECT SUM(p.total_hrg) total_pemasokan
-                                        FROM pemasokan p
-                                        where p.tgl_pemasokan >= '$tgl_mulai' && p.tgl_pemasokan <= '$tgl_akhir' ");
 
-    $data2 = mysqli_query($koneksi, " SELECT SUM(t_o.harga_o) total_obat
-                                        FROM transaksi_obat t_o , transaksi t
-                                        where t_o.id_transaksi = t.id_transaksi && t.tgl_transaksi >= '$tgl_mulai' && t.tgl_transaksi <= '$tgl_akhir' ");
-
-    $data3 = mysqli_query($koneksi, " SELECT SUM(t_p.harga_p) total_perawatan
-                                        FROM transaksi_perawatan t_p , transaksi t
-                                        where t_p.id_transaksi = t.id_transaksi && t.tgl_transaksi >= '$tgl_mulai' && t.tgl_transaksi <= '$tgl_akhir' ");
-
-    $data4 = mysqli_query($koneksi, " SELECT SUM(t_k.harga_k) total_konsultasi
-                                        FROM transaksi_konsultasi t_k , transaksi t
-                                        where t_k.id_transaksi = t.id_transaksi && t.tgl_transaksi >= '$tgl_mulai' && t.tgl_transaksi <= '$tgl_akhir' ");
-
-    $data5 = mysqli_query($koneksi, " SELECT SUM(t.total_hrg) total_transaksi
-                                        FROM transaksi t
-                                        where t.tgl_transaksi >= '$tgl_mulai' && t.tgl_transaksi <= '$tgl_akhir' ");
-
-    foreach ($data1 as $d1) {
-        if (isset($d1["total_pemasokan"])) {
-            $total_pemasokan = $d1["total_pemasokan"];
-        } else {
-            $total_pemasokan = 0;
-        }
-    }
-    foreach ($data2 as $d2) {
-        if (isset($d2["total_obat"])) {
-            $total_obat = $d2["total_obat"];
-        } else {
-            $total_obat = 0;
-        }
-    }
-    foreach ($data3 as $d3) {
-        if (isset($d3["total_perawatan"])) {
-            $total_perawatan = $d3["total_perawatan"];
-        } else {
-            $total_perawatan = 0;
-        }
-    }
-    foreach ($data4 as $d4) {
-        if (isset($d4["total_konsultasi"])) {
-            $total_konsultasi = $d4["total_konsultasi"];
-        } else {
-            $total_konsultasi = 0;
-        }
-    }
-    foreach ($data5 as $d5) {
-        if (isset($d5["total_transaksi"])) {
-            $total_transaksi = $d5["total_transaksi"];
-        } else {
-            $total_transaksi = 0;
-        }
-    }
     ?>
 
     <div class="container">
+
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-12">
                 <hr>
 
                 <div class="row">
-                    <div class="col col-md-2">
-                        <img src="../images/logo_miliz.png" width="180" alt="">
+                    <div class="col col-md-3">
+                        <img src="" width="190" alt="logo_catering.png">
                     </div>
-                    <div class="col col-md-10">
-                        <strong style="font-size:30 ">NM BENGKEL</strong><br>
-                        <address style="font-size: 15">Jalan Jendral Ahmad Yani No. 16 - 17, <br>
-                            Tompokersan, Kec. Lumajang, Kabupaten Lumajang, Jawa Timur 67316 <br>
-                            Telp : 0812-2667-7100</address>
+                    <div class="col col-md-8" style="margin-left:-40px ">
+                        <strong style="font-size:30">Henny Catering</strong><br>
+                        <address style="font-size: 15">Jalan Fatahillah No. 35 , Kabupaten Jember, Jawa Timur <br>
+                            Telp : (0331) 426 746 <br>
+                            HP / WA : 081 236 647 71 / 082 232 419 229 </address>
                     </div>
                 </div>
 
+                <hr style="border-width: 3px">
                 <div class="row">
                     <div class="col col-md-12">
 
-                        <hr style="border-width: 3px">
-                        <address class="text-center" style="font-size: 18">LAPORAN LABA(RUGI)<br>PERIODE <?php echo $tgl_mulai; ?> SAMPAI <?php echo $tgl_akhir; ?></address>
+                        <address class="text-center" style="font-size: 18">LAPORAN TRANSAKSI (PRASMANAN) <br> PERIODE <?php echo $tgl_mulai ?> SAMPAI <?php echo $tgl_akhir ?> </address>
 
                     </div>
                 </div>
@@ -119,7 +66,7 @@
                                         </div>
 
                                         <div class="col col-md-9 text-right">
-                                            <strong>Rp. <?php echo number_format($total_transaksi, 2, ",", "."); ?></strong>
+                                            <strong>Rp. </strong>
                                         </div>
 
                                     </div>
@@ -137,17 +84,17 @@
 
                                             <tr>
                                                 <td class="">Penjualan Obat</td>
-                                                <td class="text-right">Rp. <?php echo number_format($total_obat, 2, ",", "."); ?></td>
+                                                <td class="text-right">Rp. </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="">Perawatan</td>
-                                                <td class="text-right">Rp. <?php echo number_format($total_perawatan, 2, ",", "."); ?></td>
+                                                <td class="text-right">Rp. </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="">Konsultasi</td>
-                                                <td class="text-right">Rp. <?php echo number_format($total_konsultasi, 2, ",", "."); ?></td>
+                                                <td class="text-right">Rp. </td>
                                             </tr>
 
                                             <!-- Detail pemasukan -->
@@ -162,7 +109,7 @@
                                             <strong>PENGELUARAN</strong>
                                         </div>
                                         <div class="col col-md-9 text-right">
-                                            <strong>Rp. <?php echo number_format($total_pemasokan, 2, ",", "."); ?></strong>
+                                            <strong>Rp. </strong>
                                         </div>
                                     </div>
 
@@ -178,7 +125,7 @@
                                             <!-- Detail Pengeluaran -->
                                             <tr>
                                                 <td class="">Pemasokan</td>
-                                                <td class="text-right">Rp. <?php echo number_format($total_pemasokan, 2, ",", "."); ?></td>
+                                                <td class="text-right">Rp. </td>
                                             </tr>
                                             <!-- Detail Pengeluaran -->
 
@@ -193,7 +140,7 @@
                                         <strong>Total Pemasukan</strong>
                                     </div>
                                     <div class="col">
-                                        <strong>: Rp. <?php echo number_format($total_transaksi, 2, ",", "."); ?></strong>
+                                        <strong>: Rp. </strong>
                                     </div>
 
                                 </div>
@@ -202,7 +149,7 @@
                                         <strong>Total Pengeluaran</strong>
                                     </div>
                                     <div class="col">
-                                        <strong>: Rp. <?php echo number_format($total_pemasokan, 2, ",", "."); ?></strong>
+                                        <strong>: Rp. </strong>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -210,7 +157,7 @@
                                         <strong>Total Laba(Rugi)</strong>
                                     </div>
                                     <div class="col">
-                                        <strong>: Rp. <?php echo number_format($total_transaksi - $total_pemasokan, 2, ",", "."); ?></strong>
+                                        <strong>: Rp. </strong>
                                     </div>
                                 </div>
                             </div>
