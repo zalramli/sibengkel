@@ -6,25 +6,25 @@
 
                     <li class="<?php 
                     if ($_GET['halaman'] == "dashboard") {echo 'active';}
-                    ?>"><a href="cs.php?halaman=dashboard"><i class="notika-icon notika-house"></i> Dashboard</a>
+                    ?>"><a href="cs.php?halaman=dashboard"><i class="fas fa-home"></i> Dashboard</a>
                     </li>
                     <li class="<?php 
                     if ($_GET['halaman'] == "add_work_order") {echo 'active';}
-                    ?>"><a href="cs.php?halaman=add_work_order"><i class="notika-icon notika-house"></i> Work Order</a>
+                    ?>"><a href="cs.php?halaman=add_work_order"><i class="fas fa-user-clock"></i> Work Order</a>
                     </li>
 
                     <li class="<?php 
                     if ($_GET['halaman'] == "v_customer") {echo 'active';}
                     if ($_GET['halaman'] == "add_customer") {echo 'active';}
                     if ($_GET['halaman'] == "edit_customer") {echo 'active';}
-                    ?>"><a href="cs.php?halaman=v_customer"><i class="notika-icon notika-house"></i> Data Customer</a>
+                    ?>"><a href="cs.php?halaman=v_customer"><i class="fas fa-user-edit"></i> Data Customer</a>
                     </li>
 
                     
                     <li class="<?php 
                     if ($_GET['halaman'] == "laporan_transaksi") {echo 'active';}
                     ?>">
-                        <a href="?halaman=laporan_transaksi"><i class="notika-icon notika-bar-chart"></i> Laporan</a>
+                        <a href="?halaman=laporan_transaksi"><i class="fas fa-print"></i> Laporan</a>
                     </li>
                 </ul>
             </div>

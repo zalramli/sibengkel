@@ -7,7 +7,7 @@
                     <li class="<?php 
                     if ($_GET['halaman'] == "dashboard") {echo 'active';}
                     ?>">
-                        <a href="admin.php?halaman=dashboard"><i class="notika-icon notika-house"></i> Dashboard</a>
+                        <a href="admin.php?halaman=dashboard"><i class="fas fa-home"></i> Dashboard</a>
                     </li>
 
                     <li class="<?php 
@@ -15,7 +15,7 @@
                     if ($_GET['halaman'] == "add_permintaan_barang") {echo 'active';}
                     if ($_GET['halaman'] == "v_detail_permintaan_barang") {echo 'active';}
                     ?>">
-                        <a href="?halaman=v_permintaan_barang"><i class="notika-icon notika-bar-chart"></i> Order Barang/Sparepart</a>
+                        <a href="?halaman=v_permintaan_barang"><i class="fas fa-cube"></i> Order Barang/Sparepart</a>
                     </li>
 
                     <li class="<?php 
@@ -32,13 +32,13 @@
                     if ($_GET['halaman'] == "add_satuanBarang") {echo 'active';}
                     if ($_GET['halaman'] == "edit_satuanBarang") {echo 'active';}
                     ?>">
-                        <a data-toggle="tab" href="#Forms"><i class="notika-icon notika-form"></i> Data Barang</a>
+                        <a data-toggle="tab" href="#Forms"><i class="fas fa-paste"></i> Data Barang</a>
                     </li>
 
                     <li class="<?php 
                     if ($_GET['halaman'] == "laporan_transaksi") {echo 'active';}
                     ?>">
-                        <a href="?halaman=laporan_transaksi"><i class="notika-icon notika-bar-chart"></i> Laporan</a>
+                        <a href="?halaman=laporan_transaksi"><i class="fas fa-print"></i> Laporan</a>
                     </li>
                 </ul>
                 <div class="tab-content custom-menu-content">

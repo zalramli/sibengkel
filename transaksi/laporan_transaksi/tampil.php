@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label for=""></label>
                         <div class="input-group date nk-int-st">
-                            <button type="submit" name="kirim" class="btn btn-primary">Print Laporan</button>
+                            <button type="submit" name="kirim" class="btn btn-primary"><i class="notika-icon notika-print"></i> Print Laporan</button>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                     <div class="form-group">
                         <label for=""></label>
                         <div class="input-group date nk-int-st">
-                            <button type="submit" name="kirim" class="btn btn-primary">Print Laporan</button>
+                            <button type="submit" name="kirim" class="btn btn-primary"><i class="notika-icon notika-print"></i> Print Laporan</button>
                         </div>
                     </div>
                 </div>

@@ -7,14 +7,14 @@
                     <li class="<?php 
                     if ($_GET['halaman'] == "dashboard") {echo 'active';}
                     ?>">
-                        <a href="admin.php?halaman=dashboard"><i class="notika-icon notika-house"></i> Dashboard</a>
+                        <a href="admin.php?halaman=dashboard"><i class="fas fa-home"></i> Dashboard</a>
                     </li>
 
                     <li class="<?php 
                     if ($_GET['halaman'] == "v_penggajian") {echo 'active';}
                     if ($_GET['halaman'] == "add_penggajian") {echo 'active';}
                     ?>">
-                        <a href="admin.php?halaman=v_penggajian"><i class="notika-icon notika-bar-chart"></i> Penggajian</a>
+                        <a href="admin.php?halaman=v_penggajian"><i class="fas fa-hand-holding-usd"></i> Penggajian</a>
                     </li>
 
                     <li class="<?php 
@@ -28,13 +28,13 @@
                     if ($_GET['halaman'] == "add_mekanik") {echo 'active';}
                     if ($_GET['halaman'] == "edit_mekanik") {echo 'active';}
                     ?>">
-                        <a data-toggle="tab" href="#Forms"><i class="notika-icon notika-form"></i> Data Pegawai</a>
+                        <a data-toggle="tab" href="#Forms"><i class="fas fa-users"></i> Data Pegawai</a>
                     </li>
 
                     <li class="<?php 
                     if ($_GET['halaman'] == "laporan_transaksi") {echo 'active';}
                     ?>">
-                        <a href="?halaman=laporan_transaksi"><i class="notika-icon notika-bar-chart"></i> Laporan</a>
+                        <a href="?halaman=laporan_transaksi"><i class="fas fa-print"></i> Laporan</a>
                     </li>
                 </ul>
                 <div class="tab-content custom-menu-content">

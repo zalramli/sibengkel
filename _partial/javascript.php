@@ -89,6 +89,8 @@
     <script src="assets/template2/js/datapicker/bootstrap-datepicker.js"></script>
     <script src="assets/template2/js/datapicker/datepicker-active.js"></script>
     <script type="text/javascript" src="assets/template2/js/session_waktu/jquery.idle.js"></script>
+    <script src="assets/template2/js/font-awesome.js"></script>
+
     <!-- Supaya di tabel tidak ada ORDER BY(otomatis data table) -->
     <script>
         $('#data-table-basic').DataTable({

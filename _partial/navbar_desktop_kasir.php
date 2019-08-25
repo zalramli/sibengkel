@@ -7,7 +7,7 @@
                     <li class="<?php 
                     if ($_GET['halaman'] == "dashboard") {echo 'active';}
                     ?>">
-                        <a href="?halaman=dashboard"><i class="notika-icon notika-house"></i> Dashboard</a>
+                        <a href="?halaman=dashboard"><i class="fas fa-home"></i> Dashboard</a>
                     </li>
                     <li class="<?php 
                     if ($_GET['halaman'] == "transaksi_penjualan_barang") {echo 'active';}
@@ -15,7 +15,7 @@
                     if ($_GET['halaman'] == "v_data_transaksi") {echo 'active';}
                     if ($_GET['halaman'] == "detail_transaksi") {echo 'active';}
                     ?>">
-                        <a data-toggle="tab" href="#Forms1"><i class="notika-icon notika-form"></i> Transaksi Penjualan</a>
+                        <a data-toggle="tab" href="#Forms1"><i class="fas fa-cash-register"></i> Transaksi Penjualan</a>
                     </li>
 
                     <li class="<?php 
@@ -25,7 +25,7 @@
                     if ($_GET['halaman'] == "edit_suplier") {echo 'active';}
                     if ($_GET['halaman'] == "v_data_transaksi_pembelian") {echo 'active';}
                     ?>">
-                        <a data-toggle="tab" href="#Forms2"><i class="notika-icon notika-form"></i> Pemasokan Barang</a>
+                        <a data-toggle="tab" href="#Forms2"><i class="fas fa-truck"></i> Pemasokan Barang</a>
                     </li>
 
                     <li class="<?php 
@@ -33,13 +33,13 @@
                     if ($_GET['halaman'] == "add_tarifService") {echo 'active';}
                     if ($_GET['halaman'] == "edit_tarifService") {echo 'active';}
                     ?>">
-                        <a href="?halaman=v_tarifService"><i class="notika-icon notika-house"></i> Data Service</a>
+                        <a href="?halaman=v_tarifService"><i class="fas fa-tools"></i> Data Service</a>
                     </li>
 
                     <li class="<?php 
                     if ($_GET['halaman'] == "laporan_transaksi") {echo 'active';}
                     ?>">
-                        <a href="?halaman=laporan_transaksi"><i class="notika-icon notika-bar-chart"></i> Laporan</a>
+                        <a href="?halaman=laporan_transaksi"><i class="fas fa-print"></i> Laporan</a>
                     </li>
 
                 </ul>
