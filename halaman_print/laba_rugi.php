@@ -59,10 +59,10 @@
         }
     }
 
+    $tarif_harga = 0;
     foreach ($data4 as $d4) {
         if (isset($d4["kode_wo"])) {
             $kode_wo = $d4["kode_wo"];
-            $tarif_harga = 0;
 
             $penjumlahan_t = mysqli_query($koneksi, " SELECT SUM(s.tarif_harga) tarif_harga
                                         FROM detail_penjualan_service dps JOIN service s USING (kode_service) where dps.kode_wo = '$kode_wo' ");
