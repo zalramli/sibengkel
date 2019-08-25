@@ -31,9 +31,9 @@
                                         FROM detail_penjualan_barang dpb JOIN penjualan p USING (no_faktur_penjualan)
                                         where p.tgl_transaksi >= '$format_mulai' && p.tgl_transaksi <= '$format_akhir' ");
 
-    $data4 = mysqli_query($koneksi, " SELECT SUM(dpb.sub_total_harga) sub_total_harga
-                                        FROM detail_penjualan_barang dpb JOIN penjualan p USING (no_faktur_penjualan)
-                                        where p.tgl_transaksi >= '$format_mulai' && p.tgl_transaksi <= '$format_akhir' ");
+    $data4 = mysqli_query($koneksi, " SELECT pw.kode_wo AS kode_wo FROM penjualan_wo pw JOIN penjualan p                                                 USING (no_faktur_penjualan) where p.tgl_transaksi >=                                                  '$format_mulai' && p.tgl_transaksi <= '$format_akhir' ");
+
+
 
     foreach ($data1 as $d1) {
         if (isset($d1["total_pembelian"])) {
@@ -56,6 +56,26 @@
             $sub_total_harga = $d3["sub_total_harga"];
         } else {
             $sub_total_harga = 0;
+        }
+    }
+
+    foreach ($data4 as $d4) {
+        if (isset($d4["kode_wo"])) {
+            $kode_wo = $d4["kode_wo"];
+            $tarif_harga = 0;
+
+            $penjumlahan_t = mysqli_query($koneksi, " SELECT SUM(s.tarif_harga) tarif_harga
+                                        FROM detail_penjualan_service dps JOIN service s USING (kode_service) where dps.kode_wo = '$kode_wo' ");
+
+            foreach ($penjumlahan_t as $pt) {
+                if (isset($pt["tarif_harga"])) {
+                    $tarif_harga =  $tarif_harga + $pt["tarif_harga"];
+                } else {
+                    $tarif_harga = $tarif_harga + 0;
+                }
+            }
+        } else {
+            $tarif_harga = 0;
         }
     }
 
@@ -132,7 +152,7 @@
 
                                             <tr>
                                                 <td class="">Jasa Service</td>
-                                                <td class="text-right">Rp. </td>
+                                                <td class="text-right">Rp. <?php echo number_format($tarif_harga, 2, ",", "."); ?></td>
                                             </tr>
 
                                             <!-- Detail pemasukan -->
