@@ -9,7 +9,7 @@
                         <label>Dari Tanggal</label>
                         <div class="input-group date nk-int-st">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control" name="tgl_mulai" placeholder="Isi form tanggal awal">
+                            <input type="text" class="form-control" name="tgl_mulai" placeholder="Isi form tanggal awal" required="" oninvalid="this.setCustomValidity('Tanggal Wajib Diisi')" oninput="setCustomValidity('')">
                         </div>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                         <label>Sampai Tanggal</label>
                         <div class="input-group date nk-int-st">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control" name="tgl_akhir" placeholder="Isi form tanggal akhir">
+                            <input type="text" class="form-control" name="tgl_akhir" placeholder="Isi form tanggal akhir" required="" oninvalid="this.setCustomValidity('Tanggal Wajib Diisi')" oninput="setCustomValidity('')">
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                         <label>Dari Tanggal</label>
                         <div class="input-group date nk-int-st">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control" name="tgl_mulai" placeholder="Isi form tanggal awal">
+                            <input type="text" class="form-control" name="tgl_mulai" placeholder="Isi form tanggal awal" required="" oninvalid="this.setCustomValidity('Tanggal Wajib Diisi')" oninput="setCustomValidity('')">
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         <label>Sampai Tanggal</label>
                         <div class="input-group date nk-int-st">
                             <span class="input-group-addon"></span>
-                            <input type="text" class="form-control" name="tgl_akhir" placeholder="Isi form tanggal akhir">
+                            <input type="text" class="form-control" name="tgl_akhir" placeholder="Isi form tanggal akhir" required="" oninvalid="this.setCustomValidity('Tanggal Wajib Diisi')" oninput="setCustomValidity('')">
                         </div>
                     </div>
                 </div>

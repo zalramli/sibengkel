@@ -13,11 +13,11 @@
     <?php
     include '../koneksi/koneksi.php';
 
-    $tgl_mulai = $_POST['tgl_mulai'];
-    $tgl_akhir = $_POST['tgl_akhir'];
+    $tgl_mulai = $_POST['tgl_mulai'] . " 00:00:00";
+    $tgl_akhir = $_POST['tgl_akhir'] . " 23:59:59";
 
-    $format_mulai =  date('Y-m-d', strtotime($tgl_mulai));
-    $format_akhir =  date('Y-m-d', strtotime($tgl_akhir));
+    $format_mulai =  date('Y-m-d  H:i:s', strtotime($tgl_mulai));
+    $format_akhir =  date('Y-m-d  H:i:s', strtotime($tgl_akhir));
 
     $data1 = mysqli_query($koneksi, " SELECT SUM(p.total_harga) total_pembelian
                                         FROM pembelian p
