@@ -446,6 +446,7 @@ if (isset($_POST['simpan'])) {
       data: form_data,
       success: function(data) {
         $('.total_harga').val(data);
+        update_kembalian();
       }
     });
 
@@ -475,6 +476,7 @@ if (isset($_POST['simpan'])) {
       data: form_data,
       success: function(data) {
         $('.total_harga').val(data);
+        update_kembalian();
       }
     });
   }

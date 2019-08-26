@@ -93,7 +93,7 @@ if (isset($_POST['simpan'])) {
             </div>
             <div class="col-lg-1">
               <div class="form-group">
-                <a id="btn_cart_barang" name="add_more" class="btn btn-primary">+</a>
+                <a id="btn_cart_barang" onclick="setTimeout(update_total, 100)" name="add_more" class="btn btn-primary">+</a>
               </div>
             </div>
           </div>
@@ -148,7 +148,8 @@ if (isset($_POST['simpan'])) {
                     <h5>Potongan Harga</h5>
                   </td>
                   <td style="padding-top: 5px">
-                    <h5><input style="text-align: right;" type="text" class="form-control" id="potongan_harga" name="potongan_harga"></h5>
+                    <h5><input style="text-align: right;" type="text" class="form-control" id="potongan_harga" name="potongan_harga" onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
+                    <input type="hidden" id="total" name="total">
                   </td>
                 </tr>
               </table>
@@ -163,14 +164,14 @@ if (isset($_POST['simpan'])) {
                   <td style="padding-top: 15px;" width="60%">
                     <h5>Bayar</h5>
                   </td>
-                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="text" class="form-control"></td>
+                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="text" class="form-control" onkeyup="update_kembalian()" onchange="update_kembalian()"></td>
                 </tr>
                 <tr>
                   <td style="padding: 20px 0px;">
                     <h5>Kembalian</h5>
                   </td>
                   <td style="padding: 20px 0px;">
-                    <h5><input style="text-align:right;" type="text" class="form-control" readonly="" id="kembalian" name="kembalian" value="100000"></h5>
+                    <h5><input style="text-align:right;" type="text" class="form-control" readonly="" id="kembalian" name="kembalian"></h5>
                   </td>
                 </tr>
 
@@ -244,7 +245,7 @@ if (isset($_POST['simpan'])) {
             </div>
             
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-              <button id="` + count1 + `" name="remove" class="remove btn btn-danger"><i class="notika-icon notika-trash"></i></button>
+              <button id="` + count1 + `" name="remove" class="remove btn btn-danger" onclick="setTimeout(update_total, 100)"><i class="notika-icon notika-trash"></i></button>
             </div>
           </div>
           
@@ -294,7 +295,69 @@ if (isset($_POST['simpan'])) {
       data: form_data,
       success: function(data) {
         $('.total_harga').val(data);
+        update_kembalian();
       }
     });
+
+    // start of  update value sub_total inputan
+    // proses ambil index
+    var get_no_id = $(this).attr("id"); //---jumlah_barang + index
+    var no_id_nya = get_no_id.substring(13); //---ambil indexnya saja
+
+    // objek yg spesifik
+    var harga_jual = document.getElementById("harga_jual" + no_id_nya);
+    var jumlah_barang = document.getElementById("jumlah_barang" + no_id_nya);
+    var sub_total = document.getElementById("sub_total" + no_id_nya);
+
+    var v_sub_total = parseInt(harga_jual.value) * parseInt(jumlah_barang.value);
+
+    if (v_sub_total >= 0) {
+      sub_total.value = v_sub_total;
+    }
   });
+
+  // Menghitung 
+  function update_total() {
+    var form_data = $("#transaksi_form").serialize();
+    $.ajax({
+      url: "transaksi/penjualan/total_penjualan_service.php",
+      method: "POST",
+      data: form_data,
+      success: function(data) {
+        $('.total_harga').val(data);
+        update_kembalian();
+      }
+    });
+  }
+
+  // Menghitung kembalian
+  function update_kembalian() {
+    var total_harga = document.getElementById("total_harga");
+    var potongan_harga = document.getElementById("potongan_harga");
+    var total = document.getElementById("total");
+    var bayar = document.getElementById("bayar");
+    var kembalian = document.getElementById("kembalian");
+
+    var potongan_temp = 0;
+
+    // cek apakah kosong
+    if (potongan_harga.value.length == 0) {
+      potongan_temp = 0;
+    } else {
+      potongan_temp = potongan_harga.value;
+    }
+
+    // parsing dan perhitungan
+    var v_total = parseInt(total_harga.value) - parseInt(potongan_temp);
+    var v_bayar = parseInt(bayar.value);
+
+    total.value = v_total;
+
+    if (v_bayar >= v_total) {
+      kembalian.value = bayar.value - v_total;
+    } else {
+      kembalian.value = null;
+    }
+  }
+  // Menghitung kembalian
 </script>
