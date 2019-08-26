@@ -50,7 +50,7 @@ elseif ($_SESSION['akses'] != "Cs")
                         error_reporting(0);
                     }
                     if ($_GET['halaman'] == 'dashboard') {
-                        include "dashboard.php";
+                        include "dashboard/dashboard_cs.php";
                     }
                     // Tutup Dashboard
 

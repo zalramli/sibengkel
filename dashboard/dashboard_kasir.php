@@ -9,7 +9,6 @@ $query_service =  mysqli_query($koneksi,"SELECT COUNT(*) as jumlah_service FROM 
 $data_service = mysqli_fetch_array($query_service);
 ?>
 <!-- Icon Cards-->
-  <div class="contact-info-area mg-t-30">
 <div class="row">
       <a style="color:black" href="?halaman=v_data_transaksi">
       <div style="margin-bottom: 30px;" class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
