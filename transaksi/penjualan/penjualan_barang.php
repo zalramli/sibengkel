@@ -2,71 +2,76 @@
 if (isset($_POST['simpan'])) {
   //kode otomatis
 
-  $sql = mysqli_query($koneksi, "SELECT max(no_faktur_penjualan) FROM penjualan");
-  $kode_faktur = mysqli_fetch_array($sql);
-  if ($kode_faktur) {
-    $nilai = substr($kode_faktur[0], 2);
-    $kode = (int) $nilai;
-    //tambahkan sebanyak + 1
-    $kode = $kode + 1;
-    $auto_kode = "FK" . str_pad($kode, 6, "0",  STR_PAD_LEFT);
+  // validasi apakah ada detail
+  if (isset($_POST['kode_barang2'])) {
+    $sql = mysqli_query($koneksi, "SELECT max(no_faktur_penjualan) FROM penjualan");
+    $kode_faktur = mysqli_fetch_array($sql);
+    if ($kode_faktur) {
+      $nilai = substr($kode_faktur[0], 2);
+      $kode = (int) $nilai;
+      //tambahkan sebanyak + 1
+      $kode = $kode + 1;
+      $auto_kode = "FK" . str_pad($kode, 6, "0",  STR_PAD_LEFT);
+    } else {
+      $auto_kode = "FK000001";
+    }
+    $sql2 = mysqli_query($koneksi, "SELECT max(kode_customer) FROM customer");
+    $kode_faktur2 = mysqli_fetch_array($sql2);
+    if ($kode_faktur2) {
+      $nilai2 = substr($kode_faktur2[0], 1);
+      $kode2 = (int) $nilai2;
+      //tambahkan sebanyak + 1
+      $kode2 = $kode2 + 1;
+      $auto_kode2 = "K" . str_pad($kode2, 4, "0",  STR_PAD_LEFT);
+    } else {
+      $auto_kode2 = "K0001";
+    }
+    $no_faktur_penjualan = $auto_kode;
+    $kode_customer = $auto_kode2;
+    $kode_pegawai = $_SESSION['kode_pegawai'];
+    date_default_timezone_set('Asia/Jakarta');
+    $tgl_transaksi = date('Y-m-d H:i:s');
+    $total_harga = $_POST['total_harga'];
+    $potongan_harga = $_POST['potongan_harga'];
+    $bayar = $_POST['bayar'];
+    $kembalian = $_POST['kembalian'];
+    $status = "0";
+    $query_cek_customer = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah FROM customer WHERE nama_customer='Umum'");
+    $data_customer = mysqli_fetch_array($query_cek_customer);
+    $cek_customer = $data_customer['jumlah'];
+    if ($cek_customer == 0) {
+      $query_customer = mysqli_query($koneksi, "INSERT INTO customer VALUES ('$kode_customer','Umum','-','-') ");
+      $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
+    } else {
+      $query_ambil_customer = mysqli_query($koneksi, "SELECT * FROM customer WHERE nama_customer='Umum'");
+      $data_customer2 = mysqli_fetch_array($query_ambil_customer);
+      $kode_customer2 = $data_customer2['kode_customer'];
+      $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer2','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
+    }
+
+    // INSERT DATA DETAIL PENJUALAN BARANG
+    for ($i = 0; $i < count($_POST['kode_barang2']); $i++) {
+      // data - data
+      $kode_barang = $_POST['kode_barang2'][$i];
+      $jumlah_barang = $_POST['jumlah_barang'][$i];
+      $harga_jual = $_POST['harga_jual'][$i];
+      // sub total
+      $sub_total_harga = $jumlah_barang * $harga_jual;
+
+      $qq = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang='$kode_barang'");
+      $f = mysqli_fetch_array($qq);
+      $ids = $f['kode_barang'];
+      $stock_sekarang = $f['stock'];
+      $stock_baru = $stock_sekarang - $jumlah_barang;
+      mysqli_query($koneksi, "UPDATE barang SET stock='$stock_baru' WHERE kode_barang='$ids'");
+
+      $query_detail_barang = mysqli_query($koneksi, "INSERT INTO detail_penjualan_barang VALUES ('','$no_faktur_penjualan','$kode_barang','$jumlah_barang','$sub_total_harga') ");
+    }
+
+    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=transaksi_penjualan_barang'</script>";
   } else {
-    $auto_kode = "FK000001";
+    echo "<script>alert('Gagal Mengirim Data , data detail harus ada !'); window.location = 'kasir.php?halaman=transaksi_penjualan_barang&id'</script>";
   }
-  $sql2 = mysqli_query($koneksi, "SELECT max(kode_customer) FROM customer");
-  $kode_faktur2 = mysqli_fetch_array($sql2);
-  if ($kode_faktur2) {
-    $nilai2 = substr($kode_faktur2[0], 1);
-    $kode2 = (int) $nilai2;
-    //tambahkan sebanyak + 1
-    $kode2 = $kode2 + 1;
-    $auto_kode2 = "K" . str_pad($kode2, 4, "0",  STR_PAD_LEFT);
-  } else {
-    $auto_kode2 = "K0001";
-  }
-  $no_faktur_penjualan = $auto_kode;
-  $kode_customer = $auto_kode2;
-  $kode_pegawai = $_SESSION['kode_pegawai'];
-  date_default_timezone_set('Asia/Jakarta');
-  $tgl_transaksi = date('Y-m-d H:i:s');
-  $total_harga = $_POST['total_harga'];
-  $potongan_harga = $_POST['potongan_harga'];
-  $bayar = $_POST['bayar'];
-  $kembalian = $_POST['kembalian'];
-  $status = "0";
-  $query_cek_customer = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah FROM customer WHERE nama_customer='Umum'");
-  $data_customer = mysqli_fetch_array($query_cek_customer);
-  $cek_customer = $data_customer['jumlah'];
-  if ($cek_customer == 0) {
-    $query_customer = mysqli_query($koneksi, "INSERT INTO customer VALUES ('$kode_customer','Umum','-','-') ");
-    $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
-  } else {
-    $query_ambil_customer = mysqli_query($koneksi, "SELECT * FROM customer WHERE nama_customer='Umum'");
-    $data_customer2 = mysqli_fetch_array($query_ambil_customer);
-    $kode_customer2 = $data_customer2['kode_customer'];
-    $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer2','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
-  }
-
-  // INSERT DATA DETAIL PENJUALAN BARANG
-  for ($i = 0; $i < count($_POST['kode_barang2']); $i++) {
-    // data - data
-    $kode_barang = $_POST['kode_barang2'][$i];
-    $jumlah_barang = $_POST['jumlah_barang'][$i];
-    $harga_jual = $_POST['harga_jual'][$i];
-    // sub total
-    $sub_total_harga = $jumlah_barang * $harga_jual;
-
-    $qq = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang='$kode_barang'");
-    $f = mysqli_fetch_array($qq);
-    $ids = $f['kode_barang'];
-    $stock_sekarang = $f['stock'];
-    $stock_baru = $stock_sekarang - $jumlah_barang;
-    mysqli_query($koneksi, "UPDATE barang SET stock='$stock_baru' WHERE kode_barang='$ids'");
-
-    $query_detail_barang = mysqli_query($koneksi, "INSERT INTO detail_penjualan_barang VALUES ('','$no_faktur_penjualan','$kode_barang','$jumlah_barang','$sub_total_harga') ");
-  }
-
-  echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=transaksi_penjualan_barang'</script>";
 }
 ?>
 <form action="" method="post" id="transaksi_form">
