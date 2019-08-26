@@ -11,59 +11,57 @@ $query_satuan =  mysqli_query($koneksi,"SELECT COUNT(*) as jumlah_satuan FROM sa
 $data_satuan = mysqli_fetch_array($query_satuan);
 ?>
 <!-- Icon Cards-->
-  <div class="contact-info-area mg-t-30">
-    <div class="row">
-      <a style="color:black" href="?halaman=v_permintaan_barang">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+<div class="contact-info-area mg-t-30">
+  <div class="row">
+    <a style="color:black" href="?halaman=v_permintaan_barang">
+      <div style="margin-bottom: 30px;" class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <div class="contact-inner">
-        <div class="contact-inner">
-          <h2><span class="counter"><?= $data_permintaan['jumlah_permintaan'] ?></span></h2>
-          <span><strong>JUMLAH PERMINTAAN BARANG</strong></span>
-        </div>
-        </div>
-      </div>
-      </a>
-      <a style="color:black" href="?halaman=v_daftarBarang">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="contact-inner">
-        <div class="contact-inner">
-          <h2><span class="counter"><?= $data_barang['jumlah_barang'] ?></span></h2>
-          <span><strong>JUMLAH DAFTAR BARANG</strong></span>
-        </div>
+          <div class="contact-inner">
+            <h2><span class="counter"><?= $data_permintaan['jumlah_permintaan'] ?></span></h2>
+            <span><strong>JUMLAH PERMINTAAN BARANG</strong></span>
+          </div>
         </div>
       </div>
-      </a>
-    </div>
-    <div class="row mg-t-30">
-      <a style="color:black" href="?halaman=v_jenisBarang">
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    </a>
+    <a style="color:black" href="?halaman=v_daftarBarang">
+      <div style="margin-bottom: 30px;" class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <div class="contact-inner">
-        <div class="contact-inner">
-          <h2><span class="counter"><?= $data_jenis['jumlah_jenis'] ?></span></h2>
-          <span><strong>JUMLAH JENIS BARANG</strong></span>
-        </div>
+          <div class="contact-inner">
+            <h2><span class="counter"><?= $data_barang['jumlah_barang'] ?></span></h2>
+            <span><strong>JUMLAH DAFTAR BARANG</strong></span>
+          </div>
         </div>
       </div>
-      </a>
-      <a style="color:black" href="?halaman=v_merkBarang">
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    </a>
+    <a style="color:black" href="?halaman=v_jenisBarang">
+      <div style="margin-bottom: 30px;" class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <div class="contact-inner">
-        <div class="contact-inner">
-          <h2><span class="counter"><?= $data_merk['jumlah_merk'] ?></span></h2>
-          <span><strong>JUMLAH MERK BARANG</strong></span>
-        </div>
-        </div>
-      </div>
-      </a>
-      <a style="color:black" href="?halaman=v_satuanBarang">
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        <div class="contact-inner">
-        <div class="contact-inner">
-          <h2><span class="counter"><?= $data_satuan['jumlah_satuan'] ?></span></h2>
-          <span><strong>JUMLAH SATUAN BARANG</strong></span>
-        </div>
+          <div class="contact-inner">
+            <h2><span class="counter"><?= $data_jenis['jumlah_jenis'] ?></span></h2>
+            <span><strong>JUMLAH JENIS BARANG</strong></span>
+          </div>
         </div>
       </div>
-      </a>
-    </div>
+    </a>
+    <a style="color:black" href="?halaman=v_merkBarang">
+      <div style="margin-bottom: 30px;" class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <div class="contact-inner">
+          <div class="contact-inner">
+            <h2><span class="counter"><?= $data_merk['jumlah_merk'] ?></span></h2>
+            <span><strong>JUMLAH MERK BARANG</strong></span>
+          </div>
+        </div>
+      </div>
+    </a>
+    <a style="color:black" href="?halaman=v_satuanBarang">
+      <div style="margin-bottom: 30px;" class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <div class="contact-inner">
+          <div class="contact-inner">
+            <h2><span class="counter"><?= $data_satuan['jumlah_satuan'] ?></span></h2>
+            <span><strong>JUMLAH SATUAN BARANG</strong></span>
+          </div>
+        </div>
+      </div>
+    </a>
   </div>
+</div>

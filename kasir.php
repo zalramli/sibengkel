@@ -48,7 +48,7 @@ if (!isset($_SESSION['username'])) {
                         error_reporting(0);
                     }
                     if ($_GET['halaman'] == 'dashboard') {
-                        include "dashboard.php";
+                        include "dashboard/dashboard_kasir.php";
                     }
                     // Tutup Dashboard
 
