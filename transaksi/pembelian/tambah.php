@@ -253,8 +253,8 @@ if (isset($_POST['simpan'])) {
         }
 
         // parsing dan perhitungan
-        var v_total = parseFloat(sub_total_hrg.value) - parseFloat(potongan_temp);
-        var v_bayar = parseFloat(bayar.value);
+        var v_total = parseInt(sub_total_hrg.value) - parseInt(potongan_temp);
+        var v_bayar = parseInt(bayar.value);
 
         total.value = v_total;
 

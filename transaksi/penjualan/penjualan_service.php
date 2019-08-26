@@ -311,7 +311,7 @@ if (isset($_POST['simpan'])) {
             </div>
             
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-              <button id="` + count1 + `" name="remove" class="remove btn btn-danger"><i class="notika-icon notika-trash"></i></button>
+              <button id="` + count1 + `" name="remove" class="remove btn btn-danger" onclick="setTimeout(update_total, 100)"><i class="notika-icon notika-trash"></i></button>
             </div>
           </div>
           
@@ -398,7 +398,7 @@ if (isset($_POST['simpan'])) {
               <input style="text-align:right;" type="text" class="form-control" id="tarif_harga` + count2 + `" name="tarif_harga[]" readonly="" value="` + tarif_harga + `">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-              <button id="` + count2 + `" name="remove2" class="remove2 btn btn-danger"><i class="notika-icon notika-trash"></i></button>
+              <button id="` + count2 + `" name="remove2" class="remove2 btn btn-danger" onclick="setTimeout(update_total, 100)"><i class="notika-icon notika-trash"></i></button>
             </div>
           </div>
           
@@ -459,7 +459,7 @@ if (isset($_POST['simpan'])) {
     var jumlah_barang = document.getElementById("jumlah_barang" + no_id_nya);
     var sub_total = document.getElementById("sub_total" + no_id_nya);
 
-    var v_sub_total = parseFloat(harga_jual.value) * parseFloat(jumlah_barang.value);
+    var v_sub_total = parseInt(harga_jual.value) * parseInt(jumlah_barang.value);
 
     if (v_sub_total >= 0) {
       sub_total.value = v_sub_total;
@@ -497,8 +497,8 @@ if (isset($_POST['simpan'])) {
     }
 
     // parsing dan perhitungan
-    var v_total = parseFloat(total_harga.value) - parseFloat(potongan_temp);
-    var v_bayar = parseFloat(bayar.value);
+    var v_total = parseInt(total_harga.value) - parseInt(potongan_temp);
+    var v_bayar = parseInt(bayar.value);
 
     total.value = v_total;
 

@@ -105,8 +105,8 @@
     <!-- User Tiap 10 menit akan logout otomatis Jika tidak melakukan apa apa-->
     <script>
         $(document).idle({
-            onIdle: function(){
-                window.location="logout.php";                
+            onIdle: function() {
+                window.location = "logout.php";
             },
             // 1 detik = 1000 
             // 10 menit
@@ -114,16 +114,13 @@
         });
     </script>
     <!-- Ketika Close browser atau Tutup Tab browser otomatis logout -->
-    <script>
+    <!-- <script>
         window.onbeforeunload = function(){
         //Ajax request to update the database
         $.ajax({
             type: "POST",
             url: "logout.php"
         });
-    }
-        
-    </script>
-    
+    } -->
 
-          
+    </script>
