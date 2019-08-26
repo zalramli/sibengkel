@@ -148,7 +148,7 @@ if (isset($_POST['simpan'])) {
                     <h5>Potongan Harga</h5>
                   </td>
                   <td style="padding-top: 5px">
-                    <h5><input style="text-align: right;" type="text" class="form-control" id="potongan_harga" name="potongan_harga" onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
+                    <h5><input style="text-align: right;" type="number" class="form-control" id="potongan_harga" name="potongan_harga" max="9999999999" onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
                     <input type="hidden" id="total" name="total">
                   </td>
                 </tr>
@@ -164,7 +164,7 @@ if (isset($_POST['simpan'])) {
                   <td style="padding-top: 15px;" width="60%">
                     <h5>Bayar</h5>
                   </td>
-                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="text" class="form-control" onkeyup="update_kembalian()" onchange="update_kembalian()"></td>
+                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="number" class="form-control" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update_kembalian()" onchange="update_kembalian()"></td>
                 </tr>
                 <tr>
                   <td style="padding: 20px 0px;">
