@@ -13,13 +13,22 @@
     <?php
     include '../koneksi/koneksi.php';
 
+    // data tanggal untuk database
     $tgl_mulai = $_POST['tgl_mulai'] . " 00:00:00";
     $tgl_akhir = $_POST['tgl_akhir'] . " 23:59:59";
 
     $format_mulai =  date('Y-m-d  H:i:s', strtotime($tgl_mulai));
     $format_akhir =  date('Y-m-d  H:i:s', strtotime($tgl_akhir));
 
-    $data1 = mysqli_query($koneksi, " SELECT SUM(p.total_harga) total_pembelian
+    // hanya untuk tampilan
+    $tgl_mulai2 = $_POST['tgl_mulai'];
+    $tgl_akhir2 = $_POST['tgl_akhir'];
+
+    $format_mulai2 =  date('Y-m-d', strtotime($tgl_mulai2));
+    $format_akhir2 =  date('Y-m-d', strtotime($tgl_akhir2));
+
+    // proses query 
+    $data1 = mysqli_query($koneksi, " SELECT SUM(p.sub_total) total_pembelian
                                         FROM pembelian p
                                         where p.tgl_transaksi >= '$format_mulai' && p.tgl_transaksi <= '$format_akhir' ");
 
@@ -33,8 +42,7 @@
 
     $data4 = mysqli_query($koneksi, " SELECT pw.kode_wo AS kode_wo FROM penjualan_wo pw JOIN penjualan p                                                 USING (no_faktur_penjualan) where p.tgl_transaksi >=                                                  '$format_mulai' && p.tgl_transaksi <= '$format_akhir' ");
 
-
-
+    // proses pengeluaran data dari query
     foreach ($data1 as $d1) {
         if (isset($d1["total_pembelian"])) {
             $total_pembelian = $d1["total_pembelian"];
@@ -79,6 +87,18 @@
         }
     }
 
+    // kesimpulan laporan laba rugi
+    $pemasukan = $sub_total_harga + $tarif_harga;
+    $pengeluaran = $total_pembelian + $total_penggajian;
+
+    $laba_rugi = $pemasukan - $pengeluaran;
+
+    if ($laba_rugi >= 0) {
+        $v_laba_rugi = number_format($laba_rugi, 2, ",", ".") . " (Laba)";
+    } else {
+        $v_laba_rugi = number_format($laba_rugi, 2, ",", ".") . " (Rugi)";
+    }
+
     ?>
 
     <div class="container">
@@ -104,7 +124,7 @@
                     <div class="col col-md-12">
 
                         <address class="text-center" style="font-size: 18">LAPORAN LABA - RUGI
-                            <br> PERIODE <?php echo $tgl_mulai ?> SAMPAI <?php echo $tgl_akhir ?> </address>
+                            <br> PERIODE <?php echo $tgl_mulai2 ?> SAMPAI <?php echo $tgl_akhir2 ?> </address>
 
                     </div>
                 </div>
@@ -129,7 +149,7 @@
                                         </div>
 
                                         <div class="col col-md-9 text-right">
-                                            <strong>Rp. </strong>
+                                            <strong>Rp. <?php echo number_format($pemasukan, 2, ",", "."); ?></strong>
                                         </div>
 
                                     </div>
@@ -167,7 +187,7 @@
                                             <strong>PENGELUARAN</strong>
                                         </div>
                                         <div class="col col-md-9 text-right">
-                                            <strong>Rp. </strong>
+                                            <strong>Rp. <?php echo number_format($pengeluaran, 2, ",", "."); ?></strong>
                                         </div>
                                     </div>
 
@@ -202,7 +222,7 @@
                                         <strong>Total Pemasukan</strong>
                                     </div>
                                     <div class="col">
-                                        <strong>: Rp. </strong>
+                                        <strong>: Rp. <?php echo number_format($pemasukan, 2, ",", "."); ?></strong>
                                     </div>
 
                                 </div>
@@ -211,7 +231,7 @@
                                         <strong>Total Pengeluaran</strong>
                                     </div>
                                     <div class="col">
-                                        <strong>: Rp. </strong>
+                                        <strong>: Rp. <?php echo number_format($pengeluaran, 2, ",", "."); ?></strong>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -219,7 +239,7 @@
                                         <strong>Total Laba(Rugi)</strong>
                                     </div>
                                     <div class="col">
-                                        <strong>: Rp. </strong>
+                                        <strong>: Rp. <?php echo $v_laba_rugi; ?></strong>
                                     </div>
                                 </div>
                             </div>
