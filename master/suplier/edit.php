@@ -54,7 +54,7 @@ if (isset($_POST['update'])) {
 
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <label for="">ALamat</label>
+        <label for="">Alamat</label>
         <div class="form-group">
           <div class="nk-int-st">
             <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"><?= $data['alamat'] ?></textarea>

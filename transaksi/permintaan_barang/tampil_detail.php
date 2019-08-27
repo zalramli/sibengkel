@@ -35,8 +35,8 @@
                     <td><?= $data['stock'] ?></td>
                     <td><?= $data['nama_satuan'] ?></td>
                     <td><?= $data['jumlah_barang'] ?></td>
-                    <td><?= $data['harga_pokok'] ?></td>
-                    <td><?= $data['sub_total_harga'] ?></td>
+                    <td style="text-align: right;"><?= format_ribuan($data['harga_pokok']) ?></td>
+                    <td style="text-align: right;"><?= format_ribuan($data['sub_total_harga']) ?></td>
                 </tr>
                 <?php } ?>
             </tbody>

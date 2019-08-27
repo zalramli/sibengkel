@@ -2,7 +2,6 @@
     <div class="basic-tb-hd">
         <h2>Data Work Order</h2>
         <br>
-        <a href="kasir.php?halaman=add_work_order" class="btn btn-success notika-btn-success">Tambah Data</a>
     </div>
     <div class="table-responsive">
         <table id="data-table-basic" class="table table-striped">

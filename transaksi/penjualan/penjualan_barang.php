@@ -153,7 +153,7 @@ if (isset($_POST['simpan'])) {
                     <h5>Potongan Harga</h5>
                   </td>
                   <td style="padding-top: 5px">
-                    <h5><input style="text-align: right;" type="number" class="form-control" id="potongan_harga" name="potongan_harga" max="9999999999" onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
+                    <h5><input style="text-align: right;" type="number" class="form-control" required="" id="potongan_harga" name="potongan_harga" max="9999999999" onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
                     <input type="hidden" id="total" name="total">
                   </td>
                 </tr>

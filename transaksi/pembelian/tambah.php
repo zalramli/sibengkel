@@ -172,21 +172,21 @@ if (isset($_POST['simpan'])) {
                                         <h5>Sub Total</h5>
                                     </td>
                                     <td width="40%" style="text-align: right;">
-                                        <input type="number" class="form-control" id="sub_total_hrg" name="sub_total" readonly="" value="<?= $sub_total ?>">
+                                        <input style="text-align: right;" type="number" class="form-control" id="sub_total_hrg" name="sub_total" readonly="" value="<?= $sub_total ?>">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td width="60%">
                                         <h5>Potongan Harga</h5>
                                     </td>
-                                    <td style="text-align: right;  padding-top: 10px;"><input type="number" class="form-control" id="potongan" name="potongan" max="9999999999" onkeyup="update()" onchange="update()"></td>
+                                    <td style="text-align: right;  padding-top: 10px;"><input style="text-align: right;" type="number" class="form-control" required="" id="potongan" name="potongan" max="9999999999" onkeyup="update()" onchange="update()"></td>
                                 </tr>
                                 <tr>
                                     <td width="40%">
                                         <h5>Total</h5>
                                     </td>
                                     <td style="text-align: right;  padding-top: 10px;">
-                                        <input type="number" class="form-control" id="total" name="total_harga" readonly="">
+                                        <input style="text-align: right;" type="number" class="form-control" id="total" name="total_harga" readonly="">
                                     </td>
                                 </tr>
                             </table>
@@ -201,14 +201,14 @@ if (isset($_POST['simpan'])) {
                                     <td width="60%">
                                         <h5>Bayar</h5>
                                     </td>
-                                    <td width="40%" style="text-align: right;"><input type="number" class="form-control" id="bayar" name="bayar" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update()" onchange="update()"></td>
+                                    <td width="40%" style="text-align: right;"><input style="text-align: right;" type="number" class="form-control" required="" id="bayar" name="bayar" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update()" onchange="update()"></td>
                                 </tr>
                                 <tr>
                                     <td width="60%">
                                         <h5>Kembalian</h5>
                                     </td>
                                     <td width="40%" style="text-align: right;  padding-top: 10px;">
-                                        <input type="number" class="form-control" id="kembalian" name="kembalian" readonly="">
+                                        <input style="text-align: right;" type="number" class="form-control" id="kembalian" name="kembalian" readonly="">
                                     </td>
                                 </tr>
                             </table>
@@ -221,7 +221,7 @@ if (isset($_POST['simpan'])) {
                             <button onclick="return confirm('Yakin ingin Melakukan Pemasokan ?')" id="action" type="submit" name="simpan" class="btn btn-primary col-md-12">Simpan</button>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <a href="kasir.php?halaman=v_transaksi_pembelian" class="btn btn-success notika-btn-success col-md-12">Kembali</a>
+                            <a href="kasir.php?halaman=v_transaksi_pembelian" class="btn btn-danger col-md-12">Kembali</a>
                         </div>
                     </div>
                 </div>

@@ -101,7 +101,7 @@ if (isset($_POST['simpan'])) {
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
           <div class="form-group">
-            <a href="gudang.php?halaman=v_permintaan_barang" class="btn btn-success notika-btn-success">Kembali</a>
+            <a href="gudang.php?halaman=v_permintaan_barang" class="btn btn-danger">Kembali</a>
           </div>
         </div>
       </div>
