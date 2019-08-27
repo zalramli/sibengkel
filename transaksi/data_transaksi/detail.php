@@ -6,10 +6,10 @@ $query2 = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah_barang FROM detail_p
 $data2 = mysqli_fetch_array($query2);
 $query3 = mysqli_query($koneksi, "SELECT * FROM detail_penjualan_barang JOIN penjualan USING(no_faktur_penjualan) JOIN barang USING(kode_barang) WHERE no_faktur_penjualan='$id'");
 $query4 = mysqli_query($koneksi, "SELECT * FROM detail_penjualan_service JOIN service USING(kode_service) JOIN penjualan_wo USING(kode_wo) JOIN penjualan USING(no_faktur_penjualan) WHERE no_faktur_penjualan='$id'");
-
+$query5 = mysqli_query($koneksi, "SELECT COUNT(*) AS cek_service FROM detail_penjualan_service JOIN penjualan_wo USING(kode_wo) WHERE no_faktur_penjualan = '$id'");
+$data5 = mysqli_fetch_array($query5);
 ?>
 <div class="container">
-
     <div style="margin-bottom: 20px;">
         <a href="?halaman=v_data_transaksi" class="btn btn-primary btn-lg">Kembali</a>
     </div>
@@ -33,13 +33,18 @@ $query4 = mysqli_query($koneksi, "SELECT * FROM detail_penjualan_service JOIN se
     </table>
     <table class="table table-borderless" width="100%">
         <thead>
-            <tr>
+            <?php 
+            if ($data2['jumlah_barang']) {
+                echo '<tr>
                 <th width="7%" scope="col">NO</th>
                 <th width="35%" scope="col">NAMA BARANG</th>
                 <th width="10%" scope="col">QTY</th>
                 <th width="24%" scope="col">HARGA BARANG</th>
                 <th width="24%" style="text-align:center" scope="col">TOTAL HARGA</th>
-            </tr>
+            </tr>';
+            }
+            ?>
+            
         </thead>
         <tbody>
             <?php
@@ -58,12 +63,17 @@ $query4 = mysqli_query($koneksi, "SELECT * FROM detail_penjualan_service JOIN se
     </table>
     <table class="table table-borderless" width="100%">
         <thead>
-            <tr>
+            <?php 
+            if ($data5['cek_service'] > 0) {
+                echo '<tr>
                 <th width="7%" scope="col">NO</th>
                 <th width="59%" scope="col">NAMA SERVICE</th>
                 <th width="10%"></th>
                 <th style="text-align: center;" width="24%" scope="col">TARIF HARGA</th>
-            </tr>
+            </tr>';
+            }
+            ?>
+            
         </thead>
         <tbody>
             <?php
