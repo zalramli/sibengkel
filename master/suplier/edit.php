@@ -38,7 +38,7 @@ if (isset($_POST['update'])) {
         <div class="form-group">
           <div class="nk-int-st">
             <input type="hidden" name="kode_suplier" class="form-control" value="<?= $data['kode_suplier'] ?>">
-            <input type="text" name="nama_suplier" class="form-control" placeholder="Isi form nama Suplier" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['nama_suplier'] ?>">
+            <input type="text" pattern="[A-Za-z\s]+" name="nama_suplier" class="form-control" placeholder="Isi form nama Suplier" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')" value="<?= $data['nama_suplier'] ?>">
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@ if (isset($_POST['update'])) {
         <label for="">No telp</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('No Telepon Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['telp'] ?>">
+            <input type="text" pattern="[0-9]+" name="telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('No Telepon Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')" value="<?= $data['telp'] ?>">
           </div>
         </div>
       </div>

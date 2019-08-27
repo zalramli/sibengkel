@@ -97,7 +97,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Stock Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="number" name="stock" class="form-control" placeholder="Isi form stock barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Barang Wajib Diisi')" oninput="setCustomValidity('')">
+            <input type="text" pattern="[0-9]+" name="stock" class="form-control" placeholder="Isi form stock barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Stock Limit Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="number" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Limit Barang Wajib Diisi')" oninput="setCustomValidity('')">
+            <input type="text" pattern="[0-9]+" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Limit Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -136,7 +136,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Harga Pokok</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" id="rupiah2" name="harga_pokok" class="form-control" placeholder="Isi form harga pokok barang" required="" oninvalid="this.setCustomValidity('Harga Pokok Wajib Diisi')" oninput="setCustomValidity('')">
+            <input type="text" id="rupiah2" name="harga_pokok" class="form-control" placeholder="Isi form harga pokok barang" required="" oninvalid="this.setCustomValidity('Harga Pokok Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -144,7 +144,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Harga Jual</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" id="rupiah" name="harga_jual" class="form-control" placeholder="Isi form harga jual barang" required="" oninvalid="this.setCustomValidity('Harga Jual Wajib Diisi')" oninput="setCustomValidity('')">
+            <input type="text" id="rupiah" name="harga_jual" class="form-control" placeholder="Isi form harga jual barang" required="" oninvalid="this.setCustomValidity('Harga Jual Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
