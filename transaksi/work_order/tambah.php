@@ -76,7 +76,7 @@ if (isset($_POST['simpan'])) {
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
       <div class="contact-inner">
         <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
-          <h2>Cari Customer Jika ada otomatis isi mobil dan data customer</h2>
+          <h2>Cari Customer Jika Pernah Datang</h2>
         </div>
         <div class="bootstrap-select fm-cmp-mg">
           <select id="kode_customer" name="kode_customer" class="selectpicker" data-live-search="true">
@@ -118,15 +118,7 @@ if (isset($_POST['simpan'])) {
             <label for="">Nama Customer</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="nama_customer" class="form-control" placeholder="Isi form nama customer" required="">
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <label for="">Alamat</label>
-            <div class="form-group">
-              <div class="nk-int-st">
-                <input type="text" name="alamat" class="form-control" placeholder="Isi form alamat customer" required="">
+                <input type="text" pattern="[A-Za-z]+" name="nama_customer" class="form-control" placeholder="Isi form nama customer" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')">
               </div>
             </div>
           </div>
@@ -134,11 +126,19 @@ if (isset($_POST['simpan'])) {
             <label for="">No Hp</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="no_telp" class="form-control" placeholder="Isi form no hp" required="">
-
+                <input type="text" pattern="[0-9]+" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('Nomor Telephone Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
               </div>
             </div>
           </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <label for="">Alamat</label>
+            <div class="form-group">
+              <div class="nk-int-st">
+                <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"></textarea>
+              </div>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -152,7 +152,7 @@ if (isset($_POST['simpan'])) {
             <label for="">No Plat</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="no_plat" class="form-control" placeholder="isi form plat nomer" required="">
+                <input type="text" name="no_plat" class="form-control" placeholder="Isi form nomor plat" required="" maxlength="15" oninvalid="this.setCustomValidity('Nomor Plat Wajib Diisi')" oninput="setCustomValidity('')">
               </div>
             </div>
           </div>
@@ -160,7 +160,7 @@ if (isset($_POST['simpan'])) {
             <label for="">Nama Kendaraan</label>
             <div class="form-group">
               <div class="nk-int-st">
-                <input type="text" name="nama_kendaraan" class="form-control" placeholder="isi form nama kendaraan" required="">
+                <input type="text" name="nama_kendaraan" class="form-control" placeholder="Isi form nama kendaraan" required="" maxlength="15" oninvalid="this.setCustomValidity('Nama Kendaraan Wajib Diisi')" oninput="setCustomValidity('')">
               </div>
             </div>
           </div>

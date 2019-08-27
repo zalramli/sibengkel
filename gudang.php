@@ -11,10 +11,11 @@ if (!isset($_SESSION['username'])) {
     echo "<script>window.history.back();</script>";
 }
 ?>
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <?php include "_partial/head.php"; ?>
 
     <!-- modernizr JS
