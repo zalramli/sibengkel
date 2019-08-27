@@ -129,50 +129,37 @@
             console.log(mouse_masuk);
         });
 
-        window.onbeforeunload = function() {
-            if (mouse_masuk == 'true') {
-                $(document).on("keypress", function(event) {
-                    console.log('asd');
-                    if (event.altKey && event.keyCode == 115) { // Alt+F4
-                        return "Ingin Keluar Aplikasi?";
-                        //Ajax request to update the database
-                        $.ajax({
-                            type: "POST",
-                            url: "logout.php"
-                        });
-                    } else if (event.ctrlKey && event.keyCode == 115) { // Ctrl+F4
-                        return "Ingin Keluar Aplikasi?";
-                        //Ajax request to update the database
-                        $.ajax({
-                            type: "POST",
-                            url: "logout.php"
-                        });
-                    } else if (event.ctrlKey && event.keyCode == 87) { // Ctrl+W
-                        return "Ingin Keluar Aplikasi?";
-                        //Ajax request to update the database
-                        $.ajax({
-                            type: "POST",
-                            url: "logout.php"
-                        });
-                    }
+        $(document).on("keypress", function(event) {
+            if (event.altKey && event.keyCode == 115) { // Alt+F4
+                //Ajax request to update the database
+                $.ajax({
+                    type: "POST",
+                    url: "logout.php"
                 });
-
-            } else {
-                return "Ingin Keluar Aplikasi?";
+            } else if (event.ctrlKey && event.keyCode == 115) { // Ctrl+F4
+                //Ajax request to update the database
+                $.ajax({
+                    type: "POST",
+                    url: "logout.php"
+                });
+            } else if (event.ctrlKey && event.keyCode == 87) { // Ctrl+W
                 //Ajax request to update the database
                 $.ajax({
                     type: "POST",
                     url: "logout.php"
                 });
             }
-        }
+        });
 
-        function keluar_aplikasi() {
-            return "Ingin Keluar Aplikasi?";
-            //Ajax request to update the database
-            $.ajax({
-                type: "POST",
-                url: "logout.php"
-            });
+        window.onbeforeunload = function() {
+            if (mouse_masuk == 'true') {
+                // nothing
+            } else {
+                //Ajax request to update the database
+                $.ajax({
+                    type: "POST",
+                    url: "logout.php"
+                });
+            }
         }
     </script>
