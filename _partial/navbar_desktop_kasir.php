@@ -14,6 +14,7 @@
                     if ($_GET['halaman'] == "v_work_order") {echo 'active';}
                     if ($_GET['halaman'] == "v_data_transaksi") {echo 'active';}
                     if ($_GET['halaman'] == "detail_transaksi") {echo 'active';}
+                    if ($_GET['halaman'] == "sukses") {echo 'active';}
                     ?>">
                         <a data-toggle="tab" href="#Forms1"><i class="fas fa-cash-register"></i> Transaksi Penjualan</a>
                     </li>
@@ -52,6 +53,7 @@
                     if ($_GET['halaman'] == "v_work_order") {echo 'active';}
                     if ($_GET['halaman'] == "v_data_transaksi") {echo 'active';}
                     if ($_GET['halaman'] == "detail_transaksi") {echo 'active';}
+                    if ($_GET['halaman'] == "sukses") {echo 'active';}
 
                     ?> ">
                         <ul class="notika-main-menu-dropdown">

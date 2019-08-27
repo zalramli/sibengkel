@@ -114,6 +114,10 @@ if (!isset($_SESSION['username'])) {
                         include "transaksi/pembelian/tampil_detail.php";
                     }
 
+                    if ($_GET['halaman'] == 'sukses') {
+                        include "transaksi/penjualan/sukses_transaksi.php";
+                    }
+
                     ?>
                 </div>
             </div>

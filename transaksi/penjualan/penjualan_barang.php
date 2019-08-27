@@ -68,7 +68,7 @@ if (isset($_POST['simpan'])) {
       $query_detail_barang = mysqli_query($koneksi, "INSERT INTO detail_penjualan_barang VALUES ('','$no_faktur_penjualan','$kode_barang','$jumlah_barang','$sub_total_harga') ");
     }
 
-    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=transaksi_penjualan_barang'</script>";
+    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=sukses'</script>";
   } else {
     echo "<script>alert('Gagal Mengirim Data , data detail harus ada !'); window.location = 'kasir.php?halaman=transaksi_penjualan_barang&id'</script>";
   }

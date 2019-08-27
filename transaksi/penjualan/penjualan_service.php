@@ -62,7 +62,7 @@ if (isset($_POST['simpan'])) {
 
     $update_work_order = mysqli_query($koneksi, "UPDATE work_order SET status_wo='1' WHERE kode_wo='$kode_wo'");
 
-    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=v_work_order'</script>";
+    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=sukses'</script>";
   } else {
     echo "<script>alert('Gagal Mengirim Data , data detail harus ada !'); window.location = 'kasir.php?halaman=transaksi_penjualan_service&id=" . $id . "'</script>";
   }
