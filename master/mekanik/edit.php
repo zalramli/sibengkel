@@ -35,7 +35,7 @@ if (isset($_POST['update'])) {
         <div class="form-group">
           <div class="nk-int-st">
             <input type="hidden" name="kode_mekanik" class="form-control" value="<?= $data['kode_mekanik'] ?>">
-            <input type="text" pattern="[A-Za-z]+" name="nama_mekanik" class="form-control" placeholder="Isi form nama mekanik" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')" value="<?= $data['nama_mekanik'] ?>">
+            <input type="text" pattern="[A-Za-z\s]+" name="nama_mekanik" class="form-control" placeholder="Isi form nama mekanik" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')" value="<?= $data['nama_mekanik'] ?>">
           </div>
         </div>
       </div>

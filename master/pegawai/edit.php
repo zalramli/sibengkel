@@ -70,7 +70,7 @@ if (isset($_POST['update'])) {
         <div class="form-group">
           <div class="nk-int-st">
             <input type="hidden" name="kode_pegawai" class="form-control" value="<?= $data['kode_pegawai'] ?>">
-            <input type="text" pattern="[A-Za-z]+" name="nama_pegawai" class="form-control" placeholder="Isi form Nama Pegawai" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')" value="<?= $data['nama_pegawai'] ?>">
+            <input type="text" pattern="[A-Za-z\s]+" name="nama_pegawai" class="form-control" placeholder="Isi form Nama Pegawai" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')" value="<?= $data['nama_pegawai'] ?>">
           </div>
         </div>
       </div>

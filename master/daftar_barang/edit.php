@@ -89,7 +89,7 @@ if (isset($_POST['update'])) {
         <label for="">Stock Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="number" name="stock" class="form-control" placeholder="Isi form stock barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Barang Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['stock'] ?>">
+            <input type="text" pattern="[0-9]+" name="stock" class="form-control" placeholder="Isi form stock barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')" value="<?= $data['stock'] ?>">
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@ if (isset($_POST['update'])) {
         <label for="">Stock Limit Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="number" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Limit Barang Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['stock_limit'] ?>">
+            <input type="text" pattern="[0-9]+" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Limit Barang Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')" value="<?= $data['stock_limit'] ?>">
           </div>
         </div>
       </div>
