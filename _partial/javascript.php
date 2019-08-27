@@ -117,7 +117,7 @@
 
     <!-- Ketika Close browser atau Tutup Tab browser otomatis logout -->
     <script>
-        var mouse_masuk = '';
+        var mouse_masuk = 'true';
 
         $(document).mouseenter(function() {
             mouse_masuk = 'true';
