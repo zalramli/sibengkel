@@ -32,7 +32,7 @@ if (isset($_POST['update'])) {
                 <div class="form-group">
                     <div class="nk-int-st">
                         <input type="hidden" name="kode_service" class="form-control" placeholder="Isi form tarif service" readonly="" value="<?= $data['kode_service'] ?>">
-                        <input type="text" name="nama_service" class="form-control" placeholder="Isi Form Nama Service" required="" maxlength="30" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['nama_service'] ?>">
+                        <input type="text" pattern="[A-Za-z\s]+" name="nama_service" class="form-control" placeholder="Isi Form Nama Service" required="" maxlength="30" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')" value="<?= $data['nama_service'] ?>">
                     </div>
                 </div>
             </div>
