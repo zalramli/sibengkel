@@ -36,14 +36,14 @@ if (isset($_POST['simpan'])) {
         <label for="">Nama mekanik</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="nama_mekanik" class="form-control" placeholder="Isi form nama mekanik" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')">
+            <input type="text" pattern="[A-Za-z]+" name="nama_mekanik" class="form-control" placeholder="Isi form nama mekanik" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <label for="">ALamat</label>
+        <label for="">Alamat</label>
         <div class="form-group">
           <div class="nk-int-st">
             <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"></textarea>
@@ -56,7 +56,7 @@ if (isset($_POST['simpan'])) {
         <label for="">No telp</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('No Telepon Wajib Diisi')" oninput="setCustomValidity('')">
+            <input type="text" pattern="[0-9]+" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('Nomor Telephone Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>

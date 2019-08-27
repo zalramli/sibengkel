@@ -36,18 +36,7 @@ if (isset($_POST['update'])) {
         <div class="form-group">
           <div class="nk-int-st">
             <input type="hidden" name="kode_customer" class="form-control" value="<?= $data['kode_customer'] ?>">
-            <input type="text" name="nama_customer" class="form-control" placeholder="Isi form nama Customer" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['nama_customer'] ?>">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <label for="">ALamat</label>
-        <div class="form-group">
-          <div class="nk-int-st">
-            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"><?= $data['alamat'] ?></textarea>
+            <input type="text" pattern="[A-Za-z]+" name="nama_customer" class="form-control" placeholder="Isi form nama customer" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" value="<?= $data['nama_customer'] ?>" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -58,9 +47,20 @@ if (isset($_POST['update'])) {
         <label for="">No telp</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('No Telepon Wajib Diisi')" oninput="setCustomValidity('')" value="<?= $data['no_telp'] ?>">
+            <input type="text" name="no_telp" pattern="[0-9]+" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('Nomor Telephone Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')" value="<?= $data['no_telp'] ?>">
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <label for="">Alamat</label>
+            <div class="form-group">
+              <div class="nk-int-st">
+                <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"><?= $data['alamat'] ?></textarea>
+              </div>
+            </div>
       </div>
     </div>
 
