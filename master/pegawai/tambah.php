@@ -26,8 +26,6 @@ if (isset($_POST['simpan'])) {
 
   // validasi password dan konfirmasi password
   if ($k_password == $_POST["password"]) {
-
-    $query = mysqli_query($koneksi, "INSERT INTO pegawai (kode_pegawai,kode_jenis_p,nama_pegawai,alamat,no_telp,username,password,status_login) VALUES ('$auto_kode','$kode_jenis_p','$nama_pegawai','$alamat','$no_telp','$username','$password','$status') ");
     $query_pegawai = mysqli_query($koneksi,"SELECT COUNT(*) as jumlah FROM pegawai WHERE username='$username'");
     $ambil = mysqli_fetch_array($query_pegawai);
     $cek_username = $ambil['jumlah'];
@@ -35,6 +33,7 @@ if (isset($_POST['simpan'])) {
     {
         echo "<script>alert('Tidak Boleh Ada 2 Username yang Sama'); window.location = 'admin.php?halaman=add_pegawai'</script>";
     } else {
+        $query = mysqli_query($koneksi, "INSERT INTO pegawai (kode_pegawai,kode_jenis_p,nama_pegawai,alamat,no_telp,username,password,status_login) VALUES ('$auto_kode','$kode_jenis_p','$nama_pegawai','$alamat','$no_telp','$username','$password','$status') ");
         // validasi apakah berhasil atau gagal
         if ($query) {
         echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'admin.php?halaman=v_pegawai'</script>";
@@ -61,7 +60,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Nama Pegawai</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="nama_pegawai" class="form-control" placeholder="Isi form Nama Pegawai" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')">
+            <input type="text" pattern="[A-Za-z]+" name="nama_pegawai" class="form-control" placeholder="Isi form Nama Pegawai" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -118,7 +117,7 @@ if (isset($_POST['simpan'])) {
         <label for="">No telp</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('No Telepon Wajib Diisi')" oninput="setCustomValidity('')">
+            <input type="text" pattern="[0-9]+" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('Nomor Telephone Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
