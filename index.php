@@ -1,44 +1,49 @@
 <!doctype html>
 <?php
-// echo $_SESSION['akses'];
-include "koneksi/koneksi.php";
-if (isset($_POST['login'])) {
-  session_start();
-  $username = $_POST['username'];
-  $password = $_POST['password'];
+session_start();
+// jika mengakses login maka acount lama di logout
+if (isset($_SESSION['kode_pegawai'])) {
+  header('location:logout.php');
+} else {
+  include "koneksi/koneksi.php";
+  if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-  // menyeleksi data admin dengan username dan password yang sesuai
-  $query = mysqli_query($koneksi, "SELECT * FROM pegawai JOIN jenis_pegawai USING(kode_jenis_p) WHERE username='$username'");
-  // menghitung jumlah data yang ditemukan
-  $cek = mysqli_num_rows($query);
-  $data = mysqli_fetch_array($query);
-  $kode_pegawai = $data['kode_pegawai'];
-  if ($cek > 0) {
-    if ($data['status_login'] == "0") {
-      if (password_verify($_POST['password'], $data['password'])) {
-        $_SESSION['username'] = $data['username'];
-        $_SESSION['akses'] = $data['nama_jenis_p'];
-        $_SESSION['kode_pegawai'] = $data['kode_pegawai'];
-        mysqli_query($koneksi, "UPDATE pegawai SET status_login='1' WHERE kode_pegawai='$kode_pegawai'");
-        if ($_SESSION['akses'] == "Admin") {
-          header("location:admin.php?halaman=dashboard");
-        } else if ($_SESSION['akses'] == "Kasir") {
-          header("location:kasir.php?halaman=dashboard");
-        } else if ($_SESSION['akses'] == "Gudang") {
-          header("location:gudang.php?halaman=dashboard");
-        } else if ($_SESSION['akses'] == "Cs") {
-          header("location:cs.php?halaman=dashboard");
+    // menyeleksi data admin dengan username dan password yang sesuai
+    $query = mysqli_query($koneksi, "SELECT * FROM pegawai JOIN jenis_pegawai USING(kode_jenis_p) WHERE username='$username'");
+    // menghitung jumlah data yang ditemukan
+    $cek = mysqli_num_rows($query);
+    $data = mysqli_fetch_array($query);
+    $kode_pegawai = $data['kode_pegawai'];
+    if ($cek > 0) {
+      if ($data['status_login'] == "0") {
+        if (password_verify($_POST['password'], $data['password'])) {
+          $_SESSION['username'] = $data['username'];
+          $_SESSION['akses'] = $data['nama_jenis_p'];
+          $_SESSION['kode_pegawai'] = $data['kode_pegawai'];
+          mysqli_query($koneksi, "UPDATE pegawai SET status_login='1' WHERE kode_pegawai='$kode_pegawai'");
+          if ($_SESSION['akses'] == "Admin") {
+            header("location:admin.php?halaman=dashboard");
+          } else if ($_SESSION['akses'] == "Kasir") {
+            header("location:kasir.php?halaman=dashboard");
+          } else if ($_SESSION['akses'] == "Gudang") {
+            header("location:gudang.php?halaman=dashboard");
+          } else if ($_SESSION['akses'] == "Cs") {
+            header("location:cs.php?halaman=dashboard");
+          }
+        } else {
+          echo "password anda salah";
         }
       } else {
-        echo "password anda salah";
+        echo "Akun anda sedang digunakan";
       }
     } else {
-      echo "Akun anda sedang digunakan";
+      echo "usernmae anda salah";
     }
-  } else {
-    echo "usernmae anda salah";
   }
 }
+
 
 ?>
 <html class="no-js" lang="">
@@ -108,17 +113,14 @@ if (isset($_POST['login'])) {
           <div class="input-group">
             <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
             <div class="nk-int-st">
-              <input type="text" name="username" class="form-control" placeholder="Username">
+              <input type="text" name="username" class="form-control" placeholder="Username" required="" maxlength="50" oninvalid="this.setCustomValidity('Username Wajib Diisi')" oninput="setCustomValidity('')">
             </div>
           </div>
           <div class="input-group mg-t-15">
             <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-edit"></i></span>
             <div class="nk-int-st">
-              <input type="password" name="password" class="form-control" placeholder="Password">
+              <input type="password" name="password" class="form-control" placeholder="Password" required="" maxlength="60" oninvalid="this.setCustomValidity('Password Wajib Diisi')" oninput="setCustomValidity('')">
             </div>
-          </div>
-          <div class="fm-checkbox">
-            <label><input type="checkbox" class="i-checks"> <i></i> Keep me signed in</label>
           </div>
           <button type="submit" name="login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
       </div>
