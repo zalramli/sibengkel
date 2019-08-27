@@ -35,7 +35,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Nama Jenis Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="nama_jenis" class="form-control" placeholder="Isi form nama jenis barang" required="" maxlength="30" oninvalid="this.setCustomValidity('Nama Jenis Barang Wajib Diisi')" oninput="setCustomValidity('')">
+            <input type="text" pattern="[A-Za-z]+" name="nama_jenis" class="form-control" placeholder="Isi form nama jenis barang" required="" maxlength="20" oninvalid="this.setCustomValidity('Nama Jenis Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
