@@ -103,18 +103,6 @@
         $("form :input").attr("autocomplete", "off");
     </script>
 
-    <!-- User Tiap 10 menit akan logout otomatis Jika tidak melakukan apa apa-->
-    <script>
-        $(document).idle({
-            onIdle: function() {
-                window.location = "logout.php";
-            },
-            // 1 detik = 1000 
-            // 10 menit
-            idle: 600000
-        });
-    </script>
-
     <!-- Ketika Close browser atau Tutup Tab browser otomatis logout -->
     <script>
         var mouse_masuk = 'true';
