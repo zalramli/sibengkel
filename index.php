@@ -33,13 +33,13 @@ if (isset($_SESSION['kode_pegawai'])) {
             header("location:cs.php?halaman=dashboard");
           }
         } else {
-          echo "password anda salah";
+          echo "<script>alert('password anda salah'); window.location = 'index.php'</script>";
         }
       } else {
-        echo "Akun anda sedang digunakan";
+        echo "<script>alert('Akun anda sedang digunakan'); window.location = 'index.php'</script>";
       }
     } else {
-      echo "usernmae anda salah";
+      echo "<script>alert('usernmae anda salah'); window.location = 'index.php'</script>";
     }
   }
 }
