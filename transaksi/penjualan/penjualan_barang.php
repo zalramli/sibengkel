@@ -91,10 +91,8 @@ if (isset($_POST['simpan'])) {
 
     echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=sukses'</script>";
     }
-
-    
   } else {
-    echo "<script>alert('Gagal Mengirim Data , data detail harus ada !'); window.location = 'kasir.php?halaman=transaksi_penjualan_barang&id'</script>";
+    echo "<script>alert('Gagal Mengirim Data , data detail harus ada !'); window.location = 'kasir.php?halaman=transaksi_penjualan_barang'</script>";
   }
 }
 ?>
@@ -390,6 +388,7 @@ if (isset($_POST['simpan'])) {
   }
   // Menghitung kembalian
 </script>
+<!-- Harus angka -->
 <script>
     function hanyaAngka(evt) {
       var charCode = (evt.which) ? evt.which : event.keyCode

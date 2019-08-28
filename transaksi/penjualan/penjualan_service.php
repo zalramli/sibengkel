@@ -30,7 +30,10 @@ if (isset($_POST['simpan'])) {
     $status = "0";
     $kode_customer = $data['kode_customer'];
 
-    $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
+    if ($bayar < $total_harga) {
+        echo "<script>alert('Transaksi gagal,Pembayaran anda kurang'); window.location = 'kasir.php?halaman=transaksi_penjualan_service&id=" . $id . "'</script>";
+    } else {
+        $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
 
     $query_penjualan_wo = mysqli_query($koneksi, "INSERT INTO penjualan_wo VALUES ('','$no_faktur_penjualan','$kode_wo')");
 
@@ -63,6 +66,8 @@ if (isset($_POST['simpan'])) {
     $update_work_order = mysqli_query($koneksi, "UPDATE work_order SET status_wo='1' WHERE kode_wo='$kode_wo'");
 
     echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=sukses'</script>";
+    }
+    
   } else {
     echo "<script>alert('Gagal Mengirim Data , data detail harus ada !'); window.location = 'kasir.php?halaman=transaksi_penjualan_service&id=" . $id . "'</script>";
   }
@@ -219,7 +224,7 @@ if (isset($_POST['simpan'])) {
                     <h5>Potongan Harga</h5>
                   </td>
                   <td style="padding-top: 5px">
-                    <h5><input style="text-align: right;" type="number" class="form-control" id="potongan_harga" name="potongan_harga" max="9999999999" onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
+                    <h5><input style="text-align: right;" type="text" onkeypress="return hanyaAngka(event)" class="form-control" id="potongan_harga" name="potongan_harga" max="9999999999" onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
                     <input type="hidden" id="total" name="total">
                   </td>
                 </tr>
@@ -235,7 +240,7 @@ if (isset($_POST['simpan'])) {
                   <td style="padding-top: 15px;" width="60%">
                     <h5>Bayar</h5>
                   </td>
-                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="number" class="form-control" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update_kembalian()" onchange="update_kembalian()"></td>
+                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="text" onkeypress="return hanyaAngka(event)" class="form-control" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update_kembalian()" onchange="update_kembalian()"></td>
                 </tr>
                 <tr>
                   <td style="padding: 20px 0px;">
@@ -516,4 +521,14 @@ if (isset($_POST['simpan'])) {
     }
   }
   // Menghitung kembalian
+</script>
+<!-- Harus Angka -->
+<script>
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+        return false;
+      return true;
+    }
 </script>
