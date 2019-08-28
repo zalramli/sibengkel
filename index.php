@@ -17,26 +17,26 @@ if (isset($_SESSION['kode_pegawai'])) {
     $data = mysqli_fetch_array($query);
     $kode_pegawai = $data['kode_pegawai'];
     if ($cek > 0) {
-      if ($data['status_login'] == "0") {
-        if (password_verify($_POST['password'], $data['password'])) {
-          $_SESSION['username'] = $data['username'];
-          $_SESSION['akses'] = $data['nama_jenis_p'];
-          $_SESSION['kode_pegawai'] = $data['kode_pegawai'];
-          mysqli_query($koneksi, "UPDATE pegawai SET status_login='1' WHERE kode_pegawai='$kode_pegawai'");
-          if ($_SESSION['akses'] == "Admin") {
-            header("location:admin.php?halaman=dashboard");
-          } else if ($_SESSION['akses'] == "Kasir") {
-            header("location:kasir.php?halaman=dashboard");
-          } else if ($_SESSION['akses'] == "Gudang") {
-            header("location:gudang.php?halaman=dashboard");
-          } else if ($_SESSION['akses'] == "Cs") {
-            header("location:cs.php?halaman=dashboard");
-          }
-        } else {
-          echo "<script>alert('password anda salah'); window.location = 'index.php'</script>";
+      if (password_verify($_POST['password'], $data['password'])) {
+        $_SESSION['username'] = $data['username'];
+        $_SESSION['akses'] = $data['nama_jenis_p'];
+        $_SESSION['kode_pegawai'] = $data['kode_pegawai'];
+
+        // mengambil session_id
+        $_SESSION['session_id'] = session_id();
+
+        mysqli_query($koneksi, "UPDATE pegawai SET status_login='1' WHERE kode_pegawai='$kode_pegawai'");
+        if ($_SESSION['akses'] == "Admin") {
+          header("location:admin.php?halaman=dashboard");
+        } else if ($_SESSION['akses'] == "Kasir") {
+          header("location:kasir.php?halaman=dashboard");
+        } else if ($_SESSION['akses'] == "Gudang") {
+          header("location:gudang.php?halaman=dashboard");
+        } else if ($_SESSION['akses'] == "Cs") {
+          header("location:cs.php?halaman=dashboard");
         }
       } else {
-        echo "<script>alert('Akun anda sedang digunakan'); window.location = 'index.php'</script>";
+        echo "<script>alert('password anda salah'); window.location = 'index.php'</script>";
       }
     } else {
       echo "<script>alert('usernmae anda salah'); window.location = 'index.php'</script>";
