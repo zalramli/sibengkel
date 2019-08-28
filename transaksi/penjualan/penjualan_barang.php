@@ -39,17 +39,13 @@ if (isset($_POST['simpan'])) {
     $query_cek_customer = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah FROM customer WHERE nama_customer='Umum'");
     $data_customer = mysqli_fetch_array($query_cek_customer);
     $cek_customer = $data_customer['jumlah'];
-    if ($cek_customer == 0) {
+    if ($bayar < $total_harga) {
+        echo "<script>alert('Transaksi gagal,Pembayaran anda kurang'); window.location = 'kasir.php?halaman=transaksi_penjualan_barang'</script>";
+    }
+    else if ($cek_customer == 0) {
       $query_customer = mysqli_query($koneksi, "INSERT INTO customer VALUES ('$kode_customer','Umum','-','-') ");
       $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
-    } else {
-      $query_ambil_customer = mysqli_query($koneksi, "SELECT * FROM customer WHERE nama_customer='Umum'");
-      $data_customer2 = mysqli_fetch_array($query_ambil_customer);
-      $kode_customer2 = $data_customer2['kode_customer'];
-      $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer2','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
-    }
-
-    // INSERT DATA DETAIL PENJUALAN BARANG
+      // INSERT DATA DETAIL PENJUALAN BARANG
     for ($i = 0; $i < count($_POST['kode_barang2']); $i++) {
       // data - data
       $kode_barang = $_POST['kode_barang2'][$i];
@@ -69,6 +65,34 @@ if (isset($_POST['simpan'])) {
     }
 
     echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=sukses'</script>";
+    } else {
+      $query_ambil_customer = mysqli_query($koneksi, "SELECT * FROM customer WHERE nama_customer='Umum'");
+      $data_customer2 = mysqli_fetch_array($query_ambil_customer);
+      $kode_customer2 = $data_customer2['kode_customer'];
+      $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer2','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
+      // INSERT DATA DETAIL PENJUALAN BARANG
+    for ($i = 0; $i < count($_POST['kode_barang2']); $i++) {
+      // data - data
+      $kode_barang = $_POST['kode_barang2'][$i];
+      $jumlah_barang = $_POST['jumlah_barang'][$i];
+      $harga_jual = $_POST['harga_jual'][$i];
+      // sub total
+      $sub_total_harga = $jumlah_barang * $harga_jual;
+
+      $qq = mysqli_query($koneksi, "SELECT * FROM barang WHERE kode_barang='$kode_barang'");
+      $f = mysqli_fetch_array($qq);
+      $ids = $f['kode_barang'];
+      $stock_sekarang = $f['stock'];
+      $stock_baru = $stock_sekarang - $jumlah_barang;
+      mysqli_query($koneksi, "UPDATE barang SET stock='$stock_baru' WHERE kode_barang='$ids'");
+
+      $query_detail_barang = mysqli_query($koneksi, "INSERT INTO detail_penjualan_barang VALUES ('','$no_faktur_penjualan','$kode_barang','$jumlah_barang','$sub_total_harga') ");
+    }
+
+    echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=sukses'</script>";
+    }
+
+    
   } else {
     echo "<script>alert('Gagal Mengirim Data , data detail harus ada !'); window.location = 'kasir.php?halaman=transaksi_penjualan_barang&id'</script>";
   }
@@ -153,7 +177,7 @@ if (isset($_POST['simpan'])) {
                     <h5>Potongan Harga</h5>
                   </td>
                   <td style="padding-top: 5px">
-                    <h5><input style="text-align: right;" type="number" class="form-control" required="" id="potongan_harga" name="potongan_harga" max="9999999999" onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
+                    <h5><input style="text-align: right;" type="text" onkeypress="return hanyaAngka(event)" class="form-control" required="" id="potongan_harga" name="potongan_harga" max="9999999999" onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
                     <input type="hidden" id="total" name="total">
                   </td>
                 </tr>
@@ -169,7 +193,7 @@ if (isset($_POST['simpan'])) {
                   <td style="padding-top: 15px;" width="60%">
                     <h5>Bayar</h5>
                   </td>
-                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="number" class="form-control" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update_kembalian()" onchange="update_kembalian()"></td>
+                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="text" onkeypress="return hanyaAngka(event)" class="form-control" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update_kembalian()" onchange="update_kembalian()"></td>
                 </tr>
                 <tr>
                   <td style="padding: 20px 0px;">
@@ -365,4 +389,13 @@ if (isset($_POST['simpan'])) {
     }
   }
   // Menghitung kembalian
+</script>
+<script>
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+        return false;
+      return true;
+    }
 </script>
