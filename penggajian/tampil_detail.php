@@ -30,7 +30,7 @@
                     <td><?= $data['nama_jenis_p'] ?></td>
                     <td><?= $data['periode_gaji'] ?></td>
                     <td><?= $data['jumlah_hari_kerja'] ?></td>
-                    <td><?= $data['total_gaji'] ?></td>
+                    <td style="text-align: right;"><?= format_ribuan($data['total_gaji']) ?></td>
                 </tr>
                 <?php }
 
@@ -43,7 +43,7 @@
                     <td>Mekanik</td>
                     <td><?= $data2['periode_gaji'] ?></td>
                     <td><?= $data2['jumlah_hari_kerja'] ?></td>
-                    <td><?= $data2['total_gaji'] ?></td>
+                    <td style="text-align: right;"><?= format_ribuan($data2['total_gaji']) ?></td>
                 </tr>
                 <?php }
                 ?>
@@ -65,7 +65,7 @@
                     <th></th>
                     <th></th>
                     <th>Jumlah Total Gaji : </th>
-                    <th><?= $total ?></th>
+                    <th style="text-align: right;"><?= format_ribuan($total) ?></th>
                 </tr>
             </tfoot>
         </table>

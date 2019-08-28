@@ -45,7 +45,10 @@ if (isset($_GET['id'])) {
         <tr>
             <th>Tanggal</th>
             <th>:</th>
-            <th><?= $tgl_transaksi ?></th>
+            <?php 
+            $tanggal = date('d/m/Y H:i:s', strtotime($tgl_transaksi));
+            ?>
+            <th><?= $tanggal ?></th>
 
             <th>Total Harga</th>
             <th>:</th>

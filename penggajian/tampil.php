@@ -41,10 +41,12 @@ if (isset($_GET['hapus'])) {
                 <?php
                 $query = mysqli_query($koneksi, "SELECT * FROM penggajian WHERE status='1' ORDER BY kode_penggajian ASC");
                 foreach ($query as $data) {
+                    $tgl_transaksi = $data['tgl_transaksi'];
+                    $tanggal = date('d/m/Y H:i:s', strtotime($tgl_transaksi));
                     ?>
                 <tr>
                     <td><?= $data['kode_penggajian'] ?></td>
-                    <td><?= $data['tgl_transaksi'] ?></td>
+                    <td><?= $tanggal ?></td>
                     <td>
                         <a href="?halaman=v_detail_penggajian&id=<?= $data['kode_penggajian'] ?>" class="btn btn-primary">Detail</a>
                         <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_penggajian&hapus=<?= $data['kode_penggajian']; ?>" class="btn btn-danger">Hapus</a>

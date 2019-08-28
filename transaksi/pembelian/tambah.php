@@ -178,7 +178,7 @@ if (isset($_POST['simpan'])) {
                                     <td width="60%">
                                         <h5>Sub Total</h5>
                                     </td>
-                                    <td width="40%" style="text-align: right;">
+                                    <td width="40%">
                                         <input style="text-align: right;" type="number" class="form-control" id="sub_total_hrg" name="sub_total" readonly="" value="<?= $sub_total ?>">
                                     </td>
                                 </tr>

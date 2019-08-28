@@ -31,10 +31,12 @@ if (isset($_POST['simpan'])) {
     $kembalian = $_POST['kembalian'];
     $status = 1;
 
-    // proses input data tramsaksi ke dalam database
+    if ($bayar < $total_penggajian) {
+      echo "<script>alert('Penggajian gagal,Pembayaran anda kurang'); window.location = 'admin.php?halaman=add_penggajian'</script>";
+    } else {
+        // proses input data tramsaksi ke dalam database
     $query = mysqli_query($koneksi, "INSERT INTO penggajian VALUES ('$kode_penggajian','$kode_pegawai','$tgl_transaksi','$total_penggajian','$bayar','$kembalian','$status') ");
     if ($query) {
-
       // proses input data detail tramsaksi ke dalam database
       if (isset($_POST['kode_pegawai'])) {
         for ($i = 0; $i < count($_POST['kode_pegawai']); $i++) {
@@ -79,6 +81,8 @@ if (isset($_POST['simpan'])) {
     } else {
       echo "<script>alert('Terjadi Kesalahan Input Database'); window.location = 'admin.php?halaman=add_penggajian'</script>";
     }
+    }
+    
   } else {
     echo "<script>alert('Gagal Mengirim Data , data detail harus ada !'); window.location = 'admin.php?halaman=add_penggajian'</script>";
   }
@@ -216,10 +220,10 @@ if (isset($_POST['simpan'])) {
           <div class="row">
             <br>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <button onclick="return confirm('Yakin ingin Melakukan Penggajian ?')" id="action" type="submit" name="simpan" class="btn btn-primary col-md-12">Simpan</button>
+              <button id="action" onclick="return confirm('Yakin ingin Melakukan Penggajian ?')" type="submit" name="simpan" class="btn btn-primary col-md-12">Simpan</button>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <a href="admin.php?halaman=v_penggajian" class="btn btn-success col-md-12 notika-btn-success">Kembali</a>
+              <a href="admin.php?halaman=v_penggajian" class="btn btn-danger col-md-12">Kembali</a>
             </div>
           </div>
         </div>
@@ -284,7 +288,7 @@ if (isset($_POST['simpan'])) {
             <input type="number" class="form-control gaji" id="total_gaji` + count1 + `" name="total_gaji[]" max="9999999999" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
           </div>
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-            <a id="` + count1 + `" name="remove" class="remove btn btn-primary remove_gaji">-</a>
+            <a id="` + count1 + `" name="remove" class="remove btn btn-danger remove_gaji">-</a>
           </div>
         </div>
         
@@ -336,7 +340,7 @@ if (isset($_POST['simpan'])) {
             <input type="number" class="form-control gaji" id="total_gaji_m` + count2 + `" name="total_gaji_m[]" max="9999999999" required="" oninvalid="this.setCustomValidity('Wajib Diisi')" oninput="setCustomValidity('')" value="">
           </div>
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-            <a id="` + count2 + `" name="remove" class="remove2 btn btn-primary remove_gaji">-</a>
+            <a id="` + count2 + `" name="remove" class="remove2 btn btn-danger remove_gaji">-</a>
           </div>
         </div>
         
