@@ -32,7 +32,11 @@ if (isset($_POST['simpan'])) {
 
     if ($bayar < $total_harga) {
         echo "<script>alert('Transaksi gagal,Pembayaran anda kurang'); window.location = 'kasir.php?halaman=transaksi_penjualan_service&id=" . $id . "'</script>";
-    } else {
+    } 
+    else if ($potongan_harga > $kembalian) {
+        echo "<script>alert('Transaksi gagal,Potongan harga melebihi total harga'); window.location = 'kasir.php?halaman=transaksi_penjualan_service&id=" . $id . "'</script>";
+    } 
+    else {
         $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
 
     $query_penjualan_wo = mysqli_query($koneksi, "INSERT INTO penjualan_wo VALUES ('','$no_faktur_penjualan','$kode_wo')");
@@ -509,7 +513,7 @@ if (isset($_POST['simpan'])) {
     }
 
     // parsing dan perhitungan
-    var v_total = parseInt(total_harga.value) - parseInt(potongan_temp);
+    var v_total = parseInt(total_harga.value) + parseInt(potongan_temp);
     var v_bayar = parseInt(bayar.value);
 
     total.value = v_total;
