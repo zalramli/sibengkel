@@ -89,7 +89,7 @@ if (isset($_POST['update'])) {
         <label for="">Stock Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" pattern="[0-9]+" name="stock" class="form-control" placeholder="Isi form stock barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')" value="<?= $data['stock'] ?>">
+            <input type="text" onkeypress="return hanyaAngka(event)" name="stock" class="form-control" placeholder="Isi form stock barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')" value="<?= $data['stock'] ?>">
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@ if (isset($_POST['update'])) {
         <label for="">Stock Limit Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" pattern="[0-9]+" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Limit Barang Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')" value="<?= $data['stock_limit'] ?>">
+            <input type="text" onkeypress="return hanyaAngka(event)" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Limit Barang Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')" value="<?= $data['stock_limit'] ?>">
           </div>
         </div>
       </div>
@@ -193,6 +193,15 @@ if (isset($_POST['update'])) {
             return prefix == undefined ? rupiah2 : (rupiah2 ? + rupiah2 : '');
         }
     </script>
+    <script>
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+        return false;
+      return true;
+    }
+</script>
 
 </div>
 <?php } ?>

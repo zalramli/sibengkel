@@ -47,7 +47,7 @@ if (isset($_POST['update'])) {
         <label for="">No telp</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" name="no_telp" pattern="[0-9]+" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('Nomor Telephone Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')" value="<?= $data['no_telp'] ?>">
+            <input type="text" name="no_telp" onkeypress="return hanyaAngka(event)" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('Nomor Telephone Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')" value="<?= $data['no_telp'] ?>">
           </div>
         </div>
       </div>
@@ -72,3 +72,12 @@ if (isset($_POST['update'])) {
 </div>
 
 <?php } ?>
+<script>
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+        return false;
+      return true;
+    }
+</script>

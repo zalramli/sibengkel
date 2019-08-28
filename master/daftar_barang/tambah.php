@@ -97,7 +97,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Stock Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" pattern="[0-9]+" name="stock" class="form-control" placeholder="Isi form stock barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
+            <input type="text" onkeypress="return hanyaAngka(event)" name="stock" class="form-control" placeholder="Isi form stock barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@ if (isset($_POST['simpan'])) {
         <label for="">Stock Limit Barang</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" pattern="[0-9]+" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Limit Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
+            <input type="text" onkeypress="return hanyaAngka(event)" name="stock_limit" class="form-control" placeholder="Isi form stock limit barang" required="" max="99999" oninvalid="this.setCustomValidity('Stock Limit Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -205,3 +205,12 @@ if (isset($_POST['simpan'])) {
     </script>
 
 </div>
+<script>
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+        return false;
+      return true;
+    }
+</script>
