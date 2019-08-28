@@ -250,7 +250,7 @@
 
                                 <div class="col-md-2 text-center">
                                     <address>
-                                        Jember, <?php echo date("Y-m-d"); ?>
+                                        Jember, <?php echo date("d-m-Y"); ?>
                                         <br>
                                         Penanggung Jawab <br><br><br>
                                         TTD

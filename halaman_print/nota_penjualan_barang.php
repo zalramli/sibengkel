@@ -55,7 +55,11 @@ $data5 = mysqli_fetch_array($query5);
 								<tr>
 									<th>Tanggal</th>
 									<th>:</th>
-									<th><?= $data['tgl_transaksi'] ?></th>
+									<?php 
+									$tgl = $data['tgl_transaksi'];
+          							$tanggal = date('d/m/Y H:i:s', strtotime($tgl));
+									?>
+									<th><?= $tanggal ?></th>
 									<th>Jumlah Barang</th>
 									<th>:</th>
 									<th><?= $data2['jumlah_barang'] ?></th>
