@@ -23,13 +23,14 @@
                 foreach ($query as $data) {
                     $tgl_transaksi = $data['tgl_transaksi'];
                     $data_transaksi = date('Y-m-d', strtotime($tgl_transaksi));
+                    $grand = $data['total_harga'] - $data['potongan_harga'];
                     ?>
                 <tr>
                     <td><?= $data['no_faktur_penjualan'] ?></td>
                     <td><?= $data['nama_customer'] ?></td>
                     <td><?= $data['nama_pegawai'] ?></td>
                     <td><?= tgl_indo($data_transaksi) ?></td>
-                    <td style="text-align: right;"><?= format_ribuan($data['total_harga']) ?></td>
+                    <td style="text-align: right;"><?= format_ribuan($grand) ?></td>
                     <td style="text-align: right;"><?= format_ribuan($data['bayar']) ?></td>
                     <td style="text-align: right;"><?= format_ribuan($data['kembalian']) ?></td>
                     <td style="text-align: center;">

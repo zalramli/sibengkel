@@ -43,7 +43,7 @@ $data5 = mysqli_fetch_array($query5);
 					<hr style="border-width: 3px">
 					<div class="row">
 						<div class="col col-md-12">
-							<table class="table table-borderless" width="100">
+							<table class="table table-sm table-borderless" width="100">
 								<tr>
 									<th width="11%">Pelanggan</th>
 									<th width="1%">:</th>
@@ -61,7 +61,7 @@ $data5 = mysqli_fetch_array($query5);
 									<th><?= $data2['jumlah_barang'] ?></th>
 								</tr>
 							</table>
-							<table class="table" width="100%">
+							<table style="padding: 0;margin: 0;" class="table table-sm" width="100%">
 								<thead>
 									<?php
 									if ($data2['jumlah_barang']) {
@@ -82,7 +82,7 @@ $data5 = mysqli_fetch_array($query5);
 									foreach ($query3 as $data3) {
 									?>
 									<tr>
-										<th width="7%" scope="row"><?= $no++ ?></th>
+										<td width="7%" scope="row"><?= $no++ ?></td>
 										<td width="35%"><?= $data3['nama_barang'] ?></td>
 										<td width="10%"><?= $data3['jumlah_barang'] ?></td>
 										<td width="24%" style="text-align:right"><?= format_ribuan($data3['harga_jual']) ?></td>
@@ -91,7 +91,7 @@ $data5 = mysqli_fetch_array($query5);
 									<?php } ?>
 								</tbody>
 							</table>
-							<table class="table" width="100%">
+							<table class="table table-sm" width="100%">
 								<thead>
 									<?php
 									if ($data5['cek_service'] > 0) {
@@ -111,19 +111,35 @@ $data5 = mysqli_fetch_array($query5);
 									foreach ($query4 as $data4) {
 									?>
 									<tr>
-										<th scope="row"><?= $no++ ?></th>
+										<td scope="row"><?= $no++ ?></td>
 										<td><?= $data4['nama_service'] ?></td>
 										<td></td>
 										<td style="text-align: right;"><?= format_ribuan($data4['tarif_harga']) ?></td>
 									</tr>
 									<?php } ?>
-									<tr>
-										<td></td>
-										<td></td>
-										<th>TOTAL</th>
+									
+								</tbody>
+							</table>
+							<table class="table table-sm table-borderless">
+								<tr>
+										<th width="7%"></th>
+										<th width="59%"></th>
+										<th style="text-align:right" width="22%">Total</th>
 										<th style="text-align:right"><?= format_ribuan($data['total_harga']) ?></th>
 									</tr>
-								</tbody>
+									<tr>
+										<th></th>
+										<th></th>
+										<th style="text-align:right">Discount</th>
+										<th style="text-align:right"><?= format_ribuan($data['potongan_harga']) ?></th>
+									</tr>
+									<tr>
+										<th></th>
+										<th></th>
+										<th style="text-align:right">Grand</th>
+										<?php $grand = $data['total_harga'] - $data['potongan_harga'] ?>
+										<th style="text-align:right"><?= format_ribuan($grand) ?></th>
+									</tr>
 							</table>
 						</div>
 					</div>
