@@ -15,10 +15,12 @@
         <?php
         $query = mysqli_query($koneksi, "SELECT * FROM permintaan_barang WHERE status='0' ORDER BY kode_permintaan ASC");
         foreach ($query as $data) {
+          $tgl = $data['tgl_permintaan'];
+          $tanggal = date('d/m/Y H:i:s', strtotime($tgl));
           ?>
         <tr>
           <td><?= $data['kode_permintaan'] ?></td>
-          <td><?= $data['tgl_permintaan'] ?></td>
+          <td><?= $tanggal ?></td>
           <td>
             <a href="?halaman=add_transaksi_pembelian&id=<?= $data['kode_permintaan'] ?>" class="btn btn-primary">Pilih</a>
           </td>

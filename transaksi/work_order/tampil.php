@@ -8,6 +8,7 @@
             <thead>
                 <tr>
                     <th>Nama Customer</th>
+                    <th>Tanggal</th>
                     <th>No Plat</th>
                     <th>Kendaraan</th>
                     <th>Alamat</th>
@@ -20,9 +21,12 @@
                 <?php
                 $query = mysqli_query($koneksi, "SELECT * FROM work_order JOIN mekanik USING(kode_mekanik) JOIN customer USING(kode_customer) JOIN kendaraan USING(no_plat) WHERE status_wo='0'");
                 foreach ($query as $data) {
+                    $tgl_wo = $data['tgl_wo'];
+                    $tanggal = date('d/m/Y H:i:s', strtotime($tgl_wo));
                     ?>
                 <tr>
                     <td><?= $data['nama_customer'] ?></td>
+                    <td><?= $tanggal ?></td>
                     <td><?= $data['no_plat'] ?></td>
                     <td><?= $data['nama_kendaraan'] ?></td>
                     <td><?= $data['alamat'] ?></td>

@@ -36,11 +36,13 @@ if (isset($_GET['hapus'])) {
                 <?php
                 $query = mysqli_query($koneksi, "SELECT * FROM pembelian JOIN suplier USING(kode_suplier) WHERE status ='1' ORDER BY no_faktur_pembelian ASC");
                 foreach ($query as $data) {
+                    $tgl = $data['tgl_transaksi'];
+                    $tanggal = date('d/m/Y H:i:s', strtotime($tgl));
                     ?>
                 <tr>
                     <td><?= $data['no_faktur_pembelian'] ?></td>
                     <td><?= $data['nama_suplier'] ?></td>
-                    <td><?= $data['tgl_transaksi'] ?></td>
+                    <td><?= $tanggal ?></td>
                     <td>
                         <a href="?halaman=detail_transaksi_pembelian&id=<?= $data['no_faktur_pembelian'] ?>" class="btn btn-primary">Lihat Detail</a>
                         <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_data_transaksi_pembelian&hapus=<?= $data['no_faktur_pembelian']; ?>" class="btn btn-danger">Hapus</a>

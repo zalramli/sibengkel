@@ -22,14 +22,14 @@
                 $query = mysqli_query($koneksi, "SELECT * FROM penjualan JOIN customer USING(kode_customer) JOIN pegawai USING(kode_pegawai) ORDER BY tgl_transaksi DESC");
                 foreach ($query as $data) {
                     $tgl_transaksi = $data['tgl_transaksi'];
-                    $data_transaksi = date('Y-m-d', strtotime($tgl_transaksi));
                     $grand = $data['total_harga'] - $data['potongan_harga'];
+                    $tanggal = date('d/m/Y H:i:s', strtotime($tgl_transaksi));
                     ?>
                 <tr>
                     <td><?= $data['no_faktur_penjualan'] ?></td>
                     <td><?= $data['nama_customer'] ?></td>
                     <td><?= $data['nama_pegawai'] ?></td>
-                    <td><?= tgl_indo($data_transaksi) ?></td>
+                    <td><?= $tanggal ?></td>
                     <td style="text-align: right;"><?= format_ribuan($grand) ?></td>
                     <td style="text-align: right;"><?= format_ribuan($data['bayar']) ?></td>
                     <td style="text-align: right;"><?= format_ribuan($data['kembalian']) ?></td>

@@ -30,10 +30,13 @@ if (isset($_GET['hapus'])) {
                 <?php
                 $query = mysqli_query($koneksi, "SELECT * FROM permintaan_barang WHERE status='0' ORDER BY kode_permintaan ASC");
                 foreach ($query as $data) {
+                    $tgl = $data['tgl_permintaan'];
+                    $tanggal = date('d/m/Y H:i:s', strtotime($tgl));
+
                     ?>
                 <tr>
                     <td><?= $data['kode_permintaan'] ?></td>
-                    <td><?= $data['tgl_permintaan'] ?></td>
+                    <td><?= $tanggal ?></td>
                     <td>
                         <a href="?halaman=v_detail_permintaan_barang&id=<?= $data['kode_permintaan'] ?>" class="btn btn-primary">Detail</a>
                         <a onclick="return confirm('Yakin ingin menghapus data ?')" href="?halaman=v_permintaan_barang&hapus=<?= $data['kode_permintaan']; ?>" class="btn btn-danger">Hapus</a>
