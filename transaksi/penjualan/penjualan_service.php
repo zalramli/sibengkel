@@ -24,20 +24,21 @@ if (isset($_POST['simpan'])) {
     date_default_timezone_set('Asia/Jakarta');
     $tgl_transaksi = date('Y-m-d H:i:s');
     $total_harga = $_POST['total_harga'];
+    $total = $_POST['total'];
     $potongan_harga = $_POST['potongan_harga'];
     $bayar = $_POST['bayar'];
     $kembalian = $_POST['kembalian'];
     $status = "0";
     $kode_customer = $data['kode_customer'];
 
-    if ($bayar < $total_harga) {
+    if ($bayar < $total) {
         echo "<script>alert('Transaksi gagal,Pembayaran anda kurang'); window.location = 'kasir.php?halaman=transaksi_penjualan_service&id=" . $id . "'</script>";
     } 
-    else if ($potongan_harga > $kembalian) {
+    else if ($total < 0) {
         echo "<script>alert('Transaksi gagal,Potongan harga melebihi total harga'); window.location = 'kasir.php?halaman=transaksi_penjualan_service&id=" . $id . "'</script>";
     } 
     else {
-        $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
+        $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total','$potongan_harga','$bayar','$kembalian','$status')");
 
     $query_penjualan_wo = mysqli_query($koneksi, "INSERT INTO penjualan_wo VALUES ('','$no_faktur_penjualan','$kode_wo')");
 
@@ -513,7 +514,7 @@ if (isset($_POST['simpan'])) {
     }
 
     // parsing dan perhitungan
-    var v_total = parseInt(total_harga.value) + parseInt(potongan_temp);
+    var v_total = parseInt(total_harga.value) - parseInt(potongan_temp);
     var v_bayar = parseInt(bayar.value);
 
     total.value = v_total;

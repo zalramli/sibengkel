@@ -32,6 +32,7 @@ if (isset($_POST['simpan'])) {
     date_default_timezone_set('Asia/Jakarta');
     $tgl_transaksi = date('Y-m-d H:i:s');
     $total_harga = $_POST['total_harga'];
+    $total = $_POST['total'];
     $potongan_harga = $_POST['potongan_harga'];
     $bayar = $_POST['bayar'];
     $kembalian = $_POST['kembalian'];
@@ -39,15 +40,15 @@ if (isset($_POST['simpan'])) {
     $query_cek_customer = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah FROM customer WHERE nama_customer='Umum'");
     $data_customer = mysqli_fetch_array($query_cek_customer);
     $cek_customer = $data_customer['jumlah'];
-    if ($bayar < $total_harga) {
+    if ($bayar < $total) {
         echo "<script>alert('Transaksi gagal,Pembayaran anda kurang'); window.location = 'kasir.php?halaman=transaksi_penjualan_barang'</script>";
     }
-    else if ($potongan_harga > $kembalian) {
+    else if ($total < 0) {
         echo "<script>alert('Transaksi gagal,Potongan harga melebihi total harga'); window.location = 'kasir.php?halaman=transaksi_penjualan_barang'</script>";
     } 
     else if ($cek_customer == 0) {
       $query_customer = mysqli_query($koneksi, "INSERT INTO customer VALUES ('$kode_customer','Umum','-','-') ");
-      $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total_harga','$potongan_harga','$bayar','$kembalian','$status')");
+      $query_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan VALUES ('$no_faktur_penjualan','$kode_customer','$kode_pegawai','$tgl_transaksi','$total','$potongan_harga','$bayar','$kembalian','$status')");
       // INSERT DATA DETAIL PENJUALAN BARANG
     for ($i = 0; $i < count($_POST['kode_barang2']); $i++) {
       // data - data
