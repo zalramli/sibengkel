@@ -1,3 +1,18 @@
+    <?php
+
+    // disetiap page load akan update last_login
+    if (isset($_SESSION['kode_pegawai'])) {
+        // timestamp sekarang
+        date_default_timezone_set('Asia/Jakarta'); // setting waktu
+        $now_login = date('Y-m-d H:i:s');
+
+        $kode_pegawai_db = $_SESSION['kode_pegawai'];
+
+        mysqli_query($koneksi, "UPDATE pegawai SET last_login = '$now_login' WHERE kode_pegawai='$kode_pegawai_db'");
+    }
+
+    ?>
+
     <script src="assets/template2/js/vendor/jquery-1.12.4.min.js"></script>
 
     <!-- bootstrap JS
