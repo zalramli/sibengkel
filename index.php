@@ -28,7 +28,6 @@ if (isset($_SESSION['kode_pegawai'])) {
     if ($cek > 0) {
       if (password_verify($_POST['password'], $data['password'])) {
 
-
         // timestamp sekarang
         date_default_timezone_set('Asia/Jakarta'); // setting waktu
         $now_login = date('Y-m-d H:i:s');
@@ -69,11 +68,9 @@ if (isset($_SESSION['kode_pegawai'])) {
           $start_date = new DateTime($last_login_db);
           $since_start = $start_date->diff(new DateTime($now_login));
 
-
+          // mencari selisih hari
           $selisih_hari = $since_start->days;
-          if ($selisih_hari > 0) { // jika berbeda hari
-
-            echo "<script>alert('selamat hari anda berbeda');</script>";
+          if ($selisih_hari > 0) { // jika berbeda hari maka akan berhasil login
 
             # berhasil login dan update last_login
 
@@ -95,9 +92,9 @@ if (isset($_SESSION['kode_pegawai'])) {
             } else if ($_SESSION['akses'] == "Cs") {
               header("location:cs.php?halaman=dashboard");
             }
-          } else { // jika sama harinya 
+          } else { // jika sama harinya akan divalidasi jam
 
-            // jika pada jam yang sama
+            // jika pada jam yang sama maka akan divalidasi menit
             $selisih_jam = $since_start->h;
             if ($selisih_jam == 0) {
 
@@ -134,7 +131,7 @@ if (isset($_SESSION['kode_pegawai'])) {
               }
             } else {
 
-              echo "<script>alert('selamat berbeda jam !');</script>";
+              // jika pada jam yang berbeda maka akan berhasil login
 
               # berhasil login dan update last_login
 
