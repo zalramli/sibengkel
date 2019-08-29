@@ -1,20 +1,3 @@
-    <!-- logika untuk user yang login hanya boleh 1 pada account yang sama -->
-    <?php
-
-    // mengambil nilai session_id dan last_login
-    $kode_pegawai = $_SESSION['kode_pegawai'];
-    $session_id =  $_SESSION['session_id'];
-    $session_id =  $_SESSION['session_id'];
-
-    $query = mysqli_query($koneksi, "SELECT session_id,last_login FROM pegawai WHERE kode_pegawai='$kode_pegawai'");
-
-    foreach ($query as $data) {
-        $session_id_db = $data['session_id'];
-        $last_login_db = $data['last_login'];
-    }
-
-    ?>
-
     <script src="assets/template2/js/vendor/jquery-1.12.4.min.js"></script>
 
     <!-- bootstrap JS
