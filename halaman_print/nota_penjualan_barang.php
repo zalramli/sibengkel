@@ -15,7 +15,7 @@ $data5 = mysqli_fetch_array($query5);
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Laporan Transaksi Penjualan</title>
+		<title>Nota Penjualan</title>
 		<link href="_partial/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="_partial/bootstrap.min.js"></script>
 	</head>

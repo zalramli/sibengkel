@@ -26,6 +26,8 @@
                     if ($_GET['halaman'] == "edit_suplier") {echo 'active';}
                     if ($_GET['halaman'] == "v_data_transaksi_pembelian") {echo 'active';}
                     if ($_GET['halaman'] == "add_transaksi_pembelian") {echo 'active';}
+                    if ($_GET['halaman'] == "sukses_pembelian") {echo 'active';}
+
                     ?>">
                         <a data-toggle="tab" href="#Forms2"><i class="fas fa-truck"></i> Pemasokan Barang</a>
                     </li>
@@ -78,6 +80,8 @@
                     if ($_GET['halaman'] == "edit_suplier") {echo 'active';}
                     if ($_GET['halaman'] == "v_data_transaksi_pembelian") {echo 'active';}
                     if ($_GET['halaman'] == "add_transaksi_pembelian") {echo 'active';}
+                    if ($_GET['halaman'] == "sukses_pembelian") {echo 'active';}
+                    
                     ?>">
                         <ul class="notika-main-menu-dropdown">
 

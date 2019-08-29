@@ -80,7 +80,7 @@ if (isset($_POST['simpan'])) {
                     mysqli_query($koneksi, "UPDATE barang SET stock='$stock_baru' WHERE kode_barang='$kode_barang_update'");
                 }
 
-                echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=v_transaksi_pembelian'</script>";
+                echo "<script>alert('Data Berhasil Ditambahkan'); window.location = 'kasir.php?halaman=sukses_pembelian'</script>";
             } else {
                 echo "<script>alert('Terjadi Kesalahan Input Detail Database'); window.location = 'kasir.php?halaman=add_transaksi_pembelian&id=" . $id . "'</script>";
             }

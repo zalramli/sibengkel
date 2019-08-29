@@ -52,27 +52,27 @@ if (isset($_GET['id'])) {
 
             <th>Total Harga</th>
             <th>:</th>
-            <th><?= $total_harga ?></th>
+            <th><?= format_ribuan($total_harga) ?></th>
         </tr>
 
         <tr>
             <th> Sub Total Harga</th>
             <th>:</th>
-            <th><?= $sub_total ?></th>
+            <th><?= format_ribuan($sub_total) ?></th>
 
             <th>Bayar</th>
             <th>:</th>
-            <th><?= $bayar ?></th>
+            <th><?= format_ribuan($bayar) ?></th>
         </tr>
 
         <tr>
             <th>Potongan</th>
             <th>:</th>
-            <th><?= $potongan ?></th>
+            <th><?= format_ribuan($potongan) ?></th>
 
             <th>Kembalian</th>
             <th>:</th>
-            <th><?= $kembalian ?></th>
+            <th><?= format_ribuan($kembalian) ?></th>
         </tr>
     </table>
     <table class="table table-borderless" width="100%">
