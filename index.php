@@ -1,39 +1,163 @@
 <!doctype html>
 <?php
+
 session_start();
+
+// membuat kode unik untuk user
+$session_id =  session_id();
+
 // jika mengakses login maka acount lama di logout
 if (isset($_SESSION['kode_pegawai'])) {
   header('location:logout.php');
 } else {
+
   include "koneksi/koneksi.php";
+
   if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     // menyeleksi data admin dengan username dan password yang sesuai
     $query = mysqli_query($koneksi, "SELECT * FROM pegawai JOIN jenis_pegawai USING(kode_jenis_p) WHERE username='$username'");
+
     // menghitung jumlah data yang ditemukan
     $cek = mysqli_num_rows($query);
     $data = mysqli_fetch_array($query);
     $kode_pegawai = $data['kode_pegawai'];
+
     if ($cek > 0) {
       if (password_verify($_POST['password'], $data['password'])) {
-        $_SESSION['username'] = $data['username'];
-        $_SESSION['akses'] = $data['nama_jenis_p'];
-        $_SESSION['kode_pegawai'] = $data['kode_pegawai'];
 
-        // mengambil session_id
-        $_SESSION['session_id'] = session_id();
 
-        mysqli_query($koneksi, "UPDATE pegawai SET status_login='1' WHERE kode_pegawai='$kode_pegawai'");
-        if ($_SESSION['akses'] == "Admin") {
-          header("location:admin.php?halaman=dashboard");
-        } else if ($_SESSION['akses'] == "Kasir") {
-          header("location:kasir.php?halaman=dashboard");
-        } else if ($_SESSION['akses'] == "Gudang") {
-          header("location:gudang.php?halaman=dashboard");
-        } else if ($_SESSION['akses'] == "Cs") {
-          header("location:cs.php?halaman=dashboard");
+        // timestamp sekarang
+        date_default_timezone_set('Asia/Jakarta'); // setting waktu
+        $now_login = date('Y-m-d H:i:s');
+
+        // mengambil nilai dari database
+        $kode_pegawai = $data['kode_pegawai'];
+        $session_id_db = $data['session_id'];
+        $last_login_db = $data['last_login'];
+
+        // logika validasi
+        if ($session_id_db == $session_id || $session_id_db == 'kosong') {
+
+          echo "<script>alert('selamat , session anda sama !');</script>";
+
+          # berhasil login dan update last_login
+
+          $_SESSION['username'] = $data['username'];
+          $_SESSION['akses'] = $data['nama_jenis_p'];
+          $_SESSION['kode_pegawai'] = $data['kode_pegawai'];
+
+          // mengambil session_id
+          $_SESSION['session_id'] = session_id();
+
+          mysqli_query($koneksi, "UPDATE pegawai SET status_login='1' , session_id = '$session_id' , last_login = '$now_login' WHERE kode_pegawai='$kode_pegawai'");
+
+          if ($_SESSION['akses'] == "Admin") {
+            header("location:admin.php?halaman=dashboard");
+          } else if ($_SESSION['akses'] == "Kasir") {
+            header("location:kasir.php?halaman=dashboard");
+          } else if ($_SESSION['akses'] == "Gudang") {
+            header("location:gudang.php?halaman=dashboard");
+          } else if ($_SESSION['akses'] == "Cs") {
+            header("location:cs.php?halaman=dashboard");
+          }
+        } else {
+
+          // validasi waktu
+          $start_date = new DateTime($last_login_db);
+          $since_start = $start_date->diff(new DateTime($now_login));
+
+
+          $selisih_hari = $since_start->days;
+          if ($selisih_hari > 0) { // jika berbeda hari
+
+            echo "<script>alert('selamat hari anda berbeda');</script>";
+
+            # berhasil login dan update last_login
+
+            $_SESSION['username'] = $data['username'];
+            $_SESSION['akses'] = $data['nama_jenis_p'];
+            $_SESSION['kode_pegawai'] = $data['kode_pegawai'];
+
+            // mengambil session_id
+            $_SESSION['session_id'] = session_id();
+
+            mysqli_query($koneksi, "UPDATE pegawai SET status_login='1' , session_id = '$session_id' , last_login = '$now_login' WHERE kode_pegawai='$kode_pegawai'");
+
+            if ($_SESSION['akses'] == "Admin") {
+              header("location:admin.php?halaman=dashboard");
+            } else if ($_SESSION['akses'] == "Kasir") {
+              header("location:kasir.php?halaman=dashboard");
+            } else if ($_SESSION['akses'] == "Gudang") {
+              header("location:gudang.php?halaman=dashboard");
+            } else if ($_SESSION['akses'] == "Cs") {
+              header("location:cs.php?halaman=dashboard");
+            }
+          } else { // jika sama harinya 
+
+            // jika pada jam yang sama
+            $selisih_jam = $since_start->h;
+            if ($selisih_jam == 0) {
+
+              // validasi menit
+              $selisih_menit = $since_start->i;
+              if ($selisih_menit >= 20) {
+
+                echo "<script>alert('selamat lebih dari 20 menit !');</script>";
+
+                # berhasil login dan update last_login
+
+                $_SESSION['username'] = $data['username'];
+                $_SESSION['akses'] = $data['nama_jenis_p'];
+                $_SESSION['kode_pegawai'] = $data['kode_pegawai'];
+
+                // mengambil session_id
+                $_SESSION['session_id'] = session_id();
+
+                mysqli_query($koneksi, "UPDATE pegawai SET status_login='1' , session_id = '$session_id' , last_login = '$now_login' WHERE kode_pegawai='$kode_pegawai'");
+
+                if ($_SESSION['akses'] == "Admin") {
+                  header("location:admin.php?halaman=dashboard");
+                } else if ($_SESSION['akses'] == "Kasir") {
+                  header("location:kasir.php?halaman=dashboard");
+                } else if ($_SESSION['akses'] == "Gudang") {
+                  header("location:gudang.php?halaman=dashboard");
+                } else if ($_SESSION['akses'] == "Cs") {
+                  header("location:cs.php?halaman=dashboard");
+                }
+              } else {
+
+                # gagal dan melakukan logout
+                echo "<script>alert('gagal, harus tunggu lebih dari 20 mnt !'); window.location = 'index.php'</script>";
+              }
+            } else {
+
+              echo "<script>alert('selamat berbeda jam !');</script>";
+
+              # berhasil login dan update last_login
+
+              $_SESSION['username'] = $data['username'];
+              $_SESSION['akses'] = $data['nama_jenis_p'];
+              $_SESSION['kode_pegawai'] = $data['kode_pegawai'];
+
+              // mengambil session_id
+              $_SESSION['session_id'] = session_id();
+
+              mysqli_query($koneksi, "UPDATE pegawai SET status_login='1' , session_id = '$session_id' , last_login = '$now_login' WHERE kode_pegawai='$kode_pegawai'");
+
+              if ($_SESSION['akses'] == "Admin") {
+                header("location:admin.php?halaman=dashboard");
+              } else if ($_SESSION['akses'] == "Kasir") {
+                header("location:kasir.php?halaman=dashboard");
+              } else if ($_SESSION['akses'] == "Gudang") {
+                header("location:gudang.php?halaman=dashboard");
+              } else if ($_SESSION['akses'] == "Cs") {
+                header("location:cs.php?halaman=dashboard");
+              }
+            }
+          }
         }
       } else {
         echo "<script>alert('password anda salah'); window.location = 'index.php'</script>";
@@ -43,7 +167,6 @@ if (isset($_SESSION['kode_pegawai'])) {
     }
   }
 }
-
 
 ?>
 <html class="no-js" lang="">
@@ -122,6 +245,7 @@ if (isset($_SESSION['kode_pegawai'])) {
               <input type="password" name="password" class="form-control" placeholder="Password" required="" maxlength="60" oninvalid="this.setCustomValidity('Password Wajib Diisi')" oninput="setCustomValidity('')">
             </div>
           </div>
+          <?php echo  $session_id; ?>
           <button type="submit" name="login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
       </div>
       </form>
