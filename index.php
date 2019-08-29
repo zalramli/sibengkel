@@ -38,9 +38,9 @@ if (isset($_SESSION['kode_pegawai'])) {
         $last_login_db = $data['last_login'];
 
         // logika validasi
-        if ($session_id_db == $session_id || $session_id_db == 'kosong') {
 
-          echo "<script>alert('selamat , session anda sama !');</script>";
+        // jika session nya sama dan telah melakukan logout maka user boleh masuk
+        if ($session_id_db == $session_id || $session_id_db == 'kosong') {
 
           # berhasil login dan update last_login
 
@@ -64,13 +64,17 @@ if (isset($_SESSION['kode_pegawai'])) {
           }
         } else {
 
+          // jika session nya berbeda dan tidak melakukan logout maka user tidak boleh masuk jika belum lebih dari 20 menit
+
           // validasi waktu
           $start_date = new DateTime($last_login_db);
           $since_start = $start_date->diff(new DateTime($now_login));
 
           // mencari selisih hari
           $selisih_hari = $since_start->days;
-          if ($selisih_hari > 0) { // jika berbeda hari maka akan berhasil login
+
+          // jika berbeda hari maka akan berhasil login
+          if ($selisih_hari > 0) {
 
             # berhasil login dan update last_login
 
@@ -92,7 +96,7 @@ if (isset($_SESSION['kode_pegawai'])) {
             } else if ($_SESSION['akses'] == "Cs") {
               header("location:cs.php?halaman=dashboard");
             }
-          } else { // jika sama harinya akan divalidasi jam
+          } else { // jika berada di hari yang sama akan divalidasi jam
 
             // jika pada jam yang sama maka akan divalidasi menit
             $selisih_jam = $since_start->h;
@@ -102,7 +106,7 @@ if (isset($_SESSION['kode_pegawai'])) {
               $selisih_menit = $since_start->i;
               if ($selisih_menit >= 20) {
 
-                echo "<script>alert('selamat lebih dari 20 menit !');</script>";
+                // jika lebih dari 20 menit maka akan berhasil login
 
                 # berhasil login dan update last_login
 
