@@ -104,7 +104,7 @@ if (isset($_SESSION['kode_pegawai'])) {
 
               // validasi menit
               $selisih_menit = $since_start->i;
-              if ($selisih_menit >= 20) {
+              if ($selisih_menit >= 5) {
 
                 // jika lebih dari 20 menit maka akan berhasil login
 
@@ -131,7 +131,7 @@ if (isset($_SESSION['kode_pegawai'])) {
               } else {
 
                 # gagal dan melakukan logout
-                echo "<script>alert('gagal, harus tunggu lebih dari 20 mnt !'); window.location = 'index.php'</script>";
+                echo "<script>alert('Akun anda sedang digunakan / Anda lupa logout (tunggu 5 menit)'); window.location = 'index.php'</script>";
               }
             } else {
 
@@ -246,7 +246,7 @@ if (isset($_SESSION['kode_pegawai'])) {
               <input type="password" name="password" class="form-control" placeholder="Password" required="" maxlength="60" oninvalid="this.setCustomValidity('Password Wajib Diisi')" oninput="setCustomValidity('')">
             </div>
           </div>
-          <?php echo  $session_id; ?>
+          <!-- <?php echo  $session_id; ?> -->
           <button type="submit" name="login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
       </div>
       </form>
