@@ -31,10 +31,9 @@ $data5 = mysqli_fetch_array($query5);
 							<img src="" width="190" alt="logo_catering.png">
 						</div>
 						<div class="col col-md-5" style="margin-left:-40px ">
-							<strong style="font-size:30">Bengkel Cemerlang Jaya</strong><br>
-							<address style="font-size: 15">Jalan Fatahillah No. 35 , Kabupaten Jember, Jawa Timur <br>
-								Telp : (0331) 426 746 <br>
-							HP / WA : 081 236 647 71 / 082 232 419 229 </address>
+							<strong style="font-size:30">Bengkel Karoseri Cemerlang Jaya</strong><br>
+                        	<address style="font-size: 15">Jalan Palembang-Jambi,km 120 srigunung,sungai lilin, Muba <br>
+                            HP / WA : 0852-7396-8334 </address>
 						</div>
 						<div class="col-md-4 text-right">
 							<h4><b>NOTA PENJUALAN</b></h4>
