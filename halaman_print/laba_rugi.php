@@ -108,8 +108,8 @@
                 <hr>
 
                 <div class="row">
-                    <div class="col col-md-3">
-                        <img src="" width="190" alt="logo_catering.png">
+                    <div class="col col-md-3 mt-1">
+                        <img src="../assets/template2/img/logo/print.jpg" width="230" alt="logo.png">
                     </div>
                     <div class="col col-md-8" style="margin-left:-40px ">
                         <strong style="font-size:30">Bengkel Karoseri Cemerlang Jaya</strong><br>
