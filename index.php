@@ -232,22 +232,31 @@ if (isset($_SESSION['kode_pegawai'])) {
   <div class="login-content">
     <!-- Login -->
     <div class="nk-block toggled" id="l-login">
+      <h2 style="color:white">SISTEM INFORMASI BENGKEL</h2>
+      <div class="logo-area">
+        <a href="#"><img src="assets/template2/img/logo/logo.png" alt="" /></a>
+      </div>
+      <br>
       <div class="nk-form">
         <form method="POST" action="">
           <div class="input-group">
             <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
             <div class="nk-int-st">
-              <input type="text" name="username" class="form-control" placeholder="Username" required="" maxlength="50" oninvalid="this.setCustomValidity('Username Wajib Diisi')" oninput="setCustomValidity('')">
+              <input type="text" name="username" class="form-control" placeholder="Username" required="" maxlength="50"
+                oninvalid="this.setCustomValidity('Username Wajib Diisi')" oninput="setCustomValidity('')">
             </div>
           </div>
           <div class="input-group mg-t-15">
             <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-edit"></i></span>
             <div class="nk-int-st">
-              <input type="password" name="password" class="form-control" placeholder="Password" required="" maxlength="60" oninvalid="this.setCustomValidity('Password Wajib Diisi')" oninput="setCustomValidity('')">
+              <input type="password" name="password" class="form-control" placeholder="Password" required=""
+                maxlength="60" oninvalid="this.setCustomValidity('Password Wajib Diisi')"
+                oninput="setCustomValidity('')">
             </div>
           </div>
           <!-- <?php echo  $session_id; ?> -->
-          <button type="submit" name="login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
+          <button type="submit" name="login" class="btn btn-login btn-success btn-float"><i
+              class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
       </div>
       </form>
     </div>
