@@ -124,7 +124,8 @@ if (isset($_POST['simpan'])) {
             </div>
             <div class="col-lg-1">
               <div class="form-group">
-                <a id="btn_cart_barang" onclick="setTimeout(update_total, 100)" name="add_more" class="btn btn-primary">+</a>
+                <a id="btn_cart_barang" onclick="setTimeout(update_total, 100)" name="add_more"
+                  class="btn btn-primary">+</a>
               </div>
             </div>
           </div>
@@ -171,7 +172,8 @@ if (isset($_POST['simpan'])) {
                     <h5>Total Harga</h5>
                   </td>
                   <td width="40%">
-                    <h5><input style="text-align:right;" type="text" class="total_harga form-control" id="total_harga" name="total_harga" readonly=""></h5>
+                    <h5><input style="text-align:right;" type="text" class="total_harga form-control" id="total_harga"
+                        name="total_harga" readonly=""></h5>
                   </td>
                 </tr>
                 <tr>
@@ -179,7 +181,9 @@ if (isset($_POST['simpan'])) {
                     <h5>Potongan Harga</h5>
                   </td>
                   <td style="padding-top: 5px">
-                    <h5><input style="text-align: right;" type="text" onkeypress="return hanyaAngka(event)" class="form-control" required="" id="potongan_harga" name="potongan_harga" max="9999999999" onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
+                    <h5><input style="text-align: right;" type="text" onkeypress="return hanyaAngka(event)"
+                        class="form-control" required="" id="potongan_harga" name="potongan_harga" max="9999999999"
+                        onkeyup="update_kembalian()" onchange="update_kembalian()"></h5>
                     <input type="hidden" id="total" name="total">
                   </td>
                 </tr>
@@ -195,14 +199,18 @@ if (isset($_POST['simpan'])) {
                   <td style="padding-top: 15px;" width="60%">
                     <h5>Bayar</h5>
                   </td>
-                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="text" onkeypress="return hanyaAngka(event)" class="form-control" required="" max="9999999999" oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')" onkeyup="update_kembalian()" onchange="update_kembalian()"></td>
+                  <td width="40%"><input style="text-align: right;" id="bayar" name="bayar" type="text"
+                      onkeypress="return hanyaAngka(event)" class="form-control" required="" max="9999999999"
+                      oninvalid="this.setCustomValidity('Bayar Wajib Diisi')" oninput="setCustomValidity('')"
+                      onkeyup="update_kembalian()" onchange="update_kembalian()"></td>
                 </tr>
                 <tr>
                   <td style="padding: 20px 0px;">
                     <h5>Kembalian</h5>
                   </td>
                   <td style="padding: 20px 0px;">
-                    <h5><input style="text-align:right;" type="text" class="form-control" readonly="" id="kembalian" name="kembalian"></h5>
+                    <h5><input style="text-align:right;" type="text" class="form-control" readonly="" id="kembalian"
+                        name="kembalian"></h5>
                   </td>
                 </tr>
 
@@ -220,8 +228,8 @@ if (isset($_POST['simpan'])) {
 <script src="assets/template2/js/vendor/jquery-3.3.1.min.js"></script>
 <!-- Ambil Harga Barang -->
 <script>
-  $(document).ready(function() {
-    $('#kode_barang').change(function(event) {
+  $(document).ready(function () {
+    $('#kode_barang').change(function (event) {
       event.preventDefault();
       var kode_barang = $(this).val();
       $.ajax({
@@ -230,7 +238,7 @@ if (isset($_POST['simpan'])) {
         data: {
           kode_barang: kode_barang
         },
-        success: function(data) {
+        success: function (data) {
           $('#tampil_barang').html(data);
         }
       });
@@ -238,7 +246,7 @@ if (isset($_POST['simpan'])) {
   });
 </script>
 <script type="text/javascript">
-  $(document).ready(function() {
+  $(document).ready(function () {
     $('#cart_barang').html('');
     var count1 = -1;
     var kode_barang = "";
@@ -256,13 +264,16 @@ if (isset($_POST['simpan'])) {
               <p>` + nomer + `</p>
             </div>
             <div class="">
-              <input type="hidden" class="form-control" id="kode_barang2` + count1 + `" name="kode_barang2[]" readonly="" value="` + kode_barang + `">
+              <input type="hidden" class="form-control" id="kode_barang2` + count1 +
+        `" name="kode_barang2[]" readonly="" value="` + kode_barang + `">
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-              <input type="text" class="form-control" id="nama_barang` + count1 + `" name="nama_barang[]" readonly="" value="` + nama_barang + `">
+              <input type="text" class="form-control" id="nama_barang` + count1 +
+        `" name="nama_barang[]" readonly="" value="` + nama_barang + `">
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-              <input style="text-align:right;" type="text" class="form-control" id="harga_jual` + count1 + `" name="harga_jual[]" readonly="" value="` + harga_jual + `">
+              <input style="text-align:right;" type="text" class="form-control" id="harga_jual` + count1 +
+        `" name="harga_jual[]" readonly="" value="` + harga_jual + `">
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
               <div class="form-group">
@@ -272,7 +283,8 @@ if (isset($_POST['simpan'])) {
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-              <input style="text-align:right;" type="text" class="sub_total form-control" id="sub_total` + count1 + `" name="sub_total[]" readonly="" value="` + harga_jual + `">
+              <input style="text-align:right;" type="text" class="sub_total form-control" id="sub_total` + count1 +
+        `" name="sub_total[]" readonly="" value="` + harga_jual + `">
             </div>
             
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
@@ -284,7 +296,7 @@ if (isset($_POST['simpan'])) {
     }
 
     // ketika click + maka akan menambah baris
-    $(document).on('click', '#btn_cart_barang', function() {
+    $(document).on('click', '#btn_cart_barang', function () {
 
       // mengambil data dari select option daftar barang
       var cari_kode_barang = document.getElementById("kode_barang");
@@ -307,7 +319,7 @@ if (isset($_POST['simpan'])) {
     });
 
     // ketika di click - maka akan mengurangi detail pemasokan
-    $(document).on('click', '.remove', function() {
+    $(document).on('click', '.remove', function () {
       var row_no = $(this).attr("id");
       $('#row' + row_no).remove();
     });
@@ -317,14 +329,14 @@ if (isset($_POST['simpan'])) {
 <!-- script logika -->
 
 <script>
-  $(document).on('keyup', '.jumlah_barang', function(event) {
+  $(document).on('keyup', '.jumlah_barang', function (event) {
     event.preventDefault();
     var form_data = $("#transaksi_form").serialize();
     $.ajax({
       url: "transaksi/penjualan/total_penjualan_barang.php",
       method: "POST",
       data: form_data,
-      success: function(data) {
+      success: function (data) {
         $('.total_harga').val(data);
         update_kembalian();
       }
@@ -354,7 +366,7 @@ if (isset($_POST['simpan'])) {
       url: "transaksi/penjualan/total_penjualan_service.php",
       method: "POST",
       data: form_data,
-      success: function(data) {
+      success: function (data) {
         $('.total_harga').val(data);
         update_kembalian();
       }
@@ -394,11 +406,11 @@ if (isset($_POST['simpan'])) {
 </script>
 <!-- Harus angka -->
 <script>
-    function hanyaAngka(evt) {
-      var charCode = (evt.which) ? evt.which : event.keyCode
-       if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-        return false;
-      return true;
-    }
+  function hanyaAngka(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+      return false;
+    return true;
+  }
 </script>
