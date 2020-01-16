@@ -5,7 +5,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM customer WHERE kode_customer='$id
 
 if (isset($_POST['update'])) {
   $kode_customer = $_POST['kode_customer'];
-  $nama_customer = ucfirst($_POST['nama_customer']);
+  $nama_customer = ucfirst(addslashes($_POST['nama_customer']));
   $alamat = ucfirst($_POST['alamat']);
   $no_telp = $_POST['no_telp'];
 

@@ -36,7 +36,7 @@ if ($kode_faktur2) {
 if (isset($_POST['simpan'])) {
   $kode_customer = $_POST['kode_customer'];
   $kode_mekanik = $_POST['kode_mekanik'];
-  $nama_customer = ucfirst($_POST['nama_customer']);
+  $nama_customer = ucfirst(addslashes($_POST['nama_customer']));
   $alamat = ucfirst($_POST['alamat']);
   $no_telp = $_POST['no_telp'];
   $no_plat = strtoupper($_POST['no_plat']);
