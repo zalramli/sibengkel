@@ -31,8 +31,11 @@ if (isset($_POST['update'])) {
                 <label for="">Nama Service</label>
                 <div class="form-group">
                     <div class="nk-int-st">
-                        <input type="hidden" name="kode_service" class="form-control" placeholder="Isi form tarif service" readonly="" value="<?= $data['kode_service'] ?>">
-                        <input type="text" pattern="[A-Za-z\s]+" name="nama_service" class="form-control" placeholder="Isi Form Nama Service" required="" maxlength="30" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')" value="<?= $data['nama_service'] ?>">
+                        <input type="hidden" name="kode_service" class="form-control"
+                            placeholder="Isi form tarif service" readonly="" value="<?= $data['kode_service'] ?>">
+                        <input type="text" name="nama_service" class="form-control" placeholder="Isi Form Nama Service"
+                            required="" maxlength="30" oninvalid="this.setCustomValidity('Nama Wajib Diisi')"
+                            oninput="setCustomValidity('')" value="<?= $data['nama_service'] ?>">
                     </div>
                 </div>
             </div>
@@ -43,7 +46,10 @@ if (isset($_POST['update'])) {
                 <label for="">Tarif Harga</label>
                 <div class="form-group">
                     <div class="nk-int-st">
-                        <input type="text" id="rupiah" name="tarif_harga" class="form-control" placeholder="Isi form Tarif Harga" required="" oninvalid="this.setCustomValidity('Tarif Service Wajib Diisi')" oninput="setCustomValidity('')" value="<?= format_ribuan($data['tarif_harga']) ?>">
+                        <input type="text" id="rupiah" name="tarif_harga" class="form-control"
+                            placeholder="Isi form Tarif Harga" required=""
+                            oninvalid="this.setCustomValidity('Tarif Service Wajib Diisi')"
+                            oninput="setCustomValidity('')" value="<?= format_ribuan($data['tarif_harga']) ?>">
                     </div>
                 </div>
             </div>
@@ -54,25 +60,25 @@ if (isset($_POST['update'])) {
     </form>
     <script type="text/javascript">
         var rupiah = document.getElementById('rupiah');
-        rupiah.addEventListener('keyup', function(e){
+        rupiah.addEventListener('keyup', function (e) {
             // tambahkan 'Rp.' pada saat form di ketik
             // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
             rupiah.value = formatRupiah(this.value);
         });
         /* Fungsi formatRupiah */
-        function formatRupiah(angka, prefix){
+        function formatRupiah(angka, prefix) {
             var number_string = angka.replace(/[^,\d]/g, '').toString(),
-            split           = number_string.split(','),
-            sisa            = split[0].length % 3,
-            rupiah          = split[0].substr(0, sisa),
-            ribuan          = split[0].substr(sisa).match(/\d{3}/gi);
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
             // tambahkan titik jika yang di input sudah menjadi angka ribuan
-            if(ribuan){
+            if (ribuan) {
                 separator = sisa ? '.' : '';
                 rupiah += separator + ribuan.join('.');
             }
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? + rupiah : '');
+            return prefix == undefined ? rupiah : (rupiah ? +rupiah : '');
         }
     </script>
 

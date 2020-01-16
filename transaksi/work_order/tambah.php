@@ -71,28 +71,28 @@ if (isset($_POST['simpan'])) {
 }
 ?>
 <form action="" method="POST">
-<div class="contact-info-area mg-t-30">
-  <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <div class="contact-inner">
-        <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
-          <h2>Cari Customer Jika Pernah Datang</h2>
-        </div>
-        <div class="bootstrap-select fm-cmp-mg">
-          <select id="kode_customer" name="kode_customer" class="selectpicker" data-live-search="true">
+  <div class="contact-info-area mg-t-30">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="contact-inner">
+          <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
+            <h2>Cari Customer Jika Pernah Datang</h2>
+          </div>
+          <div class="bootstrap-select fm-cmp-mg">
+            <select id="kode_customer" name="kode_customer" class="selectpicker" data-live-search="true">
               <option value="">Please select</option>
-              <?php echo isi_customer($koneksi); ?>  
+              <?php echo isi_customer($koneksi); ?>
             </select>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <div class="contact-inner">
-        <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
-          <h2>Cari Mekanik</h2>
-        </div>
-        <div class="bootstrap-select fm-cmp-mg">
-          <select name="kode_mekanik" class="selectpicker" data-live-search="true" required="">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="contact-inner">
+          <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
+            <h2>Cari Mekanik</h2>
+          </div>
+          <div class="bootstrap-select fm-cmp-mg">
+            <select name="kode_mekanik" class="selectpicker" data-live-search="true" required="">
               <option value="">Please select</option>
               <?php
               $query_mekanik = mysqli_query($koneksi, "SELECT * FROM mekanik ORDER BY kode_mekanik ASC");
@@ -101,104 +101,117 @@ if (isset($_POST['simpan'])) {
               <option value="<?= $data_mekanik['kode_mekanik'] ?>"><?= $data_mekanik['nama_mekanik'] ?></option>
               <?php } ?>
             </select>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="contact-info-area mg-t-30">
-  <div class="row" id="tampil_customer">
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <div class="basic-tb-hd">
-        <h2 class="text-center">Data Customer</h2>
-      </div>
-      <div class="contact-inner">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <label for="">Nama Customer</label>
-            <div class="form-group">
-              <div class="nk-int-st">
-                <input type="text" pattern="[A-Za-z\s]+" name="nama_customer" class="form-control" placeholder="Isi form nama customer" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')">
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <label for="">No Telp</label>
-            <div class="form-group">
-              <div class="nk-int-st">
-                <input type="text" onkeypress="return hanyaAngka(event)" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('Nomor Telephone Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <label for="">Alamat</label>
-            <div class="form-group">
-              <div class="nk-int-st">
-                <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"></textarea>
-              </div>
-            </div>
-          </div>
-          
+  <div class="contact-info-area mg-t-30">
+    <div class="row" id="tampil_customer">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="basic-tb-hd">
+          <h2 class="text-center">Data Customer</h2>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <div class="basic-tb-hd">
-        <h2 class="text-center">Data Mobil</h2>
-      </div>
-      <div class="contact-inner">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <label for="">No Plat</label>
-            <div class="form-group">
-              <div class="nk-int-st">
-                <input type="text" name="no_plat" class="form-control" placeholder="Isi form nomor plat" required="" maxlength="15" oninvalid="this.setCustomValidity('Nomor Plat Wajib Diisi')" oninput="setCustomValidity('')">
+        <div class="contact-inner">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <label for="">Nama Customer</label>
+              <div class="form-group">
+                <div class="nk-int-st">
+                  <input type="text" name="nama_customer" class="form-control" placeholder="Isi form nama customer"
+                    required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')"
+                    oninput="setCustomValidity('')">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <label for="">Nama Kendaraan</label>
-            <div class="form-group">
-              <div class="nk-int-st">
-                <input type="text" name="nama_kendaraan" class="form-control" placeholder="Isi form nama kendaraan" required="" maxlength="15" oninvalid="this.setCustomValidity('Nama Kendaraan Wajib Diisi')" oninput="setCustomValidity('')">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <label for="">No Telp</label>
+              <div class="form-group">
+                <div class="nk-int-st">
+                  <input type="text" onkeypress="return hanyaAngka(event)" name="no_telp" class="form-control"
+                    placeholder="Isi form No telp" required="" maxlength="20"
+                    oninvalid="this.setCustomValidity('Nomor Telephone Wajib Diisi & Harus Angka')"
+                    oninput="setCustomValidity('')">
+                </div>
               </div>
             </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <label for="">Alamat</label>
+              <div class="form-group">
+                <div class="nk-int-st">
+                  <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3"
+                    required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')"
+                    oninput="setCustomValidity('')"></textarea>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-      <div style="margin-top: 20px;" class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="basic-tb-hd">
+          <h2 class="text-center">Data Mobil</h2>
+        </div>
+        <div class="contact-inner">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <label for="">No Plat</label>
+              <div class="form-group">
+                <div class="nk-int-st">
+                  <input type="text" name="no_plat" class="form-control" placeholder="Isi form nomor plat" required=""
+                    maxlength="15" oninvalid="this.setCustomValidity('Nomor Plat Wajib Diisi')"
+                    oninput="setCustomValidity('')">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <label for="">Nama Kendaraan</label>
+              <div class="form-group">
+                <div class="nk-int-st">
+                  <input type="text" name="nama_kendaraan" class="form-control" placeholder="Isi form nama kendaraan"
+                    required="" maxlength="15" oninvalid="this.setCustomValidity('Nama Kendaraan Wajib Diisi')"
+                    oninput="setCustomValidity('')">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 20px;" class="row">
           <div class="col-md-12">
             <button type="submit" name="simpan" class="btn btn-primary btn-block">Simpan</button>
           </div>
         </div>
+      </div>
     </div>
   </div>
-</div>
 </form>
 
 <script src="assets/template2/js/vendor/jquery-3.3.1.min.js"></script>
 <!--Load barang ketika di klik select option (FORM work order)  -->
-     <script>  
-         $(document).ready(function(){  
-              $('#kode_customer').change(function(){  
-                   var kode_customer = $(this).val();  
-                   $.ajax({  
-                        url:"transaksi/work_order/load_data_customer.php",  
-                        method:"POST",  
-                        data:{kode_customer:kode_customer},  
-                        success:function(data){  
-                             $('#tampil_customer').html(data);  
-                        }  
-                   });  
-              });  
-         });  
-         </script>
-         <script>
-            function hanyaAngka(evt) {
-              var charCode = (evt.which) ? evt.which : event.keyCode
-               if (charCode > 31 && (charCode < 48 || charCode > 57))
-         
-                return false;
-              return true;
-            }
-        </script>
+<script>
+  $(document).ready(function () {
+    $('#kode_customer').change(function () {
+      var kode_customer = $(this).val();
+      $.ajax({
+        url: "transaksi/work_order/load_data_customer.php",
+        method: "POST",
+        data: {
+          kode_customer: kode_customer
+        },
+        success: function (data) {
+          $('#tampil_customer').html(data);
+        }
+      });
+    });
+  });
+</script>
+<script>
+  function hanyaAngka(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+      return false;
+    return true;
+  }
+</script>

@@ -36,7 +36,8 @@ if (isset($_POST['simpan'])) {
         <label for="">Nama mekanik</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" pattern="[A-Za-z\s]+" name="nama_mekanik" class="form-control" placeholder="Isi form nama mekanik" required="" maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')">
+            <input type="text" name="nama_mekanik" class="form-control" placeholder="Isi form nama mekanik" required=""
+              maxlength="50" oninvalid="this.setCustomValidity('Nama Wajib Diisi')" oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -46,7 +47,8 @@ if (isset($_POST['simpan'])) {
         <label for="">Alamat</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required="" oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"></textarea>
+            <textarea class="form-control" id="alamat" name="alamat" placeholder="Isi form Alamat" rows="3" required=""
+              oninvalid="this.setCustomValidity('Alamat Wajib Diisi')" oninput="setCustomValidity('')"></textarea>
           </div>
         </div>
       </div>
@@ -56,7 +58,10 @@ if (isset($_POST['simpan'])) {
         <label for="">No telp</label>
         <div class="form-group">
           <div class="nk-int-st">
-            <input type="text" onkeypress="return hanyaAngka(event)" name="no_telp" class="form-control" placeholder="Isi form No telp" required="" maxlength="20" oninvalid="this.setCustomValidity('Nomor Telephone Wajib Diisi & Harus Angka')" oninput="setCustomValidity('')">
+            <input type="text" onkeypress="return hanyaAngka(event)" name="no_telp" class="form-control"
+              placeholder="Isi form No telp" required="" maxlength="20"
+              oninvalid="this.setCustomValidity('Nomor Telephone Wajib Diisi & Harus Angka')"
+              oninput="setCustomValidity('')">
           </div>
         </div>
       </div>
@@ -69,11 +74,11 @@ if (isset($_POST['simpan'])) {
 
 </div>
 <script>
-    function hanyaAngka(evt) {
-      var charCode = (evt.which) ? evt.which : event.keyCode
-       if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-        return false;
-      return true;
-    }
+  function hanyaAngka(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+      return false;
+    return true;
+  }
 </script>

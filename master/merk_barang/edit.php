@@ -29,8 +29,11 @@ if (isset($_POST['update'])) {
                 <label for="">Nama Merk Barang</label>
                 <div class="form-group">
                     <div class="nk-int-st">
-                        <input type="hidden" name="kode_merk" class="form-control" readonly="" value="<?= $data['kode_merk'] ?>">
-                        <input type="text" pattern="[A-Za-z\s]+" name="nama_merk" class="form-control" placeholder="Isi form nama Merk barang" required="" maxlength="20" oninvalid="this.setCustomValidity('Nama Merk Wajib Diisi & Tidak Boleh Angka')" oninput="setCustomValidity('')" value="<?= $data['nama_merk'] ?>">
+                        <input type="hidden" name="kode_merk" class="form-control" readonly=""
+                            value="<?= $data['kode_merk'] ?>">
+                        <input type="text" name="nama_merk" class="form-control" placeholder="Isi form nama Merk barang"
+                            required="" maxlength="20" oninvalid="this.setCustomValidity('Nama Merk Wajib Diisi')"
+                            oninput="setCustomValidity('')" value="<?= $data['nama_merk'] ?>">
                     </div>
                 </div>
             </div>
